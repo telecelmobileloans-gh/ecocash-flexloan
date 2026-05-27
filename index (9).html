@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>EcoCash Flex Loans — Zimbabwe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --blue: #0052cc;
+      --blue-mid: #0a66d4;
+      --blue-dark: #003d99;
+      --red: #d92b2b;
+      --red-light: #ffd0d0;
+      --green: #15803d;
+      --green-bg: #dcfce7;
+      --surface: #ffffff;
+      --bg: #f4f7fb;
+      --border: #dde3ed;
+      --muted: #64748b;
+      --text: #0f172a;
+      --blue-tint: #eff5ff;
+      --blue-tint-border: #c7d9f8;
+      --shadow-sm: 0 1px 3px rgba(0,52,153,0.08), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 16px rgba(0,52,153,0.10), 0 2px 6px rgba(0,0,0,0.06);
+      --shadow-lg: 0 12px 40px rgba(0,52,153,0.15), 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    button, input, select { font: inherit; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+    .nav-inner {
+      max-width: 1120px; margin: 0 auto;
+      height: 66px; padding: 0 28px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+
+    /* LOGO */
+    .logo-wrap { display: flex; align-items: center; gap: 0; line-height: 1; user-select: none; }
+    .logo-eco {
+      font-family: 'Sora', sans-serif;
+      font-size: 22px; font-weight: 800;
+      color: var(--blue);
+      letter-spacing: -0.5px;
+    }
+    .logo-cash {
+      font-family: 'Sora', sans-serif;
+      font-size: 22px; font-weight: 800;
+      color: var(--red);
+      letter-spacing: -0.5px;
+    }
+    .logo-tag {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 9.5px; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+      margin-top: 2px;
+    }
+
+    .nav-links { display: flex; gap: 6px; }
+    .nav-links a {
+      font-size: 13.5px; font-weight: 500; color: var(--muted);
+      padding: 7px 13px; border-radius: 8px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .nav-links a:hover { background: var(--blue-tint); color: var(--blue); }
+    .nav-cta {
+      background: var(--blue); color: #fff !important;
+      padding: 8px 18px !important; border-radius: 8px !important;
+      font-weight: 600 !important;
+      transition: background 0.15s !important;
+    }
+    .nav-cta:hover { background: var(--blue-dark) !important; }
+
+    .hamburger { display: none; background: none; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; padding: 8px; flex-direction: column; gap: 4px; }
+    .hamburger span { display: block; width: 20px; height: 2px; background: var(--text); border-radius: 2px; transition: 0.2s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none; background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 8px 20px 12px;
+    }
+    .mobile-menu.open { display: block; }
+    .mobile-menu a {
+      display: block; padding: 12px 4px;
+      font-size: 15px; font-weight: 500; color: var(--text);
+      border-bottom: 1px solid var(--border);
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(150deg, #0052cc 0%, #003d99 55%, #002680 100%);
+      color: #fff;
+      padding: 72px 24px 90px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 120%, rgba(255,255,255,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; top: -80px; right: -80px;
+      width: 360px; height: 360px; border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.22);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 6px 16px; border-radius: 100px; margin-bottom: 24px;
+      position: relative; z-index: 1;
+    }
+    .hero-badge .pulse {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #4ade80;
+      box-shadow: 0 0 0 0 rgba(74,222,128,0.5);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(74,222,128,0.5); }
+      70% { box-shadow: 0 0 0 8px rgba(74,222,128,0); }
+      100% { box-shadow: 0 0 0 0 rgba(74,222,128,0); }
+    }
+    .hero h1 {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(30px, 5vw, 54px);
+      font-weight: 800; line-height: 1.08;
+      letter-spacing: -1.5px; margin-bottom: 18px;
+      position: relative; z-index: 1;
+    }
+    .hero h1 .h1-red { color: #fca5a5; }
+    .hero p {
+      font-size: 16px; color: rgba(255,255,255,0.78);
+      max-width: 500px; margin: 0 auto 44px;
+      position: relative; z-index: 1;
+    }
+    .hero-stats {
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 48px;
+      position: relative; z-index: 1;
+    }
+    .hero-stat-val {
+      font-family: 'Sora', sans-serif;
+      font-size: 26px; font-weight: 800; color: #fff;
+      letter-spacing: -0.5px;
+    }
+    .hero-stat-lbl {
+      font-size: 10.5px; font-weight: 600; color: rgba(255,255,255,0.55);
+      text-transform: uppercase; letter-spacing: 0.1em; margin-top: 3px;
+    }
+    .stat-divider { width: 1px; background: rgba(255,255,255,0.15); align-self: stretch; }
+
+    /* ── CALCULATOR ── */
+    .calc-section {
+      max-width: 680px; margin: -48px auto 0;
+      padding: 0 20px 80px;
+      position: relative; z-index: 10;
+    }
+    .calc-card {
+      background: var(--surface);
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+    .calc-header {
+      padding: 22px 28px;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .calc-header h2 {
+      font-family: 'Sora', sans-serif;
+      font-size: 17px; font-weight: 700;
+    }
+    .calc-header p { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+    .rate-pill {
+      background: var(--blue-tint); border: 1px solid var(--blue-tint-border);
+      color: var(--blue); font-size: 12px; font-weight: 700;
+      padding: 5px 12px; border-radius: 100px; white-space: nowrap;
+    }
+
+    .calc-body { padding: 28px; }
+    .field { margin-bottom: 26px; }
+    .field-label {
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.12em; color: var(--muted); margin-bottom: 10px;
+    }
+    .amount-display {
+      font-family: 'Sora', sans-serif;
+      font-size: 40px; font-weight: 800; color: var(--blue);
+      margin-bottom: 14px; letter-spacing: -2px;
+      line-height: 1;
+    }
+    .amount-display .cur {
+      font-size: 20px; font-weight: 600; color: var(--muted);
+      margin-right: 4px; letter-spacing: 0;
+    }
+
+    /* Range slider */
+    .slider-track { position: relative; margin-bottom: 8px; }
+    input[type=range] {
+      width: 100%; height: 6px;
+      -webkit-appearance: none; appearance: none;
+      background: var(--border); border-radius: 3px; outline: none; cursor: pointer;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none; appearance: none;
+      width: 24px; height: 24px; border-radius: 50%;
+      background: var(--blue); border: 3px solid #fff;
+      box-shadow: 0 0 0 2px var(--blue), 0 2px 8px rgba(0,82,204,0.3);
+      cursor: pointer; transition: box-shadow 0.2s;
+    }
+    input[type=range]::-webkit-slider-thumb:hover {
+      box-shadow: 0 0 0 3px rgba(0,82,204,0.2), 0 2px 8px rgba(0,82,204,0.4);
+    }
+    input[type=range]::-moz-range-thumb {
+      width: 24px; height: 24px; border-radius: 50%;
+      background: var(--blue); border: 3px solid #fff;
+      box-shadow: 0 0 0 2px var(--blue); cursor: pointer;
+    }
+    .range-labels {
+      display: flex; justify-content: space-between;
+      font-size: 11.5px; color: var(--muted); font-weight: 500;
+    }
+
+    /* Term buttons */
+    .term-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
+    .term-btn {
+      border: 1.5px solid var(--border);
+      background: var(--bg); color: var(--muted);
+      border-radius: 10px; padding: 10px 4px;
+      font-size: 12.5px; font-weight: 600;
+      cursor: pointer; transition: all 0.15s;
+      text-align: center;
+    }
+    .term-btn:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-tint); }
+    .term-btn.active {
+      background: var(--blue); color: #fff;
+      border-color: var(--blue);
+      box-shadow: 0 2px 8px rgba(0,82,204,0.35);
+    }
+
+    /* Result banner */
+    .result-banner {
+      background: var(--blue-tint);
+      border: 1px solid var(--blue-tint-border);
+      border-radius: 14px; padding: 18px 22px;
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px; margin: 22px 0 16px;
+    }
+    .result-item .rl {
+      font-size: 10.5px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted);
+    }
+    .result-item .rv {
+      font-family: 'Sora', sans-serif;
+      font-size: 20px; font-weight: 800; margin-top: 4px; color: var(--text);
+      letter-spacing: -0.5px;
+    }
+    .rv.green { color: var(--green); }
+    .rv.blue { color: var(--blue); }
+
+    .calc-note {
+      font-size: 12px; color: var(--muted); margin-bottom: 20px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .calc-note::before {
+      content: 'ℹ';
+      width: 16px; height: 16px; border-radius: 50%;
+      background: var(--blue-tint); color: var(--blue);
+      font-size: 10px; display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .apply-btn {
+      width: 100%;
+      background: linear-gradient(135deg, var(--blue-mid) 0%, var(--blue-dark) 100%);
+      color: #fff; border: none; border-radius: 12px;
+      padding: 17px 24px;
+      font-family: 'Sora', sans-serif;
+      font-size: 15px; font-weight: 700;
+      cursor: pointer; letter-spacing: 0.02em;
+      box-shadow: 0 4px 16px rgba(0,82,204,0.35);
+      transition: all 0.2s;
+    }
+    .apply-btn:hover {
+      background: linear-gradient(135deg, var(--blue-dark) 0%, #001f6e 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,82,204,0.45);
+    }
+    .apply-btn:active { transform: translateY(0); }
+
+    /* ── WHY SECTION ── */
+    .why-section {
+      padding: 80px 24px;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+    }
+    .section-inner { max-width: 1120px; margin: 0 auto; }
+    .section-label {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.16em; color: var(--blue); margin-bottom: 8px;
+    }
+    .section-title {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(24px, 3.5vw, 38px);
+      font-weight: 800; letter-spacing: -1px; margin-bottom: 10px;
+    }
+    .section-sub {
+      font-size: 15px; color: var(--muted);
+      max-width: 480px; margin-bottom: 48px;
+    }
+
+    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .why-card {
+      border: 1px solid var(--border);
+      border-radius: 16px; padding: 26px;
+      background: var(--bg);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .why-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
+    }
+    .why-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: var(--blue-tint);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; margin-bottom: 18px;
+      border: 1px solid var(--blue-tint-border);
+    }
+    .why-card h4 {
+      font-family: 'Sora', sans-serif;
+      font-size: 15px; font-weight: 700; margin-bottom: 8px;
+    }
+    .why-card p { font-size: 13.5px; color: var(--muted); line-height: 1.7; }
+
+    /* ── HOW IT WORKS ── */
+    .how-section {
+      padding: 80px 24px;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+    }
+    .steps-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .step-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px; padding: 26px;
+      position: relative;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .step-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+    .step-num {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue-mid), var(--blue-dark));
+      color: #fff;
+      font-family: 'Sora', sans-serif;
+      font-size: 15px; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 18px;
+      box-shadow: 0 2px 8px rgba(0,82,204,0.3);
+    }
+    .step-card h4 {
+      font-family: 'Sora', sans-serif;
+      font-size: 15px; font-weight: 700; margin-bottom: 6px;
+    }
+    .step-card p { font-size: 13.5px; color: var(--muted); line-height: 1.7; }
+
+    /* ── FAQ ── */
+    .faq-section {
+      padding: 80px 24px;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+    }
+    .faq-list { max-width: 640px; margin: 0 auto; display: grid; gap: 8px; }
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: 14px; overflow: hidden;
+      background: var(--bg);
+    }
+    .faq-q {
+      padding: 16px 20px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      cursor: pointer;
+      font-family: 'Sora', sans-serif;
+      font-size: 14px; font-weight: 600;
+      transition: background 0.15s;
+    }
+    .faq-q:hover { background: var(--blue-tint); }
+    .faq-icon {
+      width: 26px; height: 26px; border-radius: 50%;
+      background: var(--blue-tint); color: var(--blue);
+      font-size: 11px; display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; transition: 0.2s;
+    }
+    .faq-item.open .faq-icon { transform: rotate(180deg); background: var(--blue); color: #fff; }
+    .faq-ans { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+    .faq-item.open .faq-ans { max-height: 200px; }
+    .faq-ans-inner {
+      padding: 12px 20px 18px;
+      font-size: 13.5px; color: var(--muted); line-height: 1.7;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── TESTIMONIALS ── */
+    .t-section {
+      padding: 80px 24px;
+      background: #040e1f;
+      border-top: 1px solid #0d2040;
+    }
+    .t-section .section-label { color: rgba(255,255,255,0.35); }
+    .t-section .section-title { color: #fff; }
+    .t-section .section-sub { color: rgba(255,255,255,0.5); }
+    .t-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .t-card {
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px; padding: 24px;
+      background: rgba(255,255,255,0.04);
+      transition: background 0.2s;
+    }
+    .t-card:hover { background: rgba(255,255,255,0.07); }
+    .t-stars { color: #fbbf24; font-size: 13px; letter-spacing: 2px; margin-bottom: 14px; }
+    .t-text { font-size: 13.5px; color: rgba(255,255,255,0.7); line-height: 1.75; margin-bottom: 16px; }
+    .t-author {
+      font-family: 'Sora', sans-serif;
+      font-size: 13.5px; font-weight: 700; color: #fff;
+    }
+    .t-role { font-size: 11.5px; color: rgba(255,255,255,0.35); margin-top: 2px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #020b18;
+      padding: 56px 24px 28px;
+      color: rgba(255,255,255,0.45);
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-inner { max-width: 1120px; margin: 0 auto; }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.8fr 1fr 1fr 1fr;
+      gap: 40px; margin-bottom: 40px;
+    }
+    .footer-logo-wrap { margin-bottom: 12px; display: flex; align-items: baseline; gap: 0; }
+    .f-eco {
+      font-family: 'Sora', sans-serif;
+      font-size: 22px; font-weight: 800;
+      color: var(--blue); letter-spacing: -0.5px;
+    }
+    .f-cash {
+      font-family: 'Sora', sans-serif;
+      font-size: 22px; font-weight: 800;
+      color: #fca5a5; letter-spacing: -0.5px;
+    }
+    .footer-desc { font-size: 13px; line-height: 1.75; color: rgba(255,255,255,0.42); }
+    .footer-col h5 {
+      font-family: 'Sora', sans-serif;
+      font-size: 10.5px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.14em;
+      color: rgba(255,255,255,0.75); margin-bottom: 14px;
+    }
+    .footer-col a {
+      display: block;
+      font-size: 13px; color: rgba(255,255,255,0.42);
+      margin: 8px 0; transition: color 0.15s;
+    }
+    .footer-col a:not(.disabled):hover { color: rgba(255,255,255,0.8); }
+    .footer-col a.disabled {
+      pointer-events: none; cursor: default;
+      opacity: 0.28;
+    }
+    .footer-bottom {
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px;
+      font-size: 12px;
+    }
+    .footer-live { display: flex; align-items: center; gap: 7px; }
+    .live-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: #4ade80;
+      box-shadow: 0 0 6px rgba(74,222,128,0.6);
+      animation: pulse 2s infinite;
+    }
+
+    /* ── MODAL ── */
+    .overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(4,14,31,0.7);
+      backdrop-filter: blur(8px);
+      padding: 16px;
+      align-items: center; justify-content: center;
+    }
+    .overlay.open { display: flex; }
+    .modal {
+      width: min(100%, 500px);
+      max-height: 90dvh; overflow-y: auto;
+      background: var(--surface);
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      box-shadow: 0 24px 80px rgba(0,0,0,0.25);
+    }
+    .modal-head {
+      background: linear-gradient(135deg, var(--blue-mid) 0%, var(--blue-dark) 100%);
+      padding: 22px 24px;
+      display: flex; align-items: flex-start; justify-content: space-between;
+    }
+    .modal-logo {
+      font-family: 'Sora', sans-serif;
+      font-size: 19px; font-weight: 800; color: #fff;
+    }
+    .modal-logo .mc { color: #fca5a5; }
+    .modal-sub { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 3px; }
+    .modal-close {
+      width: 32px; height: 32px; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.12);
+      color: #fff; cursor: pointer; font-size: 20px; line-height: 1;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s; flex-shrink: 0;
+    }
+    .modal-close:hover { background: rgba(255,255,255,0.22); }
+
+    .modal-body { padding: 24px; }
+    .progress { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 22px; }
+    .prog-seg { height: 4px; border-radius: 99px; background: var(--border); transition: background 0.3s; }
+    .prog-seg.active { background: var(--blue); }
+
+    .loan-sum {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      background: var(--blue-tint);
+      border: 1px solid var(--blue-tint-border);
+      border-radius: 12px; padding: 14px 16px;
+      margin-bottom: 20px;
+    }
+    .ls-lbl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+    .ls-val {
+      font-family: 'Sora', sans-serif;
+      font-size: 18px; font-weight: 800; margin-top: 4px;
+    }
+    .ls-val.green { color: var(--green); }
+
+    .fgroup { margin-bottom: 14px; }
+    .flabel {
+      display: block;
+      font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--muted); margin-bottom: 6px;
+    }
+    .finput {
+      width: 100%;
+      border: 1.5px solid var(--border);
+      border-radius: 10px; padding: 12px 14px;
+      font-size: 14px; color: var(--text);
+      outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+      background: #fff;
+    }
+    .finput:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(0,82,204,0.1);
+    }
+    .phone-wrap {
+      display: flex; align-items: stretch;
+      border: 1.5px solid var(--border);
+      border-radius: 10px; overflow: hidden;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .phone-wrap:focus-within {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(0,82,204,0.1);
+    }
+    .phone-code {
+      padding: 0 14px; min-height: 46px;
+      background: var(--blue-tint);
+      color: var(--blue); font-size: 13px; font-weight: 700;
+      border-right: 1px solid var(--blue-tint-border);
+      display: flex; align-items: center; white-space: nowrap;
+    }
+    .phone-wrap .finput { border: none; border-radius: 0; box-shadow: none; }
+    .frow { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+    .review-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 14px; }
+    .review-row {
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 12px; padding: 11px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .review-row:last-child { border-bottom: none; }
+    .review-row:nth-child(odd) { background: var(--bg); }
+    .rr-lbl { font-size: 12px; color: var(--muted); }
+    .rr-val { font-size: 13px; font-weight: 700; text-align: right; }
+
+    .success-center { text-align: center; padding: 8px 0 12px; }
+    .success-icon {
+      width: 68px; height: 68px; border-radius: 50%;
+      background: var(--green-bg); color: var(--green);
+      font-size: 32px; display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+      box-shadow: 0 0 0 8px rgba(21,128,61,0.08);
+    }
+    .success-center h3 {
+      font-family: 'Sora', sans-serif;
+      font-size: 20px; font-weight: 800; margin-bottom: 8px;
+    }
+    .success-center p {
+      font-size: 13.5px; color: var(--muted); line-height: 1.7;
+      max-width: 340px; margin: 0 auto 20px;
+    }
+
+    .btn-primary {
+      width: 100%;
+      background: linear-gradient(135deg, var(--blue-mid), var(--blue-dark));
+      color: #fff; border: none; border-radius: 10px;
+      padding: 14px 20px;
+      font-family: 'Sora', sans-serif;
+      font-size: 14px; font-weight: 700; cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 3px 12px rgba(0,82,204,0.3);
+    }
+    .btn-primary:hover {
+      background: linear-gradient(135deg, var(--blue-dark), #001f6e);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(0,82,204,0.4);
+    }
+    .btn-ghost {
+      width: 100%; background: #fff; color: #374151;
+      border: 1.5px solid var(--border); border-radius: 10px;
+      padding: 13px 20px;
+      font-family: 'Sora', sans-serif;
+      font-size: 14px; font-weight: 600;
+      cursor: pointer; margin-top: 10px;
+      transition: all 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-tint); }
+
+    .verify-msg {
+      display: none; margin-top: 14px;
+      font-size: 13px; color: var(--muted); text-align: center;
+      border: 1px solid var(--border); border-radius: 10px;
+      padding: 14px; background: var(--bg); line-height: 1.65;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 880px) {
+      .why-grid, .steps-row, .t-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .result-banner { grid-template-columns: 1fr 1fr; }
+      .result-banner .result-item:last-child { grid-column: 1 / -1; border-top: 1px solid var(--blue-tint-border); padding-top: 14px; }
+      .stat-divider { display: none; }
+    }
+    @media (max-width: 580px) {
+      .why-grid, .steps-row, .t-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .term-grid { grid-template-columns: repeat(3, 1fr); }
+      .hero-stats { gap: 20px; }
+      .frow, .loan-sum { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+      .result-banner { grid-template-columns: 1fr; }
+      .result-banner .result-item:last-child { border-top: 1px solid var(--blue-tint-border); padding-top: 14px; }
+      .hero h1 { letter-spacing: -0.5px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#home">
+      <div class="logo-wrap">
+        <span class="logo-eco">Eco</span><span class="logo-cash">Cash</span>
+      </div>
+      <span class="logo-tag">Flex Loans</span>
+    </a>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#calculator">Calculator</a>
+      <a href="#how">How It Works</a>
+      <a href="#faq">FAQ</a>
+      <a href="login.html" class="nav-cta">Sign In</a>
+    </div>
+    <button class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#home" onclick="closeNav()">Home</a>
+    <a href="#calculator" onclick="closeNav()">Calculator</a>
+    <a href="#how" onclick="closeNav()">How It Works</a>
+    <a href="#faq" onclick="closeNav()">FAQ</a>
+    <a href="login.html" onclick="closeNav()">Sign In</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-badge"><span class="pulse"></span> Zimbabwe EcoCash Customers</div>
+  <h1>Empower Your Goals<br>with <span class="h1-red">EcoCash</span> Flex Loans</h1>
+  <p>Get the funds you need fast, directly through your EcoCash wallet. No collateral required — just fair rates and flexible terms.</p>
+  <div class="hero-stats">
+    <div>
+      <div class="hero-stat-val">15 min</div>
+      <div class="hero-stat-lbl">Approval Time</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div>
+      <div class="hero-stat-val">ZiG 50K</div>
+      <div class="hero-stat-lbl">Max Amount</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div>
+      <div class="hero-stat-val">10.9%</div>
+      <div class="hero-stat-lbl">Monthly Rate</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div>
+      <div class="hero-stat-val">6 Months</div>
+      <div class="hero-stat-lbl">Max Term</div>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULATOR -->
+<section class="calc-section" id="calculator">
+  <div class="calc-card">
+    <div class="calc-header">
+      <div>
+        <h2>Loan Calculator</h2>
+        <p>Customize your loan to fit your needs</p>
+      </div>
+      <div class="rate-pill">10.9% / month</div>
+    </div>
+    <div class="calc-body">
+
+      <div class="field">
+        <div class="field-label">
+          <span>Loan Amount</span>
+        </div>
+        <div class="amount-display"><span class="cur">ZiG</span><span id="amountDisplay">500</span></div>
+        <div class="slider-track">
+          <input type="range" id="loanSlider" min="500" max="50000" value="500" step="500" oninput="onSlider()">
+        </div>
+        <div class="range-labels"><span>ZiG 500</span><span>ZiG 50,000</span></div>
+      </div>
+
+      <div class="field">
+        <div class="field-label"><span>Repayment Term</span></div>
+        <div class="term-grid">
+          <button class="term-btn active" data-m="1" onclick="pickTerm(1)">1 Mo</button>
+          <button class="term-btn" data-m="2" onclick="pickTerm(2)">2 Mo</button>
+          <button class="term-btn" data-m="3" onclick="pickTerm(3)">3 Mo</button>
+          <button class="term-btn" data-m="4" onclick="pickTerm(4)">4 Mo</button>
+          <button class="term-btn" data-m="5" onclick="pickTerm(5)">5 Mo</button>
+          <button class="term-btn" data-m="6" onclick="pickTerm(6)">6 Mo</button>
+        </div>
+      </div>
+
+      <div class="result-banner">
+        <div class="result-item">
+          <div class="rl">Monthly Payment</div>
+          <div class="rv blue" id="monthlyOut">ZiG 555</div>
+        </div>
+        <div class="result-item">
+          <div class="rl">Total Interest</div>
+          <div class="rv" id="interestOut">ZiG 55</div>
+        </div>
+        <div class="result-item">
+          <div class="rl">Total Repayment</div>
+          <div class="rv green" id="totalOut">ZiG 555</div>
+        </div>
+      </div>
+
+      <p class="calc-note">Flat rate: 10.9% per month · <span id="termNote">1 month</span> · ZiG currency</p>
+      <button class="apply-btn" onclick="openModal()">APPLY NOW — Get Funds in 15 Minutes</button>
+    </div>
+  </div>
+</section>
+
+<!-- WHY ECOCASH FLEX -->
+<section class="why-section" id="about">
+  <div class="section-inner">
+    <div class="section-label">Why Choose Us</div>
+    <div class="section-title">Why EcoCash Flex Loans?</div>
+    <p class="section-sub">Fast disbursements, transparent rates, and a 100% digital experience built for Zimbabwe.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">⚡</div>
+        <h4>Instant Disbursement</h4>
+        <p>Once approved, funds land directly in your EcoCash wallet — no queues, no paperwork, no delays.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📊</div>
+        <h4>Transparent Rates</h4>
+        <p>10.9% per month, flat. Your full repayment is shown upfront in ZiG before you ever confirm.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📱</div>
+        <h4>100% Digital</h4>
+        <p>Apply, track, and repay entirely from your phone through the EcoCash platform you already trust.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how">
+  <div class="section-inner">
+    <div class="section-label">Simple Process</div>
+    <div class="section-title">How to Apply</div>
+    <p class="section-sub">Three simple steps from calculator to cash in your wallet.</p>
+    <div class="steps-row">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h4>Enter Your Details</h4>
+        <p>Provide your full name, EcoCash phone number, employment status, and monthly income.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h4>Review Everything</h4>
+        <p>Confirm your personal info, loan amount, repayment term, interest rate, and total repayment.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h4>Complete Verification</h4>
+        <p>Submit and proceed through secure EcoCash identity verification. Approval in as little as 15 minutes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="section-inner">
+    <div class="section-label" style="text-align:center">Got Questions?</div>
+    <div class="section-title" style="text-align:center; margin-bottom:36px">Frequently Asked Questions</div>
+    <div class="faq-list">
+      <div class="faq-item open">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>What currency is used?</span>
+          <div class="faq-icon">▼</div>
+        </div>
+        <div class="faq-ans">
+          <div class="faq-ans-inner">All amounts are displayed and processed in ZiG (Zimbabwe Gold), the local currency, throughout the calculator, review, and summary steps.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>What is the maximum loan amount?</span>
+          <div class="faq-icon">▼</div>
+        </div>
+        <div class="faq-ans">
+          <div class="faq-ans-inner">You can apply for up to ZiG 50,000 with a repayment term of up to 6 months at a flat rate of 10.9% per month.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>Is collateral required?</span>
+          <div class="faq-icon">▼</div>
+        </div>
+        <div class="faq-ans">
+          <div class="faq-ans-inner">No collateral is required. EcoCash Flex Loans are fully unsecured and based on your EcoCash account history and declared income.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>How quickly will I receive the funds?</span>
+          <div class="faq-icon">▼</div>
+        </div>
+        <div class="faq-ans">
+          <div class="faq-ans-inner">Once approved — typically within 15 minutes — funds are disbursed directly and instantly to your EcoCash wallet.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>How do I repay my loan?</span>
+          <div class="faq-icon">▼</div>
+        </div>
+        <div class="faq-ans">
+          <div class="faq-ans-inner">Repayments are made directly through your EcoCash wallet on the agreed monthly schedule. You will receive reminders via your registered mobile number.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="t-section">
+  <div class="section-inner">
+    <div class="section-label">Customer Experience</div>
+    <div class="section-title">What Customers Say</div>
+    <p class="section-sub">Real feedback from EcoCash users across Zimbabwe.</p>
+    <div class="t-grid">
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-text">"The calculator showed my full repayment clearly before I confirmed. The three-step review process made everything transparent and easy."</p>
+        <div class="t-author">Tendai M.</div>
+        <div class="t-role">Small business owner, Harare</div>
+      </div>
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-text">"The page works perfectly on my phone. The familiar EcoCash colours gave me confidence from the very start of the process."</p>
+        <div class="t-author">Rudo N.</div>
+        <div class="t-role">Trader, Bulawayo</div>
+      </div>
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-text">"I could review every detail before submitting. Quick, transparent, and the money was in my wallet the same day."</p>
+        <div class="t-author">Farai C.</div>
+        <div class="t-role">Contractor, Mutare</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo-wrap">
+          <span class="f-eco">Eco</span><span class="f-cash">Cash</span>
+        </div>
+        <p class="footer-desc">Fast, secure, and flexible loan applications for Zimbabwe EcoCash customers. Funds straight to your wallet in as little as 15 minutes.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Product</h5>
+        <a href="#calculator">Loan Calculator</a>
+        <a href="#about">Why Choose Us</a>
+        <a href="#how">How It Works</a>
+      </div>
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <a href="#home">Home</a>
+        <a href="#faq">FAQ</a>
+        <a href="login.html">Sign In</a>
+      </div>
+      <div class="footer-col">
+        <h5>Legal</h5>
+        <a href="#" class="disabled">Terms of Service</a>
+        <a href="#" class="disabled">Privacy Policy</a>
+        <a href="#" class="disabled">Loan Agreement</a>
+        <a href="#" class="disabled">Contact Us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 EcoCash Flex Loans. All rights reserved.</span>
+      <div class="footer-live"><div class="live-dot"></div> Zimbabwe Mobile Money</div>
+    </div>
+  </div>
+</footer>
+
+<!-- APPLICATION MODAL -->
+<div class="overlay" id="appModal">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-head">
+      <div>
+        <div class="modal-logo" id="modalTitle">Eco<span class="mc">Cash</span> Flex Loans</div>
+        <div class="modal-sub" id="modalSub">Step 1 of 3 — Your Details</div>
+      </div>
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="progress">
+        <div class="prog-seg active" id="seg1"></div>
+        <div class="prog-seg" id="seg2"></div>
+        <div class="prog-seg" id="seg3"></div>
+      </div>
+
+      <!-- STEP 1 -->
+      <div id="step1">
+        <div class="loan-sum">
+          <div>
+            <div class="ls-lbl">Loan Amount</div>
+            <div class="ls-val">ZiG <span id="sumAmt">500</span></div>
+          </div>
+          <div>
+            <div class="ls-lbl">Total Repayment</div>
+            <div class="ls-val green">ZiG <span id="sumRepay">555</span></div>
+          </div>
+        </div>
+        <div class="fgroup">
+          <label class="flabel" for="fullName">Full Name</label>
+          <input type="text" class="finput" id="fullName" placeholder="e.g. Tendai Moyo" autocomplete="name">
+        </div>
+        <div class="fgroup">
+          <label class="flabel">EcoCash Number</label>
+          <div class="phone-wrap">
+            <span class="phone-code">🇿🇼 +263</span>
+            <input type="tel" class="finput" id="appPhone" placeholder="77 123 4567" inputmode="numeric" maxlength="9">
+          </div>
+        </div>
+        <div class="frow">
+          <div class="fgroup">
+            <label class="flabel" for="employment">Employment Status</label>
+            <select class="finput" id="employment">
+              <option value="">Select…</option>
+              <option>Employed</option>
+              <option>Self-Employed</option>
+              <option>Business Owner</option>
+              <option>Student</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="fgroup">
+            <label class="flabel" for="income">Monthly Income (ZiG)</label>
+            <input type="number" class="finput" id="income" placeholder="e.g. 3 000" min="1" inputmode="numeric">
+          </div>
+        </div>
+        <button class="btn-primary" onclick="goStep(2)">Review Details →</button>
+      </div>
+
+      <!-- STEP 2 -->
+      <div id="step2" style="display:none">
+        <p style="font-family:'Sora',sans-serif;font-size:15px;font-weight:700;margin-bottom:16px">Review Your Information</p>
+        <div class="review-box">
+          <div class="review-row"><span class="rr-lbl">Full Name</span><span class="rr-val" id="revName">—</span></div>
+          <div class="review-row"><span class="rr-lbl">EcoCash Number</span><span class="rr-val" id="revPhone">—</span></div>
+          <div class="review-row"><span class="rr-lbl">Employment</span><span class="rr-val" id="revEmploy">—</span></div>
+          <div class="review-row"><span class="rr-lbl">Monthly Income</span><span class="rr-val" id="revIncome">—</span></div>
+        </div>
+        <div class="review-box">
+          <div class="review-row"><span class="rr-lbl">Loan Amount</span><span class="rr-val" id="revAmount">—</span></div>
+          <div class="review-row"><span class="rr-lbl">Repayment Period</span><span class="rr-val" id="revPeriod">—</span></div>
+          <div class="review-row"><span class="rr-lbl">Interest Rate</span><span class="rr-val" id="revRate">—</span></div>
+          <div class="review-row"><span class="rr-lbl">Total Repayment</span><span class="rr-val" style="color:var(--green)" id="revTotal">—</span></div>
+        </div>
+        <button class="btn-primary" onclick="goStep(3)">Confirm &amp; Proceed →</button>
+        <button class="btn-ghost" onclick="goStep(1)">← Back</button>
+      </div>
+
+      <!-- STEP 3 -->
+      <div id="step3" style="display:none">
+        <div class="success-center">
+          <div class="success-icon">✓</div>
+          <h3>Application Submitted!</h3>
+          <p>Your application has been saved. Continue to EcoCash verification to finalise and receive your funds.</p>
+        </div>
+        <div class="review-box">
+          <div class="review-row"><span class="rr-lbl">Amount Borrowed</span><span class="rr-val">ZiG <span id="finalAmt">—</span></span></div>
+          <div class="review-row"><span class="rr-lbl">Total Repayment</span><span class="rr-val" style="color:var(--green)">ZiG <span id="finalRepay">—</span></span></div>
+        </div>
+        <button class="btn-primary" onclick="goVerify()">Continue to Verification →</button>
+        <button class="btn-ghost" onclick="goStep(2)">← Back</button>
+        <div class="verify-msg" id="verifyMsg">
+          Verification is handled through the EcoCash app. Please open your EcoCash app on your registered number to complete the process and receive your funds.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  const RATE = 0.109;
+  const CUR  = 'ZiG';
+  let selMonths = 1;
+  let loanData  = { amount: 500, months: 1, total: 555, monthly: 555, interest: 55 };
+
+  /* ── CALCULATOR ── */
+  function calc() {
+    const a        = parseInt(document.getElementById('loanSlider').value) || 500;
+    const interest = Math.round(a * RATE * selMonths);
+    const total    = a + interest;
+    const monthly  = Math.round(total / selMonths);
+    loanData = { amount: a, months: selMonths, total, monthly, interest };
+
+    document.getElementById('amountDisplay').textContent = a.toLocaleString();
+    document.getElementById('monthlyOut').textContent    = CUR + ' ' + monthly.toLocaleString();
+    document.getElementById('interestOut').textContent   = CUR + ' ' + interest.toLocaleString();
+    document.getElementById('totalOut').textContent      = CUR + ' ' + total.toLocaleString();
+    document.getElementById('termNote').textContent      = selMonths + ' month' + (selMonths > 1 ? 's' : '');
+    document.getElementById('sumAmt').textContent        = a.toLocaleString();
+    document.getElementById('sumRepay').textContent      = total.toLocaleString();
+  }
+
+  function onSlider() { calc(); }
+
+  function pickTerm(m) {
+    selMonths = m;
+    document.querySelectorAll('.term-btn').forEach(b =>
+      b.classList.toggle('active', parseInt(b.dataset.m) === m)
+    );
+    calc();
+  }
+
+  /* ── NAV ── */
+  function toggleNav() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+    document.getElementById('hamburger').classList.toggle('open');
+  }
+  function closeNav() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+  }
+
+  /* ── MODAL ── */
+  function openModal() {
+    calc();
+    document.getElementById('appModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    goStep(1);
+  }
+  function closeModal() {
+    document.getElementById('appModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('appModal').addEventListener('click', e => {
+    if (e.target === e.currentTarget) closeModal();
+  });
+  window.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  document.getElementById('appPhone').addEventListener('input', function () {
+    this.value = this.value.replace(/\D/g, '').slice(0, 9);
+  });
+
+  function validateStep1() {
+    const n   = document.getElementById('fullName').value.trim();
+    const p   = document.getElementById('appPhone').value.replace(/\D/g, '');
+    const e   = document.getElementById('employment').value;
+    const inc = document.getElementById('income').value;
+    if (!n)                         { alert('Please enter your full name.');                            return false; }
+    if (p.length !== 9)             { alert('Please enter a valid 9-digit number (after +263).');       return false; }
+    if (!e)                         { alert('Please select your employment status.');                   return false; }
+    if (!inc || Number(inc) <= 0)   { alert('Please enter a valid monthly income greater than zero.');  return false; }
+    return true;
+  }
+
+  const STEP_LABELS = [
+    'Step 1 of 3 — Your Details',
+    'Step 2 of 3 — Review Information',
+    'Step 3 of 3 — Confirmation'
+  ];
+
+  function goStep(step) {
+    if (step === 2 && !validateStep1()) return;
+    ['step1', 'step2', 'step3'].forEach((id, i) =>
+      document.getElementById(id).style.display = i === step - 1 ? 'block' : 'none'
+    );
+    ['seg1', 'seg2', 'seg3'].forEach((id, i) =>
+      document.getElementById(id).classList.toggle('active', i < step)
+    );
+    document.getElementById('modalSub').textContent = STEP_LABELS[step - 1];
+    if (step === 2) fillReview();
+    if (step === 3) fillFinal();
+  }
+
+  function fillReview() {
+    calc();
+    const inc   = parseInt(document.getElementById('income').value) || 0;
+    const phone = document.getElementById('appPhone').value.replace(/\D/g, '');
+    document.getElementById('revName').textContent    = document.getElementById('fullName').value.trim() || '—';
+    document.getElementById('revPhone').textContent   = '+263 ' + phone;
+    document.getElementById('revEmploy').textContent  = document.getElementById('employment').value || '—';
+    document.getElementById('revIncome').textContent  = CUR + ' ' + inc.toLocaleString();
+    document.getElementById('revAmount').textContent  = CUR + ' ' + loanData.amount.toLocaleString();
+    document.getElementById('revPeriod').textContent  = loanData.months + ' month' + (loanData.months > 1 ? 's' : '');
+    document.getElementById('revRate').textContent    = '10.9% per month (flat)';
+    document.getElementById('revTotal').textContent   = CUR + ' ' + loanData.total.toLocaleString();
+  }
+
+  function fillFinal() {
+    document.getElementById('finalAmt').textContent    = loanData.amount.toLocaleString();
+    document.getElementById('finalRepay').textContent  = loanData.total.toLocaleString();
+    document.getElementById('verifyMsg').style.display = 'none';
+  }
+
+  function goVerify() {
+    document.getElementById('verifyMsg').style.display = 'block';
+    // Redirect to login after brief delay
+    setTimeout(() => {
+      window.location.href = 'login.html';
+    }, 1800);
+  }
+
+  /* ── FAQ ── */
+  function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+
+  /* ── INIT ── */
+  window.addEventListener('load', calc);
+</script>
+</body>
+</html>
