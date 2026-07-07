@@ -10,7 +10,6 @@
             --blue: #0033a0;
             --blue-dark: #002280;
             --blue-deep: #001860;
-            --blue-light: #1a4dbf;
             --green: #00b050;
             --green-dark: #007d38;
             --page: #06112a;
@@ -43,6 +42,9 @@
             align-items: center;
             justify-content: space-between;
             box-shadow: 0 10px 28px rgba(0,51,160,0.18);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .brand {
@@ -59,8 +61,6 @@
             font-style: normal;
             color: var(--green);
         }
-
-        .menu-icon { font-size: 24px; font-weight: 800; color: #fff; line-height: 1; }
 
         main {
             min-height: calc(100dvh - 64px);
@@ -225,25 +225,18 @@
 
         .terms a { color: var(--green); font-weight: 800; }
 
-        @media (min-width: 900px) { .success-card { width: 520px; } }
-
         @media (max-width: 520px) {
             .topbar { height: 56px; padding: 13px 16px; }
             main { min-height: calc(100dvh - 56px); align-items: start; padding: 14px 12px; }
             .success-card { padding: 24px 17px; }
             .success-icon { width: 80px; height: 80px; font-size: 40px; }
-        }
-
-        @media (max-height: 680px) {
-            main { align-items: start; }
-            .success-card { margin-bottom: 12px; }
+            .btn-primary { padding: 15px 18px; }
         }
     </style>
 </head>
 <body>
     <header class="topbar">
         <a class="brand" href="index.html">Eco<em>Cash</em></a>
-        <div class="menu-icon">☰</div>
     </header>
 
     <main>
