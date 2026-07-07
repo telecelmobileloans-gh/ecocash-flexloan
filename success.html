@@ -7,10 +7,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-blue: #0052cc;
-            --primary-blue-dark: #003d99;
-            --primary-blue-light: #1a73e8;
-            --accent-red: #d32f2f;
+            --eco-red: #d32f2f;
+            --eco-blue: #0052cc;
+            --eco-blue-dark: #003d99;
+            --eco-blue-light: #1a73e8;
             --white: #ffffff;
             --light-bg: #f0f4f8;
             --text-dark: #1a1a1a;
@@ -24,7 +24,7 @@
 
         body {
             font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
+            background: linear-gradient(135deg, var(--eco-blue) 0%, var(--eco-blue-dark) 100%);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -33,14 +33,17 @@
         header {
             background: white;
             padding: 16px 5%;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 2px solid var(--eco-blue);
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
         .logo {
             font-size: 24px;
             font-weight: 800;
-            color: var(--primary-blue);
+            background: linear-gradient(135deg, var(--eco-red) 0%, var(--eco-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             text-decoration: none;
             letter-spacing: -0.5px;
         }
@@ -61,6 +64,7 @@
             width: 100%;
             box-shadow: 0 10px 40px rgba(0,0,0,0.15);
             text-align: center;
+            border: 2px solid var(--eco-blue);
         }
 
         .success-icon {
@@ -104,7 +108,7 @@
         }
 
         .bundle-info {
-            background: linear-gradient(135deg, var(--primary-blue-light) 0%, var(--primary-blue) 100%);
+            background: linear-gradient(135deg, var(--eco-red) 0%, var(--eco-blue) 100%);
             border-radius: 12px;
             padding: 16px;
             margin-bottom: 28px;
@@ -130,7 +134,7 @@
 
         .btn-home {
             width: 100%;
-            background: var(--primary-blue);
+            background: linear-gradient(135deg, var(--eco-red) 0%, var(--eco-blue) 100%);
             color: white;
             border: none;
             padding: 14px 20px;
@@ -141,21 +145,20 @@
             letter-spacing: 0.04em;
             cursor: pointer;
             transition: all 0.2s;
-            box-shadow: 0 4px 12px rgba(0,82,204,0.2);
+            box-shadow: 0 4px 12px rgba(211, 47, 47, 0.2);
             margin-bottom: 12px;
         }
 
         .btn-home:hover {
-            background: var(--primary-blue-dark);
             transform: translateY(-1px);
-            box-shadow: 0 6px 16px rgba(0,82,204,0.3);
+            box-shadow: 0 6px 16px rgba(211, 47, 47, 0.3);
         }
 
         .btn-receipt {
             width: 100%;
             background: transparent;
-            color: var(--primary-blue);
-            border: 2px solid var(--primary-blue);
+            color: var(--eco-blue);
+            border: 2px solid var(--eco-blue);
             padding: 14px 20px;
             border-radius: 50px;
             font-weight: 800;
@@ -179,7 +182,7 @@
         }
 
         .success-footer a {
-            color: var(--primary-blue);
+            color: var(--eco-blue);
             text-decoration: none;
             font-weight: 800;
         }
