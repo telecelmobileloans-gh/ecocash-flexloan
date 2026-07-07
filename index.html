@@ -7,20 +7,34 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-red: #dc2626;
-            --primary-blue: #1e40af;
-            --primary-blue-dark: #1e3a8a;
-            --accent-blue: #3b82f6;
-            --accent-light: #dbeafe;
-            --success: #10b981;
-            --page: #f8fafc;
-            --surface: #ffffff;
-            --surface2: #f1f5f9;
-            --border: #e2e8f0;
-            --border2: #cbd5e1;
-            --text: #1e293b;
-            --text2: #475569;
-            --muted: #64748b;
+            /* Primary Colors - Red and Blue */
+            --primary-red: #d32f2f;
+            --primary-red-dark: #b71c1c;
+            --primary-blue: #1565c0;
+            --primary-blue-dark: #0d47a1;
+            --primary-blue-light: #1976d2;
+            
+            /* Accent Colors */
+            --accent-green: #00b050;
+            --accent-green-dark: #007d38;
+            
+            /* Neutral Colors - White and Bluish */
+            --white: #ffffff;
+            --bluish-light: #e3f2fd;
+            --bluish-medium: #bbdefb;
+            --bluish-dark: #1e3a8a;
+            
+            /* Background Colors */
+            --page: #0a1428;
+            --surface: #1a2332;
+            --surface2: #243447;
+            --border: rgba(255,255,255,0.08);
+            --border2: rgba(255,255,255,0.15);
+            
+            /* Text Colors */
+            --text: #ffffff;
+            --text2: #d0d9e8;
+            --muted: #8fa3b8;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -30,286 +44,445 @@
             min-height: 100dvh;
             font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
             color: var(--text);
-            background: var(--page);
+            background: linear-gradient(135deg, var(--page) 0%, var(--surface) 100%);
             overflow-x: hidden;
         }
 
-        .topbar {
-            height: 64px;
-            padding: 14px max(18px, env(safe-area-inset-right)) 14px max(18px, env(safe-area-inset-left));
-            background: var(--surface);
-            border-bottom: 2px solid var(--border);
+        /* Sticky Ticker */
+        .ticker-wrap {
+            background: #000814;
+            color: var(--text2);
+            padding: 11px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            border-bottom: 2px solid var(--primary-red);
+            position: sticky;
+            top: 0;
+            z-index: 1100;
+        }
+
+        .ticker-inner {
+            display: inline-flex;
+            animation: ticker 40s linear infinite;
+        }
+
+        .ticker-inner span {
+            margin-right: 70px;
+            font-size: 12.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+        }
+
+        @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* Header */
+        header {
+            background: rgba(10, 20, 40, 0.97);
+            backdrop-filter: blur(12px);
+            border-bottom: 2px solid rgba(21, 101, 192, 0.4);
+            position: sticky;
+            top: 52px;
+            z-index: 1000;
+            box-shadow: 0 4px 24px rgba(0,0,0,.5);
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 5%;
+            height: 72px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            gap: 14px;
         }
 
-        .brand {
+        .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             text-decoration: none;
-            cursor: pointer;
+            flex-shrink: 0;
         }
 
-        .brand-logo {
+        .logo-icon {
             width: 44px;
             height: 44px;
-            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-blue) 100%);
-            border-radius: 10px;
+            background: linear-gradient(135deg, var(--primary-red), var(--primary-blue));
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 900;
-            color: white;
-            font-size: 20px;
+            box-shadow: 0 8px 32px rgba(211, 47, 47, 0.4);
             flex-shrink: 0;
-            box-shadow: 0 4px 12px rgba(220,38,38,0.2);
         }
 
-        .brand-text {
+        .logo-icon span {
+            color: var(--white);
+            font-weight: 900;
             font-size: 18px;
-            font-weight: 800;
-            letter-spacing: -0.6px;
+            letter-spacing: -1px;
+        }
+
+        .logo-name {
+            font-size: 1.5rem;
+            font-weight: 900;
             color: var(--text);
+            letter-spacing: -0.5px;
             line-height: 1;
+            white-space: nowrap;
         }
 
-        .ticker {
-            background: linear-gradient(90deg, var(--primary-red) 0%, var(--primary-blue) 100%);
-            color: white;
-            padding: 10px max(12px, env(safe-area-inset-right)) 10px max(12px, env(safe-area-inset-left));
-            text-align: center;
-            font-size: 12px;
+        .logo-name em { 
+            font-style: normal; 
+            background: linear-gradient(135deg, var(--primary-red), var(--primary-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo-sub {
+            font-size: 9px;
+            color: var(--muted);
             font-weight: 700;
-            letter-spacing: 0.03em;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: block;
+            margin-top: 2px;
+            white-space: nowrap;
         }
 
-        main {
-            min-height: 100dvh;
-            padding: 0;
+        .live-pill {
+            background: rgba(211, 47, 47, 0.15);
+            border: 1px solid rgba(211, 47, 47, 0.35);
+            color: var(--primary-red);
+            font-size: 10.5px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            padding: 5px 13px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
         }
 
+        .live-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--primary-red);
+            border-radius: 50%;
+            animation: blink 1.4s infinite;
+        }
+
+        @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: .3; } }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .nav-links a {
+            color: var(--text2);
+            text-decoration: none;
+            transition: 0.22s ease;
+            padding: 6px 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+            border-bottom-color: var(--primary-blue-light);
+        }
+
+        .login-btn {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+            color: white;
+            padding: 10px 26px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: 0.22s ease;
+            font-size: 13px;
+            box-shadow: 0 8px 32px rgba(21, 101, 192, 0.4);
+            flex-shrink: 0;
+            border: none;
+            cursor: pointer;
+        }
+
+        .login-btn:hover { transform: scale(1.04); }
+
+        /* Hero */
         .hero {
-            padding: clamp(40px, 8vw, 80px) max(12px, env(safe-area-inset-right)) clamp(40px, 8vw, 80px) max(12px, env(safe-area-inset-left));
+            background: linear-gradient(160deg, var(--primary-blue-dark) 0%, var(--primary-blue) 55%, #1565c0 100%);
+            color: white;
+            padding: clamp(64px, 13vw, 140px) 5% clamp(56px, 10vw, 100px);
             text-align: center;
-            background: linear-gradient(135deg, var(--accent-light) 0%, rgba(59,130,246,0.1) 100%);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle at 70% 30%, rgba(211, 47, 47, 0.12) 0%, transparent 55%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(211, 47, 47, 0.18);
+            border: 1px solid rgba(211, 47, 47, 0.40);
+            color: var(--primary-red);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 7px 18px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 999px;
+            margin-bottom: 22px;
         }
 
         .hero h1 {
-            font-size: clamp(32px, 8vw, 56px);
+            font-size: clamp(2.1rem, 7.5vw, 4.2rem);
             font-weight: 900;
-            letter-spacing: -1.2px;
-            margin-bottom: 12px;
-            color: var(--text);
-            line-height: 1.1;
+            margin-bottom: 16px;
+            letter-spacing: -1.5px;
+            line-height: 1.08;
+        }
+
+        .hero h1 em { 
+            font-style: normal; 
+            background: linear-gradient(135deg, var(--primary-red), var(--primary-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero p {
-            font-size: clamp(15px, 4vw, 18px);
-            color: var(--muted);
-            max-width: 600px;
-            margin: 0 auto 28px;
-            line-height: 1.6;
+            font-size: clamp(.95rem, 2.4vw, 1.15rem);
+            max-width: 640px;
+            margin: 0 auto 36px;
+            color: rgba(255,255,255,.8);
+            line-height: 1.75;
+            padding: 0 6px;
         }
 
-        .bundles-section {
-            padding: clamp(40px, 8vw, 60px) max(12px, env(safe-area-inset-right)) clamp(40px, 8vw, 60px) max(12px, env(safe-area-inset-left));
+        .hero-cta {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-red), var(--primary-red-dark));
+            color: white;
+            padding: 17px 56px;
+            border-radius: 50px;
+            font-weight: 800;
+            text-decoration: none;
+            font-size: 1.05rem;
+            letter-spacing: .3px;
+            box-shadow: 0 8px 32px rgba(211, 47, 47, .45);
+            transition: 0.22s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hero-cta:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(211, 47, 47, .5); }
+
+        /* Sections */
+        .section { padding: clamp(56px, 9vw, 90px) 5%; position: relative; z-index: 1; }
+
+        .section-label {
+            color: var(--primary-red);
+            font-weight: 700;
+            text-align: center;
+            letter-spacing: 3px;
+            font-size: .9rem;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 12px;
         }
 
         .section-title {
-            font-size: clamp(24px, 6vw, 36px);
-            font-weight: 800;
-            letter-spacing: -0.8px;
             text-align: center;
-            margin-bottom: 40px;
+            font-size: clamp(1.7rem, 5.5vw, 2.7rem);
+            font-weight: 900;
+            margin-bottom: 16px;
+            letter-spacing: -.8px;
             color: var(--text);
+        }
+
+        .section-sub {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px;
+            color: var(--muted);
+            font-size: 1rem;
+            line-height: 1.75;
+            padding: 0 6px;
         }
 
         .bundles-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            max-width: 1200px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 28px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
         .bundle-card {
             background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 24px;
-            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-            position: relative;
+            border-radius: 24px;
+            border: 1px solid var(--border2);
             overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-        }
-
-        .bundle-card::before {
-            content: "";
-            position: absolute;
-            inset: 0 0 auto 0;
-            height: 6px;
-            background: linear-gradient(90deg, var(--primary-red), var(--primary-blue));
+            box-shadow: 0 16px 60px rgba(0,0,0,.4);
+            transition: all 0.4s ease;
+            position: relative;
         }
 
         .bundle-card:hover {
-            border-color: var(--accent-blue);
-            box-shadow: 0 12px 28px rgba(59,130,246,0.15);
-            transform: translateY(-4px);
+            transform: translateY(-12px);
+            border-color: var(--primary-blue-light);
+            box-shadow: 0 20px 60px rgba(21, 101, 192, 0.25);
         }
 
-        .bundle-header {
-            margin-bottom: 16px;
+        .bcard-head {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+            padding: 24px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            flex-wrap: wrap;
         }
 
-        .bundle-name {
-            font-size: 18px;
-            font-weight: 800;
-            color: var(--text);
-            margin-bottom: 4px;
-            letter-spacing: -0.3px;
+        .bcard-head-left { min-width: 0; }
+
+        .bcard-head-left h2 {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: white;
+            margin: 0;
         }
 
-        .bundle-desc {
+        .bcard-head-left p {
             font-size: 12px;
-            color: var(--muted);
+            color: rgba(255,255,255,.75);
+            margin-top: 3px;
+            font-weight: 500;
+        }
+
+        .bcard-price-wrap { text-align: right; }
+
+        .bcard-price-label {
+            font-size: 10px;
+            color: rgba(255,255,255,.65);
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 1px;
+            margin-bottom: 3px;
         }
 
-        .bundle-data {
-            font-size: clamp(28px, 6vw, 36px);
+        .bcard-price {
+            font-size: 2.6rem;
             font-weight: 900;
-            color: var(--primary-blue);
-            margin: 16px 0;
-            letter-spacing: -0.5px;
+            color: white;
+            letter-spacing: -1px;
+            line-height: 1;
         }
 
-        .bundle-price {
-            font-size: 24px;
-            font-weight: 800;
-            color: var(--primary-red);
-            margin-bottom: 16px;
-            letter-spacing: -0.4px;
+        .bcard-price span {
+            font-size: 1rem;
+            vertical-align: super;
+            font-weight: 700;
+            margin-right: 2px;
         }
+
+        .best-badge {
+            display: inline-block;
+            background: var(--primary-red);
+            color: var(--white);
+            font-size: 10px;
+            font-weight: 800;
+            padding: 3px 10px;
+            border-radius: 999px;
+            margin-top: 6px;
+            letter-spacing: .5px;
+        }
+
+        .bcard-body { padding: 28px; }
 
         .bundle-features {
-            list-style: none;
-            margin-bottom: 20px;
+            text-align: left;
+            margin: 20px 0;
+            font-size: 1rem;
         }
 
         .bundle-features li {
-            font-size: 13px;
-            color: var(--text2);
             padding: 8px 0;
-            padding-left: 24px;
-            position: relative;
-            line-height: 1.5;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text2);
         }
 
         .bundle-features li::before {
             content: "✓";
-            position: absolute;
-            left: 0;
-            color: var(--success);
+            color: var(--primary-red);
             font-weight: 800;
         }
 
-        .btn-get {
+        .bundle-btn {
             width: 100%;
-            border: 0;
-            border-radius: 999px;
-            padding: 14px 20px;
-            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-blue) 100%);
+            padding: 18px;
+            background: linear-gradient(135deg, var(--primary-red), var(--primary-red-dark));
             color: white;
-            font-size: 14px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.05rem;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(220,38,38,0.2);
-            transition: all 0.2s;
+            transition: 0.3s;
+            box-shadow: 0 4px 18px rgba(211, 47, 47, .4);
         }
 
-        .btn-get:hover {
-            box-shadow: 0 8px 20px rgba(220,38,38,0.3);
-            transform: translateY(-2px);
+        .bundle-btn:hover {
+            background: linear-gradient(135deg, var(--primary-red-dark), #8b0000);
+            transform: scale(1.03);
+            box-shadow: 0 8px 28px rgba(211, 47, 47, .5);
         }
 
-        .btn-get:active { transform: translateY(0); }
-
-        .features-section {
-            padding: clamp(40px, 8vw, 60px) max(12px, env(safe-area-inset-right)) clamp(40px, 8vw, 60px) max(12px, env(safe-area-inset-left));
-            background: var(--surface2);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 24px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .feature-item {
-            text-align: center;
-        }
-
-        .feature-icon {
-            font-size: 40px;
-            margin-bottom: 12px;
-        }
-
-        .feature-title {
-            font-size: 16px;
-            font-weight: 800;
-            color: var(--text);
-            margin-bottom: 8px;
-        }
-
-        .feature-desc {
-            font-size: 13px;
-            color: var(--muted);
-            line-height: 1.6;
-        }
-
-        footer {
-            padding: clamp(30px, 5vw, 50px) max(12px, env(safe-area-inset-right)) clamp(30px, 5vw, 50px) max(12px, env(safe-area-inset-left));
-            border-top: 1px solid var(--border);
-            text-align: center;
-            color: var(--muted);
-            font-size: 12px;
-            background: var(--surface);
-        }
-
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
+        /* Modal */
+        .modal {
             display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
             align-items: center;
             justify-content: center;
-            background: rgba(0,0,0,0.5);
             z-index: 2000;
             padding: 20px;
             backdrop-filter: blur(4px);
         }
 
-        .modal-overlay.active { display: flex; }
+        .modal.active { display: flex; }
 
         .modal-content {
             background: var(--surface);
             border: 1px solid var(--border2);
             border-radius: 24px;
             padding: 32px;
-            max-width: 420px;
+            max-width: 450px;
             width: 100%;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
             position: relative;
             overflow: hidden;
         }
@@ -327,7 +500,7 @@
             font-weight: 800;
             letter-spacing: -0.8px;
             margin-bottom: 8px;
-            color: var(--text);
+            color: white;
         }
 
         .modal-subtitle {
@@ -338,39 +511,68 @@
         }
 
         .modal-summary {
-            background: var(--surface2);
+            background: linear-gradient(160deg, var(--primary-blue-dark) 0%, var(--primary-blue) 100%);
             border-radius: 16px;
-            padding: 16px;
+            padding: 16px 18px;
             margin-bottom: 20px;
+            color: #fff;
         }
 
-        .summary-row {
-            display: flex;
-            justify-content: space-between;
+        .ms-title {
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255,255,255,0.55);
             margin-bottom: 10px;
-            font-size: 13px;
         }
 
-        .summary-row:last-child { margin-bottom: 0; }
+        .ms-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
 
-        .summary-label { color: var(--muted); font-weight: 600; }
-        .summary-value { color: var(--text); font-weight: 800; }
+        .ms-item {
+            background: rgba(255,255,255,0.10);
+            border-radius: 10px;
+            padding: 9px 12px;
+        }
 
-        .summary-total {
-            border-top: 1px solid var(--border);
-            padding-top: 10px;
-            margin-top: 10px;
-            display: flex;
-            justify-content: space-between;
+        .ms-item-label {
+            font-size: 10px;
+            color: rgba(255,255,255,0.55);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .ms-item-val {
             font-size: 15px;
+            font-weight: 800;
+            color: #fff;
+            margin-top: 2px;
+            letter-spacing: -0.3px;
         }
 
-        .summary-total .summary-label { color: var(--muted); }
-        .summary-total .summary-value { color: var(--primary-red); font-size: 18px; }
+        .ms-total {
+            background: rgba(211, 47, 47, 0.18);
+            border: 1px solid rgba(211, 47, 47, 0.35);
+            border-radius: 10px;
+            padding: 10px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .ms-total-label { font-size: 12px; color: rgba(255,255,255,0.7); font-weight: 600; }
+        .ms-total-val   { font-size: 1.25rem; font-weight: 900; color: #ff6b6b; letter-spacing: -0.5px; }
 
         .modal-buttons {
             display: flex;
             gap: 12px;
+            margin-top: 20px;
         }
 
         .btn-confirm {
@@ -378,20 +580,25 @@
             border: 0;
             border-radius: 999px;
             padding: 14px 16px;
-            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-blue) 100%);
+            background: linear-gradient(135deg, var(--primary-red), var(--primary-red-dark));
             color: white;
             font-size: 14px;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 0.04em;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(220,38,38,0.2);
+            box-shadow: 0 8px 20px rgba(211, 47, 47, 0.25);
             transition: all 0.2s;
         }
 
-        .btn-confirm:hover {
-            box-shadow: 0 8px 20px rgba(220,38,38,0.3);
+        .btn-confirm:hover:not(:disabled) {
+            box-shadow: 0 12px 28px rgba(211, 47, 47, 0.35);
             transform: translateY(-1px);
+        }
+
+        .btn-confirm:disabled {
+            background: #555;
+            cursor: not-allowed;
         }
 
         .btn-cancel {
@@ -409,215 +616,180 @@
 
         .btn-cancel:hover {
             background: var(--surface2);
-            border-color: var(--accent-blue);
+            border-color: var(--primary-blue-light);
             color: var(--text);
         }
 
-        @media (max-width: 520px) {
-            .topbar { height: 56px; padding: 13px 16px; }
-            .ticker { padding: 8px 16px; font-size: 11px; }
-            .hero { padding: 30px 16px; }
-            .hero h1 { font-size: 28px; }
-            .bundles-section { padding: 30px 16px; }
-            .bundles-grid { gap: 16px; }
-            .bundle-card { padding: 18px; }
-            .features-section { padding: 30px 16px; }
-            .modal-content { padding: 24px; }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .bundles-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <header class="topbar">
-        <a class="brand" href="index.html">
-            <div class="brand-logo">E$</div>
-            <div class="brand-text">EcoCash</div>
-        </a>
-    </header>
-
-    <div class="ticker">
-        📱 Instant activation • Non-expiring bundles • Secure payments
+    <div class="ticker-wrap">
+        <div class="ticker-inner">
+            <span>🎉 Limited Time: Get 50GB Non-Expiry Data for just $9.99!</span>
+            <span>📱 Fast & Secure: Instant activation on your EcoCash account</span>
+            <span>🌍 Zimbabwe's #1 Data Provider: Trusted by millions</span>
+            <span>🎉 Limited Time: Get 50GB Non-Expiry Data for just $9.99!</span>
+        </div>
     </div>
 
-    <main>
-        <section class="hero">
-            <h1>High-Speed Data Bundles</h1>
-            <p>Stay connected with affordable, reliable data plans. Activate instantly and enjoy non-expiring bundles.</p>
-        </section>
-
-        <section class="bundles-section">
-            <h2 class="section-title">Choose Your Bundle</h2>
-            <div class="bundles-grid">
-                <div class="bundle-card">
-                    <div class="bundle-header">
-                        <div class="bundle-name">Night Owl</div>
-                        <div class="bundle-desc">Off-Peak Data</div>
-                    </div>
-                    <div class="bundle-data">500MB</div>
-                    <div class="bundle-price">$0.20</div>
-                    <ul class="bundle-features">
-                        <li>Off-peak hours only</li>
-                        <li>Non-expiring</li>
-                        <li>All networks</li>
-                    </ul>
-                    <button class="btn-get" onclick="selectBundle('Night Owl', '500MB', '0.20')">Get Bundle</button>
+    <header>
+        <div class="nav-content">
+            <a href="#" class="logo">
+                <div class="logo-icon"><span>E</span></div>
+                <div>
+                    <div class="logo-name">Eco<em>Cash</em></div>
+                    <div class="logo-sub">Data Bundles</div>
                 </div>
+            </a>
+            <nav class="nav-links">
+                <a href="#bundles">Bundles</a>
+                <a href="#features">Features</a>
+                <a href="#faq">FAQ</a>
+            </nav>
+            <button class="login-btn">Get Started</button>
+        </div>
+    </header>
 
-                <div class="bundle-card">
-                    <div class="bundle-header">
-                        <div class="bundle-name">Starter</div>
-                        <div class="bundle-desc">Daily Use</div>
+    <section class="hero">
+        <div class="hero-badge">
+            <span>⚡ LIVE DEALS</span>
+        </div>
+        <h1>Unlimited <em>Data</em> for Your Mobile</h1>
+        <p>Experience blazing-fast internet with our non-expiry data bundles. No throttling, no hidden charges—just pure connectivity.</p>
+        <button class="hero-cta" onclick="document.getElementById('bundlesSection').scrollIntoView({behavior: 'smooth'})">Explore Bundles</button>
+    </section>
+
+    <section class="section" id="bundlesSection">
+        <span class="section-label">Premium Offerings</span>
+        <h2 class="section-title">Choose Your Perfect <em>Data Bundle</em></h2>
+        <p class="section-sub">Select from our curated collection of high-speed data bundles designed for every need and budget.</p>
+
+        <div class="bundles-grid">
+            <!-- Bundle 1 -->
+            <div class="bundle-card">
+                <div class="bcard-head">
+                    <div class="bcard-head-left">
+                        <h2>Starter</h2>
+                        <p>Perfect for light users</p>
                     </div>
-                    <div class="bundle-data">1GB</div>
-                    <div class="bundle-price">$0.50</div>
-                    <ul class="bundle-features">
-                        <li>24-hour validity</li>
-                        <li>Non-expiring</li>
-                        <li>All networks</li>
-                    </ul>
-                    <button class="btn-get" onclick="selectBundle('Starter', '1GB', '0.50')">Get Bundle</button>
+                    <div class="bcard-price-wrap">
+                        <div class="bcard-price-label">From</div>
+                        <div class="bcard-price"><span>$</span>4.99</div>
+                    </div>
                 </div>
-
-                <div class="bundle-card">
-                    <div class="bundle-header">
-                        <div class="bundle-name">Standard</div>
-                        <div class="bundle-desc">Weekly Plan</div>
-                    </div>
-                    <div class="bundle-data">5GB</div>
-                    <div class="bundle-price">$1.20</div>
+                <div class="bcard-body">
                     <ul class="bundle-features">
-                        <li>7-day validity</li>
-                        <li>Non-expiring</li>
-                        <li>All networks</li>
+                        <li>5GB Data</li>
+                        <li>Non-Expiry</li>
+                        <li>Instant Activation</li>
+                        <li>24/7 Support</li>
                     </ul>
-                    <button class="btn-get" onclick="selectBundle('Standard', '5GB', '1.20')">Get Bundle</button>
-                </div>
-
-                <div class="bundle-card">
-                    <div class="bundle-header">
-                        <div class="bundle-name">Professional</div>
-                        <div class="bundle-desc">Monthly Plan</div>
-                    </div>
-                    <div class="bundle-data">10GB</div>
-                    <div class="bundle-price">$2.40</div>
-                    <ul class="bundle-features">
-                        <li>30-day validity</li>
-                        <li>Non-expiring</li>
-                        <li>All networks</li>
-                    </ul>
-                    <button class="btn-get" onclick="selectBundle('Professional', '10GB', '2.40')">Get Bundle</button>
-                </div>
-
-                <div class="bundle-card">
-                    <div class="bundle-header">
-                        <div class="bundle-name">Premium</div>
-                        <div class="bundle-desc">Power User</div>
-                    </div>
-                    <div class="bundle-data">30GB</div>
-                    <div class="bundle-price">$6.00</div>
-                    <ul class="bundle-features">
-                        <li>60-day validity</li>
-                        <li>Non-expiring</li>
-                        <li>All networks</li>
-                    </ul>
-                    <button class="btn-get" onclick="selectBundle('Premium', '30GB', '6.00')">Get Bundle</button>
-                </div>
-
-                <div class="bundle-card">
-                    <div class="bundle-header">
-                        <div class="bundle-name">Ultimate</div>
-                        <div class="bundle-desc">Unlimited Freedom</div>
-                    </div>
-                    <div class="bundle-data">50GB</div>
-                    <div class="bundle-price">$9.60</div>
-                    <ul class="bundle-features">
-                        <li>90-day validity</li>
-                        <li>Non-expiring</li>
-                        <li>All networks</li>
-                    </ul>
-                    <button class="btn-get" onclick="selectBundle('Ultimate', '50GB', '9.60')">Get Bundle</button>
+                    <button class="bundle-btn" onclick="selectBundle('Starter', '5GB', '4.99')">Select Plan</button>
                 </div>
             </div>
-        </section>
 
-        <section class="features-section">
-            <h2 class="section-title">Why Choose EcoCash Data</h2>
-            <div class="features-grid">
-                <div class="feature-item">
-                    <div class="feature-icon">⚡</div>
-                    <div class="feature-title">Instant Activation</div>
-                    <div class="feature-desc">Get your data within seconds of purchase. No waiting, no delays.</div>
+            <!-- Bundle 2 -->
+            <div class="bundle-card">
+                <div class="bcard-head">
+                    <div class="bcard-head-left">
+                        <h2>Professional</h2>
+                        <p>Most popular choice</p>
+                    </div>
+                    <div class="bcard-price-wrap">
+                        <div class="bcard-price-label">From</div>
+                        <div class="bcard-price"><span>$</span>9.99</div>
+                    </div>
                 </div>
-                <div class="feature-item">
-                    <div class="feature-icon">🔒</div>
-                    <div class="feature-title">Secure & Safe</div>
-                    <div class="feature-desc">256-bit encryption protects all your transactions and data.</div>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">♾️</div>
-                    <div class="feature-title">Non-Expiring</div>
-                    <div class="feature-desc">Your data never expires. Use it whenever you need it.</div>
+                <div class="bcard-body">
+                    <div class="best-badge">BEST VALUE</div>
+                    <ul class="bundle-features">
+                        <li>50GB Data</li>
+                        <li>Non-Expiry</li>
+                        <li>Priority Support</li>
+                        <li>Rollover Data</li>
+                    </ul>
+                    <button class="bundle-btn" onclick="selectBundle('Professional', '50GB', '9.99')">Select Plan</button>
                 </div>
             </div>
-        </section>
-    </main>
 
-    <footer>
-        <p>&copy; 2024 EcoCash Data Bundles. All rights reserved. <a href="#" style="color: var(--primary-blue); text-decoration: none; font-weight: 700;">Terms & Conditions</a></p>
-    </footer>
+            <!-- Bundle 3 -->
+            <div class="bundle-card">
+                <div class="bcard-head">
+                    <div class="bcard-head-left">
+                        <h2>Enterprise</h2>
+                        <p>For power users</p>
+                    </div>
+                    <div class="bcard-price-wrap">
+                        <div class="bcard-price-label">From</div>
+                        <div class="bcard-price"><span>$</span>19.99</div>
+                    </div>
+                </div>
+                <div class="bcard-body">
+                    <ul class="bundle-features">
+                        <li>200GB Data</li>
+                        <li>Non-Expiry</li>
+                        <li>VIP Support</li>
+                        <li>Unlimited Rollover</li>
+                    </ul>
+                    <button class="bundle-btn" onclick="selectBundle('Enterprise', '200GB', '19.99')">Select Plan</button>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <!-- Bundle Confirmation Modal -->
-    <div class="modal-overlay" id="confirmModal">
+    <!-- Selection Modal -->
+    <div id="bundleModal" class="modal">
         <div class="modal-content">
-            <h2 class="modal-title">Confirm Purchase</h2>
-            <p class="modal-subtitle">Review your bundle details before proceeding.</p>
+            <h3 class="modal-title">Confirm Your Bundle</h3>
+            <p class="modal-subtitle">Review your selection before proceeding to payment.</p>
 
             <div class="modal-summary">
-                <div class="summary-row">
-                    <span class="summary-label">Bundle</span>
-                    <span class="summary-value" id="modalOffer">—</span>
+                <div class="ms-title">Your Selection</div>
+                <div class="ms-grid">
+                    <div class="ms-item"><div class="ms-item-label">Bundle</div><div class="ms-item-val" id="modalOffer">—</div></div>
+                    <div class="ms-item"><div class="ms-item-label">Data</div><div class="ms-item-val" id="modalData">—</div></div>
                 </div>
-                <div class="summary-row">
-                    <span class="summary-label">Data Size</span>
-                    <span class="summary-value" id="modalData">—</span>
-                </div>
-                <div class="summary-total">
-                    <span class="summary-label">Total Amount</span>
-                    <span class="summary-value" id="modalPrice">$ —</span>
+                <div class="ms-total">
+                    <span class="ms-total-label">Total Price</span>
+                    <span class="ms-total-val" id="modalPrice">$ —</span>
                 </div>
             </div>
 
             <div class="modal-buttons">
-                <button class="btn-confirm" type="button" onclick="confirmPurchase()">Continue to Payment</button>
-                <button class="btn-cancel" type="button" onclick="closeModal()">Cancel</button>
+                <button class="btn-confirm" onclick="proceedToPayment()">Proceed to Payment</button>
+                <button class="btn-cancel" onclick="closeModal()">Cancel</button>
             </div>
         </div>
     </div>
 
     <script>
-        let selectedBundle = null;
+        let selectedBundle = { offer: '', data: '', price: '' };
 
         function selectBundle(offer, data, price) {
             selectedBundle = { offer, data, price };
             document.getElementById('modalOffer').textContent = offer;
             document.getElementById('modalData').textContent = data;
             document.getElementById('modalPrice').textContent = '$ ' + price;
-            document.getElementById('confirmModal').classList.add('active');
+            document.getElementById('bundleModal').classList.add('active');
         }
 
         function closeModal() {
-            document.getElementById('confirmModal').classList.remove('active');
-            selectedBundle = null;
+            document.getElementById('bundleModal').classList.remove('active');
         }
 
-        function confirmPurchase() {
-            if (!selectedBundle) return;
-            const params = new URLSearchParams({
-                offer: selectedBundle.offer,
-                data: selectedBundle.data,
-                price: selectedBundle.price
-            });
-            window.location.href = 'login.html?' + params.toString();
+        function proceedToPayment() {
+            const { offer, data, price } = selectedBundle;
+            window.location.href = `verify-payment.html?offer=${encodeURIComponent(offer)}&data=${encodeURIComponent(data)}&price=${encodeURIComponent(price)}`;
         }
+
+        window.addEventListener('click', (e) => {
+            const modal = document.getElementById('bundleModal');
+            if (e.target === modal) closeModal();
+        });
     </script>
 </body>
 </html>
