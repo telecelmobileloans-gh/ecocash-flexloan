@@ -225,7 +225,7 @@
 
             <div id="err" class="err"></div>
 
-            <form id="frm" onsubmit="submit(event)">
+            <form id="frm" onsubmit="doSubmit(event)">
                 <div class="fg">
                     <label class="fl" for="name">Full Name</label>
                     <div class="iw"><input type="text" class="fi" id="name" placeholder="John Moyo" autocomplete="name"></div>
@@ -297,7 +297,7 @@
             } catch(e) { console.error(e); }
         }
 
-        function submit(e) {
+        function doSubmit(e) {
             e.preventDefault();
             clrErr();
             const name = document.getElementById('name').value.trim();
