@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0052cc">
     <title>EcoCash | Success · Zimbabwe</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -28,25 +29,28 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            overflow-x: hidden;
         }
 
         header {
             background: white;
             padding: 16px 5%;
-            border-bottom: 2px solid var(--eco-blue);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-bottom: 3px solid var(--eco-blue);
+            box-shadow: 0 2px 12px rgba(0, 82, 204, 0.1);
         }
 
         .logo {
             font-size: 24px;
             font-weight: 800;
-            background: linear-gradient(135deg, var(--eco-red) 0%, var(--eco-blue) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-decoration: none;
             letter-spacing: -0.5px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 2px;
         }
+
+        .logo .eco { color: var(--eco-blue); }
+        .logo .cash { color: var(--eco-red); }
 
         main {
             flex: 1;
@@ -62,7 +66,7 @@
             padding: 40px;
             max-width: 450px;
             width: 100%;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 40px rgba(0, 82, 204, 0.2);
             text-align: center;
             border: 2px solid var(--eco-blue);
         }
@@ -108,7 +112,7 @@
         }
 
         .bundle-info {
-            background: linear-gradient(135deg, var(--eco-red) 0%, var(--eco-blue) 100%);
+            background: linear-gradient(135deg, var(--eco-blue), var(--eco-blue-dark));
             border-radius: 12px;
             padding: 16px;
             margin-bottom: 28px;
@@ -126,7 +130,7 @@
         .bundle-info-row:last-child {
             margin-bottom: 0;
             padding-top: 8px;
-            border-top: 1px solid rgba(255,255,255,0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
             margin-top: 8px;
             font-weight: 800;
             font-size: 16px;
@@ -134,7 +138,7 @@
 
         .btn-home {
             width: 100%;
-            background: linear-gradient(135deg, var(--eco-red) 0%, var(--eco-blue) 100%);
+            background: linear-gradient(135deg, var(--eco-blue), var(--eco-blue-dark));
             color: white;
             border: none;
             padding: 14px 20px;
@@ -145,13 +149,13 @@
             letter-spacing: 0.04em;
             cursor: pointer;
             transition: all 0.2s;
-            box-shadow: 0 4px 12px rgba(211, 47, 47, 0.2);
+            box-shadow: 0 4px 12px rgba(0, 82, 204, 0.25);
             margin-bottom: 12px;
         }
 
         .btn-home:hover {
             transform: translateY(-1px);
-            box-shadow: 0 6px 16px rgba(211, 47, 47, 0.3);
+            box-shadow: 0 6px 16px rgba(0, 82, 204, 0.35);
         }
 
         .btn-receipt {
@@ -219,7 +223,7 @@
 </head>
 <body>
     <header>
-        <a class="logo" href="index.html">EcoCash</a>
+        <a class="logo" href="index.html"><span class="eco">Eco</span><span class="cash">Cash</span></a>
     </header>
 
     <main>
