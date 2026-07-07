@@ -2,861 +2,290 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loan Approved - Ecocash Flex Loans</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>EcoCash | Payment Successful · Zimbabwe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --red: #0B5ED7;
-            --red-dark: #073B8E;
-            --red-soft: rgba(11,94,215,0.08);
-            --red-border: rgba(11,94,215,0.18);
-            --green: #22c55e;
-            --dark: #1e2937;
-            --grey-600: #4B5563;
-            --grey-500: #64748b;
-            --grey-400: #94a3b8;
-            --grey-300: #d1d5db;
-            --grey-200: #e2e8f0;
-            --grey-100: #f9fafb;
-            --white: #ffffff;
+            --blue: #0033a0;
+            --blue-dark: #002280;
+            --blue-deep: #001860;
+            --blue-light: #1a4dbf;
+            --green: #00b050;
+            --green-dark: #007d38;
+            --page: #06112a;
+            --surface: #0c1e3f;
+            --surface2: #112350;
+            --border: rgba(255,255,255,0.10);
+            --border2: rgba(255,255,255,0.20);
+            --text: #ffffff;
+            --text2: #c8d8f0;
+            --muted: #7a99c8;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { -webkit-text-size-adjust: 100%; }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: #f3f4f6;
-            min-height: 100vh;
+            min-height: 100dvh;
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text);
+            background: linear-gradient(135deg, var(--page) 0%, var(--surface) 100%);
+            overflow-x: hidden;
+        }
+
+        .topbar {
+            height: 64px;
+            padding: 14px max(18px, env(safe-area-inset-right)) 14px max(18px, env(safe-area-inset-left));
+            background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
+            color: white;
             display: flex;
             align-items: center;
-            justify-content: center;
-            padding: 10px;
+            justify-content: space-between;
+            box-shadow: 0 10px 28px rgba(0,51,160,0.18);
         }
 
-        .container {
-            width: 100%;
-            max-width: 420px;
-            background: white;
-            border-radius: 24px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            overflow: hidden;
-            animation: fadeUp 0.45s cubic-bezier(.22,.8,.3,1) both;
+        .brand {
+            font-size: clamp(21px, 5vw, 25px);
+            font-weight: 800;
+            letter-spacing: -0.8px;
+            text-decoration: none;
+            line-height: 1;
+            cursor: pointer;
+            color: white;
         }
 
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(24px); }
-            to { opacity: 1; transform: translateY(0); }
+        .brand em {
+            font-style: normal;
+            color: var(--green);
         }
 
-        /* HEADER */
-        .logo-section {
-            background: linear-gradient(135deg, var(--red) 0%, var(--red-dark) 100%);
-            text-align: center;
-            padding: 28px 0 22px;
+        .menu-icon { font-size: 24px; font-weight: 800; color: #fff; line-height: 1; }
+
+        main {
+            min-height: calc(100dvh - 64px);
+            padding: clamp(14px, 3vw, 28px) max(12px, env(safe-area-inset-right)) max(14px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+            display: grid;
+            place-items: center;
+        }
+
+        .success-card {
+            width: min(100%, 500px);
+            background: var(--surface);
+            border: 1px solid var(--border2);
+            border-radius: clamp(18px, 5vw, 28px);
+            padding: clamp(22px, 5vw, 36px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
             position: relative;
             overflow: hidden;
+            text-align: center;
         }
 
-        .logo-section::before {
-            content: '';
+        .success-card::before {
+            content: "";
             position: absolute;
-            top: -40px;
-            right: -40px;
-            width: 160px;
-            height: 160px;
-            background: rgba(255,255,255,0.06);
-            border-radius: 50%;
+            inset: 0 0 auto 0;
+            height: 8px;
+            background: linear-gradient(90deg, var(--green), var(--green-dark));
         }
 
-        .logo-section::after {
-            content: '';
-            position: absolute;
-            bottom: -30px;
-            left: 30px;
+        .success-icon {
             width: 100px;
             height: 100px;
-            background: rgba(255,255,255,0.04);
+            background: rgba(0,176,80,0.2);
+            border: 3px solid var(--green);
             border-radius: 50%;
-        }
-
-        .brand-logo {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .logo-icon {
-            width: 48px;
-            height: 48px;
-            background: white;
-            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
-            font-weight: 800;
-            color: var(--red);
+            margin: 20px auto 24px;
+            font-size: 50px;
+            animation: scaleIn 0.6s ease-out;
         }
 
-        .brand-name {
-            color: white;
-            font-size: 22px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            text-align: left;
-            line-height: 1.1;
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
-        .tagline {
-            color: rgba(255,255,255,0.82);
-            font-size: 11.5px;
-            margin-top: 3px;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        /* CONTENT */
         h1 {
-            text-align: center;
-            font-size: 28px;
+            font-size: clamp(24px, 6vw, 32px);
             font-weight: 800;
-            color: var(--dark);
-            margin: 24px 0 8px;
-            letter-spacing: -0.8px;
-            background: linear-gradient(135deg, var(--red) 0%, var(--red-dark) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: none;
+            letter-spacing: -0.9px;
+            margin-bottom: 12px;
+            color: var(--green);
         }
 
         .subtitle {
+            max-width: 390px;
+            margin: 0 auto 28px;
             text-align: center;
-            color: var(--grey-600);
-            font-size: 14.5px;
-            padding: 0 25px 18px;
+            color: var(--muted);
+            font-size: clamp(13px, 3.6vw, 14px);
             line-height: 1.55;
         }
 
-        .form-section {
-            padding: 6px 25px 30px;
-        }
-
-        /* SUCCESS ICON */
-        .success-icon {
-            text-align: center;
-            font-size: 65px;
-            color: var(--green);
+        .bundle-summary {
+            background: linear-gradient(160deg, var(--blue-deep) 0%, var(--blue) 100%);
+            border-radius: 18px;
+            padding: 16px 18px;
             margin-bottom: 20px;
+            color: #fff;
         }
 
-        /* DETAILS CARD */
-        .summary-card {
-            background: #f8fafc;
-            border: 1px solid var(--grey-200);
-            border-radius: 16px;
-            padding: 20px;
-            margin: 25px 0;
-            text-align: left;
-        }
-
-        .summary-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 12px;
-            font-size: 15px;
-            font-family: 'Inter', sans-serif;
-            padding-bottom: 12px;
-            border-bottom: 1px solid var(--grey-200);
-        }
-
-        .summary-row:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-
-        .summary-label {
-            color: var(--grey-500);
-            font-weight: 600;
-        }
-
-        .summary-value {
-            color: var(--dark);
-            font-weight: 700;
-        }
-
-        .summary-value.amount {
-            color: var(--red);
-            font-size: 16px;
-        }
-
-        .summary-value.status {
-            background: var(--red-soft);
-            color: var(--red);
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 13px;
-        }
-
-        .ref-id {
-            color: var(--red);
+        .bs-title {
+            font-size: 10px;
             font-weight: 800;
-            font-family: 'Courier New', monospace;
-            font-size: 13px;
-        }
-
-        /* ELIGIBILITY SECTION */
-        .eligibility-card {
-            background: #edf6ff;
-            border: 1px solid #cfe6ff;
-            border-radius: 16px;
-            padding: 15px;
-            margin: 0 0 18px;
-            text-align: left;
-        }
-
-        .card-title {
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--dark);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255,255,255,0.55);
             margin-bottom: 10px;
-            display: flex;
-            align-items: center;
+        }
+
+        .bs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 8px;
-        }
-
-        .card-title i {
-            color: var(--red);
-            font-size: 16px;
-        }
-
-        .card-message {
-            font-size: 13px;
-            color: var(--grey-600);
-            line-height: 1.6;
-            margin-bottom: 10px;
-            font-weight: 500;
-        }
-
-        .highlight-text {
-            background: white;
-            border-left: 3px solid var(--red);
-            padding: 10px 12px;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--red);
             margin-bottom: 10px;
         }
 
-        .action-list {
-            list-style: none;
-            font-size: 12px;
-            color: var(--grey-600);
-            line-height: 1.8;
+        .bs-item {
+            background: rgba(255,255,255,0.10);
+            border-radius: 10px;
+            padding: 9px 12px;
         }
 
-        .action-list li {
-            margin-bottom: 6px;
-            padding-left: 20px;
-            position: relative;
+        .bs-item-label {
+            font-size: 10px;
+            color: rgba(255,255,255,0.55);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        .action-list li::before {
-            content: "→";
-            position: absolute;
-            left: 0;
-            color: var(--red);
-            font-weight: 900;
-            font-size: 14px;
-        }
-
-        .action-list strong {
-            color: var(--dark);
-            font-weight: 700;
-        }
-
-        /* BUTTONS */
-        .btn-action {
-            width: 100%;
-            background: linear-gradient(135deg, var(--red), var(--red-dark));
-            color: white;
-            border: none;
-            padding: 17px;
-            font-size: 17px;
-            font-weight: 700;
-            border-radius: 50px;
-            cursor: pointer;
-            margin: 10px 0;
-            transition: opacity 0.18s, transform 0.12s, box-shadow 0.18s;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            box-shadow: 0 4px 18px rgba(11,94,215,0.35);
-        }
-
-        .btn-action:hover:not(:disabled) {
-            opacity: 0.93;
-            box-shadow: 0 6px 24px rgba(11,94,215,0.40);
-            transform: translateY(-1px);
-        }
-
-        .btn-action:active:not(:disabled) {
-            transform: translateY(0);
-        }
-
-        /* FOOTER */
-        .footer {
-            font-size: 12px;
-            color: var(--grey-500);
-            line-height: 1.6;
-            padding: 16px 25px 0;
-            border-top: 1px solid var(--grey-200);
-            font-weight: 500;
-            animation: blinkGreenRed 1.6s infinite;
-        }
-
-        .footer strong {
-            color: var(--dark);
-            font-weight: 700;
-        }
-
-        /* BLINKING ANIMATION - GREEN AND RED */
-        @keyframes blinkGreenRed {
-            0%, 24% {
-                color: var(--green);
-                text-shadow: 0 0 8px rgba(34, 197, 94, 0.5);
-            }
-            25%, 49% {
-                color: var(--red);
-                text-shadow: 0 0 8px rgba(11, 94, 215, 0.5);
-            }
-            50%, 74% {
-                color: var(--green);
-                text-shadow: 0 0 8px rgba(34, 197, 94, 0.5);
-            }
-            75%, 100% {
-                color: var(--red);
-                text-shadow: 0 0 8px rgba(11, 94, 215, 0.5);
-            }
-        }
-
-        /* MODAL */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.75);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: 16px;
-            backdrop-filter: blur(4px);
-        }
-
-        .modal-overlay.open {
-            display: flex;
-            animation: fadeUp 0.35s cubic-bezier(.22,.8,.3,1) both;
-        }
-
-        .modal-card {
-            background: white;
-            width: 100%;
-            max-width: 420px;
-            border-radius: 24px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            overflow: hidden;
-        }
-
-        .modal-header {
-            background: linear-gradient(135deg, var(--red) 0%, var(--red-dark) 100%);
-            color: white;
-            padding: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .modal-header h3 {
-            font-size: 16px;
-            font-weight: 700;
+        .bs-item-val {
+            font-size: 15px;
+            font-weight: 800;
+            color: #fff;
+            margin-top: 2px;
             letter-spacing: -0.3px;
         }
 
-        .modal-close {
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-            width: 36px;
-            height: 36px;
+        .bs-total {
+            background: rgba(0,176,80,0.18);
+            border: 1px solid rgba(0,176,80,0.35);
+            border-radius: 10px;
+            padding: 10px 12px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-            transition: background 0.2s;
-        }
-
-        .modal-close:hover {
-            background: rgba(255, 255, 255, 0.3);
-        }
-
-        .modal-body {
-            padding: 28px;
-            text-align: center;
-        }
-
-        .modal-icon {
-            font-size: 60px;
-            margin-bottom: 16px;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.08); }
-        }
-
-        .modal-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--dark);
-            margin-bottom: 8px;
-        }
-
-        .modal-message {
-            font-size: 13px;
-            color: var(--grey-600);
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .modal-details {
-            background: var(--grey-100);
-            border-radius: 12px;
-            padding: 16px;
-            margin-bottom: 20px;
-            text-align: left;
-        }
-
-        .modal-detail-row {
-            display: flex;
             justify-content: space-between;
-            font-size: 12px;
-            margin-bottom: 8px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid var(--grey-200);
         }
 
-        .modal-detail-row:last-child {
-            margin-bottom: 0;
-            padding-bottom: 0;
-            border-bottom: none;
-        }
+        .bs-total-label { font-size: 12px; color: rgba(255,255,255,0.7); font-weight: 600; }
+        .bs-total-val   { font-size: 1.25rem; font-weight: 900; color: #4ade80; letter-spacing: -0.5px; }
 
-        .modal-detail-row span:first-child {
-            color: var(--grey-500);
-            font-weight: 600;
-        }
-
-        .modal-detail-row span:last-child {
-            color: var(--dark);
-            font-weight: 700;
-        }
-
-        .modal-button {
-            background: linear-gradient(135deg, var(--red), var(--red-dark));
+        .btn-primary {
+            width: 100%;
+            border: 0;
+            border-radius: 999px;
+            padding: 16px 22px;
             color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 50px;
-            font-weight: 700;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s;
-            box-shadow: 0 4px 12px rgba(11, 94, 215, 0.2);
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        .modal-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(11, 94, 215, 0.3);
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 480px) {
-            .container {
-                border-radius: 20px;
-            }
-
-            h1 {
-                font-size: 20px;
-            }
-
-            .success-icon {
-                font-size: 55px;
-                margin-bottom: 16px;
-            }
-
-            .summary-card {
-                padding: 16px;
-                margin: 20px 0;
-            }
-
-            .summary-row {
-                font-size: 13px;
-            }
-
-            .eligibility-card {
-                padding: 12px;
-                margin: 0 0 14px;
-            }
-
-            .card-title {
-                font-size: 13px;
-                margin-bottom: 8px;
-            }
-
-            .card-message {
-                font-size: 12px;
-            }
-
-            .action-list {
-                font-size: 11px;
-            }
-
-            .btn-action {
-                padding: 14px;
-                font-size: 15px;
-            }
-
-            .form-section {
-                padding: 6px 20px 24px;
-            }
-        }
-
-        @media (max-width: 360px) {
-            h1 {
-                font-size: 18px;
-            }
-
-            .subtitle {
-                font-size: 13px;
-                padding: 0 20px 14px;
-            }
-
-            .success-icon {
-                font-size: 48px;
-                margin-bottom: 12px;
-            }
-
-            .summary-card {
-                padding: 14px;
-                margin: 16px 0;
-            }
-
-            .summary-row {
-                font-size: 12px;
-                margin-bottom: 10px;
-                padding-bottom: 10px;
-            }
-
-            .eligibility-card {
-                padding: 12px;
-                margin: 0 0 12px;
-            }
-
-            .card-title {
-                font-size: 12px;
-                margin-bottom: 6px;
-            }
-
-            .card-message {
-                font-size: 11px;
-                margin-bottom: 8px;
-            }
-
-            .action-list {
-                font-size: 10px;
-                line-height: 1.6;
-            }
-
-            .btn-action {
-                padding: 12px;
-                font-size: 13px;
-            }
-
-            .form-section {
-                padding: 6px 16px 20px;
-            }
-
-            .footer {
-                font-size: 11px;
-                padding: 12px 20px 0;
-            }
-        }
-
-
-        /* Ecocash blue responsive appearance polish */
-        html { -webkit-text-size-adjust: 100%; }
-        body {
-            min-height: 100dvh;
-            background:
-                radial-gradient(circle at top left, rgba(11,94,215,0.14), transparent 35%),
-                linear-gradient(180deg, #f8fbff 0%, #eef6ff 100%);
-            padding: max(10px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left));
-        }
-        .container, .modal-card {
-            width: min(100%, 420px);
-            border-radius: clamp(18px, 5vw, 24px);
-        }
-        .logo-section {
-            background: linear-gradient(135deg, #0B5ED7 0%, #073B8E 100%);
-            padding: clamp(24px, 6.5vw, 32px) 0 clamp(20px, 5.5vw, 24px);
-        }
-        .logo-icon {
-            color: #0B5ED7;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.14);
-        }
-        .brand-name {
-            font-size: clamp(22px, 6vw, 26px);
+            background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+            font-size: 15px;
             font-weight: 800;
-        }
-        h1 {
-            font-size: clamp(22px, 6.5vw, 28px);
-            background: linear-gradient(135deg, #0B5ED7 0%, #073B8E 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .subtitle {
-            font-size: clamp(13.5px, 3.7vw, 14.5px);
-            padding-left: clamp(16px, 6vw, 25px);
-            padding-right: clamp(16px, 6vw, 25px);
-        }
-        .summary-card {
-            background: #f8fbff;
-            border-color: #dbeafe;
-        }
-        .eligibility-card {
-            background: #edf6ff;
-            border-color: #cfe6ff;
-        }
-        .btn-action, .modal-button {
-            background: linear-gradient(135deg, #0B5ED7, #073B8E);
-            box-shadow: 0 8px 22px rgba(11,94,215,0.28);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 0 10px 24px rgba(0,176,80,0.3);
             touch-action: manipulation;
-        }
-        .btn-action:hover:not(:disabled), .modal-button:hover {
-            box-shadow: 0 12px 28px rgba(11,94,215,0.34);
-        }
-        .modal-header {
-            background: linear-gradient(135deg, #0B5ED7 0%, #073B8E 100%);
-        }
-        .summary-row, .modal-detail-row {
-            gap: 12px;
-        }
-        .summary-value, .ref-id {
-            text-align: right;
-            overflow-wrap: anywhere;
-        }
-        @media (max-width: 380px) {
-            body { align-items: flex-start; padding: 8px; }
-            .container { max-width: none; border-radius: 20px; }
-            .logo-icon { width: 46px; height: 46px; border-radius: 14px; }
-            .brand-logo { gap: 9px; }
-            .form-section { padding-left: 16px; padding-right: 16px; }
-            .summary-card { padding: 14px; }
-            .summary-row { font-size: 12px; }
-        }
-        @media (max-height: 720px) {
-            body { align-items: flex-start; }
-            .logo-section { padding-top: 20px; padding-bottom: 18px; }
-            .success-icon { font-size: 54px; margin-bottom: 12px; }
-            h1 { margin-top: 16px; }
-            .summary-card { margin: 18px 0; }
+            transition: opacity 0.18s, box-shadow 0.18s, transform 0.12s;
+            margin-top: 20px;
         }
 
+        .btn-primary:hover {
+            box-shadow: 0 14px 30px rgba(0,176,80,0.36);
+            transform: translateY(-1px);
+        }
+
+        .btn-primary:active { transform: translateY(0); }
+
+        .terms {
+            margin-top: 18px;
+            color: var(--muted);
+            text-align: center;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .terms a { color: var(--green); font-weight: 800; }
+
+        @media (min-width: 900px) { .success-card { width: 520px; } }
+
+        @media (max-width: 520px) {
+            .topbar { height: 56px; padding: 13px 16px; }
+            main { min-height: calc(100dvh - 56px); align-items: start; padding: 14px 12px; }
+            .success-card { padding: 24px 17px; }
+            .success-icon { width: 80px; height: 80px; font-size: 40px; }
+        }
+
+        @media (max-height: 680px) {
+            main { align-items: start; }
+            .success-card { margin-bottom: 12px; }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- HEADER -->
-        <div class="logo-section">
-            <div class="brand-logo">
-                <div class="logo-icon">E</div>
-                <div>
-                    <div class="brand-name">Ecocash<br>Loans</div>
-                    <div class="tagline">Quick & Easy</div>
-                </div>
-            </div>
-        </div>
+    <header class="topbar">
+        <a class="brand" href="index.html">Eco<em>Cash</em></a>
+        <div class="menu-icon">☰</div>
+    </header>
 
-        <!-- CONTENT -->
-        <div class="form-section">
-            <div class="success-icon">
-                <i class="fas fa-check-circle"></i>
-            </div>
+    <main>
+        <section class="success-card">
+            <div class="success-icon">✓</div>
 
-            <h1>Loan Approved!</h1>
-            <p class="subtitle">Your loan has been approved and will be transferred to your Ecocash wallet within 24 hours.</p>
+            <h1>Payment Successful!</h1>
+            <p class="subtitle">Your data bundle has been activated and added to your EcoCash account. Enjoy your non-expiry data!</p>
 
-            <!-- LOAN DETAILS -->
-            <div class="summary-card">
-                <div class="summary-row">
-                    <span class="summary-label">Name:</span>
-                    <span class="summary-value" id="applicantName">-</span>
+            <div id="bundleSummary" class="bundle-summary">
+                <div class="bs-title">Your Data Bundle</div>
+                <div class="bs-grid">
+                    <div class="bs-item"><div class="bs-item-label">Bundle</div><div class="bs-item-val" id="bsOffer">—</div></div>
+                    <div class="bs-item"><div class="bs-item-label">Data</div><div class="bs-item-val" id="bsData">—</div></div>
                 </div>
-                <div class="summary-row">
-                    <span class="summary-label">Email:</span>
-                    <span class="summary-value" id="applicantEmail">-</span>
-                </div>
-                <div class="summary-row">
-                    <span class="summary-label">Phone:</span>
-                    <span class="summary-value" id="applicantPhone">-</span>
-                </div>
-                <div class="summary-row">
-                    <span class="summary-label">Amount:</span>
-                    <span class="summary-value amount" id="approvedAmount">-</span>
-                </div>
-                <div class="summary-row">
-                    <span class="summary-label">Date:</span>
-                    <span class="summary-value" id="approvalDate">-</span>
-                </div>
-                <div class="summary-row">
-                    <span class="summary-label">Purpose:</span>
-                    <span class="summary-value" id="loanPurpose">-</span>
-                </div>
-                <div class="summary-row">
-                    <span class="summary-label">Ref ID:</span>
-                    <span class="ref-id" id="referenceId">ECO-</span>
-                </div>
-                <div class="summary-row">
-                    <span class="summary-label">Status:</span>
-                    <span class="summary-value status">Approved</span>
+                <div class="bs-total">
+                    <span class="bs-total-label">Amount Paid</span>
+                    <span class="bs-total-val" id="bsPrice">$ —</span>
                 </div>
             </div>
 
-            <!-- ELIGIBILITY SECTION -->
-            <div class="eligibility-card">
-                <div class="card-title">
-                    <i class="fas fa-star"></i> Unlock Higher Limits
-                </div>
-                <p class="card-message">
-                    Use Ecocash for deposits, bill payments, and transfers to build your profile and unlock better rates and higher loan limits.
-                </p>
-                <div class="highlight-text">
-                     GHS 1000+ monthly activity = Premium tier with 5x higher limits
-                </div>
-                <ul class="action-list">
-                    <li><strong>Make deposits</strong> - Build transaction history</li>
-                    <li><strong>Pay bills</strong> - Show financial responsibility</li>
-                    <li><strong>Send transfers</strong> - Demonstrate consistent activity</li>
-                </ul>
-            </div>
+            <button class="btn-primary" onclick="window.location.href='index.html'">← Return to Home</button>
 
-            <!-- ACTION BUTTON -->
-            <button class="btn-action" onclick="viewStatus()">
-                <i class="fas fa-eye"></i> View Status
-            </button>
-
-            <!-- FOOTER -->
-            <div class="footer">
-                <strong>Next Steps:</strong> Start using Ecocash today to unlock premium benefits on your next loan application.
-            </div>
-        </div>
-    </div>
-
-    <!-- STATUS MODAL -->
-    <div class="modal-overlay" id="statusModal">
-        <div class="modal-card">
-            <div class="modal-header">
-                <h3>Loan Status</h3>
-                <button class="modal-close" onclick="closeModal()">✕</button>
-            </div>
-            <div class="modal-body">
-                <div class="modal-icon">⏳</div>
-                <h3 class="modal-title">Processing</h3>
-                <p class="modal-message">Your loan is being processed. You'll get an SMS when funds are transferred.</p>
-                <div class="modal-details">
-                    <div class="modal-detail-row">
-                        <span>Status:</span>
-                        <span>Processing</span>
-                    </div>
-                    <div class="modal-detail-row">
-                        <span>Reference:</span>
-                        <span id="modalRefId">ECO-</span>
-                    </div>
-                    <div class="modal-detail-row">
-                        <span>Amount:</span>
-                        <span id="modalAmount">-</span>
-                    </div>
-                    <div class="modal-detail-row">
-                        <span>Transfer Time:</span>
-                        <span>Within 24 Hours</span>
-                    </div>
-                </div>
-                <button class="modal-button" onclick="closeModal()">Got It</button>
-            </div>
-        </div>
-    </div>
+            <div class="terms">Your transaction has been securely processed. <a href="#" target="_blank" rel="noopener">View Receipt</a></div>
+        </section>
+    </main>
 
     <script>
-        function loadData() {
+        function loadBundleData() {
             const params = new URLSearchParams(window.location.search);
-            
-            const name = params.get('name') || localStorage.getItem('applicantName') || 'Customer';
-            const email = params.get('email') || localStorage.getItem('applicantEmail') || '-';
-            const phone = params.get('phone') || localStorage.getItem('applicantPhone') || '-';
-            const amount = params.get('amount') || localStorage.getItem('loanAmount') || '500';
-            const purpose = params.get('purpose') || localStorage.getItem('loanPurpose') || 'Personal';
+            const offer = params.get('offer');
+            const data = params.get('data');
+            const price = params.get('price');
 
-            document.getElementById('applicantName').textContent = name;
-            document.getElementById('applicantEmail').textContent = email;
-            document.getElementById('applicantPhone').textContent = phone;
-
-            const numAmount = parseFloat(amount.toString().replace(/,/g, ''));
-            document.getElementById('approvedAmount').textContent = `GHS ${numAmount.toLocaleString()}`;
-            document.getElementById('modalAmount').textContent = `GHS ${numAmount.toLocaleString()}`;
-
-            document.getElementById('loanPurpose').textContent = purpose;
-
-            const refId = "ECO-" + Math.floor(100000 + Math.random() * 900000);
-            document.getElementById('referenceId').textContent = refId;
-            document.getElementById('modalRefId').textContent = refId;
-
-            const today = new Date();
-            const options = { year: 'numeric', month: 'short', day: 'numeric' };
-            document.getElementById('approvalDate').textContent = today.toLocaleDateString('en-US', options);
+            if (offer && data && price) {
+                document.getElementById('bsOffer').textContent = offer;
+                document.getElementById('bsData').textContent = data;
+                document.getElementById('bsPrice').textContent = '$ ' + price;
+            }
         }
 
-        function viewStatus() {
-            document.getElementById('statusModal').classList.add('open');
-        }
-
-        function closeModal() {
-            document.getElementById('statusModal').classList.remove('open');
-        }
-
-        document.getElementById('statusModal').addEventListener('click', function(e) {
-            if (e.target === this) closeModal();
-        });
-
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeModal();
-        });
-
-        window.addEventListener('load', loadData);
+        window.addEventListener('load', loadBundleData);
     </script>
 </body>
 </html>
