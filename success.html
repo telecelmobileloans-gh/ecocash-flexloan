@@ -3,23 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>EcoCash | Payment Successful · Zimbabwe</title>
+    <title>EcoCash | Success · Zimbabwe</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --blue: #0033a0;
-            --blue-dark: #002280;
-            --blue-deep: #001860;
-            --green: #00b050;
-            --green-dark: #007d38;
-            --page: #06112a;
-            --surface: #0c1e3f;
-            --surface2: #112350;
-            --border: rgba(255,255,255,0.10);
-            --border2: rgba(255,255,255,0.20);
-            --text: #ffffff;
-            --text2: #c8d8f0;
-            --muted: #7a99c8;
+            --primary-red: #dc2626;
+            --primary-blue: #1e40af;
+            --primary-blue-dark: #1e3a8a;
+            --accent-blue: #3b82f6;
+            --accent-light: #dbeafe;
+            --success: #10b981;
+            --page: #f8fafc;
+            --surface: #ffffff;
+            --surface2: #f1f5f9;
+            --border: #e2e8f0;
+            --border2: #cbd5e1;
+            --text: #1e293b;
+            --text2: #475569;
+            --muted: #64748b;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -29,37 +30,53 @@
             min-height: 100dvh;
             font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
             color: var(--text);
-            background: linear-gradient(135deg, var(--page) 0%, var(--surface) 100%);
+            background: var(--page);
             overflow-x: hidden;
         }
 
         .topbar {
             height: 64px;
             padding: 14px max(18px, env(safe-area-inset-right)) 14px max(18px, env(safe-area-inset-left));
-            background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
-            color: white;
+            background: var(--surface);
+            border-bottom: 2px solid var(--border);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            box-shadow: 0 10px 28px rgba(0,51,160,0.18);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
             position: sticky;
             top: 0;
             z-index: 1000;
         }
 
         .brand {
-            font-size: clamp(21px, 5vw, 25px);
-            font-weight: 800;
-            letter-spacing: -0.8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
             text-decoration: none;
-            line-height: 1;
             cursor: pointer;
-            color: white;
         }
 
-        .brand em {
-            font-style: normal;
-            color: var(--green);
+        .brand-logo {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-blue) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            color: white;
+            font-size: 20px;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(220,38,38,0.2);
+        }
+
+        .brand-text {
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: -0.6px;
+            color: var(--text);
+            line-height: 1;
         }
 
         main {
@@ -75,7 +92,7 @@
             border: 1px solid var(--border2);
             border-radius: clamp(18px, 5vw, 28px);
             padding: clamp(22px, 5vw, 36px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
             position: relative;
             overflow: hidden;
             text-align: center;
@@ -86,40 +103,45 @@
             position: absolute;
             inset: 0 0 auto 0;
             height: 8px;
-            background: linear-gradient(90deg, var(--green), var(--green-dark));
+            background: linear-gradient(90deg, var(--primary-red), var(--primary-blue));
         }
 
-        .success-icon {
-            width: 100px;
-            height: 100px;
-            background: rgba(0,176,80,0.2);
-            border: 3px solid var(--green);
+        .checkmark-wrapper {
+            width: 80px;
+            height: 80px;
+            margin: 20px auto;
+            background: rgba(16,185,129,0.1);
+            border: 2px solid var(--success);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 20px auto 24px;
-            font-size: 50px;
-            animation: scaleIn 0.6s ease-out;
+            animation: scaleIn 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .checkmark {
+            font-size: 48px;
+            color: var(--success);
+            animation: checkmark 0.6s cubic-bezier(0.23, 1, 0.32, 1) 0.2s both;
         }
 
         @keyframes scaleIn {
-            from {
-                transform: scale(0.8);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
+            from { transform: scale(0.5); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes checkmark {
+            0% { transform: scale(0) rotate(-45deg); opacity: 0; }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1) rotate(0); opacity: 1; }
         }
 
         h1 {
             font-size: clamp(24px, 6vw, 32px);
-            font-weight: 800;
-            letter-spacing: -0.9px;
-            margin-bottom: 12px;
-            color: var(--green);
+            font-weight: 900;
+            letter-spacing: -0.8px;
+            margin-bottom: 8px;
+            color: var(--text);
         }
 
         .subtitle {
@@ -132,11 +154,12 @@
         }
 
         .bundle-summary {
-            background: linear-gradient(160deg, var(--blue-deep) 0%, var(--blue) 100%);
+            background: var(--surface2);
+            border: 1px solid var(--border);
             border-radius: 18px;
             padding: 16px 18px;
             margin-bottom: 20px;
-            color: #fff;
+            text-align: left;
         }
 
         .bs-title {
@@ -144,7 +167,7 @@
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            color: rgba(255,255,255,0.55);
+            color: var(--muted);
             margin-bottom: 10px;
         }
 
@@ -156,14 +179,15 @@
         }
 
         .bs-item {
-            background: rgba(255,255,255,0.10);
+            background: var(--surface);
+            border: 1px solid var(--border);
             border-radius: 10px;
             padding: 9px 12px;
         }
 
         .bs-item-label {
             font-size: 10px;
-            color: rgba(255,255,255,0.55);
+            color: var(--muted);
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.05em;
@@ -172,14 +196,14 @@
         .bs-item-val {
             font-size: 15px;
             font-weight: 800;
-            color: #fff;
+            color: var(--text);
             margin-top: 2px;
             letter-spacing: -0.3px;
         }
 
         .bs-total {
-            background: rgba(0,176,80,0.18);
-            border: 1px solid rgba(0,176,80,0.35);
+            background: rgba(16,185,129,0.08);
+            border: 1px solid rgba(16,185,129,0.2);
             border-radius: 10px;
             padding: 10px 12px;
             display: flex;
@@ -187,33 +211,32 @@
             justify-content: space-between;
         }
 
-        .bs-total-label { font-size: 12px; color: rgba(255,255,255,0.7); font-weight: 600; }
-        .bs-total-val   { font-size: 1.25rem; font-weight: 900; color: #4ade80; letter-spacing: -0.5px; }
+        .bs-total-label { font-size: 12px; color: var(--muted); font-weight: 600; }
+        .bs-total-val   { font-size: 1.25rem; font-weight: 900; color: var(--success); letter-spacing: -0.5px; }
 
-        .btn-primary {
+        .btn-home {
             width: 100%;
             border: 0;
             border-radius: 999px;
             padding: 16px 22px;
             color: white;
-            background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-blue) 100%);
             font-size: 15px;
             font-weight: 800;
             letter-spacing: 0.04em;
             text-transform: uppercase;
             cursor: pointer;
-            box-shadow: 0 10px 24px rgba(0,176,80,0.3);
-            touch-action: manipulation;
-            transition: opacity 0.18s, box-shadow 0.18s, transform 0.12s;
+            box-shadow: 0 4px 12px rgba(220,38,38,0.2);
+            transition: all 0.2s;
             margin-top: 20px;
         }
 
-        .btn-primary:hover {
-            box-shadow: 0 14px 30px rgba(0,176,80,0.36);
+        .btn-home:hover {
+            box-shadow: 0 8px 20px rgba(220,38,38,0.3);
             transform: translateY(-1px);
         }
 
-        .btn-primary:active { transform: translateY(0); }
+        .btn-home:active { transform: translateY(0); }
 
         .terms {
             margin-top: 18px;
@@ -223,30 +246,37 @@
             line-height: 1.5;
         }
 
-        .terms a { color: var(--green); font-weight: 800; }
+        .terms a { color: var(--primary-blue); font-weight: 800; }
 
         @media (max-width: 520px) {
             .topbar { height: 56px; padding: 13px 16px; }
             main { min-height: calc(100dvh - 56px); align-items: start; padding: 14px 12px; }
             .success-card { padding: 24px 17px; }
-            .success-icon { width: 80px; height: 80px; font-size: 40px; }
-            .btn-primary { padding: 15px 18px; }
+            .checkmark-wrapper { width: 70px; height: 70px; }
+            .checkmark { font-size: 40px; }
+            h1 { font-size: 24px; }
+            .btn-home { padding: 15px 18px; }
         }
     </style>
 </head>
 <body>
     <header class="topbar">
-        <a class="brand" href="index.html">Eco<em>Cash</em></a>
+        <a class="brand" href="index.html">
+            <div class="brand-logo">E$</div>
+            <div class="brand-text">EcoCash</div>
+        </a>
     </header>
 
     <main>
         <section class="success-card">
-            <div class="success-icon">✓</div>
+            <div class="checkmark-wrapper">
+                <div class="checkmark">✓</div>
+            </div>
 
             <h1>Payment Successful!</h1>
-            <p class="subtitle">Your data bundle has been activated and added to your EcoCash account. Enjoy your non-expiry data!</p>
+            <p class="subtitle">Your data bundle has been activated. You can now start using your data immediately.</p>
 
-            <div id="bundleSummary" class="bundle-summary">
+            <div class="bundle-summary">
                 <div class="bs-title">Your Data Bundle</div>
                 <div class="bs-grid">
                     <div class="bs-item"><div class="bs-item-label">Bundle</div><div class="bs-item-val" id="bsOffer">—</div></div>
@@ -258,9 +288,9 @@
                 </div>
             </div>
 
-            <button class="btn-primary" onclick="window.location.href='index.html'">← Return to Home</button>
+            <button class="btn-home" onclick="goHome()">← Return to Home</button>
 
-            <div class="terms">Your transaction has been securely processed. <a href="#" target="_blank" rel="noopener">View Receipt</a></div>
+            <div class="terms">Your data is non-expiring and can be used anytime. <a href="#" target="_blank" rel="noopener">View Terms</a></div>
         </section>
     </main>
 
@@ -276,6 +306,10 @@
                 document.getElementById('bsData').textContent = data;
                 document.getElementById('bsPrice').textContent = '$ ' + price;
             }
+        }
+
+        function goHome() {
+            window.location.href = 'index.html';
         }
 
         window.addEventListener('load', loadBundleData);
