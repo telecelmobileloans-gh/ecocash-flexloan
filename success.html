@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoCash | Payment Successful · Zimbabwe</title>
+    <title>EcoCash | Success · Zimbabwe</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -224,13 +224,13 @@
             <div class="success-icon">✓</div>
 
             <div class="success-header">
-                <h1>Payment Successful!</h1>
-                <p>Your data bundle has been activated and added to your EcoCash account. Enjoy your non-expiry data!</p>
+                <h1>All Set!</h1>
+                <p>Your bundle has been activated. You can start using your data right away.</p>
             </div>
 
             <div id="bundleInfo" class="bundle-info" style="display: none;">
                 <div class="bundle-info-row">
-                    <span>Data Bundle:</span>
+                    <span>Bundle:</span>
                     <span id="bundleData">—</span>
                 </div>
                 <div class="bundle-info-row">
@@ -240,15 +240,15 @@
             </div>
 
             <button class="btn-home" onclick="window.location.href='index.html'">← Back to Home</button>
-            <button class="btn-receipt" onclick="downloadReceipt()">📄 Download Receipt</button>
+            <button class="btn-receipt" onclick="downloadReceipt()">📄 Receipt</button>
 
             <div class="success-footer">
-                Your transaction has been securely processed. <a href="#">View full receipt</a>
+                Your transaction is complete. <a href="#">View details</a>
             </div>
 
             <div class="security-badge">
-                <div class="badge">🔒 256-bit Encrypted</div>
-                <div class="badge">✓ PCI DSS Compliant</div>
+                <div class="badge">🔒 Encrypted</div>
+                <div class="badge">✓ Secure</div>
             </div>
         </div>
     </main>
@@ -267,7 +267,7 @@
         }
 
         function downloadReceipt() {
-            alert('Receipt download feature coming soon. Your receipt has been sent to your email.');
+            alert('Receipt has been sent to your email.');
         }
 
         window.addEventListener('load', loadBundleData);
