@@ -2,243 +2,121 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EcoCash | Verify OTP · Zimbabwe</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Primary Colors - Red and Blue */
-            --primary-red: #d32f2f;
-            --primary-red-dark: #b71c1c;
-            --primary-blue: #1565c0;
-            --primary-blue-dark: #0d47a1;
-            --primary-blue-light: #1976d2;
-            
-            /* Accent Colors */
-            --accent-green: #00b050;
-            --accent-green-dark: #007d38;
-            
-            /* Neutral Colors - White and Bluish */
+            --primary-blue: #0052cc;
+            --primary-blue-dark: #003d99;
+            --primary-blue-light: #1a73e8;
+            --accent-red: #d32f2f;
             --white: #ffffff;
-            --bluish-light: #e3f2fd;
-            --bluish-medium: #bbdefb;
-            --bluish-dark: #1e3a8a;
-            
-            /* Background Colors */
-            --page: #0a1428;
-            --surface: #1a2332;
-            --surface2: #243447;
-            --border: rgba(255,255,255,0.08);
-            --border2: rgba(255,255,255,0.15);
-            
-            /* Text Colors */
-            --text: #ffffff;
-            --text2: #d0d9e8;
-            --muted: #8fa3b8;
+            --light-bg: #f8f9fa;
+            --text-dark: #1a1a1a;
+            --text-muted: #666666;
+            --border: #e0e0e0;
+            --success: #00b050;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { -webkit-text-size-adjust: 100%; }
 
         body {
-            min-height: 100dvh;
             font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-            color: var(--text);
-            background: linear-gradient(135deg, var(--page) 0%, var(--surface) 100%);
-            overflow-x: hidden;
-        }
-
-        .topbar {
-            height: 64px;
-            padding: 14px max(18px, env(safe-area-inset-right)) 14px max(18px, env(safe-area-inset-left));
             background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
-            color: white;
+            min-height: 100vh;
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 10px 28px rgba(21, 101, 192, 0.25);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            flex-direction: column;
         }
 
-        .brand {
-            font-size: clamp(21px, 5vw, 25px);
+        header {
+            background: white;
+            padding: 16px 5%;
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-size: 24px;
             font-weight: 800;
-            letter-spacing: -0.8px;
+            color: var(--primary-blue);
             text-decoration: none;
-            line-height: 1;
-            cursor: pointer;
-            color: white;
-        }
-
-        .brand em {
-            font-style: normal;
-            background: linear-gradient(135deg, var(--primary-red), var(--primary-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            letter-spacing: -0.5px;
         }
 
         main {
-            min-height: calc(100dvh - 64px);
-            padding: clamp(14px, 3vw, 28px) max(12px, env(safe-area-inset-right)) max(14px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
-            display: grid;
-            place-items: center;
-        }
-
-        .otp-card {
-            width: min(100%, 500px);
-            background: var(--surface);
-            border: 1px solid var(--border2);
-            border-radius: clamp(18px, 5vw, 28px);
-            padding: clamp(22px, 5vw, 36px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .otp-card::before {
-            content: "";
-            position: absolute;
-            inset: 0 0 auto 0;
-            height: 8px;
-            background: linear-gradient(90deg, var(--primary-red), var(--primary-blue));
-        }
-
-        .logo-lockup {
-            text-align: center;
-            margin: 8px 0 22px;
-        }
-
-        .logo-text {
-            font-size: clamp(34px, 9vw, 46px);
-            font-weight: 800;
-            letter-spacing: -1.6px;
-            line-height: 1;
-            color: white;
-        }
-
-        .logo-text em {
-            font-style: normal;
-            background: linear-gradient(135deg, var(--primary-red), var(--primary-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .product-name {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 12px;
-            padding: 8px 14px;
-            border-radius: 999px;
-            background: rgba(211, 47, 47, 0.15);
-            color: var(--primary-red);
-            font-size: 12px;
-            font-weight: 800;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            white-space: nowrap;
-        }
-
-        h1 {
-            text-align: center;
-            font-size: clamp(22px, 6vw, 28px);
-            font-weight: 800;
-            letter-spacing: -0.9px;
-            margin-bottom: 8px;
-            color: white;
-        }
-
-        .subtitle {
-            max-width: 390px;
-            margin: 0 auto 22px;
-            text-align: center;
-            color: var(--muted);
-            font-size: clamp(13px, 3.6vw, 14px);
-            line-height: 1.55;
-        }
-
-        .bundle-summary {
-            display: none;
-            background: linear-gradient(160deg, rgba(21, 101, 192, 0.3) 0%, rgba(25, 118, 210, 0.2) 100%);
-            border-radius: 18px;
-            padding: 16px 18px;
-            margin-bottom: 20px;
-            color: #fff;
-            border: 1px solid rgba(25, 118, 210, 0.3);
-        }
-
-        .bundle-summary.active { display: block; }
-
-        .bs-title {
-            font-size: 10px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: rgba(255,255,255,0.55);
-            margin-bottom: 10px;
-        }
-
-        .bs-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            margin-bottom: 10px;
-        }
-
-        .bs-item {
-            background: rgba(255,255,255,0.08);
-            border-radius: 10px;
-            padding: 9px 12px;
-        }
-
-        .bs-item-label {
-            font-size: 10px;
-            color: rgba(255,255,255,0.55);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .bs-item-val {
-            font-size: 15px;
-            font-weight: 800;
-            color: #fff;
-            margin-top: 2px;
-            letter-spacing: -0.3px;
-        }
-
-        .bs-total {
-            background: rgba(211, 47, 47, 0.15);
-            border: 1px solid rgba(211, 47, 47, 0.3);
-            border-radius: 10px;
-            padding: 10px 12px;
+            flex: 1;
             display: flex;
             align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .otp-container {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            max-width: 450px;
+            width: 100%;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        .otp-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .otp-header h1 {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .otp-header p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .bundle-info {
+            background: linear-gradient(135deg, var(--primary-blue-light) 0%, var(--primary-blue) 100%);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 28px;
+            color: white;
+        }
+
+        .bundle-info-row {
+            display: flex;
             justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 13px;
         }
 
-        .bs-total-label { font-size: 12px; color: rgba(255,255,255,0.7); font-weight: 600; }
-        .bs-total-val   { font-size: 1.25rem; font-weight: 900; color: var(--primary-red); letter-spacing: -0.5px; }
-
-        .form-panel {
-            background: var(--surface2);
-            border: 1px solid var(--border2);
-            border-radius: 20px;
-            padding: clamp(16px, 4vw, 20px);
+        .bundle-info-row:last-child {
+            margin-bottom: 0;
+            padding-top: 8px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            margin-top: 8px;
+            font-weight: 800;
+            font-size: 16px;
         }
 
-        .field-label {
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
             display: block;
             font-size: 12px;
             font-weight: 800;
-            color: var(--primary-red);
+            color: var(--accent-red);
             text-transform: uppercase;
-            letter-spacing: 0.06em;
-            margin-bottom: 8px;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
         }
 
         .otp-inputs {
@@ -246,7 +124,6 @@
             gap: 8px;
             justify-content: center;
             margin-bottom: 20px;
-            flex-wrap: wrap;
         }
 
         .otp-box {
@@ -257,252 +134,119 @@
             font-weight: 700;
             border: 2px solid var(--primary-blue);
             border-radius: 10px;
-            background: var(--surface);
-            color: white;
-            font-family: inherit;
+            background: var(--light-bg);
+            color: var(--text-dark);
+            font-family: 'Inter', monospace;
             transition: all 0.2s;
         }
 
         .otp-box:focus {
-            border-color: var(--primary-red);
-            box-shadow: 0 0 0 4px rgba(211, 47, 47, 0.2);
+            border-color: var(--accent-red);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1);
             outline: none;
         }
 
-        .otp-box::placeholder { color: #8fa3b8; }
+        .otp-box::placeholder {
+            color: var(--text-muted);
+        }
 
-        .hint {
-            color: var(--muted);
+        .form-hint {
             font-size: 12px;
-            line-height: 1.5;
-            margin-bottom: 18px;
+            color: var(--text-muted);
             text-align: center;
+            margin-bottom: 16px;
+            line-height: 1.5;
         }
 
         .error-msg {
             display: none;
             background: rgba(211, 47, 47, 0.1);
             border: 1px solid rgba(211, 47, 47, 0.3);
-            color: #ff6b6b;
+            color: var(--accent-red);
             font-size: 13px;
             font-weight: 600;
-            border-radius: 12px;
-            padding: 11px 13px;
-            margin-bottom: 14px;
-            line-height: 1.5;
+            border-radius: 8px;
+            padding: 10px 12px;
+            margin-bottom: 16px;
             text-align: center;
         }
 
-        .error-msg.show { display: block; }
+        .error-msg.show {
+            display: block;
+        }
 
         .btn-group {
             display: flex;
             gap: 12px;
-            margin-top: 20px;
+            margin-top: 28px;
         }
 
         .btn-primary {
             flex: 1;
-            border: 0;
-            border-radius: 999px;
-            padding: 16px 22px;
+            background: var(--primary-blue);
             color: white;
-            background: linear-gradient(135deg, var(--primary-red), var(--primary-red-dark));
-            font-size: 15px;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 50px;
             font-weight: 800;
-            letter-spacing: 0.04em;
+            font-size: 14px;
             text-transform: uppercase;
+            letter-spacing: 0.04em;
             cursor: pointer;
-            box-shadow: 0 10px 24px rgba(211, 47, 47, 0.3);
-            touch-action: manipulation;
-            transition: opacity 0.18s, box-shadow 0.18s, transform 0.12s;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(0,82,204,0.2);
         }
 
         .btn-primary:hover:not(:disabled) {
-            box-shadow: 0 14px 30px rgba(211, 47, 47, 0.36);
+            background: var(--primary-blue-dark);
             transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(0,82,204,0.3);
         }
 
-        .btn-primary:active:not(:disabled) { transform: translateY(0); }
-
         .btn-primary:disabled {
-            background: #555;
-            box-shadow: none;
+            background: #ccc;
             cursor: not-allowed;
+            box-shadow: none;
         }
 
         .btn-secondary {
             flex: 1;
-            border: 1.5px solid var(--border2);
-            border-radius: 999px;
-            padding: 16px 22px;
-            color: var(--text2);
             background: transparent;
-            font-size: 15px;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+            padding: 14px 20px;
+            border-radius: 50px;
             font-weight: 800;
-            letter-spacing: 0.04em;
+            font-size: 14px;
             text-transform: uppercase;
+            letter-spacing: 0.04em;
             cursor: pointer;
             transition: all 0.2s;
         }
 
         .btn-secondary:hover {
-            background: var(--surface2);
-            border-color: var(--primary-blue-light);
-            color: var(--text);
+            background: var(--light-bg);
         }
 
-        .terms {
-            margin-top: 18px;
-            color: var(--muted);
+        .form-footer {
             text-align: center;
+            margin-top: 20px;
             font-size: 12px;
-            line-height: 1.5;
+            color: var(--text-muted);
         }
 
-        .terms a { color: var(--primary-red); font-weight: 800; }
-
-        /* PIN Modal */
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            background: rgba(0,0,0,0.7);
-            z-index: 2000;
-            padding: 20px;
-            backdrop-filter: blur(4px);
-        }
-
-        .modal-overlay.active { display: flex; }
-
-        .modal-content {
-            background: var(--surface);
-            border: 1px solid var(--border2);
-            border-radius: 24px;
-            padding: 32px;
-            max-width: 400px;
-            width: 100%;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .modal-content::before {
-            content: "";
-            position: absolute;
-            inset: 0 0 auto 0;
-            height: 6px;
-            background: linear-gradient(90deg, var(--primary-red), var(--primary-blue));
-        }
-
-        .modal-title {
-            font-size: 24px;
+        .form-footer a {
+            color: var(--primary-blue);
+            text-decoration: none;
             font-weight: 800;
-            letter-spacing: -0.8px;
-            margin-bottom: 8px;
-            color: white;
         }
 
-        .modal-subtitle {
-            font-size: 13px;
-            color: var(--muted);
-            margin-bottom: 20px;
-            line-height: 1.5;
+        .form-footer a:hover {
+            text-decoration: underline;
         }
 
-        .pin-input-group {
-            width: 100%;
-            border: 2px solid var(--primary-blue);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            padding: 14px 15px;
-            background: var(--surface2);
-            box-shadow: 0 8px 24px rgba(21, 101, 192, 0.08);
-            margin-bottom: 18px;
-        }
-
-        .pin-input-field {
-            min-width: 0;
-            flex: 1;
-            border: 0;
-            outline: 0;
-            font-size: 17px;
-            color: white;
-            font-family: inherit;
-            background: transparent;
-            letter-spacing: 4px;
-        }
-
-        .pin-input-field::placeholder { color: #8fa3b8; letter-spacing: 0; }
-
-        .modal-error {
-            display: none;
-            background: rgba(211, 47, 47, 0.1);
-            border: 1px solid rgba(211, 47, 47, 0.3);
-            color: #ff6b6b;
-            font-size: 13px;
-            font-weight: 600;
-            border-radius: 12px;
-            padding: 11px 13px;
-            margin-bottom: 14px;
-            line-height: 1.5;
-        }
-
-        .modal-error.show { display: block; }
-
-        .modal-buttons {
-            display: flex;
-            gap: 12px;
-        }
-
-        .btn-confirm {
-            flex: 1;
-            border: 0;
-            border-radius: 999px;
-            padding: 14px 16px;
-            background: linear-gradient(135deg, var(--primary-red), var(--primary-red-dark));
-            color: white;
-            font-size: 14px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-            cursor: pointer;
-            box-shadow: 0 8px 20px rgba(211, 47, 47, 0.25);
-            transition: all 0.2s;
-        }
-
-        .btn-confirm:hover:not(:disabled) {
-            box-shadow: 0 12px 28px rgba(211, 47, 47, 0.35);
-            transform: translateY(-1px);
-        }
-
-        .btn-confirm:disabled {
-            background: #555;
-            cursor: not-allowed;
-        }
-
-        .btn-cancel {
-            flex: 1;
-            border: 1.5px solid var(--border2);
-            border-radius: 999px;
-            padding: 14px 16px;
-            background: transparent;
-            color: var(--text2);
-            font-size: 14px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .btn-cancel:hover {
-            background: var(--surface2);
-            border-color: var(--primary-blue-light);
-            color: var(--text);
-        }
-
+        /* Spinner Overlay */
         #spinnerOverlay {
             position: fixed;
             inset: 0;
@@ -511,80 +255,213 @@
             justify-content: center;
             flex-direction: column;
             gap: 16px;
-            background: rgba(10, 10, 10, 0.88);
-            z-index: 1000;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
             backdrop-filter: blur(4px);
         }
 
         .spinner {
             width: 56px;
             height: 56px;
-            border: 5px solid rgba(255, 255, 255, 0.12);
-            border-top-color: var(--primary-blue);
+            border: 5px solid rgba(255,255,255,0.2);
+            border-top-color: white;
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
         }
 
-        .spin-label { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: -0.2px; }
-        .spin-sub   { font-size: 13px; color: rgba(255,255,255,0.5); margin-top: -8px; }
+        .spin-label {
+            font-size: 16px;
+            font-weight: 700;
+            color: white;
+        }
 
-        @keyframes spin { to { transform: rotate(360deg); } }
+        .spin-sub {
+            font-size: 13px;
+            color: rgba(255,255,255,0.7);
+        }
 
-        @media (max-width: 520px) {
-            .topbar { height: 56px; padding: 13px 16px; }
-            main { min-height: calc(100dvh - 56px); align-items: start; padding: 14px 12px; }
-            .otp-card { padding: 24px 17px; }
-            .logo-lockup { margin-top: 6px; margin-bottom: 18px; }
-            .product-name { font-size: 11px; padding: 7px 12px; }
-            .form-panel { padding: 15px; }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* PIN Modal */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.6);
+            z-index: 2000;
+            padding: 20px;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        .modal-title {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+            text-align: center;
+        }
+
+        .modal-subtitle {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 24px;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .pin-input-group {
+            display: flex;
+            align-items: center;
+            border: 2px solid var(--primary-blue);
+            border-radius: 12px;
+            padding: 12px 14px;
+            background: var(--light-bg);
+            transition: all 0.2s;
+            margin-bottom: 16px;
+        }
+
+        .pin-input-group:focus-within {
+            border-color: var(--accent-red);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1);
+        }
+
+        .pin-input-field {
+            flex: 1;
+            border: none;
+            background: transparent;
+            font-size: 18px;
+            color: var(--text-dark);
+            outline: none;
+            font-family: inherit;
+            letter-spacing: 4px;
+        }
+
+        .pin-input-field::placeholder {
+            color: var(--text-muted);
+            letter-spacing: 0;
+        }
+
+        .modal-error {
+            display: none;
+            background: rgba(211, 47, 47, 0.1);
+            border: 1px solid rgba(211, 47, 47, 0.3);
+            color: var(--accent-red);
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 8px;
+            padding: 10px 12px;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .modal-error.show {
+            display: block;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 12px 20px;
+            border-radius: 50px;
+            border: none;
+            font-weight: 800;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .modal-btn-confirm {
+            background: var(--primary-blue);
+            color: white;
+            box-shadow: 0 4px 12px rgba(0,82,204,0.2);
+        }
+
+        .modal-btn-confirm:hover {
+            background: var(--primary-blue-dark);
+            transform: translateY(-1px);
+        }
+
+        .modal-btn-cancel {
+            background: transparent;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+        }
+
+        .modal-btn-cancel:hover {
+            background: var(--light-bg);
+        }
+
+        @media (max-width: 600px) {
+            main { padding: 20px 16px; }
+            .otp-container { padding: 28px 20px; }
+            .otp-header h1 { font-size: 22px; }
             .otp-inputs { gap: 6px; }
             .otp-box { width: 45px; height: 45px; font-size: 20px; }
             .btn-group { flex-direction: column; }
-            .btn-primary, .btn-secondary { padding: 15px 18px; }
         }
     </style>
 </head>
 <body>
-    <header class="topbar">
-        <a class="brand" href="index.html">Eco<em>Cash</em></a>
+    <header>
+        <a class="logo" href="index.html">EcoCash</a>
     </header>
 
     <main>
-        <section class="otp-card">
-            <div class="logo-lockup">
-                <div class="logo-text">Eco<em>Cash</em></div>
-                <div class="product-name">Data Bundles · Zimbabwe</div>
+        <div class="otp-container">
+            <div class="otp-header">
+                <h1>Verify OTP</h1>
+                <p>Enter the 6-digit code sent to your phone</p>
             </div>
 
-            <h1>Verify OTP</h1>
-            <p class="subtitle">Enter the 6-digit code sent to your EcoCash number to complete your payment.</p>
-
-            <div id="bundleSummary" class="bundle-summary">
-                <div class="bs-title">Your Data Bundle</div>
-                <div class="bs-grid">
-                    <div class="bs-item"><div class="bs-item-label">Bundle</div><div class="bs-item-val" id="bsOffer">—</div></div>
-                    <div class="bs-item"><div class="bs-item-label">Data</div><div class="bs-item-val" id="bsData">—</div></div>
+            <div id="bundleInfo" class="bundle-info" style="display: none;">
+                <div class="bundle-info-row">
+                    <span>Data Bundle:</span>
+                    <span id="bundleData">—</span>
                 </div>
-                <div class="bs-total">
-                    <span class="bs-total-label">Total to pay</span>
-                    <span class="bs-total-val" id="bsPrice">$ —</span>
+                <div class="bundle-info-row">
+                    <span>Amount:</span>
+                    <span id="bundlePrice">USD 0.00</span>
                 </div>
             </div>
 
-            <div class="form-panel" id="otpForm">
-                <label class="field-label">Enter 6-Digit OTP Code</label>
+            <div id="errorMsg" class="error-msg"></div>
+
+            <div class="form-group">
+                <label class="form-label">Enter 6-Digit OTP Code</label>
                 <div class="otp-inputs" id="otpInputs">
-                    <input type="text" class="otp-box" maxlength="1" inputmode="numeric" autocomplete="off">
-                    <input type="text" class="otp-box" maxlength="1" inputmode="numeric" autocomplete="off">
-                    <input type="text" class="otp-box" maxlength="1" inputmode="numeric" autocomplete="off">
-                    <input type="text" class="otp-box" maxlength="1" inputmode="numeric" autocomplete="off">
-                    <input type="text" class="otp-box" maxlength="1" inputmode="numeric" autocomplete="off">
-                    <input type="text" class="otp-box" maxlength="1" inputmode="numeric" autocomplete="off">
+                    <input type="text" class="otp-box" maxlength="1" inputmode="numeric" autocomplete="one-time-code">
+                    <input type="text" class="otp-box" maxlength="1" inputmode="numeric" autocomplete="one-time-code">
+                    <input type="text" class="otp-box" maxlength="1" inputmode="numeric" autocomplete="one-time-code">
+                    <input type="text" class="otp-box" maxlength="1" inputmode="numeric" autocomplete="one-time-code">
+                    <input type="text" class="otp-box" maxlength="1" inputmode="numeric" autocomplete="one-time-code">
+                    <input type="text" class="otp-box" maxlength="1" inputmode="numeric" autocomplete="one-time-code">
                 </div>
-
-                <p class="hint">Didn't receive the code? <a href="#" style="color: var(--primary-red); font-weight: 800; text-decoration: none;">Resend OTP</a></p>
-
-                <div class="error-msg" id="errorMsg"></div>
+                <p class="form-hint">Check your SMS for the code. It will be auto-filled.</p>
 
                 <div class="btn-group">
                     <button class="btn-primary" id="confirmBtn" onclick="validateOTP()">Confirm OTP</button>
@@ -592,15 +469,17 @@
                 </div>
             </div>
 
-            <div class="terms">Your transaction is protected by industry-leading encryption. <a href="#" target="_blank" rel="noopener">Learn more</a></div>
-        </section>
+            <div class="form-footer">
+                Your transaction is protected by 256-bit encryption. <a href="#">Learn more</a>
+            </div>
+        </div>
     </main>
 
     <!-- PIN Verification Modal -->
     <div id="pinModal" class="modal-overlay">
         <div class="modal-content">
             <h3 class="modal-title">Confirm PIN</h3>
-            <p class="modal-subtitle">Enter your EcoCash PIN to complete the transaction.</p>
+            <p class="modal-subtitle">Enter your 4-digit EcoCash PIN to complete the transaction</p>
 
             <div class="pin-input-group">
                 <input type="password" class="pin-input-field" id="pinInput" placeholder="••••" inputmode="numeric" autocomplete="off" maxlength="4">
@@ -609,8 +488,8 @@
             <div class="modal-error" id="modalError"></div>
 
             <div class="modal-buttons">
-                <button class="btn-confirm" id="confirmPinBtn" onclick="confirmPIN()">Confirm</button>
-                <button class="btn-cancel" onclick="closePinModal()">Cancel</button>
+                <button class="modal-btn modal-btn-confirm" id="confirmPinBtn" onclick="confirmPIN()">Confirm</button>
+                <button class="modal-btn modal-btn-cancel" onclick="closePinModal()">Cancel</button>
             </div>
         </div>
     </div>
@@ -618,7 +497,7 @@
     <div id="spinnerOverlay">
         <div class="spinner"></div>
         <div class="spin-label">Processing Payment...</div>
-        <div class="spin-sub">Please do not close this window</div>
+        <div class="spin-sub">Please wait while we verify your details</div>
     </div>
 
     <script>
@@ -628,17 +507,15 @@
         function loadBundleData() {
             const params = new URLSearchParams(window.location.search);
             bundleParams = {
-                offer: params.get('offer'),
-                data: params.get('data'),
-                price: params.get('price'),
+                data: params.get('data') || '—',
+                price: params.get('price') || '0.00',
                 phone: params.get('phone')
             };
 
-            if (bundleParams.offer && bundleParams.data && bundleParams.price) {
-                document.getElementById('bsOffer').textContent = bundleParams.offer;
-                document.getElementById('bsData').textContent = bundleParams.data;
-                document.getElementById('bsPrice').textContent = '$ ' + bundleParams.price;
-                document.getElementById('bundleSummary').classList.add('active');
+            if (bundleParams.data && bundleParams.data !== '—') {
+                document.getElementById('bundleInfo').style.display = 'block';
+                document.getElementById('bundleData').textContent = bundleParams.data;
+                document.getElementById('bundlePrice').textContent = 'USD ' + bundleParams.price;
             }
         }
 
@@ -648,6 +525,12 @@
             otpBoxes.forEach((box, index) => {
                 box.addEventListener('input', (e) => {
                     const value = e.target.value;
+                    
+                    // Only allow digits
+                    if (value && !/^\d$/.test(value)) {
+                        box.value = '';
+                        return;
+                    }
                     
                     if (value && /^\d$/.test(value)) {
                         if (index < otpBoxes.length - 1) {
@@ -713,7 +596,7 @@
             const otp = getOTPCode();
 
             if (otp.length !== 6) {
-                showError('Please enter all 6 digits of the OTP code.');
+                showError('Please enter all 6 digits of the OTP code');
                 return;
             }
 
@@ -738,12 +621,12 @@
             const pin = document.getElementById('pinInput').value.trim();
 
             if (!pin) {
-                showModalError('Please enter your PIN.');
+                showModalError('Please enter your PIN');
                 return;
             }
 
             if (pin.length !== 4) {
-                showModalError('PIN must be 4 digits.');
+                showModalError('PIN must be 4 digits');
                 return;
             }
 
@@ -753,7 +636,7 @@
 
             // Simulate processing and redirect
             setTimeout(() => {
-                window.location.href = `payment-success.html?offer=${encodeURIComponent(bundleParams.offer)}&data=${encodeURIComponent(bundleParams.data)}&price=${encodeURIComponent(bundleParams.price)}`;
+                window.location.href = `payment-success.html?data=${encodeURIComponent(bundleParams.data)}&price=${encodeURIComponent(bundleParams.price)}`;
             }, 2000);
         }
 
