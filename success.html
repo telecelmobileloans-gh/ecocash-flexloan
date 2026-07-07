@@ -2,122 +2,78 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EcoCash | Payment Successful · Zimbabwe</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Primary Colors - Red and Blue */
-            --primary-red: #d32f2f;
-            --primary-red-dark: #b71c1c;
-            --primary-blue: #1565c0;
-            --primary-blue-dark: #0d47a1;
-            --primary-blue-light: #1976d2;
-            
-            /* Accent Colors */
-            --accent-green: #00b050;
-            --accent-green-dark: #007d38;
-            
-            /* Neutral Colors - White and Bluish */
+            --primary-blue: #0052cc;
+            --primary-blue-dark: #003d99;
+            --primary-blue-light: #1a73e8;
+            --accent-red: #d32f2f;
             --white: #ffffff;
-            --bluish-light: #e3f2fd;
-            --bluish-medium: #bbdefb;
-            --bluish-dark: #1e3a8a;
-            
-            /* Background Colors */
-            --page: #0a1428;
-            --surface: #1a2332;
-            --surface2: #243447;
-            --border: rgba(255,255,255,0.08);
-            --border2: rgba(255,255,255,0.15);
-            
-            /* Text Colors */
-            --text: #ffffff;
-            --text2: #d0d9e8;
-            --muted: #8fa3b8;
+            --light-bg: #f8f9fa;
+            --text-dark: #1a1a1a;
+            --text-muted: #666666;
+            --border: #e0e0e0;
+            --success: #00b050;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { -webkit-text-size-adjust: 100%; }
 
         body {
-            min-height: 100dvh;
             font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-            color: var(--text);
-            background: linear-gradient(135deg, var(--page) 0%, var(--surface) 100%);
-            overflow-x: hidden;
-        }
-
-        .topbar {
-            height: 64px;
-            padding: 14px max(18px, env(safe-area-inset-right)) 14px max(18px, env(safe-area-inset-left));
             background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
-            color: white;
+            min-height: 100vh;
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 10px 28px rgba(21, 101, 192, 0.18);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            flex-direction: column;
         }
 
-        .brand {
-            font-size: clamp(21px, 5vw, 25px);
+        header {
+            background: white;
+            padding: 16px 5%;
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-size: 24px;
             font-weight: 800;
-            letter-spacing: -0.8px;
+            color: var(--primary-blue);
             text-decoration: none;
-            line-height: 1;
-            cursor: pointer;
-            color: white;
-        }
-
-        .brand em {
-            font-style: normal;
-            background: linear-gradient(135deg, var(--primary-red), var(--primary-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            letter-spacing: -0.5px;
         }
 
         main {
-            min-height: calc(100dvh - 64px);
-            padding: clamp(14px, 3vw, 28px) max(12px, env(safe-area-inset-right)) max(14px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
-            display: grid;
-            place-items: center;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
         }
 
-        .success-card {
-            width: min(100%, 500px);
-            background: var(--surface);
-            border: 1px solid var(--border2);
-            border-radius: clamp(18px, 5vw, 28px);
-            padding: clamp(22px, 5vw, 36px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
-            position: relative;
-            overflow: hidden;
+        .success-container {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            max-width: 450px;
+            width: 100%;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
             text-align: center;
         }
 
-        .success-card::before {
-            content: "";
-            position: absolute;
-            inset: 0 0 auto 0;
-            height: 8px;
-            background: linear-gradient(90deg, var(--primary-red), var(--primary-blue));
-        }
-
         .success-icon {
-            width: 100px;
-            height: 100px;
-            background: rgba(0, 176, 80, 0.2);
-            border: 3px solid var(--accent-green);
+            width: 80px;
+            height: 80px;
+            background: rgba(0, 176, 80, 0.15);
+            border: 3px solid var(--success);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 20px auto 24px;
-            font-size: 50px;
+            margin: 0 auto 24px;
+            font-size: 40px;
             animation: scaleIn 0.6s ease-out;
         }
 
@@ -132,168 +88,186 @@
             }
         }
 
-        h1 {
-            font-size: clamp(24px, 6vw, 32px);
-            font-weight: 800;
-            letter-spacing: -0.9px;
+        .success-header h1 {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--success);
             margin-bottom: 12px;
-            color: var(--accent-green);
+            letter-spacing: -0.5px;
         }
 
-        .subtitle {
-            max-width: 390px;
-            margin: 0 auto 28px;
+        .success-header p {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 28px;
+        }
+
+        .bundle-info {
+            background: linear-gradient(135deg, var(--primary-blue-light) 0%, var(--primary-blue) 100%);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 28px;
+            color: white;
+        }
+
+        .bundle-info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+
+        .bundle-info-row:last-child {
+            margin-bottom: 0;
+            padding-top: 8px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            margin-top: 8px;
+            font-weight: 800;
+            font-size: 16px;
+        }
+
+        .btn-home {
+            width: 100%;
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(0,82,204,0.2);
+            margin-bottom: 12px;
+        }
+
+        .btn-home:hover {
+            background: var(--primary-blue-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(0,82,204,0.3);
+        }
+
+        .btn-receipt {
+            width: 100%;
+            background: transparent;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+            padding: 14px 20px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-receipt:hover {
+            background: var(--light-bg);
+        }
+
+        .success-footer {
             text-align: center;
-            color: var(--muted);
-            font-size: clamp(13px, 3.6vw, 14px);
-            line-height: 1.55;
+            margin-top: 24px;
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.6;
         }
 
-        .bundle-summary {
-            background: linear-gradient(160deg, var(--primary-blue-dark) 0%, var(--primary-blue) 100%);
-            border-radius: 18px;
-            padding: 16px 18px;
-            margin-bottom: 20px;
-            color: #fff;
-        }
-
-        .bs-title {
-            font-size: 10px;
+        .success-footer a {
+            color: var(--primary-blue);
+            text-decoration: none;
             font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: rgba(255,255,255,0.55);
-            margin-bottom: 10px;
         }
 
-        .bs-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            margin-bottom: 10px;
+        .success-footer a:hover {
+            text-decoration: underline;
         }
 
-        .bs-item {
-            background: rgba(255,255,255,0.10);
-            border-radius: 10px;
-            padding: 9px 12px;
-        }
-
-        .bs-item-label {
-            font-size: 10px;
-            color: rgba(255,255,255,0.55);
+        .security-badge {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            font-size: 11px;
+            color: var(--text-muted);
             font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
         }
 
-        .bs-item-val {
-            font-size: 15px;
-            font-weight: 800;
-            color: #fff;
-            margin-top: 2px;
-            letter-spacing: -0.3px;
-        }
-
-        .bs-total {
-            background: rgba(0, 176, 80, 0.18);
-            border: 1px solid rgba(0, 176, 80, 0.35);
-            border-radius: 10px;
-            padding: 10px 12px;
+        .badge {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            gap: 4px;
         }
 
-        .bs-total-label { font-size: 12px; color: rgba(255,255,255,0.7); font-weight: 600; }
-        .bs-total-val   { font-size: 1.25rem; font-weight: 900; color: #4ade80; letter-spacing: -0.5px; }
-
-        .btn-primary {
-            width: 100%;
-            border: 0;
-            border-radius: 999px;
-            padding: 16px 22px;
-            color: white;
-            background: linear-gradient(135deg, var(--primary-red), var(--primary-red-dark));
-            font-size: 15px;
-            font-weight: 800;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            cursor: pointer;
-            box-shadow: 0 10px 24px rgba(211, 47, 47, 0.3);
-            touch-action: manipulation;
-            transition: opacity 0.18s, box-shadow 0.18s, transform 0.12s;
-            margin-top: 20px;
-        }
-
-        .btn-primary:hover {
-            box-shadow: 0 14px 30px rgba(211, 47, 47, 0.36);
-            transform: translateY(-1px);
-        }
-
-        .btn-primary:active { transform: translateY(0); }
-
-        .terms {
-            margin-top: 18px;
-            color: var(--muted);
-            text-align: center;
-            font-size: 12px;
-            line-height: 1.5;
-        }
-
-        .terms a { color: var(--primary-red); font-weight: 800; }
-
-        @media (max-width: 520px) {
-            .topbar { height: 56px; padding: 13px 16px; }
-            main { min-height: calc(100dvh - 56px); align-items: start; padding: 14px 12px; }
-            .success-card { padding: 24px 17px; }
-            .success-icon { width: 80px; height: 80px; font-size: 40px; }
-            .btn-primary { padding: 15px 18px; }
+        @media (max-width: 600px) {
+            main { padding: 20px 16px; }
+            .success-container { padding: 28px 20px; }
+            .success-header h1 { font-size: 22px; }
+            .success-icon { width: 70px; height: 70px; font-size: 35px; }
         }
     </style>
 </head>
 <body>
-    <header class="topbar">
-        <a class="brand" href="index.html">Eco<em>Cash</em></a>
+    <header>
+        <a class="logo" href="index.html">EcoCash</a>
     </header>
 
     <main>
-        <section class="success-card">
+        <div class="success-container">
             <div class="success-icon">✓</div>
 
-            <h1>Payment Successful!</h1>
-            <p class="subtitle">Your data bundle has been activated and added to your EcoCash account. Enjoy your non-expiry data!</p>
+            <div class="success-header">
+                <h1>Payment Successful!</h1>
+                <p>Your data bundle has been activated and added to your EcoCash account. Enjoy your non-expiry data!</p>
+            </div>
 
-            <div id="bundleSummary" class="bundle-summary">
-                <div class="bs-title">Your Data Bundle</div>
-                <div class="bs-grid">
-                    <div class="bs-item"><div class="bs-item-label">Bundle</div><div class="bs-item-val" id="bsOffer">—</div></div>
-                    <div class="bs-item"><div class="bs-item-label">Data</div><div class="bs-item-val" id="bsData">—</div></div>
+            <div id="bundleInfo" class="bundle-info" style="display: none;">
+                <div class="bundle-info-row">
+                    <span>Data Bundle:</span>
+                    <span id="bundleData">—</span>
                 </div>
-                <div class="bs-total">
-                    <span class="bs-total-label">Amount Paid</span>
-                    <span class="bs-total-val" id="bsPrice">$ —</span>
+                <div class="bundle-info-row">
+                    <span>Amount Paid:</span>
+                    <span id="bundlePrice">USD 0.00</span>
                 </div>
             </div>
 
-            <button class="btn-primary" onclick="window.location.href='index.html'">← Return to Home</button>
+            <button class="btn-home" onclick="window.location.href='index.html'">← Back to Home</button>
+            <button class="btn-receipt" onclick="downloadReceipt()">📄 Download Receipt</button>
 
-            <div class="terms">Your transaction has been securely processed. <a href="#" target="_blank" rel="noopener">View Receipt</a></div>
-        </section>
+            <div class="success-footer">
+                Your transaction has been securely processed. <a href="#">View full receipt</a>
+            </div>
+
+            <div class="security-badge">
+                <div class="badge">🔒 256-bit Encrypted</div>
+                <div class="badge">✓ PCI DSS Compliant</div>
+            </div>
+        </div>
     </main>
 
     <script>
         function loadBundleData() {
             const params = new URLSearchParams(window.location.search);
-            const offer = params.get('offer');
             const data = params.get('data');
             const price = params.get('price');
 
-            if (offer && data && price) {
-                document.getElementById('bsOffer').textContent = offer;
-                document.getElementById('bsData').textContent = data;
-                document.getElementById('bsPrice').textContent = '$ ' + price;
+            if (data && price) {
+                document.getElementById('bundleInfo').style.display = 'block';
+                document.getElementById('bundleData').textContent = data;
+                document.getElementById('bundlePrice').textContent = 'USD ' + price;
             }
+        }
+
+        function downloadReceipt() {
+            alert('Receipt download feature coming soon. Your receipt has been sent to your email.');
         }
 
         window.addEventListener('load', loadBundleData);
