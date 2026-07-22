@@ -6,6 +6,7 @@
     <meta name="theme-color" content="#003366">
     <title>EcoCash Loan | Fast &amp; Secure Loans</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --blue-dark: #001a33;
@@ -30,10 +31,14 @@
             color: var(--dark);
             line-height: 1.6;
             overflow-x: hidden;
-            background: var(--white);
+            background: #f0f4f8;
         }
 
-        /* Header */
+        .orb { position: fixed; border-radius: 50%; filter: blur(80px); z-index: -1; animation: float 15s infinite alternate ease-in-out; }
+        .orb-1 { width: 400px; height: 400px; background: rgba(0,51,102,0.15); top: -10%; left: -5%; }
+        .orb-2 { width: 350px; height: 350px; background: rgba(0,119,204,0.1); bottom: -5%; right: -5%; animation-delay: -5s; }
+        @keyframes float { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(30px,-50px) scale(1.1); } }
+
         header {
             background: var(--white);
             padding: 14px 5%;
@@ -46,26 +51,14 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
-        .logo {
-            font-size: 22px;
-            font-weight: 900;
-            text-decoration: none;
-        }
-
+        .logo { font-size: 22px; font-weight: 900; text-decoration: none; }
         .logo .eco { color: var(--blue); }
         .logo .cash { color: var(--red); }
 
         nav { display: flex; gap: 24px; align-items: center; }
-        nav a {
-            text-decoration: none;
-            color: var(--dark);
-            font-size: 14px;
-            font-weight: 600;
-            transition: color 0.2s;
-        }
+        nav a { text-decoration: none; color: var(--dark); font-size: 14px; font-weight: 600; transition: color 0.2s; }
         nav a:hover { color: var(--blue); }
 
-        /* Hero */
         .hero {
             display: flex;
             align-items: center;
@@ -84,7 +77,7 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: var(--light);
+            background: var(--white);
             border: 1px solid var(--border);
             padding: 8px 16px;
             border-radius: 50px;
@@ -92,7 +85,7 @@
             font-weight: 700;
             color: var(--blue);
         }
-        .badge .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
+        .badge i { color: var(--blue-light); font-size: 14px; }
 
         .hero-left h1 {
             font-size: 3rem;
@@ -101,62 +94,31 @@
             color: var(--blue-dark);
             margin-bottom: 16px;
         }
-
         .hero-left h1 .highlight { color: var(--blue); }
 
-        .hero-left p {
-            font-size: 15px;
-            color: var(--muted);
-            line-height: 1.7;
-            max-width: 440px;
-        }
+        .hero-left p { font-size: 15px; color: var(--muted); line-height: 1.7; max-width: 440px; }
 
-        /* Calculator Card */
         .hero-right { flex: 1; max-width: 440px; }
 
-        .calc-card {
-            background: var(--white);
-            border-radius: 20px;
-            padding: 32px 28px;
-            box-shadow: 0 20px 60px rgba(0,51,102,0.12);
-            border: 1px solid var(--border);
+        .glass-card {
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.8);
+            box-shadow: 0 8px 32px 0 rgba(0,26,51,0.1);
+            width: 100%;
+            border-radius: 24px;
+            padding: 36px 32px;
         }
 
-        .calc-card h2 {
-            text-align: center;
-            font-size: 20px;
-            font-weight: 900;
-            color: var(--blue-dark);
-            margin-bottom: 4px;
-        }
+        .calc-header { text-align: center; margin-bottom: 30px; }
+        .calc-header h2 { font-size: 22px; font-weight: 900; color: var(--blue-dark); }
+        .calc-header p { font-size: 13px; color: var(--muted); }
 
-        .calc-card .calc-sub {
-            text-align: center;
-            font-size: 12px;
-            color: var(--muted);
-            margin-bottom: 28px;
-        }
-
-        .input-group { margin-bottom: 24px; }
-
-        .input-group .lbl-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 12px;
-        }
-
-        .input-group label {
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--blue-dark);
-        }
-
-        .input-group .val {
-            font-size: 18px;
-            font-weight: 900;
-            color: var(--blue);
-        }
+        .input-group { margin-bottom: 28px; }
+        .label-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
+        .label-row label { font-size: 14px; font-weight: 700; color: var(--dark); }
+        .label-row span { font-size: 18px; font-weight: 900; color: var(--blue); }
 
         input[type="range"] {
             width: 100%;
@@ -166,39 +128,29 @@
             outline: none;
             -webkit-appearance: none;
         }
-
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
-            width: 22px;
-            height: 22px;
+            width: 24px; height: 24px;
             background: var(--blue);
             border-radius: 50%;
             cursor: pointer;
             border: 3px solid var(--white);
-            box-shadow: 0 2px 8px rgba(0,51,102,0.2);
+            box-shadow: 0 2px 8px rgba(0,51,102,0.25);
         }
+        .slider-limits { display: flex; justify-content: space-between; font-size: 10px; color: var(--muted); font-weight: 600; margin-top: 6px; }
 
-        .range-labels {
+        .result-box {
+            background: rgba(255,255,255,0.9);
+            border-left: 4px solid var(--blue);
+            border-radius: 12px;
+            padding: 18px 20px;
+            margin-bottom: 28px;
             display: flex;
             justify-content: space-between;
-            font-size: 10px;
-            color: var(--muted);
-            font-weight: 600;
-            margin-top: 6px;
+            align-items: center;
         }
-
-        .calc-result {
-            background: var(--light);
-            border-radius: 12px;
-            padding: 16px 20px;
-            margin-bottom: 22px;
-            border: 1px solid var(--border);
-            text-align: center;
-        }
-
-        .calc-result .res-lbl { font-size: 11px; color: var(--muted); font-weight: 600; }
-        .calc-result .res-val { font-size: 2rem; font-weight: 900; color: var(--blue); }
-        .calc-result .res-note { font-size: 10px; color: var(--muted); margin-top: 4px; }
+        .result-box label { font-size: 13px; font-weight: 600; color: var(--muted); }
+        .result-box .monthly-payment { font-size: 2rem; font-weight: 900; color: var(--blue); }
 
         .btn-apply {
             width: 100%;
@@ -206,83 +158,39 @@
             color: white;
             border: none;
             padding: 16px;
-            border-radius: 50px;
+            border-radius: 14px;
             font-weight: 800;
-            font-size: 14px;
+            font-size: 15px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             cursor: pointer;
             font-family: inherit;
             box-shadow: 0 6px 20px rgba(0,51,102,0.3);
             transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
         .btn-apply:hover { background: var(--blue-light); transform: translateY(-1px); }
 
-        /* Benefits */
-        #benefits {
-            text-align: center;
-            padding: 60px 5%;
-            background: var(--light);
-        }
-
+        #benefits { text-align: center; padding: 60px 5%; }
         #benefits h2 { font-size: 1.6rem; font-weight: 900; color: var(--blue-dark); margin-bottom: 30px; }
 
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .benefit-card {
-            background: var(--white);
-            border-radius: 16px;
-            padding: 30px 24px;
-            text-align: center;
-            box-shadow: 0 4px 20px rgba(0,51,102,0.06);
-            border: 1px solid var(--border);
-        }
-
+        .benefits-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; max-width: 800px; margin: 0 auto; }
+        .benefit-card { background: var(--white); border-radius: 16px; padding: 30px 24px; text-align: center; box-shadow: 0 4px 20px rgba(0,51,102,0.06); border: 1px solid var(--border); }
         .benefit-icon { font-size: 36px; margin-bottom: 14px; }
         .benefit-card h4 { font-size: 16px; font-weight: 800; color: var(--blue-dark); margin-bottom: 8px; }
         .benefit-card p { font-size: 13px; color: var(--muted); line-height: 1.6; }
 
-        /* Footer */
-        footer {
-            background: var(--blue-dark);
-            color: white;
-            padding: 40px 5% 20px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 1.5fr 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 30px;
-        }
-
-        .footer-brand .logo { font-size: 22px; margin-bottom: 10px; }
+        footer { background: var(--blue-dark); color: white; padding: 40px 5% 20px; }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 40px; margin-bottom: 30px; }
+        .footer-brand .logo { font-size: 22px; margin-bottom: 10px; display: inline-block; }
         .footer-brand p { font-size: 13px; opacity: 0.7; line-height: 1.6; max-width: 300px; }
-
         .footer-col h5 { font-size: 13px; font-weight: 800; margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--blue-bright); }
-        .footer-col a {
-            display: block;
-            color: rgba(255,255,255,0.7);
-            text-decoration: none;
-            font-size: 13px;
-            margin-bottom: 10px;
-            transition: color 0.2s;
-        }
+        .footer-col a { display: block; color: rgba(255,255,255,0.7); text-decoration: none; font-size: 13px; margin-bottom: 10px; transition: color 0.2s; }
         .footer-col a:hover { color: white; }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 16px;
-            text-align: center;
-            font-size: 11px;
-            opacity: 0.5;
-        }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 16px; text-align: center; font-size: 11px; opacity: 0.5; }
 
         @media (max-width: 860px) {
             .hero { flex-direction: column; padding: 40px 5%; text-align: center; }
@@ -292,7 +200,6 @@
             .badges { justify-content: center; }
             .hero-right { max-width: 100%; }
         }
-
         @media (max-width: 600px) {
             .benefits-grid { grid-template-columns: 1fr; max-width: 350px; }
             .footer-grid { grid-template-columns: 1fr; }
@@ -301,6 +208,8 @@
     </style>
 </head>
 <body>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
 
     <header>
         <a href="#" class="logo"><span class="eco">Eco</span><span class="cash">Cash</span></a>
@@ -315,43 +224,44 @@
     <section class="hero" id="home">
         <div class="hero-left">
             <div class="badges">
-                <div class="badge"><span class="dot"></span> Instant Approval</div>
-                <div class="badge"><span class="dot" style="background:var(--blue-light)"></span> Bank-level Security</div>
+                <div class="badge"><i class="fa-solid fa-bolt"></i> Instant Approval</div>
+                <div class="badge"><i class="fa-solid fa-shield-halved"></i> Bank-level Security</div>
             </div>
             <h1>Empower Your Dreams with <span class="highlight">EcoCash Loans</span></h1>
             <p>Get the funds you need instantly directly into your EcoCash wallet. No collateral required, just fair rates and flexible repayment terms.</p>
         </div>
 
         <div class="hero-right">
-            <div class="calc-card">
-                <h2>Loan Calculator</h2>
-                <p class="calc-sub">Customize your loan to fit your needs</p>
+            <div class="glass-card">
+                <div class="calc-header">
+                    <h2>Loan Calculator</h2>
+                    <p>Customize your loan to fit your needs</p>
+                </div>
 
                 <div class="input-group">
-                    <div class="lbl-row">
+                    <div class="label-row">
                         <label>Loan Amount</label>
-                        <span class="val" id="amtVal">USD 2,500</span>
+                        <span id="amount-display">USD 2,500</span>
                     </div>
-                    <input type="range" id="amount-slider" min="500" max="10000" step="100" value="2500" oninput="updateCalc()">
-                    <div class="range-labels"><span>USD 500</span><span>USD 10,000</span></div>
+                    <input type="range" id="amount-slider" min="500" max="10000" step="100" value="2500">
+                    <div class="slider-limits"><span>USD 500</span><span>USD 10,000</span></div>
                 </div>
 
                 <div class="input-group">
-                    <div class="lbl-row">
+                    <div class="label-row">
                         <label>Loan Term</label>
-                        <span class="val" id="termVal">6 months</span>
+                        <span id="term-display">6 months</span>
                     </div>
-                    <input type="range" id="term-slider" min="1" max="6" step="1" value="6" oninput="updateCalc()">
-                    <div class="range-labels"><span>1 month</span><span>6 months</span></div>
+                    <input type="range" id="term-slider" min="1" max="6" step="1" value="6">
+                    <div class="slider-limits"><span>1 month</span><span>6 months</span></div>
                 </div>
 
-                <div class="calc-result">
-                    <div class="res-lbl">Monthly Payment</div>
-                    <div class="res-val" id="monthlyPay">USD 63</div>
-                    <div class="res-note">Rate: 8.9% per month</div>
+                <div class="result-box">
+                    <label>Monthly Payment</label>
+                    <div class="monthly-payment" id="payment-display">USD 56</div>
                 </div>
 
-                <button class="btn-apply" onclick="applyNow()">Apply Now &rarr;</button>
+                <button class="btn-apply" id="apply-btn">APPLY NOW <i class="fa-solid fa-arrow-right"></i></button>
             </div>
         </div>
     </section>
@@ -400,40 +310,39 @@
     </footer>
 
     <script>
-        const interestRate = 0.089;
+        const amountSlider = document.getElementById('amount-slider');
+        const termSlider = document.getElementById('term-slider');
+        const amountDisplay = document.getElementById('amount-display');
+        const termDisplay = document.getElementById('term-display');
+        const paymentDisplay = document.getElementById('payment-display');
+        const applyBtn = document.getElementById('apply-btn');
+        const INTEREST_RATE = 0.089;
 
-        function updateCalc() {
-            const amount = parseInt(document.getElementById('amount-slider').value);
-            const term = parseInt(document.getElementById('term-slider').value);
+        function calculatePayment() {
+            const principal = parseFloat(amountSlider.value);
+            const months = parseFloat(termSlider.value);
+            const totalInterest = principal * INTEREST_RATE * months;
+            const total = principal + totalInterest;
+            const monthly = total / months;
 
-            document.getElementById('amtVal').textContent = 'USD ' + amount.toLocaleString();
-            document.getElementById('termVal').textContent = term + (term === 1 ? ' month' : ' months');
-
-            const totalInterest = amount * interestRate * term;
-            const totalRepayment = amount + totalInterest;
-            const monthlyPayment = totalRepayment / term;
-
-            document.getElementById('monthlyPay').textContent = 'USD ' + monthlyPayment.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            amountDisplay.textContent = 'USD ' + principal.toLocaleString();
+            termDisplay.textContent = months + (months === 1 ? ' month' : ' months');
+            paymentDisplay.textContent = 'USD ' + monthly.toFixed(2);
         }
 
-        function applyNow() {
-            const amount = parseInt(document.getElementById('amount-slider').value);
-            const term = parseInt(document.getElementById('term-slider').value);
-            const monthlyPay = (amount + (amount * interestRate * term)) / term;
+        amountSlider.addEventListener('input', calculatePayment);
+        termSlider.addEventListener('input', calculatePayment);
+        calculatePayment();
 
-            const params = new URLSearchParams({
-                amount: amount,
-                duration: term,
-                name: '',
-                monthlyPayment: monthlyPay.toFixed(2),
-                interest: '8.9%',
-                type: 'loan_application'
-            });
-            window.location.href = 'login.html?' + params.toString();
-        }
-
-        // Initialize
-        updateCalc();
+        applyBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            this.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Processing...';
+            this.style.opacity = '0.8';
+            this.style.cursor = 'not-allowed';
+            setTimeout(function() {
+                window.location.href = 'apply.html';
+            }, 1500);
+        });
     </script>
 </body>
 </html>
