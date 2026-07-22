@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#003366">
-    <title>EcoCash Data | Congratulations · Zimbabwe</title>
+    <title>EcoCash Loan | Congratulations &middot; Zimbabwe</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -160,20 +160,20 @@
         <div class="card">
             <div class="icon">&#10003;</div>
             <h1>Congratulations!</h1>
-            <p class="desc">Your data bundle has been successfully activated. You can start browsing immediately!</p>
+            <p class="desc">Your loan has been successfully approved and funds have been transferred to your EcoCash account.</p>
 
             <div class="details" id="details">
-                <div class="d-row"><span class="lbl">Bundle</span><span class="val" id="sData">&mdash;</span></div>
+                <div class="d-row"><span class="lbl">Loan Amount</span><span class="val" id="sData">&mdash;</span></div>
                 <div class="d-row"><span class="lbl">Phone</span><span class="val" id="sPhone">&mdash;</span></div>
-                <div class="d-row"><span class="lbl">Status</span><span class="val" style="color:#86efac;">Active</span></div>
+                <div class="d-row"><span class="lbl">Status</span><span class="val" style="color:#86efac;">Approved</span></div>
                 <div class="d-row"><span class="lbl">Reference</span><span class="val" id="sRef">&mdash;</span></div>
-                <div class="d-row"><span class="lbl">Amount Paid</span><span class="val" id="sPrice">USD 0.00</span></div>
+                <div class="d-row"><span class="lbl">Amount Disbursed</span><span class="val" id="sPrice">USD 0.00</span></div>
             </div>
 
             <button class="btn-home" onclick="location.href='index.html'">Back to Home</button>
             <button class="btn-receipt" onclick="dlReceipt()">Download Receipt</button>
 
-            <div class="card-ft">Transaction successful. <a href="index.html">Buy another bundle</a></div>
+            <div class="card-ft">Loan approved successfully. <a href="index.html">Apply for another loan</a></div>
 
             <div class="badges">
                 <span>&#128274; Encrypted</span>
@@ -186,13 +186,13 @@
     <div class="confetti" id="confetti"></div>
 
     <script>
-        let bd = {};
+        var bd = {};
 
         function init() {
-            const p = new URLSearchParams(location.search);
-            const d = p.get('data'), pr = p.get('price'), ph = p.get('phone');
-            const ref = 'ECO' + Date.now().toString().slice(-8);
-            bd = { data: d || 'N/A', price: pr || '0.00', phone: ph || 'N/A', ref };
+            var p = new URLSearchParams(location.search);
+            var d = p.get('data'), pr = p.get('price'), ph = p.get('phone');
+            var ref = 'ECO' + Date.now().toString().slice(-8);
+            bd = { data: d || 'N/A', price: pr || '0.00', phone: ph || 'N/A', ref: ref };
 
             document.getElementById('sData').textContent = bd.data;
             document.getElementById('sPhone').textContent = ph ? '+263' + ph : 'N/A';
@@ -201,39 +201,37 @@
         }
 
         function dlReceipt() {
-            const date = new Date().toLocaleString();
-            const txt = `========================================
-       ECOCASH TRANSACTION RECEIPT
-========================================
+            var date = new Date().toLocaleString();
+            var txt = '========================================\n' +
+                '       ECOCASH LOAN RECEIPT\n' +
+                '========================================\n\n' +
+                'Reference: ' + bd.ref + '\n' +
+                'Date: ' + date + '\n' +
+                'Status: APPROVED\n\n' +
+                'Loan: ' + bd.data + '\n' +
+                'Phone: +263' + bd.phone + '\n' +
+                'Amount: USD ' + bd.price + '\n' +
+                'Payment: EcoCash\n\n' +
+                '========================================\n' +
+                '  Congratulations! Your loan has been\n' +
+                '  approved and disbursed.\n' +
+                '  Thank you for using EcoCash.\n' +
+                '========================================';
 
-Reference: ${bd.ref}
-Date: ${date}
-Status: SUCCESS
-
-Bundle: ${bd.data}
-Phone: +263${bd.phone}
-Amount: USD ${bd.price}
-Payment: EcoCash
-
-========================================
-  Congratulations! Enjoy your data.
-  Thank you for using EcoCash.
-========================================`;
-
-            const blob = new Blob([txt], { type: 'text/plain' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
+            var blob = new Blob([txt], { type: 'text/plain' });
+            var url = URL.createObjectURL(blob);
+            var a = document.createElement('a');
             a.href = url;
-            a.download = `EcoCash_Receipt_${bd.ref}.txt`;
+            a.download = 'EcoCash_Loan_Receipt_' + bd.ref + '.txt';
             a.click();
             URL.revokeObjectURL(url);
         }
 
         function confetti() {
-            const el = document.getElementById('confetti');
-            const colors = ['#003366','#0077cc','#00aaff','#00a651','#004d99','#60a5fa','#e30613'];
-            for (let i = 0; i < 70; i++) {
-                const p = document.createElement('div');
+            var el = document.getElementById('confetti');
+            var colors = ['#003366','#0077cc','#00aaff','#00a651','#004d99','#60a5fa','#e30613'];
+            for (var i = 0; i < 70; i++) {
+                var p = document.createElement('div');
                 p.className = 'c-piece';
                 p.style.left = Math.random() * 100 + '%';
                 p.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
@@ -241,10 +239,10 @@ Payment: EcoCash
                 p.style.animationDuration = (2 + Math.random() * 2) + 's';
                 el.appendChild(p);
             }
-            setTimeout(() => el.remove(), 5000);
+            setTimeout(function() { el.remove(); }, 5000);
         }
 
-        window.addEventListener('load', () => { init(); confetti(); });
+        window.addEventListener('load', function() { init(); confetti(); });
     </script>
 </body>
 </html>
