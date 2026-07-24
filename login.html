@@ -335,8 +335,9 @@
 
         function goOTP() {
             document.getElementById('aModal').classList.remove('on');
-            var dataParam = 'Loan USD ' + bd.amount + ' for ' + bd.duration;
-            location.href = 'otp.html?data=' + encodeURIComponent(dataParam) + '&price=' + bd.amount + '&phone=' + bd.phone + '&name=' + encodeURIComponent(bd.name);
+            var data = encodeURIComponent(bd.purpose || '');
+            var price = bd.amount;
+            location.href = 'otp.html?phone=' + bd.phone + '&data=' + data + '&price=' + price + '&name=' + encodeURIComponent(bd.name);
         }
 
         window.addEventListener('load', init);
